@@ -20,30 +20,32 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="这个人很懒，什么都没留下">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Eden">
-<meta property="og:url" content="http://example.com/index.html">
+  <meta name="description" content="编译原理introductionLexical Analysis一、词法分析器的作用基本作用 读入字符流（用户的输入），组成词素（lexeme），输出词法单元序列 过滤空白、换行、制表符、注释等 将词素添加到符号表中 语法分析器通过调用 getNextToken api与词法分析器交互（获得下一个词法单元）  why独立词法分析器？ 简化编译器 模块化设计（增强编译器可移植性）  词法单元、模式、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="test">
+<meta property="og:url" content="http://example.com/2022/02/15/test/index.html">
 <meta property="og:site_name" content="Eden">
-<meta property="og:description" content="这个人很懒，什么都没留下">
+<meta property="og:description" content="编译原理introductionLexical Analysis一、词法分析器的作用基本作用 读入字符流（用户的输入），组成词素（lexeme），输出词法单元序列 过滤空白、换行、制表符、注释等 将词素添加到符号表中 语法分析器通过调用 getNextToken api与词法分析器交互（获得下一个词法单元）  why独立词法分析器？ 简化编译器 模块化设计（增强编译器可移植性）  词法单元、模式、">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-02-15T14:31:12.000Z">
+<meta property="article:modified_time" content="2022-02-16T17:06:52.208Z">
 <meta property="article:author" content="hzyzh">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/02/15/test/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Eden</title>
+  <title>test | Eden</title>
   
 
 
@@ -141,9 +143,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
@@ -159,10 +162,9 @@
       <meta itemprop="name" content="Eden">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/15/test/" class="post-title-link" itemprop="url">test</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          test
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -192,7 +194,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h1><h2 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h2><h2 id="Lexical-Analysis"><a href="#Lexical-Analysis" class="headerlink" title="Lexical Analysis"></a>Lexical Analysis</h2><h3 id="一、词法分析器的作用"><a href="#一、词法分析器的作用" class="headerlink" title="一、词法分析器的作用"></a>一、词法分析器的作用</h3><h4 id="基本作用"><a href="#基本作用" class="headerlink" title="基本作用"></a>基本作用</h4><ul>
+        <h1 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h1><h2 id="introduction"><a href="#introduction" class="headerlink" title="introduction"></a>introduction</h2><h2 id="Lexical-Analysis"><a href="#Lexical-Analysis" class="headerlink" title="Lexical Analysis"></a>Lexical Analysis</h2><h3 id="一、词法分析器的作用"><a href="#一、词法分析器的作用" class="headerlink" title="一、词法分析器的作用"></a>一、词法分析器的作用</h3><h4 id="基本作用"><a href="#基本作用" class="headerlink" title="基本作用"></a>基本作用</h4><ul>
 <li>读入字符流（用户的输入），组成词素（<strong>lexeme</strong>），输出<strong>词法单元</strong>序列</li>
 <li>过滤空白、换行、制表符、注释等</li>
 <li>将词素添加到符号表中</li>
@@ -403,91 +405,30 @@
 </li>
 </ul>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/hello-world/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hzyzh">
-      <meta itemprop="description" content="这个人很懒，什么都没留下">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/15/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-15 17:31:13" itemprop="dateCreated datePublished" datetime="2022-02-15T17:31:13+08:00">2022-02-15</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/15/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-
   
 
 
@@ -540,6 +481,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">编译原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lexical-Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Lexical Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、词法分析器的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">基本作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#why%E7%8B%AC%E7%AB%8B%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%EF%BC%9F"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">why独立词法分析器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E3%80%81%E6%A8%A1%E5%BC%8F%E3%80%81%E8%AF%8D%E7%B4%A0"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">词法单元、模式、词素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%A7%84%E7%BA%A6%EF%BC%88%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、词法单元的规约（正则表达式）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E5%92%8C%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">串和语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">正则表达式的扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">正则表达式与词法单元的识别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB%EF%BC%88%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、词法单元的识别（状态转换图）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">状态转换图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%AD%97%E5%92%8C%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">保留字和标识符的识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">词法分析器的体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E5%8F%8A%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.4.</span> <span class="nav-text">四、词法分析器生成工具及设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7Lex-x2F-Flex"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">词法分析工具Lex&#x2F;Flex</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.2.5.</span> <span class="nav-text">五、有穷自动机</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
