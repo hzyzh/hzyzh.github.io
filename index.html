@@ -147,6 +147,279 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/17/OOD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/17/OOD/" class="post-title-link" itemprop="url">OOD</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-17 14:28:27 / 修改时间：15:37:47" itemprop="dateCreated datePublished" datetime="2022-02-17T14:28:27+08:00">2022-02-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ul>
+<li><p>软件工程：将系统化的、规范的、可度量的方法应用于软件的开发、运行和维护的过程，即将工程化应用与软件中（软件工程复杂性导致的）</p>
+</li>
+<li><p>软件质量？何优何劣？</p>
+<ul>
+<li>可从“外部”何“内部”考察<ul>
+<li>外部：用户直接感觉到的<ul>
+<li>正确性：依据规约 完成任务</li>
+<li>鲁棒性：异常情况</li>
+<li>完整性：非法访问和修改</li>
+<li>易扩展性：软件因规约改变而改变（需求改变，可以很容易的修改至满足需求）</li>
+<li>易复用性：软件模块，可以复用到另外的软件中</li>
+<li>兼容性：不同软件模块组合的难易程度</li>
+<li>高效性：尽量少使用硬件资源、处理时间、内外存、带宽</li>
+<li>$\cdots$</li>
+</ul>
+</li>
+<li>内部：用户不能直接发觉的（源码、设计报告、分析报告等）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>应对复杂性的途径：</p>
+<ul>
+<li><p>“元方法”</p>
+<ul>
+<li>分解（Decomposition）：分而治之</li>
+<li>抽象（Abstraction）：将需求（对象）抽象成类</li>
+<li>层次化（Hierarchy）</li>
+</ul>
+</li>
+<li><p>“结构化”开发方法</p>
+<ul>
+<li><p>自顶向下的功能设计</p>
+</li>
+<li><p>瀑布型模型：软件生命周期模型</p>
+<ul>
+<li>需求分析（可行性）$\to$specification$\to$总体设计（伪代码）$\to$细节设计$\to$实现$\to$验证确认$\to$发布</li>
+<li>问题<ul>
+<li>实际代码晚</li>
+<li>需求变化的支持？</li>
+<li>无软件维护阶段</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>敏捷编程开发模型：面向对象程序开发常用的模型</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="软件模块化"><a href="#软件模块化" class="headerlink" title="软件模块化"></a>软件模块化</h4><ul>
+<li><p>重要性质</p>
+<ul>
+<li><p>易分解性（Decomposability）</p>
+<p>复杂问题分解成子问题</p>
+</li>
+<li><p>易组合性（Composability）</p>
+<p>软件单元自由组合成新的软件</p>
+</li>
+<li><p>易理解性（Understandable）</p>
+<p>不牵涉太广；自描述（一个软件模块的含义只需依赖自己？）</p>
+</li>
+<li><p>连续性（Continuity）</p>
+<p>规约中的小变化也只会引起结构的小变化</p>
+<p>Design method: Specification $\to$ Architecture</p>
+</li>
+<li><p>模块保护（Protection）</p>
+<p>异常不扩散&#x2F;扩散范围有限（异常处理）</p>
+</li>
+</ul>
+</li>
+<li><p>Five Rules（降低耦合度）</p>
+<ul>
+<li><p>直接映射</p>
+<p>模型（问题）和代码（软件）直接映射</p>
+</li>
+<li><p>少接口</p>
+<p>模块之间尽量少通信</p>
+</li>
+<li><p>小接口</p>
+<p>模块的接口要小</p>
+</li>
+<li><p>显示接口</p>
+<p>显示指出：A向B传递？or B向A传递？</p>
+<p>反例：全局变量（不知道A和B之间的接口关系）</p>
+</li>
+<li><p>信息隐藏</p>
+<p>public、private啥</p>
+</li>
+</ul>
+</li>
+<li><p>模块</p>
+<ul>
+<li>根本特征：“相对独立，功能单一”</li>
+<li>低耦合，高内聚</li>
+</ul>
+</li>
+</ul>
+<p>​    <strong>复用</strong></p>
+<ul>
+<li><p>传统技术复用支持</p>
+<ul>
+<li><p>过程（Routine）</p>
+</li>
+<li><p>包（Package）</p>
+<p>都是啥？</p>
+</li>
+</ul>
+</li>
+<li><p>面向对象开发方法</p>
+<p>vs 结构化方法（就是传统方法？）</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/17/multimedia/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/17/multimedia/" class="post-title-link" itemprop="url">multimedia</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-17 10:40:49 / 修改时间：12:05:21" itemprop="dateCreated datePublished" datetime="2022-02-17T10:40:49+08:00">2022-02-17</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><ul>
+<li><p>目标</p>
+<ul>
+<li><p>多媒体技术在计算机上的表示（怎样表示一个视频、声音、图形）</p>
+</li>
+<li><p>掌握多媒体编码标准</p>
+</li>
+<li><p>当前的多媒体处理技术和相关算法</p>
+</li>
+</ul>
+</li>
+<li><p>什么是媒体</p>
+<ul>
+<li>媒体（Media）：发布信息，表现信息的手段、方法、工具、设备或装置<ul>
+<li>两种形式：<ul>
+<li>感觉媒体：人——人 或 人——机交换信息的形式（可以通过视觉、听觉 感知到）</li>
+<li>表示媒体：计算机内部或机——机交换信息的形式（二进制编码形式存储）：称为数字媒体形式</li>
+</ul>
+</li>
+<li>感觉媒体和表示媒体的转换（输入设备、输出设备），是主要研究部分！</li>
+<li>按生成属性分类<ul>
+<li>自然媒体：客观世界存在的。。。经过特定设备，进行数字化和编码处理后得到的 <strong>数字媒体</strong> （如：Digital video，Bitmap image）</li>
+<li>合成媒体：以计算机为工具、采用特定符号、语言、算法表示等，由计算机生成（合成）的文本、音乐、动画等等 （如MIDI？graphics，computer animation）</li>
+<li>两者区别：<ul>
+<li>1.客观世界存在否；</li>
+<li>2.表示方式：<ul>
+<li>自然媒体：离散样本方式；</li>
+<li>合成媒体：由符号、语言、算法 所表示的</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>啥是多媒体？ any combination of text, graphic art, sound, animation, video delivered by computers</li>
+<li>多媒体技术：可以大大提高人机交互效率（各种人机交互接口）</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -553,9 +826,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
