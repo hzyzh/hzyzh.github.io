@@ -147,6 +147,173 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/22/data-mining/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/22/data-mining/" class="post-title-link" itemprop="url">data_mining</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-22 16:33:17 / 修改时间：23:24:11" itemprop="dateCreated datePublished" datetime="2022-02-22T16:33:17+08:00">2022-02-22</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><h3 id="data-mining"><a href="#data-mining" class="headerlink" title="data mining"></a>data mining</h3><p>从大数据库中挖掘有用的信息，然后用它来做重要决策</p>
+<p>初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format</p>
+<p>data mining的四个super-problems： association pattern mining，clustering，classification，outlier detection</p>
+<ul>
+<li>classification：分类任务<ul>
+<li>有标签（class label）</li>
+<li>classification 和 regression（回归：标签是一个值） 都是supervised learning task<ul>
+<li>supervision：指特殊列（data matrix中，即标签）被用来direct the data mining process</li>
+</ul>
+</li>
+<li>classification methods：<ul>
+<li>支持向量机（support vector machines）</li>
+<li>K-nearest neighbor classification（KNN）K-近邻算法：还不会呢</li>
+<li>决策树（decision trees）</li>
+<li>rule-based classifier：不知道</li>
+</ul>
+</li>
+<li>可以视为有监督版本的clustering！</li>
+</ul>
+</li>
+<li>clustering<ul>
+<li>将数据集分为多个子集，每个子集在属性值相关，各个子集比较相似</li>
+<li>$\textcolor{red}{当一行的某一属性与其他行的该属性显著不同时}$，$\textcolor{red}{它被视为一个anomaly，问题也变为了outlier; analysis}$。</li>
+</ul>
+</li>
+<li>anomaly detection（outlier detection &#x2F; novelty detection）</li>
+<li>association pattern mining<ul>
+<li>最初版本：data matrix的值只取0或1（可以推广至数值&#x2F;枚举型属性值）</li>
+<li><h2 id="frequent-pattern-mining-problem："><a href="#frequent-pattern-mining-problem：" class="headerlink" title="frequent pattern mining problem："></a>frequent pattern mining problem：</h2></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/18/graphics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/02/18/graphics/" class="post-title-link" itemprop="url">graphics</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-02-18 10:51:55 / 修改时间：11:11:04" itemprop="dateCreated datePublished" datetime="2022-02-18T10:51:55+08:00">2022-02-18</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="计算机图形技术范式的演化"><a href="#计算机图形技术范式的演化" class="headerlink" title="计算机图形技术范式的演化"></a>计算机图形技术范式的演化</h4><ol>
+<li><p>字符显示</p>
+<p>文字加数字的伪图形；命令行；文本格式编码；单任务</p>
+</li>
+<li><p>矢量显示</p>
+<p>笔画文字和线画图形；命令行；存储和操纵复杂（笔画）；单&#x2F;多人物</p>
+</li>
+<li><p>二位光栅扫描显示（Bitmap Raster）</p>
+<p>窗口、图标、清洗文字即图案；直接选取对象；桌面；多任务</p>
+</li>
+<li><p>图形工作站及多视角投影（3DTV）</p>
+<p>实时 三维 实物虚化 虚物实化；多维输入设备</p>
+</li>
+</ol>
+<ul>
+<li><p>一些工业标准（ad hoc Standard）</p>
+<p>Open GL； DirectX； X-Window； Postscript</p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/17/OOD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -420,7 +587,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/test/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -434,7 +601,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/02/15/test/" class="post-title-link" itemprop="url">test</a>
+            <a href="/2022/02/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">编译原理</a>
         </h2>
 
         <div class="post-meta">
@@ -451,7 +618,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-17 01:06:52" itemprop="dateModified" datetime="2022-02-17T01:06:52+08:00">2022-02-17</time>
+                <time title="修改时间：2022-02-22 01:51:20" itemprop="dateModified" datetime="2022-02-22T01:51:20+08:00">2022-02-22</time>
               </span>
 
           
@@ -642,36 +809,165 @@
 </li>
 <li>Lex中冲突解决方法<ul>
 <li>冲突：多个输入前缀与某个模式相匹配，或一个前缀与多个模式匹配<ul>
-<li>多个前缀可能匹配：选择最长的前缀</li>
-<li>前缀和多个模式匹配：选择列在前面的模式</li>
+<li>多个前缀可能匹配：<strong>选择最长的前缀</strong></li>
+<li>前缀和多个模式匹配：<strong>选择列在前面的模式</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h3 id="五、有穷自动机"><a href="#五、有穷自动机" class="headerlink" title="五、有穷自动机"></a>五、有穷自动机</h3><ul>
-<li>本质和状态转换图相同，但只回答Yes&#x2F;No</li>
-<li>两类：<ul>
+<li><p>本质和状态转换图相同，但只回答Yes&#x2F;No</p>
+</li>
+<li><p>两类：</p>
+<ul>
 <li>不确定的~（NFA)：一个符号可出现在离开同一状态的多条边上，$\epsilon$可做标号（可能跳到多个状态？状态不唯一？）</li>
 <li>确定的~(DFA)：对每个状态及符号，有且只有&#x2F;最多只有一条边</li>
 </ul>
 </li>
-<li>两种自动机都识别正则语言<ul>
+<li><p>两种自动机都识别正则语言</p>
+<ul>
 <li>NFA,DFA都可以识别正则表达式可描述的语言，反之亦然</li>
 <li>识别：判定一个串是否数于对应正则语言</li>
+<li>NFA,DFA的表达能力是等价的~</li>
 </ul>
 </li>
-<li>NFA的定义（不确定）：<ul>
-<li>有穷状态机和 S</li>
-<li>输入字母表$\Sigma$</li>
-<li><strong>转换函数</strong>对每个状态和$\Sigma\cup{\epsilon}$中的符号，给出相应的后继状态集合</li>
-<li>$s_0$为开始状态</li>
-<li>S 的一个子集 F 被指定为接收状态集合</li>
-<li>输入字符串的接受：<ul>
+<li><p>NFA（不确定）：</p>
+<ul>
+<li><p>有穷状态机和 S</p>
+</li>
+<li><p>输入字母表$\Sigma$</p>
+</li>
+<li><p><strong>转换函数</strong>对每个状态和$\Sigma\cup{\epsilon}$中的符号，给出相应的后继状态集合</p>
+</li>
+<li><p>$s_0$为开始状态</p>
+</li>
+<li><p>S 的一个子集 F 被指定为接受状态集合</p>
+</li>
+<li><p>输入字符串的接受：</p>
+<ul>
 <li>NFA接受输入字符串x：转换图中存在一条从开始状态到某个接受状态的路径（路径上的标号连接为x，忽略$\epsilon$)</li>
 <li>NFA接受的语言：从开始状态到接受状态的<strong>所有可能路径</strong>的标号串的集合</li>
 </ul>
 </li>
+<li><p>容易从正则表达式转换<img src="F:\blog\source\_posts\figs\fig2.png" alt="img" style="zoom:70%;" /></p>
+</li>
+<li><p>NFA的不确定性使其不易实现：</p>
+<ul>
+<li>维护多状态</li>
+<li>跟踪多路径</li>
+</ul>
+<p>解决方案：DFA</p>
+</li>
+</ul>
+</li>
+<li><p>DFA（确定）：</p>
+<ul>
+<li>一个NFA被称为DFA，如果：<ul>
+<li>没有标号为$\epsilon$的转换；</li>
+<li>每个状态s和输入符号a，有且仅有一条标号为a的离开s的边</li>
+</ul>
+</li>
+<li>一个串能否被DFA接受：可高效判断</li>
+<li>DFA的运行：代码很好实现！（因为同一时间状态唯一确定）</li>
+</ul>
+</li>
+<li><p>NFA转换到DFA（子集构造法）：</p>
+<ul>
+<li><p>思想：构造得到的（目标）DFA的 每个$\textcolor{red}{状态}$和NFA的 $\textcolor{red}{状态子集}$对应（同时的多个状态）<br>在算法中”并行地模拟“NFA遇到一个给定输入串时可能执行的所有动作</p>
+</li>
+<li><p>目标DFA状态之间的转换对应NFA妆台集合之间的转换</p>
+</li>
+<li><p>理论上，最坏情况下DFA的状态个数会是NFA状态个数的指数个（幂级，$2^n$)</p>
+<p>​    （一般而言，两者状态数量大致相同）</p>
+</li>
+<li><p>算法：</p>
+<ul>
+<li><p>基本操作：</p>
+<ul>
+<li>$\epsilon-$closure(s)（闭包）：从NFA状态s开始，只通过$\epsilon$转换能到达的NFA状态集合</li>
+<li>$\epsilon-$closure(T)：T中所有状态s的$\epsilon-$closure(s)</li>
+<li>move(T，a)：枚举T中所有状态，从T中某状态s出发，通过标号a（+$\epsilon$转换）能到的所有NFA状态集合</li>
+</ul>
+</li>
+<li><p>算法1（计算$\epsilon-$closure(T)）如下：<img src="F:\blog\source_posts\figs\algorithm1.png" alt="img"></p>
+</li>
+<li><p>主算法：</p>
+<ul>
+<li>输出：Dstates：DFA状态，每个元素对应一个NFA状态集合</li>
+<li>Dtran：DFA状态转换表<img src="F:\blog\source_posts\figs\algorithm2.png" alt="img"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="DFA状态数量的最小化"><a href="#DFA状态数量的最小化" class="headerlink" title="DFA状态数量的最小化"></a>DFA状态数量的最小化</h4><p>一个正则语言可对应于多个识别它的DFA（等价的）</p>
+<p>通过<strong>DFA的最小化</strong>可得到状态数量最少的DFA（不及同构，是唯一的）</p>
+<ul>
+<li>状态的区分<ul>
+<li>状态的可区分<ul>
+<li>如果状态s1和s2，存在串x，使得从s1、s2经x，一个到接受状态，一个到非接受状态，则x区分了s1和s2</li>
+<li>若存在串区分了s和t，则s和t可区分，否则它们不可区分</li>
+<li>不可区分的状态等价，可合并<ul>
+<li>&#x3D;&gt; 暴力算法，为所有两个状态对都试图找一个区分它们的串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DFA最小化算法：<ul>
+<li>所有可区分状态分开（迭代过程）<ul>
+<li>base case：$\epsilon$区分了接受和非接受状态</li>
+<li>induction case：若s和t可区分，且s‘到s、t’到t有a边，则s‘和t’也可区分</li>
+</ul>
+</li>
+<li>最终没有区分开的状态就是等价的</li>
+<li>从划分得到的等价类中选取<strong>代表</strong>，并重建DFA<img src="F:\blog\source_posts\figs\algorithm3.png" alt="img"></li>
+<li>构造：从$\Pi_{\text{final}}$中每个组选一个代表，作为最小化DFA中状态，构造过程很自然和显然</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="自动机到词法分析器"><a href="#自动机到词法分析器" class="headerlink" title="自动机到词法分析器"></a>自动机到词法分析器</h4><ul>
+<li><p>正则：识别单模式</p>
+</li>
+<li><p>词法分析器：要识别多个模式！</p>
+</li>
+<li><p>解决方法：NFA合并方法！</p>
+<ul>
+<li>引入新的$\textcolor{red}{新的开始状态}$，并从该状态到各个原开始状态加$\epsilon$转换边</li>
+<li>得到的NFA所接受的语言是原来各NFA语言的并集</li>
+<li>不同接受状态代表$\textcolor{red}{不同的模式}$，所以不要合并到同一接受状态！<img src="F:\blog\source_posts\figs\fig1.png" alt="img"></li>
+</ul>
+</li>
+<li><p>确定化NFA可能引发冲突</p>
+<ul>
+<li><p>对得到的NFA（上面）进行确定话，得到DFA</p>
+</li>
+<li><p>一个DFA的接受状态对应于NFA的状态子集，其中至少包括一个NFA的接受状态，$\textcolor{red}{但是可能包括多个对应于不同模式的NFA接受状态！表示当前输入前缀对应于多个模式，存在冲突！！}$</p>
+</li>
+<li><p>解决方案：优先级</p>
+<p>即当发生冲突时，哪个模式优先级更高</p>
+</li>
+</ul>
+</li>
+<li><p>词法分析器状态的最小化</p>
+<ul>
+<li>差别：<ul>
+<li>接受状态对应不同模式</li>
+<li>对应不同模式的接受状态一定不等价</li>
+<li>初始化分为：非接受状态、对应同一模式的接受状态、死状态$\Phi$</li>
+<li>死状态$\Phi$：当前状态没有对应输入字符的转换边，则进入死状态（即发生词法错误）</li>
+</ul>
+</li>
+<li>其余划分和构造相同</li>
+</ul>
+</li>
+<li><p>总结：</p>
+<ul>
+<li><strong>词法规则</strong>  —（人完成）—&gt;  <strong>正则表达式</strong>  —（机器自动完成）—&gt;  <strong>NFA</strong>  —（程序算法完成） —&gt;  <strong>DFA</strong>  —（如Lex&#x2F;Flex，也自动完成）—&gt;  <strong>词法分析器</strong></li>
 </ul>
 </li>
 </ul>
@@ -826,7 +1122,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

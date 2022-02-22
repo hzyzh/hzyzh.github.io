@@ -22,17 +22,23 @@
 
   <meta name="description" content="编译原理introductionLexical Analysis一、词法分析器的作用基本作用 读入字符流（用户的输入），组成词素（lexeme），输出词法单元序列 过滤空白、换行、制表符、注释等 将词素添加到符号表中 语法分析器通过调用 getNextToken api与词法分析器交互（获得下一个词法单元）  why独立词法分析器？ 简化编译器 模块化设计（增强编译器可移植性）  词法单元、模式、">
 <meta property="og:type" content="article">
-<meta property="og:title" content="test">
-<meta property="og:url" content="http://example.com/2022/02/15/test/index.html">
+<meta property="og:title" content="编译原理">
+<meta property="og:url" content="http://example.com/2022/02/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="Eden">
 <meta property="og:description" content="编译原理introductionLexical Analysis一、词法分析器的作用基本作用 读入字符流（用户的输入），组成词素（lexeme），输出词法单元序列 过滤空白、换行、制表符、注释等 将词素添加到符号表中 语法分析器通过调用 getNextToken api与词法分析器交互（获得下一个词法单元）  why独立词法分析器？ 简化编译器 模块化设计（增强编译器可移植性）  词法单元、模式、">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig2.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/algorithm1.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/algorithm2.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/algorithm3.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/fig1.png">
 <meta property="article:published_time" content="2022-02-15T14:31:12.000Z">
-<meta property="article:modified_time" content="2022-02-16T17:06:52.208Z">
+<meta property="article:modified_time" content="2022-02-21T17:51:20.274Z">
 <meta property="article:author" content="hzyzh">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="f:/blog/source/_posts/figs/fig2.png">
 
-<link rel="canonical" href="http://example.com/2022/02/15/test/">
+<link rel="canonical" href="http://example.com/2022/02/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
 
 
 <script id="page-configurations">
@@ -45,7 +51,7 @@
   };
 </script>
 
-  <title>test | Eden</title>
+  <title>编译原理 | Eden</title>
   
 
 
@@ -150,7 +156,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/test/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +169,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          test
+          编译原理
         </h1>
 
         <div class="post-meta">
@@ -180,7 +186,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-17 01:06:52" itemprop="dateModified" datetime="2022-02-17T01:06:52+08:00">2022-02-17</time>
+                <time title="修改时间：2022-02-22 01:51:20" itemprop="dateModified" datetime="2022-02-22T01:51:20+08:00">2022-02-22</time>
               </span>
 
           
@@ -371,36 +377,165 @@
 </li>
 <li>Lex中冲突解决方法<ul>
 <li>冲突：多个输入前缀与某个模式相匹配，或一个前缀与多个模式匹配<ul>
-<li>多个前缀可能匹配：选择最长的前缀</li>
-<li>前缀和多个模式匹配：选择列在前面的模式</li>
+<li>多个前缀可能匹配：<strong>选择最长的前缀</strong></li>
+<li>前缀和多个模式匹配：<strong>选择列在前面的模式</strong></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 <h3 id="五、有穷自动机"><a href="#五、有穷自动机" class="headerlink" title="五、有穷自动机"></a>五、有穷自动机</h3><ul>
-<li>本质和状态转换图相同，但只回答Yes&#x2F;No</li>
-<li>两类：<ul>
+<li><p>本质和状态转换图相同，但只回答Yes&#x2F;No</p>
+</li>
+<li><p>两类：</p>
+<ul>
 <li>不确定的~（NFA)：一个符号可出现在离开同一状态的多条边上，$\epsilon$可做标号（可能跳到多个状态？状态不唯一？）</li>
 <li>确定的~(DFA)：对每个状态及符号，有且只有&#x2F;最多只有一条边</li>
 </ul>
 </li>
-<li>两种自动机都识别正则语言<ul>
+<li><p>两种自动机都识别正则语言</p>
+<ul>
 <li>NFA,DFA都可以识别正则表达式可描述的语言，反之亦然</li>
 <li>识别：判定一个串是否数于对应正则语言</li>
+<li>NFA,DFA的表达能力是等价的~</li>
 </ul>
 </li>
-<li>NFA的定义（不确定）：<ul>
-<li>有穷状态机和 S</li>
-<li>输入字母表$\Sigma$</li>
-<li><strong>转换函数</strong>对每个状态和$\Sigma\cup{\epsilon}$中的符号，给出相应的后继状态集合</li>
-<li>$s_0$为开始状态</li>
-<li>S 的一个子集 F 被指定为接收状态集合</li>
-<li>输入字符串的接受：<ul>
+<li><p>NFA（不确定）：</p>
+<ul>
+<li><p>有穷状态机和 S</p>
+</li>
+<li><p>输入字母表$\Sigma$</p>
+</li>
+<li><p><strong>转换函数</strong>对每个状态和$\Sigma\cup{\epsilon}$中的符号，给出相应的后继状态集合</p>
+</li>
+<li><p>$s_0$为开始状态</p>
+</li>
+<li><p>S 的一个子集 F 被指定为接受状态集合</p>
+</li>
+<li><p>输入字符串的接受：</p>
+<ul>
 <li>NFA接受输入字符串x：转换图中存在一条从开始状态到某个接受状态的路径（路径上的标号连接为x，忽略$\epsilon$)</li>
 <li>NFA接受的语言：从开始状态到接受状态的<strong>所有可能路径</strong>的标号串的集合</li>
 </ul>
 </li>
+<li><p>容易从正则表达式转换<img src="F:\blog\source\_posts\figs\fig2.png" alt="img" style="zoom:70%;" /></p>
+</li>
+<li><p>NFA的不确定性使其不易实现：</p>
+<ul>
+<li>维护多状态</li>
+<li>跟踪多路径</li>
+</ul>
+<p>解决方案：DFA</p>
+</li>
+</ul>
+</li>
+<li><p>DFA（确定）：</p>
+<ul>
+<li>一个NFA被称为DFA，如果：<ul>
+<li>没有标号为$\epsilon$的转换；</li>
+<li>每个状态s和输入符号a，有且仅有一条标号为a的离开s的边</li>
+</ul>
+</li>
+<li>一个串能否被DFA接受：可高效判断</li>
+<li>DFA的运行：代码很好实现！（因为同一时间状态唯一确定）</li>
+</ul>
+</li>
+<li><p>NFA转换到DFA（子集构造法）：</p>
+<ul>
+<li><p>思想：构造得到的（目标）DFA的 每个$\textcolor{red}{状态}$和NFA的 $\textcolor{red}{状态子集}$对应（同时的多个状态）<br>在算法中”并行地模拟“NFA遇到一个给定输入串时可能执行的所有动作</p>
+</li>
+<li><p>目标DFA状态之间的转换对应NFA妆台集合之间的转换</p>
+</li>
+<li><p>理论上，最坏情况下DFA的状态个数会是NFA状态个数的指数个（幂级，$2^n$)</p>
+<p>​    （一般而言，两者状态数量大致相同）</p>
+</li>
+<li><p>算法：</p>
+<ul>
+<li><p>基本操作：</p>
+<ul>
+<li>$\epsilon-$closure(s)（闭包）：从NFA状态s开始，只通过$\epsilon$转换能到达的NFA状态集合</li>
+<li>$\epsilon-$closure(T)：T中所有状态s的$\epsilon-$closure(s)</li>
+<li>move(T，a)：枚举T中所有状态，从T中某状态s出发，通过标号a（+$\epsilon$转换）能到的所有NFA状态集合</li>
+</ul>
+</li>
+<li><p>算法1（计算$\epsilon-$closure(T)）如下：<img src="F:\blog\source_posts\figs\algorithm1.png" alt="img"></p>
+</li>
+<li><p>主算法：</p>
+<ul>
+<li>输出：Dstates：DFA状态，每个元素对应一个NFA状态集合</li>
+<li>Dtran：DFA状态转换表<img src="F:\blog\source_posts\figs\algorithm2.png" alt="img"></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="DFA状态数量的最小化"><a href="#DFA状态数量的最小化" class="headerlink" title="DFA状态数量的最小化"></a>DFA状态数量的最小化</h4><p>一个正则语言可对应于多个识别它的DFA（等价的）</p>
+<p>通过<strong>DFA的最小化</strong>可得到状态数量最少的DFA（不及同构，是唯一的）</p>
+<ul>
+<li>状态的区分<ul>
+<li>状态的可区分<ul>
+<li>如果状态s1和s2，存在串x，使得从s1、s2经x，一个到接受状态，一个到非接受状态，则x区分了s1和s2</li>
+<li>若存在串区分了s和t，则s和t可区分，否则它们不可区分</li>
+<li>不可区分的状态等价，可合并<ul>
+<li>&#x3D;&gt; 暴力算法，为所有两个状态对都试图找一个区分它们的串</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>DFA最小化算法：<ul>
+<li>所有可区分状态分开（迭代过程）<ul>
+<li>base case：$\epsilon$区分了接受和非接受状态</li>
+<li>induction case：若s和t可区分，且s‘到s、t’到t有a边，则s‘和t’也可区分</li>
+</ul>
+</li>
+<li>最终没有区分开的状态就是等价的</li>
+<li>从划分得到的等价类中选取<strong>代表</strong>，并重建DFA<img src="F:\blog\source_posts\figs\algorithm3.png" alt="img"></li>
+<li>构造：从$\Pi_{\text{final}}$中每个组选一个代表，作为最小化DFA中状态，构造过程很自然和显然</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="自动机到词法分析器"><a href="#自动机到词法分析器" class="headerlink" title="自动机到词法分析器"></a>自动机到词法分析器</h4><ul>
+<li><p>正则：识别单模式</p>
+</li>
+<li><p>词法分析器：要识别多个模式！</p>
+</li>
+<li><p>解决方法：NFA合并方法！</p>
+<ul>
+<li>引入新的$\textcolor{red}{新的开始状态}$，并从该状态到各个原开始状态加$\epsilon$转换边</li>
+<li>得到的NFA所接受的语言是原来各NFA语言的并集</li>
+<li>不同接受状态代表$\textcolor{red}{不同的模式}$，所以不要合并到同一接受状态！<img src="F:\blog\source_posts\figs\fig1.png" alt="img"></li>
+</ul>
+</li>
+<li><p>确定化NFA可能引发冲突</p>
+<ul>
+<li><p>对得到的NFA（上面）进行确定话，得到DFA</p>
+</li>
+<li><p>一个DFA的接受状态对应于NFA的状态子集，其中至少包括一个NFA的接受状态，$\textcolor{red}{但是可能包括多个对应于不同模式的NFA接受状态！表示当前输入前缀对应于多个模式，存在冲突！！}$</p>
+</li>
+<li><p>解决方案：优先级</p>
+<p>即当发生冲突时，哪个模式优先级更高</p>
+</li>
+</ul>
+</li>
+<li><p>词法分析器状态的最小化</p>
+<ul>
+<li>差别：<ul>
+<li>接受状态对应不同模式</li>
+<li>对应不同模式的接受状态一定不等价</li>
+<li>初始化分为：非接受状态、对应同一模式的接受状态、死状态$\Phi$</li>
+<li>死状态$\Phi$：当前状态没有对应输入字符的转换边，则进入死状态（即发生词法错误）</li>
+</ul>
+</li>
+<li>其余划分和构造相同</li>
+</ul>
+</li>
+<li><p>总结：</p>
+<ul>
+<li><strong>词法规则</strong>  —（人完成）—&gt;  <strong>正则表达式</strong>  —（机器自动完成）—&gt;  <strong>NFA</strong>  —（程序算法完成） —&gt;  <strong>DFA</strong>  —（如Lex&#x2F;Flex，也自动完成）—&gt;  <strong>词法分析器</strong></li>
 </ul>
 </li>
 </ul>
@@ -484,7 +619,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">编译原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lexical-Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Lexical Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、词法分析器的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">基本作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#why%E7%8B%AC%E7%AB%8B%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%EF%BC%9F"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">why独立词法分析器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E3%80%81%E6%A8%A1%E5%BC%8F%E3%80%81%E8%AF%8D%E7%B4%A0"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">词法单元、模式、词素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%A7%84%E7%BA%A6%EF%BC%88%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、词法单元的规约（正则表达式）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E5%92%8C%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">串和语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">正则表达式的扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">正则表达式与词法单元的识别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB%EF%BC%88%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、词法单元的识别（状态转换图）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">状态转换图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%AD%97%E5%92%8C%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">保留字和标识符的识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">词法分析器的体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E5%8F%8A%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.4.</span> <span class="nav-text">四、词法分析器生成工具及设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7Lex-x2F-Flex"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">词法分析工具Lex&#x2F;Flex</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.2.5.</span> <span class="nav-text">五、有穷自动机</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">编译原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Lexical-Analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Lexical Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、词法分析器的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">基本作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#why%E7%8B%AC%E7%AB%8B%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%EF%BC%9F"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">why独立词法分析器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E3%80%81%E6%A8%A1%E5%BC%8F%E3%80%81%E8%AF%8D%E7%B4%A0"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">词法单元、模式、词素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%A7%84%E7%BA%A6%EF%BC%88%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%EF%BC%89"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、词法单元的规约（正则表达式）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E5%92%8C%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">串和语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">正则表达式的扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">正则表达式与词法单元的识别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB%EF%BC%88%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE%EF%BC%89"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、词法单元的识别（状态转换图）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">状态转换图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%AD%97%E5%92%8C%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">保留字和标识符的识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">词法分析器的体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E5%8F%8A%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.4.</span> <span class="nav-text">四、词法分析器生成工具及设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7Lex-x2F-Flex"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">词法分析工具Lex&#x2F;Flex</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.2.5.</span> <span class="nav-text">五、有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#DFA%E7%8A%B6%E6%80%81%E6%95%B0%E9%87%8F%E7%9A%84%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">DFA状态数量的最小化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%88%B0%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">自动机到词法分析器</span></a></li></ol></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -498,7 +633,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
