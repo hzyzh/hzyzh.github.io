@@ -28,8 +28,13 @@
 <meta property="og:description" content="编译原理 introduction Lexical Analysis 一、词法分析器的作用 基本作用  读入字符流（用户的输入），组成词素（lexeme），输出词法单元序列 过滤空白、换行、制表符、注释等 将词素添加到符号表中 语法分析器通过调用 getNextToken api与词法分析器交互（获得下一个词法单元）  why独立词法分析器？  简化编译器 模块化设计">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="f:/blog/source/_posts/figs/fig2.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig93.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/fig6.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/fig14.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/fig24.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/fig26.png">
 <meta property="article:published_time" content="2022-02-15T14:31:12.000Z">
-<meta property="article:modified_time" content="2022-02-24T16:22:31.446Z">
+<meta property="article:modified_time" content="2022-06-22T01:36:54.385Z">
 <meta property="article:author" content="hzyzh">
 <meta property="article:tag" content="编译原理">
 <meta name="twitter:card" content="summary">
@@ -183,7 +188,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 00:22:31" itemprop="dateModified" datetime="2022-02-25T00:22:31+08:00">2022-02-25</time>
+                <time title="修改时间：2022-06-22 09:36:54" itemprop="dateModified" datetime="2022-06-22T09:36:54+08:00">2022-06-22</time>
               </span>
 
           
@@ -433,7 +438,7 @@ class="math inline">\(\epsilon\)</span>可做标号（可能跳到多个状态�
 <li><p>两种自动机都识别正则语言</p>
 <ul>
 <li>NFA,DFA都可以识别正则表达式可描述的语言，反之亦然</li>
-<li>识别：判定一个串是否数于对应正则语言</li>
+<li>识别：判定一个串是否属于对应正则语言</li>
 <li>NFA,DFA的表达能力是等价的~</li>
 </ul></li>
 <li><p>NFA（不确定）：</p>
@@ -496,16 +501,18 @@ class="math inline">\(\epsilon-\)</span>closure(T)）如下：<img
 src="F:\blog\source_posts\figs\algorithm1.png" alt="img" /></li>
 <li>主算法：
 <ul>
-<li>输出：Dstates：DFA状态，每个元素对应一个NFA状态集合</li>
-<li>Dtran：DFA状态转换表<img
-src="F:\blog\source_posts\figs\algorithm2.png" alt="img" /></li>
+<li><p>输出：Dstates：DFA状态，每个元素对应一个NFA状态集合</p></li>
+<li><p>Dtran：DFA状态转换表<img
+src="F:\blog\source_posts\figs\algorithm2.png" alt="img" /></p></li>
+<li><p>example
+Dtran：<img src="F:\blog\source\_posts\figs\fig93.png" style="zoom:67%;" /></p></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
 <h4 id="dfa状态数量的最小化">DFA状态数量的最小化</h4>
 <p>一个正则语言可对应于多个识别它的DFA（等价的）</p>
-<p>通过<strong>DFA的最小化</strong>可得到状态数量最少的DFA（不及同构，是唯一的）</p>
+<p>通过<strong>DFA的最小化</strong>可得到状态数量最少的DFA（不计同构，是唯一的）</p>
 <ul>
 <li>状态的区分
 <ul>
@@ -551,7 +558,7 @@ src="F:\blog\source_posts\figs\fig1.png" alt="img" /></li>
 </ul></li>
 <li><p>确定化NFA可能引发冲突</p>
 <ul>
-<li><p>对得到的NFA（上面）进行确定话，得到DFA</p></li>
+<li><p>对得到的NFA（上面）进行确定化，得到DFA</p></li>
 <li><p>一个DFA的接受状态对应于NFA的状态子集，其中至少包括一个NFA的接受状态，<span
 class="math inline">\(\textcolor{red}{但是可能包括多个对应于不同模式的NFA接受状态！表示当前输入前缀对应于多个模式，存在冲突！！}\)</span></p></li>
 <li><p>解决方案：优先级</p>
@@ -672,8 +679,9 @@ class="math inline">\(\textcolor{red}{只有唯一的最左推导和最有推导
 <ul>
 <li><p>一个文法可以为某个句子生成<strong>多棵</strong>语法分析树（<span
 class="math inline">\(\textcolor{red}{都是最左推导}\)</span>），则这个<strong>文法</strong>就是二义的！</p></li>
-<li><p>程序设计语言的文法通常是无二义的！否则可能出现？，对同一（id +
-id）* id; id + (id * id)都符合文法</p></li>
+<li><p>程序设计语言的文法通常是无二义的！否则可能出现：对同一（id +
+id）* id; id + (id *
+id)都符合文法，但实际上我们有一个期望的优先级</p></li>
 </ul></li>
 <li><p>上下文无关文法 和 正则表达式</p>
 <ul>
@@ -699,7 +707,7 @@ class="math inline">\(a^jb^i\)</span>!（DFA无法无限计数！）</li>
 </ul>
 <h3 id="四文法及其生成的语言">四、文法及其生成的语言</h3>
 <ul>
-<li>设计文法
+<li><p>设计文法</p>
 <ul>
 <li>符合文法的句型集合，是合法程序代码的超集</li>
 <li>要消除二义性</li>
@@ -712,6 +720,933 @@ class="math inline">\(A=^+&gt;Aa\)</span>，则称这个文法是左递归的</l
 <ul>
 <li>如S<span class="math inline">\(\to\)</span>abX...，T<span
 class="math inline">\(\to\)</span>abY... 则把ab提取出来？</li>
+</ul></li>
+<li>分层：（用来消除二义性）
+<ul>
+<li>最左推导中，每次展开都最先展开最深层的非终结符</li>
+<li>如：加法、乘法分成两个不同的产生式</li>
+</ul></li>
+</ul></li>
+<li><p>自顶向下的语法分析：</p>
+<ul>
+<li><p>左递归，从根节点开始，关键是如何应用产生式？（选哪个）</p></li>
+<li><p>1.递归下降：</p>
+<ul>
+<li>每个非终结符 对应一个过程/函数，负责扫描该非终结符结构</li>
+<li>从起始符号过程开始扫描，深度优先创建节点</li>
+<li>应用产生式：如<span class="math inline">\(A\to
+X_1|X_2|\cdots\)</span>，一个一个猜，直到猜对</li>
+<li>应用展开式来consume掉输入符号，全部consume且展开完毕，则匹配成功</li>
+<li>特点：易于实现，但是需要回溯（影响效率！）</li>
+</ul></li>
+<li><p>直接左递归的消除</p>
+<ul>
+<li><p>假设非终结符A存在：<span class="math inline">\(A\to
+A\alpha_1|\cdots|A\alpha_m|\beta_1|\cdots|\beta_n\)</span></p></li>
+<li><p>可替换为：（<strong><span
+class="math inline">\(\beta\)</span>中可以包含<span
+class="math inline">\(A\)</span>！</strong>）</p>
+<p><span class="math inline">\(A\to\beta_1 A&#39;|\cdots|\beta_n
+A&#39;\)</span></p>
+<p><span class="math inline">\(A&#39;\to\alpha_1 A&#39;|\cdots|\alpha_m
+A&#39;|\epsilon\)</span></p></li>
+<li><p>变为了右递归！（就会停止了）</p></li>
+</ul></li>
+<li><p>间接左递归的消除</p>
+<ul>
+<li>间接左递归：即<span class="math inline">\(S=^+&gt;SA\)</span></li>
+<li>也有算法可以消除</li>
+</ul></li>
+<li><p>2.基于预测的语法分析：</p>
+<ul>
+<li><p>每次为最左边的非终结符号选择合适的产生式</p>
+<ul>
+<li><p>通过<strong>查看下一个输入符号</strong>来选择</p>
+<ul>
+<li>提取左公因子：如<span class="math inline">\(A\to
+aX|aY\)</span>，下一个输入符号为<span
+class="math inline">\(a\)</span>，则提取左公因子a，然后对<span
+class="math inline">\(X,Y\)</span>进行预测分析</li>
+</ul></li>
+<li><p>有多个可能的产生式时也无能为力</p></li>
+<li><p>LL(k)：Left-to-right，Leftmost，根据后k个输入符号选择</p>
+<ul>
+<li>一般k取1</li>
+</ul></li>
+<li><p>FIRST和FOLLOW：</p>
+<ul>
+<li><p>向前看几个符号来确定产生式</p></li>
+<li><p>当前句型<span class="math inline">\(xA\beta\)</span>，输入为<span
+class="math inline">\(xa...\)</span>，则选择产生式<span
+class="math inline">\(A\to\alpha\)</span>的必要条件为（以下之一）</p>
+<ul>
+<li><span class="math inline">\(\alpha=^*&gt; a...\)</span></li>
+<li><span class="math inline">\(\alpha=^*&gt;\epsilon\)</span>，且<span
+class="math inline">\(\beta\)</span>以a开头</li>
+</ul>
+<p>如果这样可以确保<strong>唯一性</strong>，则可以避免回溯</p></li>
+<li><p>FIRST(<span class="math inline">\(\alpha\)</span>)：可从<span
+class="math inline">\(\alpha\)</span>推导得到的<strong>首符号</strong>集合，若<span
+class="math inline">\(\alpha=^*&gt;\epsilon\)</span>，则也包括<span
+class="math inline">\(\epsilon\)</span></p></li>
+<li><p>计算FIRST(X1X2...Xn)：</p>
+<ul>
+<li>加入FIRST(X1)中所有非<span
+class="math inline">\(\epsilon\)</span>的符号</li>
+<li>若<span
+class="math inline">\(\epsilon\)</span>在FIRST(X1)中，则加入FIRST(X2)中所有非<span
+class="math inline">\(\epsilon\)</span>的符号</li>
+<li>...</li>
+<li>若<span
+class="math inline">\(\epsilon\)</span>在所有FIRST(Xi)中，则加入<span
+class="math inline">\(\epsilon\)</span></li>
+</ul></li>
+<li><p>FOLLOW(A)：可能在某些句型中紧跟在A右边（后面）的终结符号集合</p>
+<ul>
+<li>如：若<span class="math inline">\(S\to\alpha
+Aa\beta\)</span>，则终结符号<span
+class="math inline">\(a\in\)</span>FOLLOW(A)</li>
+<li>意义：当<span
+class="math inline">\(A\to\epsilon\)</span>时，FOLLOW(A)就有用了！</li>
+<li>计算FOLLOW：
+<ul>
+<li>首先加入右端结束标记$到FOLLOW(S)中（<strong>S是开始符号</strong>）</li>
+<li>然后按以下规则不断迭代，直到FOLLOW集不变：
+<ol type="1">
+<li>若<span class="math inline">\(A\to \alpha
+B\beta\)</span>，则将FIRST(<span
+class="math inline">\(\beta\)</span>)中所有非<span
+class="math inline">\(\epsilon\)</span>字符加入FOLLOW(B)</li>
+<li>若<span class="math inline">\(A\to\alpha B\)</span>或<span
+class="math inline">\(A\to\alpha B\beta\)</span>且FIRST(<span
+class="math inline">\(\beta\)</span>)中有<span
+class="math inline">\(\epsilon\)</span>，则将FOLLOW(A)加入FOLLOW(B)</li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>LL(1)文法（left-to-right left-most）</p>
+<ul>
+<li>定义：对文法的任意两个产生式<span
+class="math inline">\(A\to\alpha|\beta\)</span>：
+<ul>
+<li>1.不存在终结符<span
+class="math inline">\(a\)</span>使得俩都能推出以<span
+class="math inline">\(a\)</span>开头的串</li>
+<li>2.俩 最多只有一个可推导出空串</li>
+<li>3.如果<span
+class="math inline">\(\beta\)</span>可推导出空串，那么<span
+class="math inline">\(\alpha\)</span>不能推导出以FOLLOW(A)中任何终结符号开头的串！</li>
+</ul></li>
+<li>等价于：
+<ul>
+<li>FIRST(<span class="math inline">\(\alpha\)</span>)和FIRST(<span
+class="math inline">\(\beta\)</span>)不相交（条件1，2）</li>
+<li>如果$<span class="math inline">\(FIRST(\)</span><span
+class="math inline">\()，那么FOLLOW(A)与FIRST(\)</span>$)不相交；反之亦然（条件3）（<strong>为啥反之亦然？</strong>）</li>
+</ul></li>
+<li>做到以上三点，就可以只看一个符号就可以确定下一步要匹配的文法了（<strong>LL(1)文法必然不是二义性的</strong>）</li>
+<li>预测分析表：
+<ul>
+<li>二维表，非终结符（行）<span class="math inline">\(\times\)</span>
+终结符（列）<span class="math inline">\(\to\)</span> 产生式</li>
+<li>展开非终结符时，根据输入终结符选择相应产生式</li>
+<li>所有空白条目 填入<strong>error</strong></li>
+</ul></li>
+<li>LL(1)文法的递归下降分析，是无回溯递归下降，线性时间的</li>
+<li>通过<strong>栈</strong>（将当前待匹配的非终结/终结符压入栈中，依次与输入匹配，并继续压栈新的待匹配符），可以实现非递归的版本</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>3.自顶向下语法分析的局限</p>
+<ul>
+<li>能识别的文法有局限性：
+<ul>
+<li>需要改造文法消除左递归</li>
+<li>改造后的文法不直观</li>
+<li>生成的语法树不易处理和理解</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>自底向上的语法分析</p>
+<ul>
+<li><p>LR（left-to-right
+R：反向最右）：一种自底向上方式的语法分析</p></li>
+<li><p>自底向上的语法分析过程 可以看成是 从串<span
+class="math inline">\(\omega\)</span>归约为文法开始符号<span
+class="math inline">\(S\)</span>的过程（<span
+class="math inline">\(S=^*&gt;\omega\)</span>逆序）</p></li>
+<li><p><strong>归约</strong>步骤：</p>
+<ul>
+<li><p>一个与某<strong>产生式体</strong>相匹配的特定<strong>字串</strong>被替换为<strong>产生式头部</strong>的<strong>非终结符号</strong></p></li>
+<li><p>如过程： <span class="math display">\[
+id*id,F*id,T*id,T*F,T,E\\
+E\Rightarrow T\Rightarrow T*F\Rightarrow T*id\Rightarrow F*id\Rightarrow
+id*id
+\]</span> 归约过程等于一个反向最右推导</p></li>
+<li><p>归约步骤不是任何展开式都可以选的！（<strong>怎么确定呢？</strong>）</p></li>
+</ul></li>
+<li><p>句柄（<strong>是什么！？？？</strong>）</p>
+<ul>
+<li>最右句型（即通过最右推导得到的句型）中和某个<strong>产生式体</strong>相匹配的子串，对它的归约代表了该最右句型的最右推导的最后一步</li>
+<li>正式定义：对于最右句型<span class="math inline">\(\alpha\beta
+\omega\)</span>，如果<span class="math inline">\(S=*_{rm}&gt;\alpha
+A\omega=_{rm}&gt;\alpha\beta\omega\)</span>，则<span
+class="math inline">\(\beta\)</span>以及产生式<span
+class="math inline">\(A\to\beta\)</span>是最右句型<span
+class="math inline">\(\alpha\beta\omega\)</span>的一个句柄（or称<span
+class="math inline">\(\beta\)</span>为句柄）
+<ul>
+<li>在一个最右句型，句柄右边只有终结符号</li>
+<li>如果文法无二义性，则每个句型有且只有一个句柄</li>
+<li>因为对该句柄的归约就是该最右句型的最右推导的最后一步，因此当前一定可以对该句柄进行归约！</li>
+</ul></li>
+<li>因此：自底向上分析的过程
+就是<strong>识别和归约句柄</strong>的过程</li>
+</ul></li>
+<li><p>主要分析动作：</p>
+<ul>
+<li>移入：将下一个输入符号移入到栈顶</li>
+<li>归约：将句柄归约为相应的非终结符号
+<ul>
+<li>句柄<strong>总是在栈顶</strong>（为什么呢？）
+<ul>
+<li>直觉：如果一个句柄出现在栈中/底，则它之前就应该被规约了！</li>
+</ul></li>
+<li>具体操作时弹出的句柄，压入被归约到的<strong>非终结符号</strong></li>
+</ul></li>
+<li>接受：宣布分析过程成功完成</li>
+<li>报错：发现语法错误，错误恢复</li>
+</ul></li>
+<li><p>移入-归约分析中的冲突：</p>
+<ul>
+<li>无论如何，都可能有如此格局：
+<ul>
+<li>即使知道栈中所有内容、后续k个符号，仍然无法知道是否该归约；以及该用哪个产生式归约</li>
+<li>如：stmt <span class="math inline">\(\to\)</span> if expr stmt | if
+expr stmt else stmt | ... 无法确定该归约前者，还是继续移入后者</li>
+<li>or（归约-归约冲突粒子）：输入为id（id，id），当前栈：...id（id
+输入：，id）...，文法为：过程调用 和 数组引用的文法相同</li>
+</ul></li>
+</ul></li>
+<li><p>LR语法分析技术</p>
+<ul>
+<li>LR（k）（L：从左到右扫描；R：反向构造最右推导；k：向前看k个符号（只考虑k=0和1））</li>
+<li>SLR：简单LR技术</li>
+<li>可以使用LR方法的文法类 是可以使用预测LL方法的文法类的真超集！</li>
+</ul></li>
+<li><p>LR(0)自动机：</p>
+<ul>
+<li>项：一个文法G的LR（0）项就是G的一个产生式+一个位于其体
+中某处的点，如对于产生式<span class="math inline">\(A\to
+xyz\)</span>，有：<span class="math inline">\(A\to .xyz,A\to
+x.yz\)</span>等等。。（<span
+class="math inline">\(A\to\epsilon\)</span>仅<span
+class="math inline">\(A\to .\)</span>）
+<ul>
+<li>一个项可以表示为一对整数：ab，a表示生产式编号，b表示.所在位置</li>
+</ul></li>
+<li>LR(0)项集族：LR(0)自动机的每个状态 代表了LR(0)项集族的一个项集</li>
+<li>增广文法
+<ul>
+<li>若文法G的开始符号为S，则增广文法G'以S'为开始符号，且包含产生式<span
+class="math inline">\(S&#39;\to S\)</span>
+<ul>
+<li>目的是：当且仅当使用规则<span class="math inline">\(S&#39;\to
+S\)</span>归约时，输入符号串被接受</li>
+</ul></li>
+<li>项集I的闭包CLOSURE(I)：
+<ul>
+<li>将I中所有项加入</li>
+<li>若<span class="math inline">\(A\to \alpha
+.B\beta\)</span>在闭包中，存在产生式<span
+class="math inline">\(B\to\gamma\)</span>，而项<span
+class="math inline">\(B\to
+.\gamma\)</span>不在闭包内，则将其加入。重复此规则直到不变为止</li>
+<li>将项分类：
+<ul>
+<li>内核项：<span class="math inline">\(S&#39;\to
+.S\)</span>和所有点不在最左端的项</li>
+<li>非内核项：除<span class="math inline">\(S&#39;\to
+.S\)</span>外点在最左端的项</li>
+</ul></li>
+<li>所有非内核项都可以通过对该项集的内核项求闭包得到！（是由内核项决定）</li>
+</ul></li>
+<li>函数GOTO(I,X)：
+<ul>
+<li>I为项集，X为一个文法符号（非终结或终结符）</li>
+<li>GOTO(I,X)表示：I的闭包中所有形如<span
+class="math inline">\(A\to\alpha .X\beta\)</span>的项所对应的项<span
+class="math inline">\(A\to\alpha X.\beta\)</span>的集合的闭包</li>
+<li>含义就是：LR(0)自动机从状态（I的闭包），输入X后跳转到的状态</li>
+</ul></li>
+<li>如何做移入-归约决策？
+<ul>
+<li>LR(0)自动机的开始状态为：CLOSURE(<span
+class="math inline">\(\{S&#39;\to S\}\)</span>)</li>
+<li>当前状态为j（对应项集<span
+class="math inline">\(I_j\)</span>），则若下一个输入符号为<span
+class="math inline">\(a\)</span>且存在状态j在a上的转换，则移入；</li>
+<li>否则进行归约：用哪个产生式？根据项集中的项决定！（会有一个点在最右侧的项？）</li>
+<li>移入操作：根据状态上的转换，和移入的符号，将对应的状态压入栈中（原状态仍保留）</li>
+<li>归约操作：运用该产生式，将输入符号栈中的产生式体弹出，替换为产生式头，再压入栈中；状态栈中，则将n个状态弹出（n为进行归约的产生式体长度），然后根据压入符号栈的符号a，压入状态GOTO(I,a)，其中I为当前状态栈顶的状态</li>
+</ul></li>
+<li>每个状态（对应一个项集），除开始状态外，都对应唯一的一个文法符号X（根据构造状态集族时的算法，每个状态转换都有一个文法符号）</li>
+</ul></li>
+</ul></li>
+<li><p>LR语法分析表的结构</p>
+<ul>
+<li><p>ACTION：两个参数：状态i，<strong>终结符号a（或$）！！！</strong></p>
+<ul>
+<li>ACTION[i，a]有四种形式：</li>
+</ul>
+<ol type="1">
+<li>移入状态j：输入符号a移入栈中，但用状态j来代表a</li>
+<li>归约<span class="math inline">\(A\to \beta\)</span>：栈顶的<span
+class="math inline">\(\beta\)</span>规约为A</li>
+<li>接受：接受输入并完成语法分析</li>
+<li>报错</li>
+</ol></li>
+<li><p>GOTO：</p>
+<ul>
+<li>若（函数）GOTO[<span
+class="math inline">\(I_i,A]=I_j\)</span>，则GOTO[i，A]=j（i，j为状态）<strong>A只能为非终结符！</strong></li>
+</ul></li>
+</ul></li>
+<li><p>LR语法分析器</p>
+<ul>
+<li>格局：(<span class="math inline">\(s_0\cdots s_m,a_i\cdots
+a_n\)</span>)。表示最右句型：<span class="math inline">\(X_1\cdots X_m
+a_i\cdots a_n\)</span></li>
+<li>栈中存放状态，而非文法符号（从状态<span
+class="math inline">\(s_k\)</span>中可以恢复出文法符号<span
+class="math inline">\(X_k\)</span>，不过<span
+class="math inline">\(s_0\)</span>没有文法符号，只代表了栈底 和
+开始状态）</li>
+<li>LR语法分析器行为：
+<ul>
+<li>根据当前读入的输入符号<span
+class="math inline">\(a_i\)</span>和栈顶状态<span
+class="math inline">\(s_m\)</span>，查询分析表条目ACTION[<span
+class="math inline">\(s_m\)</span>，<span
+class="math inline">\(a_i\)</span>]，ACTION[<span
+class="math inline">\(s_m\)</span>，<span
+class="math inline">\(a_i\)</span>]=：
+<ol type="1">
+<li>移入s，则执行移入，状态s压栈，<span
+class="math inline">\(a_i\)</span>不需要存放（因为一定可从s中恢复出<span
+class="math inline">\(a_i\)</span>！），则当前输入符号为<span
+class="math inline">\(a_{i+1}\)</span></li>
+<li>归约<span class="math inline">\(A\to\beta\)</span>：进入格局(<span
+class="math inline">\(s_0\cdots s_{m-\gamma}s,a_i\cdots
+a_n\)</span>)：<span class="math inline">\(\gamma\)</span>为<span
+class="math inline">\(\beta\)</span>长度且<span
+class="math inline">\(s=\)</span>GOTO<span
+class="math inline">\([s_{m-\gamma},A]\)</span>，输入符号不会变</li>
+<li>接受：语法分析过程完成</li>
+<li>报错：发现语法错误，调用错误恢复例程</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li><p>SLR语法分析表构造算法：<img
+src="F:\blog\source_posts\figs\algorithm4.png" alt="algorithm" /></p>
+<ul>
+<li><span
+class="math inline">\(\textcolor{red}{归约步骤，下一个输入符号为FOLLOW(A)！！}\)</span></li>
+<li>由此算法得到的由ACTION函数和GOTO函数组成的语法分析表
+被称为文法G的<strong>SLR(1)</strong>分析表！SLR(1)=SLR</li>
+</ul></li>
+<li><p>可行前缀</p>
+<ul>
+<li>一个可行前缀是一个最右句型的前缀，且没有越过该最右句型的最右句柄的右端！</li>
+<li>如果存在最右推导过程：<span class="math inline">\(S=^*&gt;\alpha
+A\omega=&gt;\alpha\beta_1\beta_2\omega\)</span>，则说项<span
+class="math inline">\(A\to\beta_1\beta_2\)</span>对于可行前缀<span
+class="math inline">\(\alpha\beta_1\)</span>有效。（<span
+class="math inline">\(\alpha\beta_1\)</span>根据定义，显然是可行前缀）有效，可以理解为：对与当前正在考虑的符号前缀，可以应用什么展开式？归约得到的也是最右句型？</li>
+</ul></li>
+</ul></li>
+<li><p>更强大的LR语法分析器</p>
+<ul>
+<li><p>规范LR方法</p>
+<ul>
+<li>LR(1)项：
+<ul>
+<li>形式：[<span class="math inline">\(A\to\alpha \beta\)</span>，<span
+class="math inline">\(a\)</span>]：a为向前看符号，只能是终结符号或$</li>
+<li>表示如果将来要按照<span
+class="math inline">\(A\to\alpha\beta\)</span>进行规约，归约时的下一个输入符号必须是a（<span
+class="math inline">\(a\in\)</span>FOLLOW(A)）</li>
+<li>当<span
+class="math inline">\(\beta\)</span>非空时，移入动作不考虑a，将a传入下一状态中</li>
+</ul></li>
+<li>LR(1)项有效条件
+<ul>
+<li>若[<span
+class="math inline">\(A\to\alpha.B\beta,a\)</span>]对可行前缀<span
+class="math inline">\(\gamma\)</span>有效，则：[<span
+class="math inline">\(B\to.\theta,b\)</span>]对<span
+class="math inline">\(\gamma\)</span>有效的条件是：<span
+class="math inline">\(b\in\)</span>FIRST(<span
+class="math inline">\(\beta a\)</span>)</li>
+</ul></li>
+<li>构造LR(1)项集
+<ul>
+<li>同增广文法</li>
+<li>CLOSURE(I)：由项[<span
+class="math inline">\(A\to\alpha.B\beta,a\)</span>]生成项[<span
+class="math inline">\(B\to.\theta,b\)</span>]时，必须满足<span
+class="math inline">\(b\in\)</span>FIRST(<span
+class="math inline">\(\beta a\)</span>)
+<ul>
+<li>LR(1)项集中任意项[<span
+class="math inline">\(A\to\alpha.B\beta,a\)</span>]必有：a在FOLLOW(A)中</li>
+<li>对于项[<span
+class="math inline">\(A\to\alpha.B\beta,a\)</span>]，以及每个FIRST(<span
+class="math inline">\(\beta a\)</span>)中的b，都加入项[<span
+class="math inline">\(B\to.\theta,b\)</span>]</li>
+<li>初始状态（项集）：CLOSURE({<span class="math inline">\([S&#39;\to
+.S,\$]\)</span>})</li>
+</ul></li>
+<li>GOTO(I,X)：显然，对I中每个项[<span
+class="math inline">\(A\to\alpha.X\beta,a\)</span>]，将[<span
+class="math inline">\(A\to\alpha X.\beta,a\)</span>]加入J中，return
+CLOSURE(J)</li>
+</ul></li>
+<li>LR(1)语法分析表的构造<img
+src="F:\blog\source_posts\figs\algorithm5.png" />
+<ul>
+<li>注意和SLR（1）的区别！</li>
+</ul></li>
+<li>但是LR(1)语法分析表的状态数量很大！</li>
+</ul></li>
+<li><p>LALR语法分析表：</p>
+<p>（状态数量和SLR(1)相同）</p>
+<ul>
+<li>基本思想：寻找具有<strong>相同核心</strong>的LR(1)项集，并合并为一个项集
+<ul>
+<li>一个LR(1)项集的核心就是一个LR(0)项集</li>
+<li>GOTO(I,X)的<strong>核心</strong>只由I的<strong>核心</strong>决定，因此项集合并后，GOTO目标也可以合并</li>
+</ul></li>
+<li>合并会引起冲突：
+<ul>
+<li>不会导致<strong>移入/归约冲突</strong>（证明思路：假设存在移入/归约冲突，则原本的LR(1)分析表中就已经存在冲突）</li>
+<li>但可能导致归约/归约冲突</li>
+</ul></li>
+<li>构造LALR语法分析表：<img
+src="F:\blog\source_posts\figs\algorithm6.png" />
+<ul>
+<li><span
+class="math inline">\(\textcolor{red}{如果有冲突，则得到的文法不是LALR的！}\)</span></li>
+</ul></li>
+<li>显然，对于语法正确的输入，LALR和LR分析器的动作序列是相同的！
+<ul>
+<li>对于错误输入，LALR只<strong>可能多执行一些归约操作</strong>，但是并<strong>不会多移入字符</strong>！</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>二义性文法：</p>
+<ul>
+<li>二义性文法都不是LR的！但有些二义性文法是有用的，因此可以<strong>消除二义性</strong>规则
+<ul>
+<li>LR分析器中可以实现消除二义性！</li>
+</ul></li>
+<li>优先级/结合性：（消除二义性）
+<ul>
+<li>多用于表达式运算符，以及if-else</li>
+<li>规定了优先级/结核性后，可以产生无二义性的文法分析表</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="五.错误恢复">五.错误恢复</h3>
+<ul>
+<li><p>语法错误的处理</p>
+<ul>
+<li>需要识别并指出位置；</li>
+<li>能从错误中恢复，继续检测后面的错误</li>
+</ul></li>
+<li><p>预测分析（自顶向下：LL）中的错误恢复</p>
+<ul>
+<li>进行错误恢复时可用的信息：栈里面的符号、待分析的符号</li>
+<li>两类错误恢复方法：
+<ul>
+<li>恐慌模式：
+<ul>
+<li>遇到错误：试图忽略掉一些符号（输入、栈上），跳过该程序结构，继续进行后面的语法分析</li>
+<li><strong>同步词法单元</strong>是这个程序结构结束的标志
+<ul>
+<li>同步词法单元是什么？直觉上来讲：FOLLOW(A)！</li>
+<li>文法符号A（非终结符）的同步集合<strong>启发式规则</strong>：（将以下符号加入A的同步集合中）
+<ul>
+<li>FOLLOW(A)中所有符号</li>
+<li><strong>高层次</strong>非终结符号对应串的<strong>开始符号</strong></li>
+<li>FIRST(A)中符号（如<span class="math inline">\(A\to
+xyz\)</span>，输入为！xyz（多输一个字符））</li>
+</ul></li>
+<li>若A为终结符：匹配错误时，可直接弹出该符号，并假装已经插入了该终结符（对应少敲一个字符）</li>
+</ul></li>
+<li>恐慌模式的预测分析表：
+<ul>
+<li>synch：表示：发生错误，但可能是后面正确高层次非终结符号的开始符号，则一直弹出栈中非终结符直到匹配</li>
+<li>空白项：忽略掉该输入（可能是多输入了）</li>
+<li>当终结符号不匹配时，直接弹出栈中终结符（可能漏了）</li>
+</ul></li>
+</ul></li>
+<li>短语层次的恢复
+<ul>
+<li>在预测语法分析表的空白条目中，插入错误处理例程的函数指针
+<ul>
+<li>例程可以改变、插入或删除输入中的符号，并发出适当的错误消息</li>
+</ul></li>
+<li>错误恢复能力很强，但是工作量大</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>LR语法分析中的错误恢复</p>
+<ul>
+<li>查询ACTION表时可能发现报错条目：
+<ul>
+<li>栈中符号串为<span
+class="math inline">\(\alpha\)</span>，当前输入符号a，报错表示：不存在中介符号串x使得<span
+class="math inline">\(\alpha ax\)</span>为一个最右句型</li>
+</ul></li>
+</ul>
+<ol type="1">
+<li>恐慌模式的错误恢复策略：（此即实验一用的方法）
+<ul>
+<li>栈顶向下扫描，找到状态s，s有一个对应于<strong>某个终结符A</strong>的GOTO目标（s上的状态全丢弃）</li>
+<li>输入中丢弃符号，直到一个可跟在A后面的符号b，并将GOTO(s，A)压栈</li>
+<li>继续分析</li>
+</ul></li>
+<li>短语层次的恢复
+<ul>
+<li>检查LR分析表中的每个报错条目，根据语言的特性来确定程序员最可能犯了什么错误，然后构造适当的恢
+复程序</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="语义分析语法制导的翻译">语义分析（语法制导的翻译）</h2>
+<ul>
+<li><p>通过了词法分析-（合法符号流）-&gt;语法分析-（符合语法，语法分析树，<strong>有时在构造分析树的同时同步SDD求值</strong>）-&gt;语义分析</p></li>
+<li><p>文法与语义</p>
+<ul>
+<li>使用上下文无关文法引导语义的分析：
+<ul>
+<li>CFG非终结符 表示语言的某个构造</li>
+<li>构造 由 更小的构造组成</li>
+<li>构造的语义：可由小构造的语义综合而来；（x = a +
+b;）或从附近继承而来。（int a;）</li>
+</ul></li>
+</ul></li>
+<li><p>语法制导的定义（SDD）</p>
+<ul>
+<li><p>Syntax-Directed-Definition：CFG + 属性/规则 的结合</p>
+<ul>
+<li>属性和文法符号关联；规则和产生式关联（规则用来计算文法符号的属性）</li>
+<li>基于SDD，可以在一个程序的语法分析树上计算语义信息</li>
+</ul></li>
+<li><p>属性</p>
+<ul>
+<li>综合属性（Synthesized Attribute）
+<ul>
+<li>节点N的属性值由N的产生式关联的语义规则定义</li>
+<li>由N自身和其子节点的属性值定义</li>
+<li>自底向上，产生式从右往左 <span class="math inline">\(N\to
+AB\)</span></li>
+</ul></li>
+<li>继承属性（Inherited Attribute）
+<ul>
+<li>N的属性值由父节点所关联的语义规则来定义</li>
+<li>依赖于N的<strong>父节点</strong>、<strong>N本身</strong>、N的<strong>兄弟节点</strong>上的属性值</li>
+<li>如对于产生式：<span class="math inline">\(X\to
+ANB\)</span>，。。。</li>
+</ul></li>
+<li>几条约束：
+<ul>
+<li><strong>不允许</strong>N的继承属性
+通过N的子节点上的属性来定义！</li>
+<li><strong>允许</strong>N的综合属性依赖于N本身的继承属性</li>
+<li>终结符号有综合属性（来自词法分析），但无继承属性</li>
+</ul></li>
+<li>S属性的SDD：只包含综合属性的SDD称为 S属性的SDD
+<ul>
+<li>S属性的SDD可以和LR语法分析器同时进行！
+<ul>
+<li>栈中的状态/文法符号 可以附加相应的属性值</li>
+<li>归约时，按照语义规则 计算 规约得到的符号 的属性值</li>
+</ul></li>
+<li>S属性的SDD可以和LL语法分析器（自顶向下的语法分析过程）同时进行！
+<ul>
+<li>递归子程序法：<span class="math inline">\(A\to
+XYZ\)</span>，子程序A()中，如果X()&amp;&amp;Y()&amp;&amp;Z()
+返回true了，则已经计算完了XYZ的属性，因此这时计算A的属性即可，然后再返回true。</li>
+<li>基于预测的LL(1)也差不多</li>
+</ul></li>
+<li>语义规则一般不该有复杂的<strong>副作用</strong>
+<ul>
+<li>要求：副作用不影响其他属性</li>
+<li>没有副作用的SDD称为<strong>属性文法</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>语法分析树上的SDD求值</p>
+<ul>
+<li>注释语法分析树：包含了各节点的属性值的语法分析树</li>
+<li>按照分析树中分支对应的文法产生式，应用相应的语义规则</li>
+<li>若结点N的属性<span
+class="math inline">\(a=f(N_1.b_1,N_2.b_2,...,N_m.b_m)\)</span>，则需要先算出后面m个属性，再算a；<strong>能确定计算顺序，则一定能算出注释语法分析树！</strong></li>
+<li>有依赖环的SDD<strong>不能计算！</strong></li>
+</ul></li>
+<li><p>SDD的求值顺序</p>
+<ul>
+<li>依赖图：（以某节点的某个属性 为单位）
+<ul>
+<li>给定SDD，很难判定是否存在一棵分析树，其对应的依赖图包含环；</li>
+<li>但给定SDD和分析树，容易判断是否存在环（强连通分量）</li>
+<li>S属性的SDD，L属性的SDD<strong>一定不存在环</strong></li>
+<li>A.a指向B.a表示计算属性B.a需要依赖属性A.a</li>
+</ul></li>
+<li>在分析树上计算SDD：<strong>后序遍历</strong><img
+src="F:\blog\source_posts\figs\algorithm7.png" /></li>
+</ul></li>
+<li><p>L属性SDD</p>
+<ul>
+<li>S属性SDD存在局限：全都是综合属性，无法计算同时综合+继承的属性，如：int
+a[2][3]</li>
+<li>L属性SDD的每个属性：
+<ol type="1">
+<li>是综合属性</li>
+<li>是继承属性，且<span class="math inline">\(A\to X_1X_2\cdots
+X_n\)</span>中计算<span
+class="math inline">\(X_i.a\)</span>的规则只是用：
+<ul>
+<li>A的<strong>继承属性</strong>，和</li>
+<li><span class="math inline">\(X_i\)</span>左边的文法符号<span
+class="math inline">\(X_j\)</span>的任何属性（j&lt;i）</li>
+</ul></li>
+</ol></li>
+<li>则，依赖图中无环：综合属性下到上；继承属性上到下，或左到右</li>
+<li>自顶向下语法分析过程中计算L属性SDD：
+<ul>
+<li>非终结符A：调用其过程前计算<strong>继承属性</strong>，过程返回后计算综合属性</li>
+<li>对于<span class="math inline">\(A\to X_1\cdots
+X_n\)</span>：调用<span
+class="math inline">\(X_i\)</span>前计算其继承属性，调用之后计算其综合属性</li>
+</ul></li>
+</ul></li>
+<li><p>具有受控副作用的语义规则</p>
+<ul>
+<li>有副作用的一个例子：变量声明int x x = 1</li>
+<li>语法分析时，如果无副作用，标识符表就必须作为属性传递！
+<ul>
+<li>有副作用：把标识符表当作全局变量，调用函数添加新id</li>
+</ul></li>
+<li>受控副作用：
+<ul>
+<li>允许：可以按照依赖图拓扑顺序求值而不会对最终翻译结果产生影响的副作用（这种不会对属性求值产生影响）</li>
+<li>对求值过程添加简单的约束</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>语法制导定义（SDD）的应用（<strong>两个应用：构造AST，和类型结构</strong>）</p>
+<ul>
+<li><p>计算类型：如 int [2][3] a</p></li>
+<li><p>语法分析树</p>
+<ul>
+<li>具体语法树（CST）：保留所有词法元素，符合上下文无关文法</li>
+<li>抽象语法树（AST）：可忽略一些<strong>非本质</strong>东西；某些树结构转为列表；<strong>不符合</strong>上下文无关文法；易于遍历
+处理。特点：只保留必要词法元素；某些词法元素信息存入父节点的属性；移除没有是指信息的中间推导过程</li>
+</ul></li>
+<li><p>构造抽象语法分析树</p>
+<ul>
+<li>如何直接构造AST呢？通过SDD！</li>
+<li>每个节点代表一个语法结构（对应运算符）</li>
+<li>节点的子节点对应运算分量</li>
+<li>表示方法：每个节点用一个对象表示；叶子节点只有词法值、其他（内部）节点存op和参数（子节点）</li>
+<li>一个例子：<img src="F:\blog\source_posts\figs\fig6.png" /></li>
+<li>注意：所以按照这个过程，所有的node属性
+都是综合属性！（S属性SDD）</li>
+</ul></li>
+<li><p>语法制导的翻译方案（SDT）：在产生式体中嵌入语义动作（程序片段）的<strong>上下文无关文法</strong></p>
+<ul>
+<li><p>用SDT实现语法翻译（<strong>how？</strong>）：SDT是SDD的一种补充！</p></li>
+<li><p>SDT的实现方法：</p>
+<ul>
+<li><p>遍历法：建立语法分析树（<strong>CST!</strong>）——&gt;将语义动作看作虚拟节点（绑定语义动作）——&gt;深度优先、从左到右遍历分析树，访问虚拟节点时执行语义动作</p></li>
+<li><p>如何插入虚拟节点？：对于综合属性的语义动作，将该虚拟节点作为子节点插到产生式头节点的右边！（原因显然：深度优先，从左到右）<img
+src="F:\blog\source_posts\figs\fig5.png" /></p></li>
+<li><p>更难的方法：在语法分析过程中实现SDT</p>
+<ul>
+<li>通用判断是否可以在语法分析过程中实现SDT：
+<ol type="1">
+<li><strong>语义动作能否在想要的时机执行？</strong>每个语义动作
+替换为一个非终结符M（<span
+class="math inline">\(M\to\epsilon\)</span>），添加到原产生式右边？如此，得到新文法G'（G+SDT<span
+class="math inline">\(\to\)</span>G'）；如果新文法，可以被某种语法分析技术进行分析（即没有引入冲突，是LL/LR的。。。），则该SDT可以在分析过程中实现（可通过计算机自动判断）</li>
+<li><strong>语义动作能否执行？</strong>得结合属性依赖关系，判断每个虚拟节点能否执行（需人来判断）</li>
+</ol></li>
+<li>两类重要SDD一定可以：
+<ul>
+<li>若SDT基于LR文法，且SDD是S属性的，则必然可以在自底向上的语法分析过程中实现；统里，若SDT基于LL文法，SDD是L属性的，也可以自顶向下。。</li>
+</ul></li>
+<li>后缀翻译方案：基于LR，SDD是S属性=&gt;必可以构造后缀翻译方案
+<ul>
+<li>后缀SDT：所有语义动作（对应虚拟节点）都在产生式最右端的SDT</li>
+</ul></li>
+<li>L属性的SDT
+<ul>
+<li>产生式内部带有语义动作：如<span class="math inline">\(B\to
+X\{a\}\gamma\)</span>
+<ul>
+<li>动作左边的所有符号及动作处理完后，立即执行此动作</li>
+<li>自底向上：X出现在栈顶时执行a</li>
+<li>自顶向下：试图展开（非终结符）<span
+class="math inline">\(\gamma\)</span>或输入中检测到（终结符）<span
+class="math inline">\(\gamma\)</span>时执行a</li>
+</ul></li>
+<li><span class="math inline">\(A\to X_1 X_2\cdots
+X_n\)</span>，A的综合属性SA，插到<span
+class="math inline">\(X_n\)</span>后，X2的继承属性IX2，插到X2前（X1后）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>while语句的SDD和SDT：</p>
+<ul>
+<li>为while语句生成中间代码（把高层次的控制流/跳转等等结构，转换为低层次的代码；关键在于说明控制流中的<strong>标号</strong>（L1,L2。。。））<img
+src="F:\blog\source_posts\figs\fig12.png" /></li>
+<li>next（执行完该块代码，应该跳转到的label）；false，true：条件为false/true时应跳转到label（上全是继承属性）；code：综合属性<img
+src="F:\blog\source_posts\figs\fig13.jpg" /></li>
+<li>下一步关键在于，将label与具体位置对应</li>
+</ul></li>
+<li><p>L属性SDD的实现</p>
+<ul>
+<li>递归下降语法分析器：每个非终结符S对应一个函数S（），继承属性作为参数传入，返回综合属性！（S.code）</li>
+<li>用局部变量存其他属性（防副作用，<strong>但是！不是要构造AST么？？</strong>）</li>
+<li>但是这样反反复复传递code属性，非常大且低效</li>
+<li>解决方案（上面一点的）：边扫描边生成属性：增量式添加到最终属性值中
+<ul>
+<li>条件：1.存在一个主属性，且是综合属性；2.产生式中，主属性是各主属性+一些其他
+连接而成；3.非终结符号属性连接顺序 = 产生式中顺序</li>
+<li><img src="F:\blog\source_posts\figs\fig14.png" /></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch6.-中间代码生成">Ch6. 中间代码生成</h2>
+<p>前端：源语言相关；后端：目标机器相关 ===&gt;
+中间代码：连接前端后端，与二者均无关！可进行优化</p>
+<p>程序语句分为两大类：表达式语句（类型系统），控制流语句</p>
+<ul>
+<li><p>前端：（词法分析）语法分析、静态检查程序（类型检查、语法检查（如break语句在循环块内））、中间代码生成</p>
+<ul>
+<li>中间表示形式：高层、低层
+<ul>
+<li>抽象语法树（高层表示形式）</li>
+<li>三地址代码（高层或底层）：一条指令右侧最多一个运算符：a = b *
+c形式</li>
+</ul></li>
+</ul></li>
+<li><p>语法树变体</p>
+<ul>
+<li><p>表达式的有向无环图DAG：公共子表达式N（可以是叶子节点）可以有多个父节点<img
+src="F:\blog\source_posts\figs\fig22.png" /></p></li>
+<li><p>构造表达式的DAG 的方法：</p>
+<ul>
+<li><p>同样用SDD构造AST的方法，然后每次要创建一个新Leaf/Node时，先判断是否已存在同样的Leaf/Node，如果存在，Leaf/Node方法直接返回对应的节点</p></li>
+<li><p>维护一个记录数组：<img
+src="F:\blog\source_posts\figs\fig23.png" /></p></li>
+<li><p>某一节点在记录数组中的下标（/或该节点的引用），称为该节点所表示的表达式的值编码</p></li>
+<li><p>则每个内部节点的范型为：三元组 &lt;op, l, r&gt;
+标号，左子节点值编码，右值编码（单目运算符，r=0）</p></li>
+</ul></li>
+</ul></li>
+<li><p>三地址代码：主要两个概念：地址，指令</p>
+<ul>
+<li><p>是DAG/AST的线性表示形式，每条指令右侧最多一个运算符，抽象层次接近机器码，有明晰的控制流结构</p></li>
+<li><p>允许的运算分量（地址）：变量（源程序中的名字，实际替换为
+指向符号表条目的指针）；常量（源程序中出现或生成的常量）；编译器生成的临时变量（可加入符号表；或者为Temp类对象）</p></li>
+<li><p>指令集合：<img src="F:\blog\source_posts\figs\fig24.png" /><img
+src="F:\blog\source_posts\figs\fig25.png" /></p></li>
+<li><p>指令在数据结构中的表示方式</p>
+<ul>
+<li>四元式：op，arg1，arg2，result（单目无arg2；param指令无arg2和result；跳转指令
+目标标号为result）</li>
+<li>还有 三元式 和 间接三元式</li>
+</ul></li>
+</ul></li>
+<li><p>静态单赋值（Static Single Assignment
+SSA）：特殊的三地址码，所有变量在<strong>代码中</strong>只被赋值一次</p>
+<ul>
+<li>构造思路：每个变量维护一个计数器；遍历函数体；每次变量赋值，赋新名字（下标+1），并在之后的右值使用处，用新名替换
+<ul>
+<li>tips：通常只对函数内局部变量计算SSA，全局变量很难算！</li>
+</ul></li>
+<li>引入<span
+class="math inline">\(\phi\)</span>函数（应对分支结构）：用<span
+class="math inline">\(x_j =
+\phi(x_1,x_2,...)\)</span>来合并不同控制流下的不同赋值
+<ul>
+<li>如if（flag） x1 = 1； else x2 = 2； x3 = <span
+class="math inline">\(\phi\)</span>（x1，x2）</li>
+<li><span
+class="math inline">\(\phi\)</span>中可以出现后面代码中才出现的变量名，如<span
+class="math inline">\(x_2 = \phi(x_1, x_3)\)</span>，对应循环结构！</li>
+</ul></li>
+<li>SSA的作用：
+<ul>
+<li>全是const变量（<strong>但如果存在循环结构，似乎不是const了！</strong>），简化数据流分析和某些优化</li>
+<li>定义-使用链 清晰易计算</li>
+</ul></li>
+</ul></li>
+<li><p>类型和声明：</p>
+<ul>
+<li><p>作用：类型检查，检查运算分量类型 和
+运算符预期类型是否匹配；确定内存空间、计算数组元素地址；类型转换；选择正确运算符（如a+b：可能对应不同的类型运算）</p></li>
+<li><p>类型</p>
+<ul>
+<li>基本类型：原子类型（机器可以支持的类型，通常有对应的机器指令）</li>
+<li>复合类型：由基本类型组合而成的类型，递归定义的，如：数组、结构体、函数？</li>
+<li>类型表达式：来表示类型的 表达式
+<ul>
+<li>基本类型：就是该类型的名字</li>
+<li>复合类型：通过类型构造算子 作用于类型表达式得到</li>
+</ul></li>
+</ul></li>
+<li><p>类型表达式：</p>
+<ul>
+<li>类型构造算子array（表示同类型的聚合）：如array（2，array（3，int））</li>
+<li>记录类型 构造算子record（不同类型数据的聚合），多组字段：字段名 x
+类型
+<ul>
+<li>若s，t是类型表达式，笛卡尔积s×t也是</li>
+<li>结构体类型中，用来组合：字段名和类型；多组字段</li>
+<li>如struct { int a[10]; float f; } st：record((a x array(10, int)) x
+(f x real))</li>
+</ul></li>
+<li>函数类型：类型构造算子<span class="math inline">\(\to\)</span>：
+<ul>
+<li>如int foo(float x, long[5] y) {...}：类型表达式(float x array(5,
+long)) <span class="math inline">\(\to\)</span> int</li>
+<li>于结构体类型不同，函数类型不需要记录（形参）名字！</li>
+</ul></li>
+</ul></li>
+<li><p>类型等价性</p>
+<p>例子：class X{int x;} x; class Y{int y;} y;</p>
+<ul>
+<li>名等价：直接比较类型名字，则x和y类型不等价（命令式语言一般都是名等价）</li>
+<li>结构等价：（基本类型还是名等价），而复合类型，会递归比较<strong>构造算子及参数分量</strong>（包括字段名），则x和y类型等价</li>
+</ul></li>
+</ul></li>
+<li><p>用SDT进行符号表构造、计算类型及宽度、局部变量的存储布局等</p>
+<ul>
+<li>采用SDT，在产生式（包括类型表达式文法的？）中插入语义动作</li>
+<li>计算类型及宽度，基础类型直接知道，构造类型则要计算（数组 乘法；结构
+加法；对于变量 符号表中直接有一个width属性）</li>
+<li>局部变量的存储布局：维护一个offset变量，每进入一个新作用域，前offset压栈，新offset置零；
+<ul>
+<li>offset指示该变量存储的地址（偏移量）</li>
+</ul></li>
+<li>符号表栈：env；top始终指向当前作用域对应的符号栈（不在env中）</li>
+</ul></li>
+<li><p>表达式代码的SDD（生成三地址码）：</p>
+<ul>
+<li><p><img src="F:\blog\source_posts\figs\fig26.png" /></p></li>
+<li><p>|| 表示代码拼接；addr属性
+就是三地址码中的地址！存放了表达式结果</p></li>
+</ul></li>
+<li><p>类型系统：</p>
+<ul>
+<li><p>给每一个组成部分赋予一个<strong>类型表达式</strong>，有一组类型表达式规则（想想lab2），用来发现错误、提高代码效率（动态检查类型错误减少）、确定变量大小</p></li>
+<li><p>类型特征：</p>
+<ul>
+<li>强类型：不允许无关类型间操作；（允许的操作少）</li>
+<li>弱：通过隐式类型转换（或其他可能的“口子”，如C/C++的指针操作），允许无关类型间操作</li>
+<li>静态类型：（绝大部分）类型错误编译期检查</li>
+<li>动态：（绝大部分）运行时检查</li>
+<li>Gradual Typing：混合</li>
+</ul></li>
+<li><p>类型规则（Type Inference Rule）：</p>
+<ul>
+<li><p>分式记法表大推到规则：前置条件/后置条件</p></li>
+<li><p>类型判决式：e:T 表达式e的类型为T，如e1:integer
+e2:integer/e1+e2:integer</p></li>
+<li><p>无条件成立规则：/0:integer， /true：boolean。。。</p></li>
+<li><p>引入上下文（确定不同作用域标识符的类型）<img
+src="F:\blog\source_posts\figs\fig28.png" /></p></li>
+<li><p>函数重载：函数符号表是一个（类型映射的）集合，然后根据传入参数类型，枚举匹配</p></li>
+</ul></li>
+<li><p>类型转换：</p>
+<ul>
+<li><p>（二元运算对应的）SDT:<img
+src="F:\blog\source_posts\figs\fig29.png" /></p></li>
+<li><p>max函数求两个参数在
+拓宽层次结构（short-&gt;int-&gt;float...）中的<strong>最小公共祖先</strong>；widen函数返回类型为E2.type的临时变量，值为E1</p></li>
+</ul></li>
+</ul></li>
+<li><p>控制流语句的翻译</p>
+<ul>
+<li><p>主要属性有：next，true，false，都是代表一个标签，以及code属性；true，false是只有条件表达式才有的，next是控制流语句S才有的属性；next，true，false都是<strong>继承属性</strong>；code是综合属性</p></li>
+<li><p>关键在于，控制流语句，要为子语句块生成好label（继承属性），并且在code处完成好label的关联插入</p></li>
+<li><p>控制流语句中不进行条件判断，只是进行label和语句的关联（以及while语句中的goto
+begin）；布尔表达式中需要处理条件判断和跳转</p></li>
+<li><p>布尔表达式：比较、取非、true、false等等，直接判断/作用即可</p>
+<ul>
+<li><p>或，非：短路求值，如B1 &amp;&amp;
+B2，B1不成立时，不需要执行B2代码；要通过跳转指令实现！</p></li>
+<li><p>产生式右边没有B的，则需要负责生成if ... goto
+label的代码；有B的，需要处理的是label和关联</p></li>
+<li><p><strong>特例！</strong>：也许会出现id =
+B这样的语句（布尔表达式出现在赋值语句中），此时需要根据B的语法树节点所在位置，生成不同代码：在<strong>控制流语句</strong>中，生成<strong>跳转代码</strong>（同上）；<strong>赋值语句</strong>中，生成<strong>计算右值的代码</strong>（可以还是跳转语句，具体代码部分改为赋值语句，这样还保留了短路求值特性！）<img
+src="F:\blog\source_posts\figs\fig30.png" /></p></li>
+</ul></li>
+</ul></li>
+<li><p>指令的标号与索引</p>
+<ul>
+<li>标号（label）：翻译过程中用标号，方便，可提前生成，但不能直接定位，需要索引；</li>
+<li>索引：指令的存储位置（作为数组元素的索引），可直接定位，不可提前生成</li>
+<li>标号转索引：两遍遍历一定可以（第一遍获得标号，第二遍转为索引）；可否一遍获得索引？</li>
+<li>回填！
+<ul>
+<li>关键问题：某些跳转指令该跳转到哪里？</li>
+<li>指令坯：<strong>是综合属性</strong>，形如 if ... goto __ (else goto
+__)，传给父节点
+<ul>
+<li>对应综合属性xxxlist（truelist，false，next），就是所有在B为true/false时需要跳转的指令列表；以及跳转到S的下一条指令的指令</li>
+<li><strong>同一列表中，跳转指令目标都相同</strong></li>
+</ul></li>
+<li>对于是跳转目标的代码块，记下它的索引，也传给父节点
+<ul>
+<li>产生式中引入M非终结符（展开为<span
+class="math inline">\(\epsilon\)</span>），M.instr记录<strong>紧接着的跳转目标</strong>指令的索引
+<ul>
+<li><span
+class="math inline">\(\textcolor{red}{每个M就对应非回填式SDD里的label}\)</span></li>
+<li>如<span
+class="math inline">\(S\to\textbf{if}\;(B)\;M_1\;S_1\;N\;\textbf{else}\;M_2\;S_2\)</span></li>
+<li>其中的N因为在处理if语句的时候，会生成一条goto语句，也需要回填！</li>
+</ul></li>
+<li>以及N（展开为<span
+class="math inline">\(\epsilon\)</span>），在适当的位置生成跳转指令坯</li>
+<li>还引入了L非终结符，表示语句列表：<span class="math inline">\(L\to LS
+| S\)</span> （S为一个语句）
+<ul>
+<li>用来对（语句列表）L的nextlist进行回填</li>
+</ul></li>
+</ul></li>
+<li>父节点集齐了所有指令坯和索引，则可以完成回填</li>
+<li>辅助函数：
+<ul>
+<li>backpatch（p，i）：将i作为跳转目标插入指令坯p的所有指令中</li>
+<li>merge（p1，p2）：将p1和p2指向的索引列表合并并返回</li>
+<li>makelist（i）：创建一个包含跳转指令（其索引为i）的列表；要通过索引i来找到这条指令并回填哦</li>
+</ul></li>
+<li><strong>全局变量nextinstr就表示当前已生成完的代码下一条的索引，应该是由gen函数来维护的</strong></li>
+</ul></li>
+<li>break 和 continue：和正常的xxxlist不能并论哦！
+<ul>
+<li>continue可以在循环产生式中，给S传入循环头部index；当S中出现continue时，直接填入即可</li>
+<li>break则需要给S引入额外的属性！直到有循环体产生式的时候再将其与nextlist融合</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -798,7 +1733,7 @@ class="math inline">\(\to\)</span>abY... 则把ab提取出来？</li>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">编译原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lexical-analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Lexical Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、词法分析器的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">基本作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#why%E7%8B%AC%E7%AB%8B%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">why独立词法分析器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E6%A8%A1%E5%BC%8F%E8%AF%8D%E7%B4%A0"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">词法单元、模式、词素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%A7%84%E7%BA%A6%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、词法单元的规约（正则表达式）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E5%92%8C%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">串和语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">正则表达式的扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">正则表达式与词法单元的识别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、词法单元的识别（状态转换图）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">状态转换图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%AD%97%E5%92%8C%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">保留字和标识符的识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">词法分析器的体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E5%8F%8A%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.4.</span> <span class="nav-text">四、词法分析器生成工具及设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7lexflex"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">词法分析工具Lex&#x2F;Flex</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.2.5.</span> <span class="nav-text">五、有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dfa%E7%8A%B6%E6%80%81%E6%95%B0%E9%87%8F%E7%9A%84%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">DFA状态数量的最小化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%88%B0%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">自动机到词法分析器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syntax%E8%AF%AD%E6%B3%95-analysis"><span class="nav-number">1.3.</span> <span class="nav-text">Syntax（语法） Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">一、语法分析器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95cfg"><span class="nav-number">1.3.2.</span> <span class="nav-text">二、上下文无关文法（CFG）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E6%A0%91"><span class="nav-number">1.3.3.</span> <span class="nav-text">三、语法分析树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E6%96%87%E6%B3%95%E5%8F%8A%E5%85%B6%E7%94%9F%E6%88%90%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.4.</span> <span class="nav-text">四、文法及其生成的语言</span></a></li></ol></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">编译原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#introduction"><span class="nav-number">1.1.</span> <span class="nav-text">introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lexical-analysis"><span class="nav-number">1.2.</span> <span class="nav-text">Lexical Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.</span> <span class="nav-text">一、词法分析器的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">基本作用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#why%E7%8B%AC%E7%AB%8B%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">why独立词法分析器？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E6%A8%A1%E5%BC%8F%E8%AF%8D%E7%B4%A0"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">词法单元、模式、词素</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%A7%84%E7%BA%A6%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.2.</span> <span class="nav-text">二、词法单元的规约（正则表达式）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%B2%E5%92%8C%E8%AF%AD%E8%A8%80"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">串和语言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E7%9A%84%E6%89%A9%E5%B1%95"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">正则表达式的扩展</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E4%B8%8E%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.2.4.</span> <span class="nav-text">正则表达式与词法单元的识别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%AF%8D%E6%B3%95%E5%8D%95%E5%85%83%E7%9A%84%E8%AF%86%E5%88%AB%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="nav-number">1.2.3.</span> <span class="nav-text">三、词法单元的识别（状态转换图）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E6%8D%A2%E5%9B%BE"><span class="nav-number">1.2.3.1.</span> <span class="nav-text">状态转换图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BF%9D%E7%95%99%E5%AD%97%E5%92%8C%E6%A0%87%E8%AF%86%E7%AC%A6%E7%9A%84%E8%AF%86%E5%88%AB"><span class="nav-number">1.2.3.2.</span> <span class="nav-text">保留字和标识符的识别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%9A%84%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.2.3.3.</span> <span class="nav-text">词法分析器的体系结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7%E5%8F%8A%E8%AE%BE%E8%AE%A1"><span class="nav-number">1.2.4.</span> <span class="nav-text">四、词法分析器生成工具及设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7lexflex"><span class="nav-number">1.2.4.1.</span> <span class="nav-text">词法分析工具Lex&#x2F;Flex</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E6%9C%89%E7%A9%B7%E8%87%AA%E5%8A%A8%E6%9C%BA"><span class="nav-number">1.2.5.</span> <span class="nav-text">五、有穷自动机</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dfa%E7%8A%B6%E6%80%81%E6%95%B0%E9%87%8F%E7%9A%84%E6%9C%80%E5%B0%8F%E5%8C%96"><span class="nav-number">1.2.5.1.</span> <span class="nav-text">DFA状态数量的最小化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E6%9C%BA%E5%88%B0%E8%AF%8D%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.2.5.2.</span> <span class="nav-text">自动机到词法分析器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#syntax%E8%AF%AD%E6%B3%95-analysis"><span class="nav-number">1.3.</span> <span class="nav-text">Syntax（语法） Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E5%99%A8"><span class="nav-number">1.3.1.</span> <span class="nav-text">一、语法分析器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E4%B8%8A%E4%B8%8B%E6%96%87%E6%97%A0%E5%85%B3%E6%96%87%E6%B3%95cfg"><span class="nav-number">1.3.2.</span> <span class="nav-text">二、上下文无关文法（CFG）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E8%AF%AD%E6%B3%95%E5%88%86%E6%9E%90%E6%A0%91"><span class="nav-number">1.3.3.</span> <span class="nav-text">三、语法分析树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E6%96%87%E6%B3%95%E5%8F%8A%E5%85%B6%E7%94%9F%E6%88%90%E7%9A%84%E8%AF%AD%E8%A8%80"><span class="nav-number">1.3.4.</span> <span class="nav-text">四、文法及其生成的语言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94.%E9%94%99%E8%AF%AF%E6%81%A2%E5%A4%8D"><span class="nav-number">1.3.5.</span> <span class="nav-text">五.错误恢复</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%AD%E4%B9%89%E5%88%86%E6%9E%90%E8%AF%AD%E6%B3%95%E5%88%B6%E5%AF%BC%E7%9A%84%E7%BF%BB%E8%AF%91"><span class="nav-number">1.4.</span> <span class="nav-text">语义分析（语法制导的翻译）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch6.-%E4%B8%AD%E9%97%B4%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90"><span class="nav-number">1.5.</span> <span class="nav-text">Ch6. 中间代码生成</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -812,7 +1747,7 @@ class="math inline">\(\to\)</span>abY... 则把ab提取出来？</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -844,7 +1779,7 @@ class="math inline">\(\to\)</span>abY... 则把ab提取出来？</li>
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

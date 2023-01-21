@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="编译原理 Ch7. 运行时（刻）环境 要：为数据分配安排存储位置；确定访问变量时使用的机制（局部&#x2F;全局）；过程间的连接、参数传递（函数调用）  存储分配的典型方式：  代码区：一直存在，不可变；空间固定，静态确定 静态区：全局常量&#x2F;变量；一直存在，位置固定；空间固定，静态确定 堆区：跨函数存在；由低到高生长 栈区：局部变量，函数退出消失；由高到低生长  静态和动态存储分配：（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编译原理p2">
+<meta property="og:url" content="http://example.com/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="Eden">
+<meta property="og:description" content="编译原理 Ch7. 运行时（刻）环境 要：为数据分配安排存储位置；确定访问变量时使用的机制（局部&#x2F;全局）；过程间的连接、参数传递（函数调用）  存储分配的典型方式：  代码区：一直存在，不可变；空间固定，静态确定 静态区：全局常量&#x2F;变量；一直存在，位置固定；空间固定，静态确定 堆区：跨函数存在；由低到高生长 栈区：局部变量，函数退出消失；由高到低生长  静态和动态存储分配：（">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig36.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig37.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/fig38.png">
+<meta property="og:image" content="f:/blog/source_posts/figs/fig39.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig45.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig46.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig47.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig87.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig88.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig89.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig90.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig91.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig92.png">
+<meta property="article:published_time" content="2022-04-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-21T17:08:21.136Z">
+<meta property="article:author" content="hzyzh">
+<meta property="article:tag" content="编译原理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="f:/blog/source/_posts/figs/fig36.png">
+
+<link rel="canonical" href="http://example.com/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>编译原理p2 | Eden</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Eden</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          编译原理p2
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-27T00:00:00+08:00">2022-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-22 01:08:21" itemprop="dateModified" datetime="2022-06-22T01:08:21+08:00">2022-06-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="编译原理">编译原理</h1>
+<h2 id="ch7.-运行时刻环境">Ch7. 运行时（刻）环境</h2>
+<p>要：为数据分配安排存储位置；确定访问变量时使用的机制（局部/全局）；过程间的连接、参数传递（函数调用）</p>
+<ul>
+<li><p>存储分配的典型方式：<img src="F:\blog\source\_posts\figs\fig36.png" style="zoom:50%;" /></p>
+<ul>
+<li>代码区：一直存在，不可变；空间固定，静态确定</li>
+<li>静态区：全局常量/变量；一直存在，位置固定；空间固定，静态确定</li>
+<li>堆区：跨函数存在；<strong>由低到高生长</strong></li>
+<li>栈区：局部变量，函数退出消失；<strong>由高到低生长</strong></li>
+</ul>
+<p>静态和动态存储分配：（动态：必须程序运行时才能决定存储分配）</p>
+<ul>
+<li>动态存储一般有两种存储分配：栈式存储；堆存储</li>
+</ul></li>
+<li><p><strong>栈式分配</strong>：往往用于处理有用户自定义过程/函数/方法
+的程序语言</p>
+<p>过程调用在时间上必须是嵌套的！：如p调用q，则q结束后返回p；或p，q同时结束；或q出现异常，返回p，p尝试恢复</p>
+<ul>
+<li><p>活动树：or调用树（Call Tree）</p>
+<ul>
+<li>一棵树表示程序运行中所有过程的活动，每个节点对应一个活动；其子节点表示在p过程调用中，被p调用的各个过程的活动；根节点对应main过程的活动</li>
+<li>子节点一定在其<strong>右兄弟节点</strong>开始前结束</li>
+<li>性质：调用（返回）序列
+对应树的前序（后序）遍历；当前活动节点N，则所有未结束活动就是N及其祖先节点</li>
+</ul></li>
+<li><p>活动记录</p>
+<ul>
+<li><p>过程调用和返回
+均由<strong>控制栈</strong>（一个运行时刻栈）管理，其中存储每个活跃的活动的活动记录</p></li>
+<li><p>活跃（未结束）的活动 对应一条活动记录/帧</p></li>
+<li><p>栈底向栈顶生长</p></li>
+<li><p>一种可能的活动记录组成（下栈顶，上栈底）：<img src="F:\blog\source\_posts\figs\fig37.png" style="zoom:80%;" /></p></li>
+<li><p><strong>临时值</strong>：寄存器存不下的中间结果；机器状态：包括返回地址、被调用者/调用者保存的寄存器值；<strong>访问链</strong>：后面再说；控制链：指向调用者的活动记录；</p></li>
+</ul></li>
+<li><p>调用/返回代码序列：</p>
+<ul>
+<li><p>调用~：实现过程调用的代码段；需要在栈中为一个活动记录分配空间，并填入信息</p></li>
+<li><p>返回~：需要恢复机器状态；（并回收控制栈中的活动记录？）</p></li>
+<li><p>调用代码序列，会分到 调用者 和 被调用者 中分别执行；</p>
+<ul>
+<li>但是n次调用同一个函数，被调用者代码段只会生成一次，而调用者代码段
+会生成n次！</li>
+<li>故尽量都放在被调用者中！</li>
+</ul></li>
+<li><p>调用/返回~ 的要求：</p>
+<ul>
+<li>数据：参数传给被调用者，返回值传给调用者；</li>
+<li>控制：转到被调用者的开始代码，返回调用者的调用位置下条指令</li>
+</ul></li>
+<li><p>活动记录的布局原则：调用代码序列 与 活动记录的布局相关！</p>
+<ul>
+<li><p><img src="F:\blog\source_posts\figs\fig38.png" /></p></li>
+<li><p>原则1是为了：调用者可以只需要计算出实在参数并放在自己活动记录的顶部，不需要创建被调用者的整个活动记录！且参数数量可变了~</p></li>
+<li><p>支持不固定数量的参数
+进行函数调用：需要把描述参数的信息，放在状态字段（固定长度段）旁，例如printf的第一个参数？</p></li>
+</ul></li>
+</ul></li>
+<li><p>栈中变长数据：</p>
+<ul>
+<li>变长的局部数据，如变长数组，也可以分配在栈上：在当前活动p的活动记录后，加一段（不属于活动记录）数组部分，专门用来存放p的局部数组变量，p的局部数据部分有这些数组的首地址</li>
+<li><img src="F:\blog\source_posts\figs\fig39.png" /></li>
+<li>top指向数组部分结尾，表示下个函数调用的活动的活动记录开始位置；q结束时，top_sp恢复可直接根据控制链，top恢复则需要top_sp减去定长部分+返回值+实参部分长度，其中实参部分由调用者p确定！</li>
+</ul></li>
+</ul></li>
+<li><p>非局部数据的访问：有无嵌套（函数定义）</p>
+<ul>
+<li>无嵌套：如上所述；可以容易的将函数作为参数进行传递~</li>
+<li>有嵌套：需要用访问链；不能直接将嵌套的函数 进行传递！
+<ul>
+<li>嵌套深度：可根据源程序静态确定哦！</li>
+<li>访问链：若过程p在声明时（直接）嵌套在过程q中，则p活动记录的访问链指向上层<strong>最近</strong>的q的活动记录；嵌套深度沿
+访问链路 逐一递减！
+<ul>
+<li>维护：过程q调用过程p时：
+<ul>
+<li>p深度大于q，则q直接定义在p中，则p的访问链指向q</li>
+<li>q递归调用，则深度p=q，p访问链与q的<strong>指向相同</strong>！</li>
+<li>p深度 小于等于
+q深度，则必然存在过程r，p<strong>直接</strong>在r中定义，且q嵌套在r中（r也许就是全局！）；则p访问链指向r（p.outer）</li>
+</ul></li>
+<li><span class="math inline">\(\star\)</span>
+传递过程指针参数（函数指针？）时，除了要传递值（开始地址），还要传递<strong>正确的访问链</strong>！</li>
+<li>限制：1.若p嵌套在q中，则过程p活跃时，q一定也活跃（未结束）！；2.不能越过p直接调用q！（因此python的非局部数据访问
+不是靠访问链实现！）</li>
+</ul></li>
+<li>若深度为<span
+class="math inline">\(n_p\)</span>的过程p访问变量x，x的深度已知为<span
+class="math inline">\(n_q\)</span>（在过程q中声明），则沿访问链向前进<span
+class="math inline">\(n_p-n_q\)</span>次即可找到q的活动记录，x的偏移量也已知</li>
+</ul></li>
+<li>显示表：（对标访问链）访问链访问数据开销与深度差相关，显示表可以常数时间
+<ul>
+<li>数组d，为每个嵌套深度保留一个指针，d[i]指向<strong>最近的，嵌套深度为i的</strong>活动记录</li>
+<li>维护：调用p时，深度为<span
+class="math inline">\(n_p\)</span>，则p活动记录中需保存d<span
+class="math inline">\([n_p]\)</span>值；当p返回时，再恢复d</li>
+</ul></li>
+</ul></li>
+<li><p>堆管理：需处理的问题：分配/回收子空间；类别：需手动回收/会自动垃圾回收</p>
+<ul>
+<li>可达性：
+<ul>
+<li>根集：不需要指针解引用就可以直接访问到的对象的集合；根集全可达</li>
+<li>若一个指针可达，则所有通过该指针可访问到的对象都可达</li>
+<li>若A由可达变不可达，则不会再变可达</li>
+</ul></li>
+<li>基于引用计数（垃圾自动回收：追踪不可达瞬间）
+<ul>
+<li>垃圾互引用（无来自根集的指针），则无法识别！</li>
+</ul></li>
+<li>基于跟踪的 垃圾回收：只关注可达对象（最基本：标记-清扫式）
+<ul>
+<li>每过一段时间，全面扫描（从根基开始，遍历引用图，标记所有可达对象）</li>
+<li>清扫：遍历堆区，释放所有垃圾对象</li>
+<li>优化：（标记-复制/整理 式垃圾回收）
+<ul>
+<li>只处理可达对象：移动堆区中所有可达对象到某一区域（预留的另一半 /
+一端）
+<ul>
+<li>注意需要更新所有的引用！</li>
+<li>标记-整理式
+回收步骤还是需要遍历一遍整个堆区！当垃圾较少时效率较高</li>
+<li>标记-复制式 回收步骤则当可达对象较少时（垃圾多）效率高</li>
+</ul></li>
+<li>剩下的空闲区域为一大整块：避免碎片化</li>
+</ul></li>
+</ul></li>
+<li>分代式垃圾回收：
+<ul>
+<li>生存周期特征：一般刚创建的对象
+更可能不再使用；存在时间越长的对象，被回收的几率越小</li>
+<li>根据生存周期，对对象分代管理：
+<ul>
+<li>年轻代：刚创建的对象什么的；当年轻代空间不足时，采用标记-复制式垃圾回收（垃圾多）</li>
+<li>老年代：”熬过“垃圾回收的对象进入老年代，老年代空间不足时，采用标记-整理式垃圾回收（垃圾少）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch8.-代码生成">Ch8. 代码生成</h2>
+<ul>
+<li>代码生成器
+<ul>
+<li>根据中间表示（IR）生成代码</li>
+<li>生成器前可能有个优化组件</li>
+<li>任务：
+<ul>
+<li>选择适当的指令实现IR语句</li>
+<li>寄存器分配和指派</li>
+</ul></li>
+<li>输入IR的选择：
+<ul>
+<li>四元式、<strong>三元式</strong>，字节代码，抽象语法树，DAG图，。。。</li>
+</ul></li>
+<li>输出：（<strong>为我们的实验</strong>）
+<ul>
+<li><strong>RISC</strong>, CISC</li>
+<li>可重定向代码，<strong>汇编语言</strong></li>
+</ul></li>
+<li>目标机模型：简单的三地址机器模型，指令包括：
+<ul>
+<li>加载：LD
+dst，addr（addr<strong>必须</strong>是地址，会对addr解引用，其中内容加载到寄存器dst）</li>
+<li>保存：ST
+x，r（寄存器r保存到内存x，<strong>x必须是地址</strong>）</li>
+<li>计算：OP dst，src1，src2（全是寄存器）</li>
+<li>无条件跳转：BR L（跳到标号L，L是一个地址！）</li>
+<li>条件跳转：Bcond r，L（判断寄存器r中值
+是否符合条件cond，cond由命令本身决定）</li>
+</ul></li>
+<li>寻址模式：我们的约定
+<ul>
+<li>变量x：变量x的内存位置（是个地址）</li>
+<li>a（r）：a的左值+寄存器r的值（一般a为一个数组之类的在内存中的位置）（值为地址）
+<ul>
+<li>constant（r）：constant + 寄存器r</li>
+</ul></li>
+<li>*r：寄存器值指向的内存中的值，可值可地址</li>
+<li>*constant（r）</li>
+<li>常量#constant</li>
+</ul></li>
+<li>主要问题：
+<ul>
+<li>如何为过程调用和返回生成代码？
+<ul>
+<li>静态分配（活动记录）</li>
+<li>栈式分配（活动记录）</li>
+</ul></li>
+<li>IR中的名字（过程名和变量名）转换为目标代码中的地址？
+<ul>
+<li>不同区域名字采用不同寻址方式</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="活动记录的静态分配">活动记录的静态分配</h5>
+<p>每个过程静态地分配一个数据区域，开始位置为staticArea表示：<strong>则（staticArea）可以在编译时确定！</strong></p>
+<p>call callee实现：</p>
+<ul>
+<li>ST callee.staticArea, #here + 20
+（#here+20表示下一条指令位置，20为ST + BR指令的长度，即返回地址）</li>
+<li>BR callee.codeArea
+（这里又为啥不加*？因为codeArea可以认为就是一个变量？（值））</li>
+</ul>
+<p>callee中的return：</p>
+<ul>
+<li>BR *callee.staticArea （为什么要加*?
+因为staticArea是一个内存位置！）</li>
+</ul>
+<p><strong>致命问题</strong>：不可重录（嵌套调用（递归），因为每次递归调用，信息都存放在同一个数据区域（staticArea同）！）</p>
+<h5 id="活动记录的栈式分配">活动记录的栈式分配</h5>
+<p>有一个专门的寄存器SP指向活动记录的栈顶</p>
+<p>第一个过程（main）负责初始化栈区</p>
+<p>过程调用指令序列</p>
+<ul>
+<li>ADD SP, SP, #caller.recordSize （调用者增大栈指针）</li>
+<li>ST 0(SP), #here + 16 (实际还有保存很多东西)</li>
+<li>BR callee.codeArea</li>
+</ul>
+<p>返回指令序列</p>
+<ul>
+<li><p>BR *0(SP)</p></li>
+<li><p>SUB SP, SP, #caller.recordSize (调用者负责 再减小栈指针)</p></li>
+<li><p>基本块和流图：基本块内都是<strong>！中间代码！</strong></p>
+<ul>
+<li><p><strong>中间代码</strong>的流图表示：</p>
+<ul>
+<li>中间代码划分为基本块
+<ul>
+<li>基本块内部 顺序执行（只有最后一条语句会跳转）</li>
+<li>基本块之间 只有跳转</li>
+<li>控制流只能从基本块<strong>第一条</strong>语句进入</li>
+</ul></li>
+<li>流图：节点是基本块，边代表控制流的跳转</li>
+</ul></li>
+<li><p>流图作为优化的基础：</p>
+<ul>
+<li>比如可以知道：一段代码/一个值是否会被使用到</li>
+</ul></li>
+<li><p>划分基本块的算法：</p>
+<ul>
+<li>输入：三地址指令序列</li>
+<li>输出：基本块列表</li>
+<li>方法：
+<ul>
+<li>只需确定每个块的开始（首指令leader）
+<ul>
+<li>第一条三地址指令；</li>
+<li>任意一个（条件/无条件）跳转指令的目标指令</li>
+<li>紧跟在（条件/无条件）跳转指令后的指令</li>
+</ul></li>
+<li>确定基本块：从当前首指令，到下一条首指令之前，为一个基本块~</li>
+</ul></li>
+</ul></li>
+<li><p>后续使用信息的分析：（局部）</p>
+<ul>
+<li>变量值的使用：用来确定
+某变量的值是否需要保存（占用在寄存器内，如果不活跃，则可以直接覆盖！）
+<ul>
+<li>若三地址语句i：向变量x赋值；存在另一条语句j：有一个运算分量为x；且从i到j存在一条路径p，路径p中没有再对x赋值，则j使用了i处对x的赋值</li>
+<li>则说，<strong>变量x</strong>在语句i后的程序点上<strong>活跃</strong></li>
+<li>不活跃：则指变量的<strong>值</strong>不会再被使用（并非变量不被使用，如紧跟着一个赋值，覆盖掉）</li>
+</ul></li>
+<li>分析过程：
+<ul>
+<li>输入：基本块B，开始时B中所有<strong>非临时变量</strong>均是
+活跃的（用户自定义变量，缺省认为
+后面还会使用）；临时变量则缺省认为不活跃（后面的基本块不会再用）</li>
+<li>输出：各语句i上变量的活跃性、后续实用信息</li>
+<li>方法：
+<ul>
+<li>反向扫描：从B的最后语句开始，先看到变量值的使用，才能决定是否活跃</li>
+<li>对每条语句i：x = y + z
+<ul>
+<li>令语句i和x、y、z当前活跃信息/实用信息关联（即语句i记录下x、y、z信息）</li>
+<li>然后设置x（写的变量）为 不活跃 和
+无后续使用（对于a[i]=0语句，认为a和i都是被使用的，因此都活跃？默认a是指针变量？）</li>
+<li>接着设置y和z（读的变量）为 活跃，并指明下一次使用为语句i</li>
+<li>注意要先设 写，再设 读！（x = x + 1）</li>
+<li>最后，得到整个基本块的各变量的活跃和后续使用信息：由最靠前语句的活跃信息决定</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>流图的构造：</p>
+<ul>
+<li>节点是基本块，节点A到B存在一条有向边 iff
+基本块C的第一条指令<strong>可能</strong>紧跟在B最后一条后执行
+<ul>
+<li>则称A是B的先驱，B是A的后继</li>
+</ul></li>
+<li>入口和出口节点：
+<ul>
+<li>不和任何中间指令对应；入口到第一条指令有一条边；<strong>任何可能最后执行的基本块</strong>到出口有一条边</li>
+</ul></li>
+</ul></li>
+<li><p>循环：（大部分运行时间都在循环上，因此是优化的重要目标！）</p>
+<ul>
+<li>定义：循环L是节点的集合；有一个入口节点（唯一），到达循环任何节点的必经路径；循环内节点都有到达入口节点的路径（且都在L中）</li>
+</ul></li>
+<li><p>对基本块的优化：（局部优化）</p>
+<ul>
+<li><p>每条表达式指令都可以用DAG形式表示，将基本块中的所有指令的DAG合并为一整个DAG？（第二条指令的DAG画在第一条的上面）</p></li>
+<li><p>每个变量都有一个对应的DAG节点表示其<strong>初始值</strong></p></li>
+<li><p>每个语句s有一个相关节点N，代表其计算得到的值</p>
+<ul>
+<li>N的子节点，对应于（得到当前运算分量当前值的）其他语句</li>
+<li>N的标号为：s中的运算符，并且有一组变量被关联到N，表示s是<strong>最晚</strong>对这些变量进行定值的语句</li>
+</ul></li>
+<li><p>DAG图的构造：</p>
+<ul>
+<li><p>构造算法<img
+src="F:\blog\source_posts\figs\fig44.png" /></p></li>
+<li><p>例子：<img src="F:\blog\source\_posts\figs\fig45.png" style="zoom:80%;" /></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="dag作用">DAG作用</h5>
+<p>描述了基本块内：运行时各变量的值之间的关系；可对代码进行转化：</p>
+<ul>
+<li><p>局部公共子表达式：每次建立某节点M前，先检查是否存在节点N，与M具有同操作符和子节点（注意子节点相同，需要子节点对应变量的引用相同！如：a
+= b + c; b = 1; d = b + c; a和d不同！！）</p></li>
+<li><p>消除死代码：消除DAG图上<strong>没有附加活跃变量</strong>的<strong>根节点</strong>（需要根据全局的基本块活跃分析？）</p></li>
+<li><p>基于代数恒等式的优化：一些常量替换，表达式的简化，乘变加
+啥的</p></li>
+<li><p>数组引用：</p>
+<ul>
+<li>对数组赋值a[i] = y（[]=节点）有3个子节点</li>
+<li>当存在多个指针、多个下标的时候，如x=b[i]; b[j] = y;
+则节点x=b[i]不可再被复用！！！因为可能被覆盖：<strong>此时，该节点被杀死，指该节点不能被复用</strong></li>
+</ul></li>
+<li><p>指针赋值/过程调用：</p>
+<ul>
+<li>如x=*p，则x可能<strong>使用了任意变量</strong>，则无法消除死代码！</li>
+<li>*p=y，则可能<strong>给任意变量赋值</strong>，因此<strong>杀死</strong>了所有其他节点！</li>
+<li>咋办？：（局部/全局）指针分析</li>
+<li>过程调用也同理。。。：可能<strong>使用</strong>以及<strong>修改</strong>了可访问范围内的一切变量</li>
+</ul></li>
+<li><p>从DAG到基本块：重构</p>
+<ul>
+<li>重构方法：
+<ul>
+<li>每个节点：一个三地址语句；从下往上</li>
+<li>尽量使用活跃变量来赋值！（当等价时）</li>
+<li>若节点有多个关联的变量，则需要用复制语句进行赋值</li>
+</ul></li>
+<li>重组规则：
+<ul>
+<li>只有读读顺序可以更改，读写、写写顺序不能改（数据库的那个顺序？）</li>
+<li>过程调用、指针间接赋值，不能变顺序！</li>
+</ul></li>
+</ul></li>
+<li><p>代码生成器：</p>
+<ul>
+<li><p>根据三地址代码序列 生成机器指令：</p>
+<ul>
+<li>关键问题：1.选择哪条机器指令？2.选择哪个寄存器？</li>
+<li>目标：减少ST和LD指令</li>
+<li>原则：要装载内存中值，则尽量让它呆久些（多用会）</li>
+<li>基本思想：对于一条三地址指令
+<ul>
+<li>仅当运算分量不在寄存器时，才从内存载入；</li>
+<li>尽量覆盖不被使用的寄存器值</li>
+</ul></li>
+<li>数据结构：
+<ul>
+<li>寄存器描述符：跟踪各寄存器存放了<strong>哪些变量</strong></li>
+<li>地址描述符：各个变量的当前值存放在<strong>哪些位置</strong>上（寄存器和内存位置）</li>
+</ul></li>
+</ul></li>
+<li><p>代码生成算法：<strong>逐个处理</strong>每条三地址代码</p>
+<ul>
+<li><p>1.getReg（I）：选择最佳寄存器；</p>
+<ul>
+<li>对于三地址代码x = y op z：
+<ul>
+<li>首先为运算分量y和z分配寄存器：
+<ul>
+<li>若y已经在寄存器Ry中，则直接返回Ry</li>
+<li>若y不在寄存器中，且有空闲寄存器：则返回一个空闲寄存器Ry</li>
+</ul></li>
+<li>无空闲：
+<ul>
+<li>寄存器R：v；
+<ol type="1">
+<li>v地址表明，还有其他位置有v（包括内存？），ok</li>
+<li>若v是x（结果），且x不是z（运算分量），ok（<strong>则也为x分配寄存器R！</strong>）（情况3的特例）</li>
+<li>若v之后不活跃（不会再被使用），ok</li>
+<li>否则：对于R中每个保存的变量，都得生成st v,R （溢出操作）</li>
+</ol></li>
+</ul></li>
+<li>为结果x分配寄存器：
+<ul>
+<li>先只有x的R；然后若y/z之后不再使用，则仅保存了y/z的寄存器也可；</li>
+<li>然后空闲寄存器；</li>
+<li>然后无空闲的1，3</li>
+<li>无空闲的4</li>
+</ul></li>
+<li>特例：处理x = y时：
+<ul>
+<li>先选择Ry（同前y）</li>
+<li>然后Rx = Ry</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>2.生成代码：<img src="F:\blog\source\_posts\figs\fig46.png" style="zoom:80%;" /></p></li>
+<li><p>3.更新寄存器、地址描述符：</p>
+<ul>
+<li>LD R,x：（寄存器；地址；其他变脸的地址）
+<ul>
+<li>R寄存器只包含x；</li>
+<li>x地址：R作为新位置<strong>加入</strong>到x的位置集合中</li>
+<li>从非x变量的地址描述符中<strong>删除</strong>R</li>
+</ul></li>
+<li>ST x，R：
+<ul>
+<li>x地址：加入<strong>内存地址</strong>x</li>
+</ul></li>
+<li>ADD Rx,R2,R3：
+<ul>
+<li>Rx：只x</li>
+<li>x地址：只包含Rx（<strong>无内存</strong>！）
+<ul>
+<li>如果删去了一些R，则还要顺带更新R！</li>
+</ul></li>
+<li>非x的地址描述符：除去Rx</li>
+</ul></li>
+<li>特殊：对于x = y（三地址代码）：
+<ul>
+<li>若生成LD Ry，y，则先按前（1）的更新</li>
+<li>然后Ry：加入x</li>
+<li>x地址：<strong>只</strong>包含Ry（无内存）
+<ul>
+<li>若删去了一些R，还要顺带更新R！</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>一些优化：</p>
+<ul>
+<li>窥孔优化：使用一个滑动窗口，只检查窗口内的指令，看是否可以优化
+<ol type="1">
+<li>多余的LD/ST指令：LD R0，a；
+（紧跟后，且<strong>同属一个基本块</strong>）ST a，R0</li>
+<li>级联跳转代码：条件跳转语句，看可否条件翻转来消除一条goto语句
+<ul>
+<li>对于编译时可知的条件，可以将条件跳转语句 改为无条件跳转！</li>
+</ul></li>
+<li>控制流优化：
+<ul>
+<li>连续多次跳转，可以直接跳到最后~</li>
+</ul></li>
+<li>代数化简：代数恒等式；使用机器特有指令（INC, DEC）</li>
+</ol></li>
+</ul></li>
+<li><p>寄存器分配和指派 策略：</p>
+<ul>
+<li>简单的分组策略：数组组、算术计算组、。。。
+<ul>
+<li>利用率低！开销大！</li>
+</ul></li>
+<li>全局寄存器分配：
+<ul>
+<li><strong>循环中频繁使用</strong>的值
+存放在<strong>固定多个寄存器</strong>中</li>
+<li>可通过使用计数来估算</li>
+</ul></li>
+</ul></li>
+<li><p>树重写实现 <strong>指令选择（一般指多种寻址方式）</strong></p>
+<p>​
+因为同一三地址码可使用多种机器指令，or多个三地址码可使用同一机器指令</p>
+<ul>
+<li><p>指令选择：为实现中间表示形式，选择适当的机器指令</p>
+<ul>
+<li>用<strong>树</strong> 表示 中间表示，按照特定规则
+不断<strong>覆盖</strong>这棵树 并生成机器指令
+<ul>
+<li>这里提到的中间表示：需要考虑到变量地址层面了（如局部变量a，需要栈顶SP指针+偏移量Ca来取）</li>
+<li>（那会不会和前面提到的寄存器分配矛盾了啊？因为有些时候不需要LD或ST啊？如已经取了局部变量a在寄存器Ra，且a活跃；这里的中间表示
+不考虑优化的么？）</li>
+</ul></li>
+</ul></li>
+<li><p>重写规则：</p>
+<ul>
+<li><p>(替换节点)replacement <span class="math inline">\(\gets\)</span>
+templace(模板)
+[action]，模板为树，替换节点就是一个节点（代表一个寄存器Ri，或者内存中变量）；action为一个像SDT中那样的代码片段：动作就是，把树节点翻译为
+action对应的机器指令！</p></li>
+<li><p>一组树重写规则，就是一个<strong>树翻译方案</strong></p></li>
+<li><p>如：<img src="F:\blog\source\_posts\figs\fig47.png" style="zoom:60%;" /></p></li>
+<li><p>树重写规则，也可以用
+<strong>上下文无关文法</strong>的产生式形式来表示：头 就是替换节点；右部
+指令模板的<strong>前缀表示</strong></p></li>
+</ul></li>
+<li><p>树翻译方案的工作模式：</p>
+<ul>
+<li>给定一颗输入树，用树重写规则中的<strong>模板</strong>来不断 匹配 和
+替换
+输入树的子树；匹配成，则执行相应的动作action（一般是生成相应的机器指令序列）；直到输入树归约为单个节点！</li>
+<li>顺序。。。？（实际上肯定是有影响的，因为会有寄存器覆盖问题）
+<ul>
+<li><strong>大树</strong>优先匹配（长的？）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch9.-机器无关的优化">Ch9. 机器无关的优化</h2>
+<p>机器无关代码的优化：即<strong>中间代码</strong>的优化~
+因此不需考虑寄存器和指令选择层面！</p>
+<h4 id="引言">引言</h4>
+<p>消除<strong>不必要</strong>的指令：完全冗余；or替换指令序列 为
+同功能的更快指令序列</p>
+<p><strong>全局</strong>优化：基于 数据流分析技术（跨越基本块）</p>
+<ol type="1">
+<li><p>冗余运算</p></li>
+<li><p>语义不变的优化：公共子表达式消除、复制传播（a=b，并且尽量只用一个）、死代码消除（该变量后面不再活跃了）、常量折叠</p></li>
+</ol>
+<ul>
+<li><p>全局优化：</p>
+<ul>
+<li>首先还是给中间代码 分基本块，得到流图</li>
+</ul>
+<ol type="1">
+<li>全局公共子表达式：
+<ul>
+<li>如果E：在某次出现之前必然已被计算过；且E的运算分量在该次计算之后
+没有改变过；则：E的本次出现，就是一个<strong>公共子表达式</strong></li>
+</ul></li>
+<li>复制传播：
+<ul>
+<li>如果每个位置上 u一定等于v，则可以把u替换为v</li>
+<li>保持总是使用那个活跃变量，这样可能把某个变量彻底消除掉</li>
+</ul></li>
+<li>死代码消除：
+<ul>
+<li>若一个变量在某个程序点上
+是不活跃的（死的），则此时对该变量的赋值就是<strong>死代码</strong>
+<ul>
+<li>注意，此时所说的活跃与否，是在<strong>全局</strong>的概念下！那如何进行全局的活跃分析呢？</li>
+</ul></li>
+</ul></li>
+<li>代码移动：
+<ul>
+<li>把循环不变表达式 移到循环外</li>
+</ul></li>
+<li>归纳变量的强度消减：
+<ul>
+<li>归纳变量：一个变量t，每次变化总是加/减 常数c，则t为归纳变量</li>
+<li>强度消减：乘法 换成 加/减法</li>
+<li>可以只保留归纳变量系列 中的一个；</li>
+</ul></li>
+</ol></li>
+</ul>
+<h4 id="优化的来源">优化的来源</h4>
+<h4 id="数据流分析">数据流分析</h4>
+<p>公共子表达式：两个表达式是否一定计算得相同的值？</p>
+<p>死代码消除：一个语句的计算结果 是否可能被后续语句使用？</p>
+<p><strong>数据流抽象</strong>：</p>
+<ul>
+<li>程序点：三地址语句之前 和 之后的位置
+<ul>
+<li>基本块内部：指令1.后 = 指令2.前</li>
+</ul></li>
+<li>一个程序点
+可能对应<strong>多个</strong>（无限个）程序状态；对程序点的状态集合
+进行分析
+<ul>
+<li>程序点上的性质：数据流值（根据需要
+设置不同的性质集合），表示了该程序点的性质
+<ul>
+<li>性质1：如到达定值：x由d1定值</li>
+<li>性质2：x=常数c/or NAC</li>
+</ul></li>
+</ul></li>
+<li>域：某个数据流 所有可能值的集合</li>
+</ul>
+<p><strong>数据流分析</strong>：对一组约束求解，得到各个点上的数据流值；</p>
+<ul>
+<li><p>两类约束：语句语义；控制流</p></li>
+<li><p>基于语句语义的约束</p>
+<ul>
+<li>语句语义 用 <strong>传递函数</strong>表示，把数据流值
+映射为另一个数据流值</li>
+<li>OUT[s] = <span class="math inline">\(f_s(\)</span>IN[s])
+（正向约束；也可逆向约束）</li>
+</ul></li>
+<li><p>基于控制流的约束</p>
+<ul>
+<li>基本块内：一个语句的输出 = 下一语句的输入</li>
+<li>流图控制流边（基本块之间） =&gt; 对应新的约束</li>
+</ul></li>
+<li><p>基本块内的数据流模式：</p>
+<ul>
+<li>先处理基本块内数据流关系，然后给出<strong>基本块</strong>对应的转换函数<span
+class="math inline">\(f_B\)</span> (就是块内各语句转换函数的复合)</li>
+</ul></li>
+<li><p>基本块间的控制流约束：</p>
+<ul>
+<li><span class="math inline">\(f_B\)</span>根据IN[B]计算得到OUT[B]</li>
+<li>IN[B]与B的各前驱基本块OUT之间具有 控制流约束；</li>
+<li>反过来，则是逆向数据流问题</li>
+</ul></li>
+</ul>
+<p>精确性 vs 安全性：</p>
+<ul>
+<li><p>到达定值分析：</p>
+<ul>
+<li><p>只要<strong>存在</strong>一条路径，从d点（对x定值）到达p点，且中间没有对x的其他定值点</p></li>
+<li><p>数据流值：所有语句的集合{<span
+class="math inline">\(d_1,\cdots,d_n\)</span>}</p></li>
+<li><p>一定是安全的！可以不精确（分析得到的到达定值
+可能实际上不到达；但实际到达的一定都被分析出来）</p></li>
+<li><p>语句语义的转换方程：</p>
+<ul>
+<li>语句的转换方程：<span class="math inline">\(f_d(x) = gen_d\cup
+(x-kill_d)\)</span></li>
+<li>基本块：<img src="F:\blog\source\_posts\figs\fig87.png" style="zoom: 50%;" /></li>
+</ul></li>
+<li><p>控制流方程：<img src="F:\blog\source\_posts\figs\fig88.png" style="zoom:50%;" /></p></li>
+<li><p>迭代解法：先求出各基本块的gen和kill，然后令所有OUT[B]为空集，不停迭代，直到converge？</p>
+<ul>
+<li>像BellmanFord算法？最多迭代n次（n为流图节点个数）</li>
+</ul></li>
+</ul></li>
+<li><p>活跃变量分析：</p>
+<ul>
+<li><p>数据流值：活跃变量的集合</p></li>
+<li><p>转换函数：使用 use<span class="math inline">\(_s\)</span>，定义
+def<span class="math inline">\(_s\)</span></p></li>
+<li><p>基本块的转换函数：<img src="F:\blog\source\_posts\figs\fig89.png" style="zoom:50%;" /></p></li>
+<li><p>基本块间的数据流方程：逆向！OUT =&gt; IN （因为要判断
+在一条语句之后是否还被使用）</p>
+<ul>
+<li><img src="F:\blog\source\_posts\figs\fig90.png" style="zoom:50%;" /></li>
+</ul></li>
+</ul></li>
+<li><p>可用表达式分析：全局公共子表达式</p>
+<ul>
+<li><p>x+y在p点可用：从流图入口 到
+p点的<strong>每条路径</strong>，都对x+y求值了，且中间没有对x或y赋值</p></li>
+<li><p>基本块的转换函数：</p>
+<ul>
+<li><span class="math inline">\(gen_B\)</span>
+<ul>
+<li>初始S = 空集；</li>
+<li>依次扫描基本块内每条指令，如x = y +
+z：将y+z添加进S，然后删除S中所有涉及x的表达式</li>
+</ul></li>
+<li><span class="math inline">\(kill_B\)</span>
+<ul>
+<li>在基本块内被定值的分量 涉及的表达式（整体会并上gen<span
+class="math inline">\(_B\)</span>）</li>
+</ul></li>
+</ul></li>
+<li><p>基本块间的数据流方程：</p>
+<ul>
+<li><p><strong>注意是求交</strong><img src="F:\blog\source\_posts\figs\fig91.png" style="zoom:50%;" /></p></li>
+<li><p>迭代算法：最开始 ENTRY的OUT设为空集，除此之外每个基本块的OUT[B]
+设为U=全集！！</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="部分冗余消除">部分冗余消除</h4>
+<p>部分冗余：对于一些路径，这个块是冗余；而对另一些路径而言，不是冗余！因此不能简单的删除这个块</p>
+<p>​ 难以通过机器自动进行。。。</p>
+<ul>
+<li><p>添加基本块来消除的冗余：（如果前驱没有多个后继，则直接在那个基本块内添加一条语句就行了；or
+当前基本块没有多前驱，则放在当前基本块内）</p>
+<ul>
+<li><p>进行两种操作：1.在关键边上 增加基本块；2.进行代码复制</p>
+<ul>
+<li><p>如：<img src="F:\blog\source\_posts\figs\fig92.png" style="zoom:50%;" /></p></li>
+<li><p><strong>关键边</strong>：从具有多个后继 的结点 到达 具有多个前驱
+的结点 的边</p></li>
+</ul></li>
+</ul></li>
+<li><p>懒惰代码移动：（可以让机器自动进行的一部分）</p>
+<ul>
+<li>目标：优化后代码 不会额外执行任何原本不执行的代码；表达式计算
+尽量<strong>靠后</strong>（寄存器分配）</li>
+<li>冗余消除：完全冗余 + 一部分 部分冗余</li>
+<li>基本步骤：
+<ol type="1">
+<li>找出各程序点上 预期执行的所有表达式：
+<ul>
+<li>被预期执行，即从程序点p开始
+的每条路径，都要计算表达式b+c，且值与现在立即计算没区别</li>
+<li>数据流分析框架：
+<ul>
+<li>逆向分析；</li>
+<li>若表达式在B出口处
+被预期执行，且没被B杀死，则在B入口处也被预期执行</li>
+<li>若B的所有后继基本块 入口处都被预期执行，则B出口处 也被预期执行</li>
+</ul></li>
+<li>分析完后，表达式 被放置在首次被预期执行的程序点上 =&gt;
+一些表达式就变得完全冗余了</li>
+</ul></li>
+<li>可用表达式分析：
+<ul>
+<li>与前可用表达式分析类似 + 假设被预期执行代码已经复制</li>
+<li>找到入口处 表达式不可用，但预期执行
+的基本块，把表达式先放在那里（可能多个块）</li>
+</ul></li>
+<li>可后延表达式：
+<ul>
+<li>把预期执行的表达式 放置在边界上（对应一条边）：从可后延 变为
+不可后延的地方</li>
+</ul></li>
+<li>消除只使用一次的临时变量：
+<ul>
+<li>即进行活跃变量分析：对被引入的临时变量们分析，查看是否在
+<strong>其所在基本块之外</strong> 还被使用了；否则 移除</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul>
+<h4 id="循环的识别分析和优化">循环的识别、分析和优化</h4>
+<p>相关概念：</p>
+<ul>
+<li>支配节点
+<ul>
+<li>寻找支配结点：一个结点的<strong>支配结点集合</strong>（指
+支配该结点的
+所有结点），是它的所有前驱的支配结点集合的<strong>交集</strong> +
+自己本身（直观：一个结点的前驱越多，则能支配它的结点就越少）</li>
+<li>是<strong>前向</strong>数据流分析问题：初始设置 OUT[ENTRY] =
+ENTRY；除此之外 OUT = N（全部结点）</li>
+<li>可以构造 支配结点树：边 表示 直接支配结点</li>
+</ul></li>
+<li>深度优先排序</li>
+<li>回边</li>
+<li>图的深度</li>
+<li>可归约性：</li>
+</ul>
+<h2 id="考试">考试</h2>
+<p>简答（/填空/选择/判断）</p>
+<p>问答：</p>
+<p>无冲突的LR(1)分析表合并同心集得LALR（1）可能有哪些冲突？只可能有
+归约-归约冲突</p>
+<p>DAG图+<strong>杀死的点！！！！</strong></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag"># 编译原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/02/22/data-mining/" rel="prev" title="data_mining">
+      <i class="fa fa-chevron-left"></i> data_mining
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95/" rel="next" title="编译原理p2">
+      编译原理p2 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">编译原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ch7.-%E8%BF%90%E8%A1%8C%E6%97%B6%E5%88%BB%E7%8E%AF%E5%A2%83"><span class="nav-number">1.1.</span> <span class="nav-text">Ch7. 运行时（刻）环境</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch8.-%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90"><span class="nav-number">1.2.</span> <span class="nav-text">Ch8. 代码生成</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B4%BB%E5%8A%A8%E8%AE%B0%E5%BD%95%E7%9A%84%E9%9D%99%E6%80%81%E5%88%86%E9%85%8D"><span class="nav-number">1.2.0.0.1.</span> <span class="nav-text">活动记录的静态分配</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B4%BB%E5%8A%A8%E8%AE%B0%E5%BD%95%E7%9A%84%E6%A0%88%E5%BC%8F%E5%88%86%E9%85%8D"><span class="nav-number">1.2.0.0.2.</span> <span class="nav-text">活动记录的栈式分配</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#dag%E4%BD%9C%E7%94%A8"><span class="nav-number">1.2.0.0.3.</span> <span class="nav-text">DAG作用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch9.-%E6%9C%BA%E5%99%A8%E6%97%A0%E5%85%B3%E7%9A%84%E4%BC%98%E5%8C%96"><span class="nav-number">1.3.</span> <span class="nav-text">Ch9. 机器无关的优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%95%E8%A8%80"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">引言</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%8C%96%E7%9A%84%E6%9D%A5%E6%BA%90"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">优化的来源</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E6%B5%81%E5%88%86%E6%9E%90"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">数据流分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%83%A8%E5%88%86%E5%86%97%E4%BD%99%E6%B6%88%E9%99%A4"><span class="nav-number">1.3.0.4.</span> <span class="nav-text">部分冗余消除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%9A%84%E8%AF%86%E5%88%AB%E5%88%86%E6%9E%90%E5%92%8C%E4%BC%98%E5%8C%96"><span class="nav-number">1.3.0.5.</span> <span class="nav-text">循环的识别、分析和优化</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%80%83%E8%AF%95"><span class="nav-number">1.4.</span> <span class="nav-text">考试</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hzyzh</p>
+  <div class="site-description" itemprop="description">这个人很懒，什么都没留下</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hzyzh</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+</body>
+</html>

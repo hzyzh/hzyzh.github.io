@@ -20,19 +20,22 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="计算机图形技术范式的演化  字符显示 文字加数字的伪图形；命令行；文本格式编码；单任务 矢量显示 笔画文字和线画图形；命令行；存储和操纵复杂（笔画）；单&#x2F;多人物 二位光栅扫描显示（Bitmap Raster） 窗口、图标、清洗文字即图案；直接选取对象；桌面；多任务 图形工作站及多视角投影（3DTV） 实时 三维 实物虚化 虚物实化；多维输入设备   一些工业标准（ad ho">
+  <meta name="description" content="编译原理 特别篇：编译器测试 软件测试： 关键问题 1.测试生成问题；（充分测试） 2.测试语言问题；（根据软件规约（形式化定义）得到期望输出！）  测试生成问题：  充分性：全面覆盖！随机生成输入？可能效率很低 覆盖率评估（越来越严）：语句覆盖、分支覆盖、路径覆盖（只能一部分，因为循环有无限路径！）、。。。  全覆盖也不一定会触发bug！ 触发bug的3条件：1.测试覆盖">
 <meta property="og:type" content="article">
-<meta property="og:title" content="graphics">
-<meta property="og:url" content="http://example.com/2022/02/18/graphics/index.html">
+<meta property="og:title" content="编译原理p2">
+<meta property="og:url" content="http://example.com/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95/index.html">
 <meta property="og:site_name" content="Eden">
-<meta property="og:description" content="计算机图形技术范式的演化  字符显示 文字加数字的伪图形；命令行；文本格式编码；单任务 矢量显示 笔画文字和线画图形；命令行；存储和操纵复杂（笔画）；单&#x2F;多人物 二位光栅扫描显示（Bitmap Raster） 窗口、图标、清洗文字即图案；直接选取对象；桌面；多任务 图形工作站及多视角投影（3DTV） 实时 三维 实物虚化 虚物实化；多维输入设备   一些工业标准（ad ho">
+<meta property="og:description" content="编译原理 特别篇：编译器测试 软件测试： 关键问题 1.测试生成问题；（充分测试） 2.测试语言问题；（根据软件规约（形式化定义）得到期望输出！）  测试生成问题：  充分性：全面覆盖！随机生成输入？可能效率很低 覆盖率评估（越来越严）：语句覆盖、分支覆盖、路径覆盖（只能一部分，因为循环有无限路径！）、。。。  全覆盖也不一定会触发bug！ 触发bug的3条件：1.测试覆盖">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-02-18T02:51:55.000Z">
-<meta property="article:modified_time" content="2022-03-11T02:10:13.063Z">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig48.png">
+<meta property="article:published_time" content="2022-04-26T16:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-20T13:56:36.420Z">
 <meta property="article:author" content="hzyzh">
+<meta property="article:tag" content="编译原理">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="f:/blog/source/_posts/figs/fig48.png">
 
-<link rel="canonical" href="http://example.com/2022/02/18/graphics/">
+<link rel="canonical" href="http://example.com/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95/">
 
 
 <script id="page-configurations">
@@ -45,7 +48,7 @@
   };
 </script>
 
-  <title>graphics | Eden</title>
+  <title>编译原理p2 | Eden</title>
   
 
 
@@ -150,7 +153,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/18/graphics/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +166,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          graphics
+          编译原理p2
         </h1>
 
         <div class="post-meta">
@@ -173,14 +176,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-02-18 10:51:55" itemprop="dateCreated datePublished" datetime="2022-02-18T10:51:55+08:00">2022-02-18</time>
+              <time title="创建时间：2022-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-27T00:00:00+08:00">2022-04-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-03-11 10:10:13" itemprop="dateModified" datetime="2022-03-11T10:10:13+08:00">2022-03-11</time>
+                <time title="修改时间：2022-06-20 21:56:36" itemprop="dateModified" datetime="2022-06-20T21:56:36+08:00">2022-06-20</time>
               </span>
 
           
@@ -194,33 +197,66 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h4 id="计算机图形技术范式的演化">计算机图形技术范式的演化</h4>
-<ol type="1">
-<li><p>字符显示</p>
-<p>文字加数字的伪图形；命令行；文本格式编码；单任务</p></li>
-<li><p>矢量显示</p>
-<p>笔画文字和线画图形；命令行；存储和操纵复杂（笔画）；单/多人物</p></li>
-<li><p>二位光栅扫描显示（Bitmap Raster）</p>
-<p>窗口、图标、清洗文字即图案；直接选取对象；桌面；多任务</p></li>
-<li><p>图形工作站及多视角投影（3DTV）</p>
-<p>实时 三维 实物虚化 虚物实化；多维输入设备</p></li>
-</ol>
+        <h1 id="编译原理">编译原理</h1>
+<h2 id="特别篇编译器测试">特别篇：编译器测试</h2>
+<p>软件测试：</p>
+<p>关键问题 1.测试生成问题；（充分测试）
+2.测试语言问题；（根据软件规约（形式化定义）得到期望输出！）</p>
 <ul>
-<li><p>一些工业标准（ad hoc Standard）</p>
-<p>Open GL； DirectX； X-Window；
-Postscript（标准图形支撑软件）</p></li>
-<li><p>计算机图形系统</p>
+<li><strong>测试生成问题</strong>：
 <ul>
-<li>数据平台
+<li><strong>充分性</strong>：全面覆盖！随机生成输入？可能效率很低</li>
+<li>覆盖率评估（越来越严）：语句覆盖、分支覆盖、路径覆盖（只能一部分，因为循环有无限路径！）、。。。
 <ul>
-<li><strong>四种几何模型</strong>：线框模型（线）、曲面模型（面）、实体模型（体）、点云模型（点）
+<li>全覆盖也不一定会触发bug！</li>
+<li>触发bug的3条件：1.测试覆盖了该语句；2.多个不同数据流；3.结果正确，可鞥中间仍有bug</li>
+</ul></li>
+<li>实际执行：输入变量
+用实际值赋值，实际执行待测程序，监视判断路径是否被执行到。。。
 <ul>
-<li>主要差异在于<strong>几何基元</strong></li>
+<li>然后不断改输入变量，试图穷尽所有路径</li>
+<li>效率低，（随机输入）</li>
+</ul></li>
+<li>符号执行：输入变量 用<strong>无实际值的符号</strong>代替，根据
+选择的要执行的路径，构造 <strong>约束条件</strong>，最后生成输入变量
+<ul>
+<li>通过 <strong>约束求解器</strong>
+自动求解约束？但可能由于程序过于复杂，求解器可能求不出来；
+<ul>
+<li>在给定时间内：解出来：ok；否则就没解出来，跳过</li>
 </ul></li>
 </ul></li>
-<li>支撑平台</li>
-<li></li>
-<li>重要图形标准：图形核心系统GKS，PHIGS，事业、工业标准</li>
+<li>动态符号执行：开始有一组实际输入变量
+<ul>
+<li>首先：用随机生成的实际输入变量，得到实际执行路径；然后得到路径条件<span
+class="math inline">\(C_1\wedge ...\wedge C_n\)</span>；</li>
+<li>接下来：<strong>从后向前</strong>（可变），依次反转每个路径条件<span
+class="math inline">\(C_i\)</span>(穷举所有路径)，并求解出一组对应的输入
+<ul>
+<li>如何求解输入？对于有多个变量的情况，通过已有的实际输入变量值，固定一部分变量，只变某（几）个变量，如果解出，ok！没解出，就跳过</li>
+<li>条件翻转顺序，也有策略：DFS，BFS，启发式（根据程序的特征）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>测试预言问题</strong>：（如实验一，需要输出语法树，怎么测试呢？）
+<ul>
+<li><p><strong>可能性</strong>！：很多问题（如编译器），是不可能知道
+对于任意输入 的 期望输出的！</p></li>
+<li><p>额外复杂因素：随机函数、外界输入、</p></li>
+<li><p>变化预言：可以预言变化！已知一组输入<span
+class="math inline">\(In_1\)</span>，其输出也已知；改了一些得到<span
+class="math inline">\(In_2\)</span>，则可以预言出（对于任意输入）其输出也变化/不变</p></li>
+<li><p>EMI：Equivalence under Modulo：</p>
+<ul>
+<li><p>对源程序做出变换，使得对于<strong>一部分</strong>输入
+等价？条件放宽，则容易构造出许多新的等价程序，从而找到各种bug！<strong>注意</strong>：变换的时候，不要引入语法错误即可</p></li>
+<li><p>怎么对源程序作等价变换？对编译器输出的 目标程序
+做变换（对那些没有被执行的分支块，做任意变换，然后根据目标程序，找到对应的源程序（一定有对应关系，如果这个对应关系丢掉了，则编译器本身也有问题）</p></li>
+<li><p><img src="F:\blog\source\_posts\figs\fig48.png" style="zoom:80%;" /></p></li>
+<li><p><strong>问题</strong>：可是我觉得这只是测试了编译器在控制流方面的正确性吧？那怎么知道只执行了绿色部分，输出结果就是正确的呢？？</p></li>
+<li><p>工具：Csmith：产生高质量的测试输入Program I；
+better：RCGen</p></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -231,6 +267,9 @@ Postscript（标准图形支撑软件）</p></li>
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="tag"># 编译原理</a>
+          </div>
 
         
 
@@ -238,12 +277,12 @@ Postscript（标准图形支撑软件）</p></li>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/02/17/OOD/" rel="prev" title="OOD">
-      <i class="fa fa-chevron-left"></i> OOD
+    <a href="/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="prev" title="编译原理p2">
+      <i class="fa fa-chevron-left"></i> 编译原理p2
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/02/22/data-mining/" rel="next" title="data_mining">
-      data_mining <i class="fa fa-chevron-right"></i>
+    <a href="/2022/09/19/artificial-intelligence/" rel="next" title="artificial_intelligence">
+      artificial_intelligence <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -303,7 +342,7 @@ Postscript（标准图形支撑软件）</p></li>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9B%BE%E5%BD%A2%E6%8A%80%E6%9C%AF%E8%8C%83%E5%BC%8F%E7%9A%84%E6%BC%94%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">计算机图形技术范式的演化</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">编译原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%89%B9%E5%88%AB%E7%AF%87%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95"><span class="nav-number">1.1.</span> <span class="nav-text">特别篇：编译器测试</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 

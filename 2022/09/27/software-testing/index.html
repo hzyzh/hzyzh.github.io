@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="Ch. 2 白盒测试 vs 黑盒测试 白盒测试 允许测试人员利用程序内部的逻辑结构设计测试用例，对程序所有逻辑路径进行测试。 测试对象基于被测试程序的源代码 白盒测试方法必须遵循以下原则  保证一个模块中的所有独立路径至少被测试一次。 对所有的逻辑判定均需测试取真和取假两种情况。 在上下边界及可操作范围内运行所有循环。 检查程序的内部数据结构，保证其结构的有效性  白盒测试类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eden">
+<meta property="og:url" content="http://example.com/2022/09/27/software-testing/index.html">
+<meta property="og:site_name" content="Eden">
+<meta property="og:description" content="Ch. 2 白盒测试 vs 黑盒测试 白盒测试 允许测试人员利用程序内部的逻辑结构设计测试用例，对程序所有逻辑路径进行测试。 测试对象基于被测试程序的源代码 白盒测试方法必须遵循以下原则  保证一个模块中的所有独立路径至少被测试一次。 对所有的逻辑判定均需测试取真和取假两种情况。 在上下边界及可操作范围内运行所有循环。 检查程序的内部数据结构，保证其结构的有效性  白盒测试类">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig94.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig96.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig95.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig97.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig98.jpg">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig99.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig100.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig101.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig102.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig103.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig104.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig107.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig105.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig106.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig108.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig109.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig110.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig111.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig112.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig113.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig114.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig115.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig116.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig117.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig118.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig119.png">
+<meta property="og:image" content="f:/blog/source/_posts/figs/fig120.png">
+<meta property="article:published_time" content="2022-09-27T02:11:28.764Z">
+<meta property="article:modified_time" content="2022-11-22T02:53:06.830Z">
+<meta property="article:author" content="hzyzh">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="f:/blog/source/_posts/figs/fig94.png">
+
+<link rel="canonical" href="http://example.com/2022/09/27/software-testing/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | Eden</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Eden</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/27/software-testing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-27 10:11:28" itemprop="dateCreated datePublished" datetime="2022-09-27T10:11:28+08:00">2022-09-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-22 10:53:06" itemprop="dateModified" datetime="2022-11-22T10:53:06+08:00">2022-11-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="ch.-2-白盒测试-vs-黑盒测试">Ch. 2 白盒测试 vs 黑盒测试</h2>
+<h4 id="白盒测试">白盒测试</h4>
+<p>允许测试人员利用程序<strong>内部的逻辑结构</strong>设计测试用例，对程序所有逻辑路径进行测试。</p>
+<p>测试对象基于被测试程序的<strong>源代码</strong></p>
+<h5 id="白盒测试方法必须遵循以下原则">白盒测试方法必须遵循以下原则</h5>
+<ul>
+<li>保证一个模块中的<strong>所有独立路径至少被测试一次</strong>。</li>
+<li>对所有的逻辑判定均需测试<strong>取真和取假</strong>两种情况。</li>
+<li>在上下边界及可操作范围内运行所有循环。</li>
+<li>检查程序的内部数据结构，保证其结构的有效性</li>
+</ul>
+<h5 id="白盒测试类别">白盒测试类别</h5>
+<ul>
+<li><p>静态测试：
+不要求在计算机上实际执行所测试的程序，主要以一些人工的模拟技术对软件进行分析和测试，如代码检查法、静态结构分析法等；</p></li>
+<li><p>动态测试：
+是通过输入一组预先按照一定的测试准则构造实际数据来动态运行程序，达到发现程序错误的过程。白盒测试中的动态分析技术主要有逻辑覆盖法和基本路径测试法。</p></li>
+</ul>
+<h5 id="代码结构覆盖">代码结构覆盖</h5>
+<p><img src="F:\blog\source\_posts\figs\fig94.png" style="zoom: 50%;" /></p>
+<ul>
+<li>修改决策条件覆盖？</li>
+</ul>
+<h4 id="黑盒测试">黑盒测试</h4>
+<p>完全不考虑程序的内部结构和处理过程的前提下，只基于<strong>规格说明</strong>来设计测试用例；又称为<strong>功能测试</strong></p>
+<h5 id="等价类划分-边界值分析">等价类划分 &amp; 边界值分析</h5>
+<p>等价类划分：如所有符合要求的输入一类；针对违反不同规则的输入
+各一类</p>
+<h5 id="category-partition">Category Partition</h5>
+<p>一个程序有许多相关属性（attribute），如程序运行的：parameters，environment
+objects等（根据规格说明，将程序分解为若干功能单元<strong>functional
+unit</strong>）；</p>
+<p>针对每个attribute，分出若干个categories（如对于字符串长度，分为0，1，若干，超长。。。等）；</p>
+<p>generate test cases</p>
+<h5 id="因果图和决策表">因果图和决策表</h5>
+<p><strong>等价类划分和边界值分析</strong>都只孤立地考虑各个输入数据，而没有考虑多个输入数据间的组合效应，可能会遗漏了输入数据易于出错的组合情况</p>
+<p>因果图可以转化为决策表，表中每一列展示了原因和结果之间的关系。可以基于决策表设计对应的测试用例（例如，为表中的每一列设计一条测试用例）</p>
+<p>如：因果图<img src="F:\blog\source\_posts\figs\fig96.png" style="zoom:50%;" />，</p>
+<p>对应决策表<img src="F:\blog\source\_posts\figs\fig95.png" style="zoom: 50%;" /></p>
+<h2 id="ch.-3-软件开发中的测试方法">Ch. 3 软件开发中的测试方法</h2>
+<h4 id="单元测试-unit-testing">单元测试 Unit testing</h4>
+<p>与系统一个单一功能（logical purpose）有关的代码称为一个unit；</p>
+<p>编写一小段代码 =&gt; 测试一个很小、很明确的功能正确</p>
+<p><strong>快速执行</strong></p>
+<p><strong>自动化</strong></p>
+<ul>
+<li>使用单元测试的自动化框架来自动执行单元测试用例：JUnit，NUnit，TestNG。。。</li>
+<li>会自动设置测试环境、前置条件；自动执行测试用例；对比输出</li>
+</ul>
+<h4 id="集成测试-integration-testing">集成测试 Integration Testing</h4>
+<p>在单元测试的基础上，采用适当的策略将已通过测试的模块组装成子系统或系统，并确保各模块组合到一起后能按既定的设计要求运行</p>
+<h5
+id="基于分解的集成decomposition-based">基于分解的集成（Decomposition-based）</h5>
+<ul>
+<li>自底向上（先开发底层模块）：先从原子模块开始，逐步向上组装和测试；需要
+<strong>测试驱动程序（driver）</strong>来调用和协调各原子模块</li>
+<li>自顶向下（先开发主控制模块）：则需要
+<strong>桩程序（stub）</strong>和 <strong>模拟程序（mock）</strong></li>
+<li>混合策略（sandwich）：中上层自顶向下；中下层自底向上；灵活</li>
+</ul>
+<p><strong>基于功能集成</strong>：每次集成提供一个用户可感知的具体功能</p>
+<h4 id="系统测试-system-testing">系统测试 System Testing</h4>
+<p>将整个软件系统视为一个整体来进行测试</p>
+<h4 id="冒烟测试-smoke-test">冒烟测试 Smoke Test</h4>
+<p>在每日构建完成后，对系统的基本功能进行简单的测试，是将代码更改签入到代码库之前的验证过程</p>
+<p>daily build（从头到尾编译、链接、运行一次） + smoke test
+（简单的测试）</p>
+<h4 id="回归测试-regression-testing">回归测试 Regression Testing</h4>
+<p>代码修改后，重新进行测试以确认修改的正确性，以及修改没有引入新的错误</p>
+<ul>
+<li>回归测试通常要求自动化，以此来降低软件开发和维护成本</li>
+<li>软件开发的各个阶段都会进行多次回归测试，新版本的连续发布会使回归测试进行的更加频繁（通常每天都需要进行若干次回归测试）</li>
+<li>回归测试会对已有的测试用例库进行增删或改进</li>
+</ul>
+<h4 id="flaky-test">Flaky Test</h4>
+<p>在相同代码版本上，多次执行同一个测试用例却观察到不同的测试结果(可能因为测试用例引入了一些随机性？)
+##### Flakiness 的来源 (及解决方案)</p>
+<ul>
+<li>并发和同步相关的问题 (e.g., test makes an asynchronous call and does
+not wait, multiple threads interact, ...)</li>
+<li>多条测试用例执行时的顺序和依赖问题 (e.g., shared variables, no
+cleaning up, ...)</li>
+<li>数据和资源的管理与控制问题 (e.g., database connections, memory
+allocations, unordered collections, ...)</li>
+<li>测试执行时间过⻓或难于控制、依赖于当前系统时间 (e.g., network,
+...)</li>
+<li>随机性 (e.g., random numbers generator, ...）</li>
+</ul>
+<h4 id="alpha-测试">Alpha 测试</h4>
+<p>在开发环境或模拟的实际操作环境下进行的测试（通常依赖第三方测试机构）</p>
+<h4 id="beta-测试">Beta 测试</h4>
+<p>由软件用户在实际使用环境下进行的测试 (开发者无法控制测试环境)</p>
+<h5 id="perpetual-beta">Perpetual Beta</h5>
+<p>软件系统长期处于Beta测试中</p>
+<h2 id="ch4.-软件特性和方面的测试方法">Ch4.
+软件特性和方面的测试方法</h2>
+<h4 id="针对软件效率的测试">针对软件效率的测试</h4>
+<p>对于一些大规模的复杂软件系统 (Ultra Large-Scale Software
+Systems)，针对软件运行效率的测试非常重要</p>
+<ul>
+<li>负载测试 Load Testing：检测系统在不同负载（concurrent
+users？）下的表现
+<ul>
+<li>评估系统在不同工作量下的行为；有些问题可能需要在高负载下显现（memory
+leak，deadlock等）</li>
+</ul></li>
+<li>压力测试 Stress Testing：检测系统在极限情况下的表现
+<ul>
+<li>通过模拟负载，使系统在负载饱和或资源匮乏的状态下运行</li>
+<li>软件老化 (Aging)
+缺陷：软件系统⻓时间运行中出现的可用资源不足、性能下降、失效率增加等现象
+(⻓时间运行后性能下降)，通常是由于系统状态中的错误累计和系统资源
+(例如，物理内存、文件等) 的消耗造成的
+<ul>
+<li>通过⻓时间提供大量工作负载(例如，大量客户端请求)
+使软件老化现象更快暴露出来</li>
+</ul></li>
+</ul></li>
+<li>容量测试 Volume：检测系统在大数据量或大量用户下的表现
+<ul>
+<li>通常只关注大容量，不关注实际使用</li>
+</ul></li>
+<li>性能测试 Performance：评估系统的性能指标
+<ul>
+<li>评估一堆性能指标</li>
+</ul></li>
+<li>前仨<strong>面向缺陷</strong>；性能测试则<strong>面向指标</strong></li>
+</ul>
+<h4 id="可靠性测试">可靠性测试</h4>
+<p>Reliability Testing：评估软件的可靠性程度；</p>
+<p>软件可靠性是指软件在规定的时间和规定的环境下，完成规定功能的能力</p>
+<p><strong>看看ppt！</strong></p>
+<h4 id="安全性测试">安全性测试</h4>
+<p>检测软件安全控制机制的正确性和有效性</p>
+<ul>
+<li>安全功能测试：测试软件实现是否与安全需求说明一致</li>
+<li>安全漏洞测试：</li>
+</ul>
+<h5 id="安全性测试中的常用方法">安全性测试中的常用方法</h5>
+<ul>
+<li>静态分析
+<ul>
+<li>针对特定的攻击方式进行检查，尽早发现错误</li>
+<li>存在误报和漏报现象，需要在两者之间进行平衡</li>
+</ul></li>
+<li>形式化方法 (e.g., Model Checking)
+<ul>
+<li>具有完备的数学基础，能对形式化的规格说明进行正确性证明</li>
+<li>开发成本高，状态爆炸问题</li>
+</ul></li>
+<li>模糊测试 Fuzzing</li>
+<li>语法测试 Syntax Testing</li>
+</ul>
+<h4 id="用户认证授权测试">用户认证+授权测试</h4>
+<p>（见ppt）</p>
+<h4 id="兼容性测试">兼容性测试</h4>
+<p>检测软件能否在不同的<strong>硬件平台</strong>、<strong>操作系统</strong>和<strong>网络环境</strong>之上、以及不同的应用之间正常运行</p>
+<h4 id="配置测试">配置测试</h4>
+<p>Configuration
+Testing：检测软件在不同构建和运行配置下是否能正常工作</p>
+<ul>
+<li>高可配置软件：允许用户定义一系列配置选项而保持核心功能不变</li>
+<li>可能存在解空间爆炸的问题（一堆可选配置的组合）<img src="F:\blog\source\_posts\figs\fig97.png" style="zoom:50%;" /></li>
+</ul>
+<h4 id="图形用户界面测试gui">图形用户界面测试GUI</h4>
+<p>（每个用户操作 可能出发不同event）</p>
+<p>基于模型的测试：定义coverage概念</p>
+<ul>
+<li>Event Flow Graph（EFG）：每个点代表event，边代表一个用户操作
+<ul>
+<li>cover nodes and edges；sequences of events</li>
+</ul></li>
+<li>Finite State
+Machine（FSM）：node代表一个界面/窗口？edge代表一个event</li>
+</ul>
+<p>软件测试坐标系：<img src="F:\blog\source\_posts\figs\fig98.jpg" style="zoom: 25%;" /></p>
+<h2 id="ch5.-random-testing">Ch5. Random Testing</h2>
+<p>problem：测试空间太大，无法全测</p>
+<p><img src="F:\blog\source\_posts\figs\fig99.png" style="zoom: 67%;" /></p>
+<p>issues in RT：</p>
+<ul>
+<li>number好randomly
+sample，但复杂数据结构如何随机sample？（还有内存、时间限制）</li>
+</ul>
+<p>RT sample的质量：diversity！</p>
+<h4 id="adaptive-random-testing-art">Adaptive Random Testing (ART)</h4>
+<p>Select test cases that are <strong>as diverse as
+possible</strong>:</p>
+<ul>
+<li>可以尝试 maximize distance between tests</li>
+</ul>
+<p>几种implementations：</p>
+<ul>
+<li><p>Fixed-Size-Candidate-Set
+(FSCS)<img src="F:\blog\source\_posts\figs\fig100.png" style="zoom:67%;" /></p></li>
+<li><p>Partition
+based-ART<img src="F:\blog\source\_posts\figs\fig101.png" style="zoom:67%;" /></p></li>
+</ul>
+<h5 id="evaluate-the-distribution-of-a-given-test-set">evaluate the
+distribution of a given test set:</h5>
+<ul>
+<li><p>distribution metric</p>
+<ul>
+<li><p>discrepency:<img src="F:\blog\source\_posts\figs\fig102.png" style="zoom:67%;" /></p></li>
+<li><p>dispersion:<img src="F:\blog\source\_posts\figs\fig103.png" style="zoom:67%;" /></p></li>
+<li><p>diversity:<img src="F:\blog\source\_posts\figs\fig104.png" style="zoom:67%;" /></p></li>
+</ul></li>
+</ul>
+<h5 id="art-weaknesses">ART Weaknesses:</h5>
+<ul>
+<li>计算复杂度</li>
+<li>Boundary effect：更容易找到一堆边界处的test（实际不需要这么多）</li>
+<li>高维效果差</li>
+</ul>
+<h3 id="combinatorial-testing">Combinatorial Testing</h3>
+<p>全部测试开销过高；且并非所有的输入参数都与fault有关 =&gt; 把fixed
+number
+t个不同参数的任意种组合情况都测试了，<strong>t就叫该测试的coverage
+strength</strong></p>
+<p>一个例子：<img src="F:\blog\source\_posts\figs\fig107.png" style="zoom:50%;" /></p>
+<p>CT测试步骤<img src="F:\blog\source\_posts\figs\fig105.png" style="zoom:67%;" /></p>
+<p>如何depict input space很关键！</p>
+<p>（如要测试find命令）：<img src="F:\blog\source\_posts\figs\fig106.png" style="zoom:55%;" /></p>
+<h5 id="ct的优点">CT的优点</h5>
+<ul>
+<li>t-way CT覆盖了小于等于t个参数的所有种interaction
+（exhaustive）；比穷举少多了
+<ul>
+<li>不过随着t增大，covering array大小显著提升！</li>
+</ul></li>
+<li>研究证明：绝大部分fault的产生所需interaction很少</li>
+</ul>
+<h5 id="covering-array">Covering Array</h5>
+<p>不同参数可能有不同的value domains =&gt; Mixed Covering Array</p>
+<p>Sequence Covering Array：</p>
+<ul>
+<li>用于测试event顺序带来的影响，如：<img src="F:\blog\source\_posts\figs\fig108.png" style="zoom:55%;" /></li>
+</ul>
+<h5 id="构造-t-way-covering-array">构造 t-way covering array</h5>
+<p>构造minimal t-way CA是一个NP Hard的问题！一些简化方法：</p>
+<ul>
+<li>mathematical approach
+<ul>
+<li>orthogonal array
+(OA)<img src="F:\blog\source\_posts\figs\fig109.png" style="zoom:50%;" /></li>
+<li>啥意思？不懂，<strong>搜一下！</strong></li>
+<li>得到最优的CA，但limited for certain problem instances</li>
+</ul></li>
+<li>greedy approach
+<ul>
+<li>In-Parameter-Order (IPO)
+algorithm<img src="F:\blog\source\_posts\figs\fig110.png" style="zoom:50%;" /></li>
+<li>运行效率高，但结果不一定最优</li>
+</ul></li>
+<li>search-based approach
+<ul>
+<li>得到尽可能small的array，但高计算开销</li>
+</ul></li>
+</ul>
+<h5 id="ct的一些constraints">CT的一些constraints</h5>
+<ul>
+<li><p>hard
+constraint：并非所有parameter组合都有效（有些parameter不能同时出现）</p></li>
+<li><p>soft constraint：测试者认为某些parameter组合没有必要测试</p></li>
+</ul>
+<p>得到t-way constrained covering array，要求：</p>
+<ul>
+<li>CA中每一行都满足约束；任意t个参数之间 满足约束 的组合至少出现一次
+<ul>
+<li>会引入隐性约束问题：如有约束：(P1=0,P2=0),(P2=1,P3=1) =&gt;
+(P1=0,P3=1)</li>
+</ul></li>
+</ul>
+<p>constraint solver：用来检测一个（partial）test case是否valid</p>
+<ul>
+<li>将所有constraints表达式用solver支持的形式表示：如boolean
+formula</li>
+<li>SAT/SMT</li>
+</ul>
+<h2 id="fsm-testing">FSM Testing</h2>
+<p>model-based testing：建模，将原系统 map
+为一个model；是一种reduction，model仅反应系统的部分性质</p>
+<p>根据model生成一些abstract test cases =&gt; executable test cases</p>
+<ul>
+<li>strongly connected：可以从FSM的任意状态s1转移到任意状态s2</li>
+</ul>
+<p>一般假设：FSM M是minimal，strongly connected，<strong>completely
+specified</strong>；并且存在正确的reset操作（状态回到初始s）</p>
+<p>testing
+FSM：根据归约（原system）检测FSM，错误包括两种：<strong>output
+fault</strong>，<strong>state transfer fault</strong></p>
+<h4 id="finding-state-transfer-fault">Finding state transfer fault</h4>
+<p>确定当前state很重要（只能靠FSM的outputs判断）</p>
+<h5 id="distinguishing-sequence">Distinguishing sequence</h5>
+<p><img src="F:\blog\source\_posts\figs\fig111.png" style="zoom:55%;" /></p>
+<p><span
+class="math inline">\(\textcolor{red}{可是如果本身就有fault（output/state
+transfer的），那这个distinguishing
+sequence不就可能出问题了么？！}\)</span></p>
+<h5 id="unique-inputoutput-uio-sequences">Unique Input/Output (UIO)
+sequences</h5>
+<p>Distinguishing sequence是general的，还有Unique Input/Output (UIO)
+sequence for a state s（即所有其他状态s‘得到的输出与s的不同即可）</p>
+<h5 id="characterizing-set">Characterizing set</h5>
+<p><img src="F:\blog\source\_posts\figs\fig112.png" style="zoom: 50%;" /></p>
+<p>一般方法：<img src="F:\blog\source\_posts\figs\fig113.png" style="zoom:55%;" /></p>
+<h5 id="chows-method-w-method">Chow's Method (W-method)</h5>
+<ol type="1">
+<li>找到FSM的一个特征集W，及FSM的state cover set V（即input
+sequences的集合，使得从s0开始可以分别到达所有状态s）</li>
+<li>假设state数存在上限？</li>
+<li><img src="F:\blog\source\_posts\figs\fig114.png" style="zoom:50%;" />
+<ul>
+<li>·表示笛卡尔积；V·W表示到达任意某个状态s（V），然后确定当前确实在状态s（W）；V·X·W表示
+从s经过任意某个state
+transfer（V·X），然后确定确实在正确的转移状态s‘（W）</li>
+</ul></li>
+</ol>
+<h2 id="constraint-based-testing">Constraint Based Testing</h2>
+<p>针对控制流来设计sample？<img src="F:\blog\source\_posts\figs\fig115.png" style="zoom:50%;" /></p>
+<p>SAT： satisfying assignment （to Boolean Satisfiability）</p>
+<p>SMT： SAT的推广，给变量赋值~</p>
+<h4 id="symbolic-execution">Symbolic Execution</h4>
+<p>用symbolic values来表示 变量 和path conditions</p>
+<p><img src="F:\blog\source\_posts\figs\fig116.png" style="zoom:50%;" /></p>
+<p>根据不同控制流对应的constraints， solve出符合的inputs =&gt;
+相当于inputs的<strong>等价类划分</strong></p>
+<p><img src="F:\blog\source\_posts\figs\fig117.png" style="zoom:50%;" /></p>
+<p>一些practical issues：</p>
+<ul>
+<li>Loops，recursion，path explosion =&gt; paths过多</li>
+<li>可能调用了外部库（无源码）；或约束条件过于复杂</li>
+</ul>
+<h4 id="dynamic-symbolic-execution-concolic-testing">Dynamic Symbolic
+Execution （Concolic Testing）</h4>
+<p>symbolic execution dynamically + a concrete input（简化约束求解）</p>
+<p><img src="F:\blog\source\_posts\figs\fig118.png" style="zoom:50%;" /></p>
+<ul>
+<li>需要通过实际execute来确定当前的input对应的path
+condition（而不只是静态求解）</li>
+<li>有了当前path condition，下一步 变换path
+condition中的最后一项，得到待求解的约束</li>
+<li>需要通过symbolic求解器 来变换当前input =&gt;
+符合待求解约束的input，再继续实际执行（第一步）</li>
+</ul>
+<p>issues：</p>
+<ul>
+<li>如何求解
+待求解的约束，得到新input？一些些缓解办法：将难解/不能解的约束，用具体值替换，去求解另一边（能力有限）</li>
+</ul>
+<h2 id="search-based-software-testing">Search Based Software
+Testing</h2>
+<p><img src="F:\blog\source\_posts\figs\fig119.png" style="zoom:50%;" /></p>
+<p>在解空间中，对一个已有solution进行微调，并比较新solution，保留better
+one；重复该流程</p>
+<p>（search是）heuristic的，针对一个<strong>optimization
+problem</strong>，找到一个足够好的解</p>
+<h4 id="key-ingredients">Key Ingredients</h4>
+<h5 id="representations">Representations</h5>
+<h5 id="operators">Operators</h5>
+<p>A function that evaluates the goodness of a candidate solution</p>
+<ul>
+<li>Fitness Landscape: fitness function的hyper surface表示</li>
+</ul>
+<p>Local search</p>
+<ul>
+<li>如Hill Climbing算法；（每次考虑周围一部分的 solutions）</li>
+<li>容易陷入局部最优local optima</li>
+</ul>
+<p>Global search</p>
+<ul>
+<li>Simulated Annealing：灭火算法
+<ul>
+<li>温度不断降低；温度高时，解不稳定，且易采取随机运动；温度低后，随机性降低，解趋向于稳定</li>
+</ul></li>
+<li>Genetic Algorithm：
+<ul>
+<li>引入selection pressure（即根据fitness
+functions度量），趋向于选择更优的solutions作parents</li>
+<li><img src="F:\blog\source\_posts\figs\fig120.png" style="zoom:50%;" /></li>
+</ul></li>
+</ul>
+<h5 id="fitness-functions">Fitness Functions</h5>
+<ul>
+<li>Approach Level: 偏离的控制流节点数（但没办法guide the test）</li>
+<li>Branch Distance:表示当前branch 当前输入状态
+距离目标predicate之间的距离 <span
+class="math inline">\(\in[0,1)\)</span></li>
+</ul>
+<p>fitness function: <span class="math inline">\(f(s,i) = approach\;
+level + normalised(brach\; distance)\)</span></p>
+<h5 id="exploitation-vs.-exploration">Exploitation vs. Exploration</h5>
+<p>Exploitation: 找到当前局部最优的能力</p>
+<p>Exploration: 全局搜索的能力</p>
+<p>之间有一个tradeoff</p>
+<h5 id="test-suite-minimization">Test Suite Minimization</h5>
+<p>那是干啥的？？！！没搞懂！</p>
+<h2 id="mutation-testing">Mutation Testing</h2>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/09/19/artificial-intelligence/" rel="prev" title="artificial_intelligence">
+      <i class="fa fa-chevron-left"></i> artificial_intelligence
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/12/23/formal-semantics/" rel="next" title="">
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ch.-2-%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95-vs-%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="nav-number">1.</span> <span class="nav-text">Ch. 2 白盒测试 vs 黑盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="nav-number">1.0.1.</span> <span class="nav-text">白盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95%E5%BF%85%E9%A1%BB%E9%81%B5%E5%BE%AA%E4%BB%A5%E4%B8%8B%E5%8E%9F%E5%88%99"><span class="nav-number">1.0.1.1.</span> <span class="nav-text">白盒测试方法必须遵循以下原则</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%99%BD%E7%9B%92%E6%B5%8B%E8%AF%95%E7%B1%BB%E5%88%AB"><span class="nav-number">1.0.1.2.</span> <span class="nav-text">白盒测试类别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E7%BB%93%E6%9E%84%E8%A6%86%E7%9B%96"><span class="nav-number">1.0.1.3.</span> <span class="nav-text">代码结构覆盖</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%BB%91%E7%9B%92%E6%B5%8B%E8%AF%95"><span class="nav-number">1.0.2.</span> <span class="nav-text">黑盒测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AD%89%E4%BB%B7%E7%B1%BB%E5%88%92%E5%88%86-%E8%BE%B9%E7%95%8C%E5%80%BC%E5%88%86%E6%9E%90"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">等价类划分 &amp; 边界值分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#category-partition"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">Category Partition</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9B%A0%E6%9E%9C%E5%9B%BE%E5%92%8C%E5%86%B3%E7%AD%96%E8%A1%A8"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">因果图和决策表</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch.-3-%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B8%AD%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">Ch. 3 软件开发中的测试方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95-unit-testing"><span class="nav-number">2.0.1.</span> <span class="nav-text">单元测试 Unit testing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9B%86%E6%88%90%E6%B5%8B%E8%AF%95-integration-testing"><span class="nav-number">2.0.2.</span> <span class="nav-text">集成测试 Integration Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E5%88%86%E8%A7%A3%E7%9A%84%E9%9B%86%E6%88%90decomposition-based"><span class="nav-number">2.0.2.1.</span> <span class="nav-text">基于分解的集成（Decomposition-based）</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E7%BB%9F%E6%B5%8B%E8%AF%95-system-testing"><span class="nav-number">2.0.3.</span> <span class="nav-text">系统测试 System Testing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%86%92%E7%83%9F%E6%B5%8B%E8%AF%95-smoke-test"><span class="nav-number">2.0.4.</span> <span class="nav-text">冒烟测试 Smoke Test</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%9E%E5%BD%92%E6%B5%8B%E8%AF%95-regression-testing"><span class="nav-number">2.0.5.</span> <span class="nav-text">回归测试 Regression Testing</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#flaky-test"><span class="nav-number">2.0.6.</span> <span class="nav-text">Flaky Test</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#alpha-%E6%B5%8B%E8%AF%95"><span class="nav-number">2.0.7.</span> <span class="nav-text">Alpha 测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#beta-%E6%B5%8B%E8%AF%95"><span class="nav-number">2.0.8.</span> <span class="nav-text">Beta 测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#perpetual-beta"><span class="nav-number">2.0.8.1.</span> <span class="nav-text">Perpetual Beta</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch4.-%E8%BD%AF%E4%BB%B6%E7%89%B9%E6%80%A7%E5%92%8C%E6%96%B9%E9%9D%A2%E7%9A%84%E6%B5%8B%E8%AF%95%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">Ch4.
+软件特性和方面的测试方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%92%88%E5%AF%B9%E8%BD%AF%E4%BB%B6%E6%95%88%E7%8E%87%E7%9A%84%E6%B5%8B%E8%AF%95"><span class="nav-number">3.0.1.</span> <span class="nav-text">针对软件效率的测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="nav-number">3.0.2.</span> <span class="nav-text">可靠性测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="nav-number">3.0.3.</span> <span class="nav-text">安全性测试</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AE%89%E5%85%A8%E6%80%A7%E6%B5%8B%E8%AF%95%E4%B8%AD%E7%9A%84%E5%B8%B8%E7%94%A8%E6%96%B9%E6%B3%95"><span class="nav-number">3.0.3.1.</span> <span class="nav-text">安全性测试中的常用方法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E8%AE%A4%E8%AF%81%E6%8E%88%E6%9D%83%E6%B5%8B%E8%AF%95"><span class="nav-number">3.0.4.</span> <span class="nav-text">用户认证+授权测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%BC%E5%AE%B9%E6%80%A7%E6%B5%8B%E8%AF%95"><span class="nav-number">3.0.5.</span> <span class="nav-text">兼容性测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%B5%8B%E8%AF%95"><span class="nav-number">3.0.6.</span> <span class="nav-text">配置测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9B%BE%E5%BD%A2%E7%94%A8%E6%88%B7%E7%95%8C%E9%9D%A2%E6%B5%8B%E8%AF%95gui"><span class="nav-number">3.0.7.</span> <span class="nav-text">图形用户界面测试GUI</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch5.-random-testing"><span class="nav-number">4.</span> <span class="nav-text">Ch5. Random Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#adaptive-random-testing-art"><span class="nav-number">4.0.1.</span> <span class="nav-text">Adaptive Random Testing (ART)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#evaluate-the-distribution-of-a-given-test-set"><span class="nav-number">4.0.1.1.</span> <span class="nav-text">evaluate the
+distribution of a given test set:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#art-weaknesses"><span class="nav-number">4.0.1.2.</span> <span class="nav-text">ART Weaknesses:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#combinatorial-testing"><span class="nav-number">4.1.</span> <span class="nav-text">Combinatorial Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ct%E7%9A%84%E4%BC%98%E7%82%B9"><span class="nav-number">4.1.0.1.</span> <span class="nav-text">CT的优点</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#covering-array"><span class="nav-number">4.1.0.2.</span> <span class="nav-text">Covering Array</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%9E%84%E9%80%A0-t-way-covering-array"><span class="nav-number">4.1.0.3.</span> <span class="nav-text">构造 t-way covering array</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ct%E7%9A%84%E4%B8%80%E4%BA%9Bconstraints"><span class="nav-number">4.1.0.4.</span> <span class="nav-text">CT的一些constraints</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fsm-testing"><span class="nav-number">5.</span> <span class="nav-text">FSM Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#finding-state-transfer-fault"><span class="nav-number">5.0.1.</span> <span class="nav-text">Finding state transfer fault</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#distinguishing-sequence"><span class="nav-number">5.0.1.1.</span> <span class="nav-text">Distinguishing sequence</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#unique-inputoutput-uio-sequences"><span class="nav-number">5.0.1.2.</span> <span class="nav-text">Unique Input&#x2F;Output (UIO)
+sequences</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#characterizing-set"><span class="nav-number">5.0.1.3.</span> <span class="nav-text">Characterizing set</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#chows-method-w-method"><span class="nav-number">5.0.1.4.</span> <span class="nav-text">Chow&#39;s Method (W-method)</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#constraint-based-testing"><span class="nav-number">6.</span> <span class="nav-text">Constraint Based Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#symbolic-execution"><span class="nav-number">6.0.1.</span> <span class="nav-text">Symbolic Execution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dynamic-symbolic-execution-concolic-testing"><span class="nav-number">6.0.2.</span> <span class="nav-text">Dynamic Symbolic
+Execution （Concolic Testing）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#search-based-software-testing"><span class="nav-number">7.</span> <span class="nav-text">Search Based Software
+Testing</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#key-ingredients"><span class="nav-number">7.0.1.</span> <span class="nav-text">Key Ingredients</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#representations"><span class="nav-number">7.0.1.1.</span> <span class="nav-text">Representations</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#operators"><span class="nav-number">7.0.1.2.</span> <span class="nav-text">Operators</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#fitness-functions"><span class="nav-number">7.0.1.3.</span> <span class="nav-text">Fitness Functions</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#exploitation-vs.-exploration"><span class="nav-number">7.0.1.4.</span> <span class="nav-text">Exploitation vs. Exploration</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#test-suite-minimization"><span class="nav-number">7.0.1.5.</span> <span class="nav-text">Test Suite Minimization</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mutation-testing"><span class="nav-number">8.</span> <span class="nav-text">Mutation Testing</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hzyzh</p>
+  <div class="site-description" itemprop="description">这个人很懒，什么都没留下</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hzyzh</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -20,17 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Ch1. Introduction data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策 初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format data mining的四个super-problems： association pattern mining，clustering，cla">
+  <meta name="description" content="Ch1. Introduction 学习方法：对着ppt，看书；只考前9章 data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策 初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format data mining的四个super-problems： association pattern">
 <meta property="og:type" content="article">
 <meta property="og:title" content="data_mining">
 <meta property="og:url" content="http://example.com/2022/02/22/data-mining/index.html">
 <meta property="og:site_name" content="Eden">
-<meta property="og:description" content="Ch1. Introduction data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策 初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format data mining的四个super-problems： association pattern mining，clustering，cla">
+<meta property="og:description" content="Ch1. Introduction 学习方法：对着ppt，看书；只考前9章 data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策 初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format data mining的四个super-problems： association pattern">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="f:/blog/source_posts/figs/fig11.png">
 <meta property="article:published_time" content="2022-02-22T08:33:17.000Z">
-<meta property="article:modified_time" content="2022-02-24T16:26:01.014Z">
+<meta property="article:modified_time" content="2022-06-08T04:03:23.385Z">
 <meta property="article:author" content="hzyzh">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="f:/blog/source_posts/figs/fig11.png">
 
 <link rel="canonical" href="http://example.com/2022/02/22/data-mining/">
 
@@ -180,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 00:26:01" itemprop="dateModified" datetime="2022-02-25T00:26:01+08:00">2022-02-25</time>
+                <time title="修改时间：2022-06-08 12:03:23" itemprop="dateModified" datetime="2022-06-08T12:03:23+08:00">2022-06-08</time>
               </span>
 
           
@@ -195,6 +197,7 @@
 
       
         <h2 id="ch1.-introduction">Ch1. Introduction</h2>
+<p>学习方法：对着ppt，看书；只考前9章</p>
 <h3 id="data-mining">data mining</h3>
 <p>从大数据库中挖掘有用的信息，然后用它来做重要决策</p>
 <p>初始数据可能无法直接使用，需要先：collect，clean，transform into a
@@ -214,7 +217,10 @@ mining process</li>
 <li>classification methods：
 <ul>
 <li>支持向量机（support vector machines）</li>
-<li>K-nearest neighbor classification（KNN）K-近邻算法：还不会呢</li>
+<li>K-nearest neighbor classification（KNN）K-近邻算法：
+<ul>
+<li>就是先（随机？）取若干个点，将离他们最近的k个样本点分别划入对应的区域</li>
+</ul></li>
 <li>决策树（decision trees）</li>
 <li>rule-based classifier：不知道</li>
 </ul></li>
@@ -238,16 +244,236 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
 </ul>
 <h2 id="ch2.-data-preparation">Ch2. Data Preparation</h2>
 <ul>
+<li>data preparation phase：
+<ol type="1">
+<li>featrue extraction and protability(数据类型转换)</li>
+<li>data
+cleaning(清除错误数据，inconsistent不一致的数据（即在不同地方不完全匹配），还有缺失的数据可能被重新估计出来？)</li>
+<li>data reduction, selection, transformation</li>
+</ol></li>
+<li>multidimensional data vs complex data
+<ul>
+<li>ID：one distribution， each point is independent on
+others？（mul）each point is generated from the same （unknown）
+distribution！</li>
+<li></li>
+</ul></li>
 <li>四种基本的数据模式
 <ul>
 <li>nominal（名义的） data：如城市、物种</li>
-<li>ordinal（顺序的） data：如速度快慢（快、中、慢）</li>
+<li>ordinal（顺序的）
+data：如速度快慢（快、中、慢）（非连续的，有限的？）</li>
 <li>interval data：有大小关系，且是数值，没有最小！</li>
 <li>ratio data：interval data，有最小！（绝对0）</li>
 </ul></li>
 <li>data portability
 <ul>
 <li>一种数据类型 可转换成其他数据类型 的能力（保持性质）</li>
+</ul></li>
+<li>Haar Wavelet Transform？？
+<ul>
+<li>将一个time series（非id的？）
+不断二分并获得coefficient，得到id的数据？</li>
+</ul></li>
+<li>MDS（graphs<span class="math inline">\(\to\)</span> numeric
+multidimensional）
+<ul>
+<li>不会</li>
+</ul></li>
+<li>Similarity graph（any type<span class="math inline">\(\to\)</span>
+graphs）
+<ul>
+<li>是啥。。。</li>
+</ul></li>
+</ul>
+<h2 id="ch3.-similarity">Ch3. Similarity</h2>
+<ul>
+<li>distance vs similarity
+<ul>
+<li>数据散点图上的距离，不能简单的代表两个数据的similarity！（因为distribution，我们只关心有数据的范围；还有varied
+local density）</li>
+<li><strong>Mahalanobis distance</strong>：stretch a
+dimension（/direction？）</li>
+<li>follow the data
+path！找到从A到B最近的一条path，来表示两者的similarity</li>
+</ul></li>
+<li>Text Similarity Measure
+<ul>
+<li>Dynamic Time Warping Distance（DTW）
+<ul>
+<li>两个series建立 一对一的 同length
+映射（将一些点延长？）分成若干个segment，每个segment匹配，时间作为contextual
+attribute，具体值不关键，主要关心order！</li>
+</ul></li>
+</ul></li>
+<li>kernel choice：
+<ul>
+<li>kernel function：
+<ul>
+<li>将数据点 从一个特征平面 mapping 到另一个特征平面！</li>
+<li>例如D是数据集，则一个kernel function k可能：<span
+class="math inline">\(D\times D\to R\)</span></li>
+</ul></li>
+<li>为了take data distribution into consideration！</li>
+<li>Multiple Kernel Learning – reduce the risk of choosing an unsuitable
+kernel by using multiple kernels (learn weights)</li>
+<li>Distance metric learning – adapt similarity measurements to the task
+automatically from data (space transformation)</li>
+<li>Produce data dependent kernel directly from data</li>
+<li><span class="math inline">\(\star\)</span> Isolation Kernel：
+<ul>
+<li>先从样本中随机取t个样本点，用它们将数据分布划分为t个区域（完全依赖于数据分布，与其他信息无关！）（用isolation
+forest的方法），重复多次，获得对原数据分布的多个划分？然后计算两个点的距离就是看它们在多少个划分里被划分进了同一区域</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch4.-data-mining-algorithm">Ch4. Data Mining Algorithm</h2>
+<p>就是模型的训练过程</p>
+<ul>
+<li>transaction：表示data？；itemsets：output？</li>
+</ul>
+<ol type="1">
+<li><p>classification problem</p>
+<ul>
+<li>决策树算法
+<ul>
+<li>节点 属性值的选取标准：
+<ul>
+<li>information gain：difference between the amount of information
+needed to determine the class？</li>
+</ul></li>
+</ul></li>
+<li>Set-covering算法：
+<ul>
+<li>基于rule-base classification（<strong>是什么！！？？</strong>）</li>
+<li>每次学习一个rule，并将该rule覆盖的样本剔除，对剩下的样本继续以上操作</li>
+</ul></li>
+<li>K-Nearest算法：直接基于原始训练数据建立模型！</li>
+<li>Support Vector Machines（SVM）</li>
+</ul></li>
+<li><p>clustering problem</p>
+<ul>
+<li>k-means clustering</li>
+<li>DBSCAN：首先获得数据样本分布，然后有一个threshold，高于它的连接的样本点为一个cluster</li>
+<li>Spectral clustering：
+<ul>
+<li>1.any data type <span class="math inline">\(\to\)</span> similarity
+graph;</li>
+<li>2.similarity graph <span class="math inline">\(\to\)</span> graph
+embedding in multidimensional data?</li>
+</ul></li>
+</ul></li>
+<li><p>outlier problem</p>
+<ul>
+<li><p>kth-nearest neighbor：</p>
+<ul>
+<li>每个点找k个最近的数据点，根据这k个点决定是否为outlier！</li>
+</ul></li>
+<li><p>isolation forest：</p>
+<ul>
+<li>构建一个二叉树（孤立森林）：最终将每个样本点都独立出来
+<ul>
+<li>如何做？随机选取一个超平面（将样本点二分！）</li>
+</ul></li>
+<li>outlier总是很容易区分，对应较短的path！</li>
+<li>重复多次以上步骤，统计每个样本点的average path
+length：短的更可能是outlier！</li>
+<li>需要subsampling：（即先对总样本随机取子集）缓解swamping
+effect和masking effect
+<ul>
+<li>masking
+effect：一个outlier未被检测出来（因为旁边的其他outlier点）</li>
+<li>swamping
+effect：一个正常的数据点被认为是outlier（因为旁边的其他正常数据子集）</li>
+</ul></li>
+</ul></li>
+<li><p>IDK：估算任意两点/点和整个数据集D 之间的similarity（来进行anomaly
+detection）</p>
+<ul>
+<li><p>kernel mean embedding：就是给定一个定义于<span
+class="math inline">\(\Omega\)</span>，数据分布P，kernel function
+k（<span class="math inline">\(\Omega\times
+\Omega\)</span>），一个随机变量X的kernel mean
+embedding就是它在该数据分布上，k的平均值！<img
+src="F:\blog\source_posts\figs\equation2.png" /></p></li>
+<li><p>关键是：转换成了distributional kernel！<span
+class="math inline">\(\hat{K}(P_S,P_T)\approx&lt;\hat{\phi}(P_S),\hat{\phi}(P_T)&gt;\)</span>，其中S,T为数据集，P表示该数据集的分布distribution！</p></li>
+</ul></li>
+</ul></li>
+<li><p>frequent pattern mining</p>
+<ul>
+<li>enumeration tree：<strong>看书！</strong></li>
+<li>apriori algorithm：<strong>看书！</strong></li>
+</ul></li>
+</ol>
+<h2 id="ch5.-spatial-data-mining">Ch5. Spatial data mining</h2>
+<ul>
+<li>spatial data：非id的！（但是可以通过一些方法（ch2）转换为id的）
+<ul>
+<li>spatialtemporal data：包含temporal component（时间的？）</li>
+</ul></li>
+<li>contextual / behavioral attribute：contextual
+提供背景/参考的属性，例如：测量海平面气温（这是behavioral
+attribute）时，地理位置、时间 都可以是contextual attribute！
+<ul>
+<li>spatial data基本上都是作为contextual
+attribute的！轨迹图trajectory例外（只有时间时contextual）</li>
+</ul></li>
+<li>shape <span class="math inline">\(\to\)</span> time
+series：通过顺时针/逆时针扫描一遍，大小为中心距离
+<ul>
+<li>避免shape rotation（同一图形不同旋转得到不同time series）：</li>
+</ul></li>
+</ul>
+<p><strong>好多不懂的。。。（那个rotation不变距离 和clustering
+method（DBSCAN）之类 的问题是啥？）</strong></p>
+<ul>
+<li><p><strong>DTW</strong>：similarity measure for
+序列数据/trajectore</p>
+<ul>
+<li><p><img src="F:\blog\source_posts\figs\fig11.png" /></p></li>
+<li><p>DTW与behavioral attribute的属性无关</p></li>
+</ul></li>
+</ul>
+<h2 id="ch6.-graph-mining">Ch6. Graph Mining</h2>
+<p>Graph Edit Distance: <span
+class="math inline">\(Edit(G1,G2)\)</span>=通过一系列操作（+点，-点，label替换，+边，-边），将G1转换为G2的最少步数</p>
+<p><strong>1. Frequent Substructure-Based Transformation and Distance
+Computation</strong></p>
+<p><strong>2. Topological Descriptors</strong></p>
+<p><strong>3. Kernel-Based Transformations and Computation</strong></p>
+<p>（m to the power of n：m的n次方）</p>
+<h4 id="kernel">kernel</h4>
+<ul>
+<li>Random Walk kernel：<img
+src="F:\blog\source_posts\figs\fig21.png" />
+<ul>
+<li>只需在product graph上walk即可，因为这就是所有可能的相似路径了！</li>
+</ul></li>
+<li><strong>k-medoids：是啥？？</strong></li>
+</ul>
+<p>WL-kernel， IGK-kernel：都是啥？？</p>
+<h2 id="ch7.-mining-discrete-sequences">Ch7. Mining Discrete
+Sequences</h2>
+<p>bag-of-words(BOG) model：首先分解为frequent
+pattern，统计各pattern的出现次数，顺序无关（视为一个大集合）</p>
+<ul>
+<li>HMM：
+<ul>
+<li>hidden markov model：
+<ul>
+<li>隐藏状态<span
+class="math inline">\(S\in\{1,...,I\}\)</span>；观测值<span
+class="math inline">\(O\in\{y_1,...,y_K\}\)</span>；</li>
+<li>隐藏状态<span
+class="math inline">\(S_t\)</span>仅依赖于前一个隐藏状态<span
+class="math inline">\(S_{t-1}\)</span>，观测值<span
+class="math inline">\(O_t\)</span>仅依赖于当前隐藏状态<span
+class="math inline">\(S_t\)</span></li>
+<li>hidden markov model可表示为一个三元组：（A,B,<span
+class="math inline">\(\Pi\)</span>）：隐藏状态转移矩阵（<span
+class="math inline">\(A_{ij}\)</span>表示从状态i转移到状态j的概率），观测矩阵（由状态i得到观测值j的概率），和初始状态概率矩阵</li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -268,7 +494,10 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
     <a href="/2022/02/18/graphics/" rel="prev" title="graphics">
       <i class="fa fa-chevron-left"></i> graphics
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" rel="next" title="编译原理p2">
+      编译原理p2 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -327,7 +556,8 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ch1.-introduction"><span class="nav-number">1.</span> <span class="nav-text">Ch1. Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data-mining"><span class="nav-number">1.1.</span> <span class="nav-text">data mining</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch2.-data-preparation"><span class="nav-number">2.</span> <span class="nav-text">Ch2. Data Preparation</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ch1.-introduction"><span class="nav-number">1.</span> <span class="nav-text">Ch1. Introduction</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#data-mining"><span class="nav-number">1.1.</span> <span class="nav-text">data mining</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch2.-data-preparation"><span class="nav-number">2.</span> <span class="nav-text">Ch2. Data Preparation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch3.-similarity"><span class="nav-number">3.</span> <span class="nav-text">Ch3. Similarity</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch4.-data-mining-algorithm"><span class="nav-number">4.</span> <span class="nav-text">Ch4. Data Mining Algorithm</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch5.-spatial-data-mining"><span class="nav-number">5.</span> <span class="nav-text">Ch5. Spatial data mining</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch6.-graph-mining"><span class="nav-number">6.</span> <span class="nav-text">Ch6. Graph Mining</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#kernel"><span class="nav-number">6.0.1.</span> <span class="nav-text">kernel</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ch7.-mining-discrete-sequences"><span class="nav-number">7.</span> <span class="nav-text">Ch7. Mining Discrete
+Sequences</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -341,7 +571,7 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -373,7 +603,7 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

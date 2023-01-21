@@ -147,6 +147,1558 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/12/23/formal-semantics/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/12/23/formal-semantics/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-12-23 18:43:54" itemprop="dateCreated datePublished" datetime="2022-12-23T18:43:54+08:00">2022-12-23</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-12-24 22:56:57" itemprop="dateModified" datetime="2022-12-24T22:56:57+08:00">2022-12-24</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="lambda-calculus"><span
+class="math inline">\(\lambda\)</span>-Calculus</h2>
+<h5 id="alpha-evquivalence"><span
+class="math inline">\(\alpha\)</span>-evquivalence</h5>
+<p>​ <span class="math inline">\(\lambda x.M =_{\alpha}\lambda
+y.M[y/x]\)</span>, y fresh</p>
+<h5 id="fixpoint">fixpoint</h5>
+<p><img src="F:\blog\source\_posts\figs\fig121.png" style="zoom:50%;" /></p>
+<ul>
+<li>fixpoint combinator</li>
+</ul>
+<p>​
+<img src="F:\blog\source\_posts\figs\fig122.png" style="zoom:50%;" /></p>
+<p>​ <span class="math inline">\(\therefore\)</span> fact = <span
+class="math inline">\(\Theta\)</span> F</p>
+<h3 id="typed-lambda-calculus">typed <span
+class="math inline">\(\lambda\)</span> calculus</h3>
+<p><img src="F:\blog\source\_posts\figs\fig123.png" style="zoom:50%;" /></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/27/software-testing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/27/software-testing/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-09-27 10:11:28" itemprop="dateCreated datePublished" datetime="2022-09-27T10:11:28+08:00">2022-09-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-11-22 10:53:06" itemprop="dateModified" datetime="2022-11-22T10:53:06+08:00">2022-11-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ch.-2-白盒测试-vs-黑盒测试">Ch. 2 白盒测试 vs 黑盒测试</h2>
+<h4 id="白盒测试">白盒测试</h4>
+<p>允许测试人员利用程序<strong>内部的逻辑结构</strong>设计测试用例，对程序所有逻辑路径进行测试。</p>
+<p>测试对象基于被测试程序的<strong>源代码</strong></p>
+<h5 id="白盒测试方法必须遵循以下原则">白盒测试方法必须遵循以下原则</h5>
+<ul>
+<li>保证一个模块中的<strong>所有独立路径至少被测试一次</strong>。</li>
+<li>对所有的逻辑判定均需测试<strong>取真和取假</strong>两种情况。</li>
+<li>在上下边界及可操作范围内运行所有循环。</li>
+<li>检查程序的内部数据结构，保证其结构的有效性</li>
+</ul>
+<h5 id="白盒测试类别">白盒测试类别</h5>
+<ul>
+<li><p>静态测试：
+不要求在计算机上实际执行所测试的程序，主要以一些人工的模拟技术对软件进行分析和测试，如代码检查法、静态结构分析法等；</p></li>
+<li><p>动态测试：
+是通过输入一组预先按照一定的测试准则构造实际数据来动态运行程序，达到发现程序错误的过程。白盒测试中的动态分析技术主要有逻辑覆盖法和基本路径测试法。</p></li>
+</ul>
+<h5 id="代码结构覆盖">代码结构覆盖</h5>
+<p><img src="F:\blog\source\_posts\figs\fig94.png" style="zoom: 50%;" /></p>
+<ul>
+<li>修改决策条件覆盖？</li>
+</ul>
+<h4 id="黑盒测试">黑盒测试</h4>
+<p>完全不考虑程序的内部结构和处理过程的前提下，只基于<strong>规格说明</strong>来设计测试用例；又称为<strong>功能测试</strong></p>
+<h5 id="等价类划分-边界值分析">等价类划分 &amp; 边界值分析</h5>
+<p>等价类划分：如所有符合要求的输入一类；针对违反不同规则的输入
+各一类</p>
+<h5 id="category-partition">Category Partition</h5>
+<p>一个程序有许多相关属性（attribute），如程序运行的：parameters，environment
+objects等（根据规格说明，将程序分解为若干功能单元<strong>functional
+unit</strong>）；</p>
+<p>针对每个attribute，分出若干个categories（如对于字符串长度，分为0，1，若干，超长。。。等）；</p>
+<p>generate test cases</p>
+<h5 id="因果图和决策表">因果图和决策表</h5>
+<p><strong>等价类划分和边界值分析</strong>都只孤立地考虑各个输入数据，而没有考虑多个输入数据间的组合效应，可能会遗漏了输入数据易于出错的组合情况</p>
+<p>因果图可以转化为决策表，表中每一列展示了原因和结果之间的关系。可以基于决策表设计对应的测试用例（例如，为表中的每一列设计一条测试用例）</p>
+<p>如：因果图<img src="F:\blog\source\_posts\figs\fig96.png" style="zoom:50%;" />，</p>
+<p>对应决策表<img src="F:\blog\source\_posts\figs\fig95.png" style="zoom: 50%;" /></p>
+<h2 id="ch.-3-软件开发中的测试方法">Ch. 3 软件开发中的测试方法</h2>
+<h4 id="单元测试-unit-testing">单元测试 Unit testing</h4>
+<p>与系统一个单一功能（logical purpose）有关的代码称为一个unit；</p>
+<p>编写一小段代码 =&gt; 测试一个很小、很明确的功能正确</p>
+<p><strong>快速执行</strong></p>
+<p><strong>自动化</strong></p>
+<ul>
+<li>使用单元测试的自动化框架来自动执行单元测试用例：JUnit，NUnit，TestNG。。。</li>
+<li>会自动设置测试环境、前置条件；自动执行测试用例；对比输出</li>
+</ul>
+<h4 id="集成测试-integration-testing">集成测试 Integration Testing</h4>
+<p>在单元测试的基础上，采用适当的策略将已通过测试的模块组装成子系统或系统，并确保各模块组合到一起后能按既定的设计要求运行</p>
+<h5
+id="基于分解的集成decomposition-based">基于分解的集成（Decomposition-based）</h5>
+<ul>
+<li>自底向上（先开发底层模块）：先从原子模块开始，逐步向上组装和测试；需要
+<strong>测试驱动程序（driver）</strong>来调用和协调各原子模块</li>
+<li>自顶向下（先开发主控制模块）：则需要
+<strong>桩程序（stub）</strong>和 <strong>模拟程序（mock）</strong></li>
+<li>混合策略（sandwich）：中上层自顶向下；中下层自底向上；灵活</li>
+</ul>
+<p><strong>基于功能集成</strong>：每次集成提供一个用户可感知的具体功能</p>
+<h4 id="系统测试-system-testing">系统测试 System Testing</h4>
+<p>将整个软件系统视为一个整体来进行测试</p>
+<h4 id="冒烟测试-smoke-test">冒烟测试 Smoke Test</h4>
+<p>在每日构建完成后，对系统的基本功能进行简单的测试，是将代码更改签入到代码库之前的验证过程</p>
+<p>daily build（从头到尾编译、链接、运行一次） + smoke test
+（简单的测试）</p>
+<h4 id="回归测试-regression-testing">回归测试 Regression Testing</h4>
+<p>代码修改后，重新进行测试以确认修改的正确性，以及修改没有引入新的错误</p>
+<ul>
+<li>回归测试通常要求自动化，以此来降低软件开发和维护成本</li>
+<li>软件开发的各个阶段都会进行多次回归测试，新版本的连续发布会使回归测试进行的更加频繁（通常每天都需要进行若干次回归测试）</li>
+<li>回归测试会对已有的测试用例库进行增删或改进</li>
+</ul>
+<h4 id="flaky-test">Flaky Test</h4>
+<p>在相同代码版本上，多次执行同一个测试用例却观察到不同的测试结果(可能因为测试用例引入了一些随机性？)
+##### Flakiness 的来源 (及解决方案)</p>
+<ul>
+<li>并发和同步相关的问题 (e.g., test makes an asynchronous call and does
+not wait, multiple threads interact, ...)</li>
+<li>多条测试用例执行时的顺序和依赖问题 (e.g., shared variables, no
+cleaning up, ...)</li>
+<li>数据和资源的管理与控制问题 (e.g., database connections, memory
+allocations, unordered collections, ...)</li>
+<li>测试执行时间过⻓或难于控制、依赖于当前系统时间 (e.g., network,
+...)</li>
+<li>随机性 (e.g., random numbers generator, ...）</li>
+</ul>
+<h4 id="alpha-测试">Alpha 测试</h4>
+<p>在开发环境或模拟的实际操作环境下进行的测试（通常依赖第三方测试机构）</p>
+<h4 id="beta-测试">Beta 测试</h4>
+<p>由软件用户在实际使用环境下进行的测试 (开发者无法控制测试环境)</p>
+<h5 id="perpetual-beta">Perpetual Beta</h5>
+<p>软件系统长期处于Beta测试中</p>
+<h2 id="ch4.-软件特性和方面的测试方法">Ch4.
+软件特性和方面的测试方法</h2>
+<h4 id="针对软件效率的测试">针对软件效率的测试</h4>
+<p>对于一些大规模的复杂软件系统 (Ultra Large-Scale Software
+Systems)，针对软件运行效率的测试非常重要</p>
+<ul>
+<li>负载测试 Load Testing：检测系统在不同负载（concurrent
+users？）下的表现
+<ul>
+<li>评估系统在不同工作量下的行为；有些问题可能需要在高负载下显现（memory
+leak，deadlock等）</li>
+</ul></li>
+<li>压力测试 Stress Testing：检测系统在极限情况下的表现
+<ul>
+<li>通过模拟负载，使系统在负载饱和或资源匮乏的状态下运行</li>
+<li>软件老化 (Aging)
+缺陷：软件系统⻓时间运行中出现的可用资源不足、性能下降、失效率增加等现象
+(⻓时间运行后性能下降)，通常是由于系统状态中的错误累计和系统资源
+(例如，物理内存、文件等) 的消耗造成的
+<ul>
+<li>通过⻓时间提供大量工作负载(例如，大量客户端请求)
+使软件老化现象更快暴露出来</li>
+</ul></li>
+</ul></li>
+<li>容量测试 Volume：检测系统在大数据量或大量用户下的表现
+<ul>
+<li>通常只关注大容量，不关注实际使用</li>
+</ul></li>
+<li>性能测试 Performance：评估系统的性能指标
+<ul>
+<li>评估一堆性能指标</li>
+</ul></li>
+<li>前仨<strong>面向缺陷</strong>；性能测试则<strong>面向指标</strong></li>
+</ul>
+<h4 id="可靠性测试">可靠性测试</h4>
+<p>Reliability Testing：评估软件的可靠性程度；</p>
+<p>软件可靠性是指软件在规定的时间和规定的环境下，完成规定功能的能力</p>
+<p><strong>看看ppt！</strong></p>
+<h4 id="安全性测试">安全性测试</h4>
+<p>检测软件安全控制机制的正确性和有效性</p>
+<ul>
+<li>安全功能测试：测试软件实现是否与安全需求说明一致</li>
+<li>安全漏洞测试：</li>
+</ul>
+<h5 id="安全性测试中的常用方法">安全性测试中的常用方法</h5>
+<ul>
+<li>静态分析
+<ul>
+<li>针对特定的攻击方式进行检查，尽早发现错误</li>
+<li>存在误报和漏报现象，需要在两者之间进行平衡</li>
+</ul></li>
+<li>形式化方法 (e.g., Model Checking)
+<ul>
+<li>具有完备的数学基础，能对形式化的规格说明进行正确性证明</li>
+<li>开发成本高，状态爆炸问题</li>
+</ul></li>
+<li>模糊测试 Fuzzing</li>
+<li>语法测试 Syntax Testing</li>
+</ul>
+<h4 id="用户认证授权测试">用户认证+授权测试</h4>
+<p>（见ppt）</p>
+<h4 id="兼容性测试">兼容性测试</h4>
+<p>检测软件能否在不同的<strong>硬件平台</strong>、<strong>操作系统</strong>和<strong>网络环境</strong>之上、以及不同的应用之间正常运行</p>
+<h4 id="配置测试">配置测试</h4>
+<p>Configuration
+Testing：检测软件在不同构建和运行配置下是否能正常工作</p>
+<ul>
+<li>高可配置软件：允许用户定义一系列配置选项而保持核心功能不变</li>
+<li>可能存在解空间爆炸的问题（一堆可选配置的组合）<img src="F:\blog\source\_posts\figs\fig97.png" style="zoom:50%;" /></li>
+</ul>
+<h4 id="图形用户界面测试gui">图形用户界面测试GUI</h4>
+<p>（每个用户操作 可能出发不同event）</p>
+<p>基于模型的测试：定义coverage概念</p>
+<ul>
+<li>Event Flow Graph（EFG）：每个点代表event，边代表一个用户操作
+<ul>
+<li>cover nodes and edges；sequences of events</li>
+</ul></li>
+<li>Finite State
+Machine（FSM）：node代表一个界面/窗口？edge代表一个event</li>
+</ul>
+<p>软件测试坐标系：<img src="F:\blog\source\_posts\figs\fig98.jpg" style="zoom: 25%;" /></p>
+<h2 id="ch5.-random-testing">Ch5. Random Testing</h2>
+<p>problem：测试空间太大，无法全测</p>
+<p><img src="F:\blog\source\_posts\figs\fig99.png" style="zoom: 67%;" /></p>
+<p>issues in RT：</p>
+<ul>
+<li>number好randomly
+sample，但复杂数据结构如何随机sample？（还有内存、时间限制）</li>
+</ul>
+<p>RT sample的质量：diversity！</p>
+<h4 id="adaptive-random-testing-art">Adaptive Random Testing (ART)</h4>
+<p>Select test cases that are <strong>as diverse as
+possible</strong>:</p>
+<ul>
+<li>可以尝试 maximize distance between tests</li>
+</ul>
+<p>几种implementations：</p>
+<ul>
+<li><p>Fixed-Size-Candidate-Set
+(FSCS)<img src="F:\blog\source\_posts\figs\fig100.png" style="zoom:67%;" /></p></li>
+<li><p>Partition
+based-ART<img src="F:\blog\source\_posts\figs\fig101.png" style="zoom:67%;" /></p></li>
+</ul>
+<h5 id="evaluate-the-distribution-of-a-given-test-set">evaluate the
+distribution of a given test set:</h5>
+<ul>
+<li><p>distribution metric</p>
+<ul>
+<li><p>discrepency:<img src="F:\blog\source\_posts\figs\fig102.png" style="zoom:67%;" /></p></li>
+<li><p>dispersion:<img src="F:\blog\source\_posts\figs\fig103.png" style="zoom:67%;" /></p></li>
+<li><p>diversity:<img src="F:\blog\source\_posts\figs\fig104.png" style="zoom:67%;" /></p></li>
+</ul></li>
+</ul>
+<h5 id="art-weaknesses">ART Weaknesses:</h5>
+<ul>
+<li>计算复杂度</li>
+<li>Boundary effect：更容易找到一堆边界处的test（实际不需要这么多）</li>
+<li>高维效果差</li>
+</ul>
+<h3 id="combinatorial-testing">Combinatorial Testing</h3>
+<p>全部测试开销过高；且并非所有的输入参数都与fault有关 =&gt; 把fixed
+number
+t个不同参数的任意种组合情况都测试了，<strong>t就叫该测试的coverage
+strength</strong></p>
+<p>一个例子：<img src="F:\blog\source\_posts\figs\fig107.png" style="zoom:50%;" /></p>
+<p>CT测试步骤<img src="F:\blog\source\_posts\figs\fig105.png" style="zoom:67%;" /></p>
+<p>如何depict input space很关键！</p>
+<p>（如要测试find命令）：<img src="F:\blog\source\_posts\figs\fig106.png" style="zoom:55%;" /></p>
+<h5 id="ct的优点">CT的优点</h5>
+<ul>
+<li>t-way CT覆盖了小于等于t个参数的所有种interaction
+（exhaustive）；比穷举少多了
+<ul>
+<li>不过随着t增大，covering array大小显著提升！</li>
+</ul></li>
+<li>研究证明：绝大部分fault的产生所需interaction很少</li>
+</ul>
+<h5 id="covering-array">Covering Array</h5>
+<p>不同参数可能有不同的value domains =&gt; Mixed Covering Array</p>
+<p>Sequence Covering Array：</p>
+<ul>
+<li>用于测试event顺序带来的影响，如：<img src="F:\blog\source\_posts\figs\fig108.png" style="zoom:55%;" /></li>
+</ul>
+<h5 id="构造-t-way-covering-array">构造 t-way covering array</h5>
+<p>构造minimal t-way CA是一个NP Hard的问题！一些简化方法：</p>
+<ul>
+<li>mathematical approach
+<ul>
+<li>orthogonal array
+(OA)<img src="F:\blog\source\_posts\figs\fig109.png" style="zoom:50%;" /></li>
+<li>啥意思？不懂，<strong>搜一下！</strong></li>
+<li>得到最优的CA，但limited for certain problem instances</li>
+</ul></li>
+<li>greedy approach
+<ul>
+<li>In-Parameter-Order (IPO)
+algorithm<img src="F:\blog\source\_posts\figs\fig110.png" style="zoom:50%;" /></li>
+<li>运行效率高，但结果不一定最优</li>
+</ul></li>
+<li>search-based approach
+<ul>
+<li>得到尽可能small的array，但高计算开销</li>
+</ul></li>
+</ul>
+<h5 id="ct的一些constraints">CT的一些constraints</h5>
+<ul>
+<li><p>hard
+constraint：并非所有parameter组合都有效（有些parameter不能同时出现）</p></li>
+<li><p>soft constraint：测试者认为某些parameter组合没有必要测试</p></li>
+</ul>
+<p>得到t-way constrained covering array，要求：</p>
+<ul>
+<li>CA中每一行都满足约束；任意t个参数之间 满足约束 的组合至少出现一次
+<ul>
+<li>会引入隐性约束问题：如有约束：(P1=0,P2=0),(P2=1,P3=1) =&gt;
+(P1=0,P3=1)</li>
+</ul></li>
+</ul>
+<p>constraint solver：用来检测一个（partial）test case是否valid</p>
+<ul>
+<li>将所有constraints表达式用solver支持的形式表示：如boolean
+formula</li>
+<li>SAT/SMT</li>
+</ul>
+<h2 id="fsm-testing">FSM Testing</h2>
+<p>model-based testing：建模，将原系统 map
+为一个model；是一种reduction，model仅反应系统的部分性质</p>
+<p>根据model生成一些abstract test cases =&gt; executable test cases</p>
+<ul>
+<li>strongly connected：可以从FSM的任意状态s1转移到任意状态s2</li>
+</ul>
+<p>一般假设：FSM M是minimal，strongly connected，<strong>completely
+specified</strong>；并且存在正确的reset操作（状态回到初始s）</p>
+<p>testing
+FSM：根据归约（原system）检测FSM，错误包括两种：<strong>output
+fault</strong>，<strong>state transfer fault</strong></p>
+<h4 id="finding-state-transfer-fault">Finding state transfer fault</h4>
+<p>确定当前state很重要（只能靠FSM的outputs判断）</p>
+<h5 id="distinguishing-sequence">Distinguishing sequence</h5>
+<p><img src="F:\blog\source\_posts\figs\fig111.png" style="zoom:55%;" /></p>
+<p><span
+class="math inline">\(\textcolor{red}{可是如果本身就有fault（output/state
+transfer的），那这个distinguishing
+sequence不就可能出问题了么？！}\)</span></p>
+<h5 id="unique-inputoutput-uio-sequences">Unique Input/Output (UIO)
+sequences</h5>
+<p>Distinguishing sequence是general的，还有Unique Input/Output (UIO)
+sequence for a state s（即所有其他状态s‘得到的输出与s的不同即可）</p>
+<h5 id="characterizing-set">Characterizing set</h5>
+<p><img src="F:\blog\source\_posts\figs\fig112.png" style="zoom: 50%;" /></p>
+<p>一般方法：<img src="F:\blog\source\_posts\figs\fig113.png" style="zoom:55%;" /></p>
+<h5 id="chows-method-w-method">Chow's Method (W-method)</h5>
+<ol type="1">
+<li>找到FSM的一个特征集W，及FSM的state cover set V（即input
+sequences的集合，使得从s0开始可以分别到达所有状态s）</li>
+<li>假设state数存在上限？</li>
+<li><img src="F:\blog\source\_posts\figs\fig114.png" style="zoom:50%;" />
+<ul>
+<li>·表示笛卡尔积；V·W表示到达任意某个状态s（V），然后确定当前确实在状态s（W）；V·X·W表示
+从s经过任意某个state
+transfer（V·X），然后确定确实在正确的转移状态s‘（W）</li>
+</ul></li>
+</ol>
+<h2 id="constraint-based-testing">Constraint Based Testing</h2>
+<p>针对控制流来设计sample？<img src="F:\blog\source\_posts\figs\fig115.png" style="zoom:50%;" /></p>
+<p>SAT： satisfying assignment （to Boolean Satisfiability）</p>
+<p>SMT： SAT的推广，给变量赋值~</p>
+<h4 id="symbolic-execution">Symbolic Execution</h4>
+<p>用symbolic values来表示 变量 和path conditions</p>
+<p><img src="F:\blog\source\_posts\figs\fig116.png" style="zoom:50%;" /></p>
+<p>根据不同控制流对应的constraints， solve出符合的inputs =&gt;
+相当于inputs的<strong>等价类划分</strong></p>
+<p><img src="F:\blog\source\_posts\figs\fig117.png" style="zoom:50%;" /></p>
+<p>一些practical issues：</p>
+<ul>
+<li>Loops，recursion，path explosion =&gt; paths过多</li>
+<li>可能调用了外部库（无源码）；或约束条件过于复杂</li>
+</ul>
+<h4 id="dynamic-symbolic-execution-concolic-testing">Dynamic Symbolic
+Execution （Concolic Testing）</h4>
+<p>symbolic execution dynamically + a concrete input（简化约束求解）</p>
+<p><img src="F:\blog\source\_posts\figs\fig118.png" style="zoom:50%;" /></p>
+<ul>
+<li>需要通过实际execute来确定当前的input对应的path
+condition（而不只是静态求解）</li>
+<li>有了当前path condition，下一步 变换path
+condition中的最后一项，得到待求解的约束</li>
+<li>需要通过symbolic求解器 来变换当前input =&gt;
+符合待求解约束的input，再继续实际执行（第一步）</li>
+</ul>
+<p>issues：</p>
+<ul>
+<li>如何求解
+待求解的约束，得到新input？一些些缓解办法：将难解/不能解的约束，用具体值替换，去求解另一边（能力有限）</li>
+</ul>
+<h2 id="search-based-software-testing">Search Based Software
+Testing</h2>
+<p><img src="F:\blog\source\_posts\figs\fig119.png" style="zoom:50%;" /></p>
+<p>在解空间中，对一个已有solution进行微调，并比较新solution，保留better
+one；重复该流程</p>
+<p>（search是）heuristic的，针对一个<strong>optimization
+problem</strong>，找到一个足够好的解</p>
+<h4 id="key-ingredients">Key Ingredients</h4>
+<h5 id="representations">Representations</h5>
+<h5 id="operators">Operators</h5>
+<p>A function that evaluates the goodness of a candidate solution</p>
+<ul>
+<li>Fitness Landscape: fitness function的hyper surface表示</li>
+</ul>
+<p>Local search</p>
+<ul>
+<li>如Hill Climbing算法；（每次考虑周围一部分的 solutions）</li>
+<li>容易陷入局部最优local optima</li>
+</ul>
+<p>Global search</p>
+<ul>
+<li>Simulated Annealing：灭火算法
+<ul>
+<li>温度不断降低；温度高时，解不稳定，且易采取随机运动；温度低后，随机性降低，解趋向于稳定</li>
+</ul></li>
+<li>Genetic Algorithm：
+<ul>
+<li>引入selection pressure（即根据fitness
+functions度量），趋向于选择更优的solutions作parents</li>
+<li><img src="F:\blog\source\_posts\figs\fig120.png" style="zoom:50%;" /></li>
+</ul></li>
+</ul>
+<h5 id="fitness-functions">Fitness Functions</h5>
+<ul>
+<li>Approach Level: 偏离的控制流节点数（但没办法guide the test）</li>
+<li>Branch Distance:表示当前branch 当前输入状态
+距离目标predicate之间的距离 <span
+class="math inline">\(\in[0,1)\)</span></li>
+</ul>
+<p>fitness function: <span class="math inline">\(f(s,i) = approach\;
+level + normalised(brach\; distance)\)</span></p>
+<h5 id="exploitation-vs.-exploration">Exploitation vs. Exploration</h5>
+<p>Exploitation: 找到当前局部最优的能力</p>
+<p>Exploration: 全局搜索的能力</p>
+<p>之间有一个tradeoff</p>
+<h5 id="test-suite-minimization">Test Suite Minimization</h5>
+<p>那是干啥的？？！！没搞懂！</p>
+<h2 id="mutation-testing">Mutation Testing</h2>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/09/19/artificial-intelligence/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/09/19/artificial-intelligence/" class="post-title-link" itemprop="url">artificial_intelligence</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-09-19 09:33:17 / 修改时间：11:46:52" itemprop="dateCreated datePublished" datetime="2022-09-19T09:33:17+08:00">2022-09-19</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="ch2.-搜索">Ch2. 搜索</h2>
+<p>OPEN, CLOSED列表：OPEN记录待搜索结点；CLOSED记录已搜索结点</p>
+<h4 id="最佳优先搜索">最佳优先搜索</h4>
+<p>定义一个启发式算法：按照一定启发式函数
+对每个OPEN结点排序；按顺序在OPEN中搜索</p>
+<h4 id="a-算法">A* 算法</h4>
+<p>每个节点的优先级：<span
+class="math inline">\(f(n)=g(n)+h(n)\)</span></p>
+<ul>
+<li><p><span class="math inline">\(f(n)\)</span>，n的综合优先级；<span
+class="math inline">\(g(n)\)</span>，n距离起点的代价（bfs）；<span
+class="math inline">\(h(n)\)</span>，n距离终点的预计代价，<strong>启发函数</strong>！</p></li>
+<li><p>若<span
+class="math inline">\(h(n)\)</span>始终=0，则退化为了Dijkstra算法；</p></li>
+<li><p>若<span
+class="math inline">\(h(n)\)</span>始终&lt;=节点n到终点的代价，则A*算法保证能找到最优路径！</p></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">编译原理p2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-27T00:00:00+08:00">2022-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-20 21:56:36" itemprop="dateModified" datetime="2022-06-20T21:56:36+08:00">2022-06-20</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="编译原理">编译原理</h1>
+<h2 id="特别篇编译器测试">特别篇：编译器测试</h2>
+<p>软件测试：</p>
+<p>关键问题 1.测试生成问题；（充分测试）
+2.测试语言问题；（根据软件规约（形式化定义）得到期望输出！）</p>
+<ul>
+<li><strong>测试生成问题</strong>：
+<ul>
+<li><strong>充分性</strong>：全面覆盖！随机生成输入？可能效率很低</li>
+<li>覆盖率评估（越来越严）：语句覆盖、分支覆盖、路径覆盖（只能一部分，因为循环有无限路径！）、。。。
+<ul>
+<li>全覆盖也不一定会触发bug！</li>
+<li>触发bug的3条件：1.测试覆盖了该语句；2.多个不同数据流；3.结果正确，可鞥中间仍有bug</li>
+</ul></li>
+<li>实际执行：输入变量
+用实际值赋值，实际执行待测程序，监视判断路径是否被执行到。。。
+<ul>
+<li>然后不断改输入变量，试图穷尽所有路径</li>
+<li>效率低，（随机输入）</li>
+</ul></li>
+<li>符号执行：输入变量 用<strong>无实际值的符号</strong>代替，根据
+选择的要执行的路径，构造 <strong>约束条件</strong>，最后生成输入变量
+<ul>
+<li>通过 <strong>约束求解器</strong>
+自动求解约束？但可能由于程序过于复杂，求解器可能求不出来；
+<ul>
+<li>在给定时间内：解出来：ok；否则就没解出来，跳过</li>
+</ul></li>
+</ul></li>
+<li>动态符号执行：开始有一组实际输入变量
+<ul>
+<li>首先：用随机生成的实际输入变量，得到实际执行路径；然后得到路径条件<span
+class="math inline">\(C_1\wedge ...\wedge C_n\)</span>；</li>
+<li>接下来：<strong>从后向前</strong>（可变），依次反转每个路径条件<span
+class="math inline">\(C_i\)</span>(穷举所有路径)，并求解出一组对应的输入
+<ul>
+<li>如何求解输入？对于有多个变量的情况，通过已有的实际输入变量值，固定一部分变量，只变某（几）个变量，如果解出，ok！没解出，就跳过</li>
+<li>条件翻转顺序，也有策略：DFS，BFS，启发式（根据程序的特征）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><strong>测试预言问题</strong>：（如实验一，需要输出语法树，怎么测试呢？）
+<ul>
+<li><p><strong>可能性</strong>！：很多问题（如编译器），是不可能知道
+对于任意输入 的 期望输出的！</p></li>
+<li><p>额外复杂因素：随机函数、外界输入、</p></li>
+<li><p>变化预言：可以预言变化！已知一组输入<span
+class="math inline">\(In_1\)</span>，其输出也已知；改了一些得到<span
+class="math inline">\(In_2\)</span>，则可以预言出（对于任意输入）其输出也变化/不变</p></li>
+<li><p>EMI：Equivalence under Modulo：</p>
+<ul>
+<li><p>对源程序做出变换，使得对于<strong>一部分</strong>输入
+等价？条件放宽，则容易构造出许多新的等价程序，从而找到各种bug！<strong>注意</strong>：变换的时候，不要引入语法错误即可</p></li>
+<li><p>怎么对源程序作等价变换？对编译器输出的 目标程序
+做变换（对那些没有被执行的分支块，做任意变换，然后根据目标程序，找到对应的源程序（一定有对应关系，如果这个对应关系丢掉了，则编译器本身也有问题）</p></li>
+<li><p><img src="F:\blog\source\_posts\figs\fig48.png" style="zoom:80%;" /></p></li>
+<li><p><strong>问题</strong>：可是我觉得这只是测试了编译器在控制流方面的正确性吧？那怎么知道只执行了绿色部分，输出结果就是正确的呢？？</p></li>
+<li><p>工具：Csmith：产生高质量的测试输入Program I；
+better：RCGen</p></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hzyzh">
+      <meta itemprop="description" content="这个人很懒，什么都没留下">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Eden">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">编译原理p2</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-04-27 00:00:00" itemprop="dateCreated datePublished" datetime="2022-04-27T00:00:00+08:00">2022-04-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-22 01:08:21" itemprop="dateModified" datetime="2022-06-22T01:08:21+08:00">2022-06-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="编译原理">编译原理</h1>
+<h2 id="ch7.-运行时刻环境">Ch7. 运行时（刻）环境</h2>
+<p>要：为数据分配安排存储位置；确定访问变量时使用的机制（局部/全局）；过程间的连接、参数传递（函数调用）</p>
+<ul>
+<li><p>存储分配的典型方式：<img src="F:\blog\source\_posts\figs\fig36.png" style="zoom:50%;" /></p>
+<ul>
+<li>代码区：一直存在，不可变；空间固定，静态确定</li>
+<li>静态区：全局常量/变量；一直存在，位置固定；空间固定，静态确定</li>
+<li>堆区：跨函数存在；<strong>由低到高生长</strong></li>
+<li>栈区：局部变量，函数退出消失；<strong>由高到低生长</strong></li>
+</ul>
+<p>静态和动态存储分配：（动态：必须程序运行时才能决定存储分配）</p>
+<ul>
+<li>动态存储一般有两种存储分配：栈式存储；堆存储</li>
+</ul></li>
+<li><p><strong>栈式分配</strong>：往往用于处理有用户自定义过程/函数/方法
+的程序语言</p>
+<p>过程调用在时间上必须是嵌套的！：如p调用q，则q结束后返回p；或p，q同时结束；或q出现异常，返回p，p尝试恢复</p>
+<ul>
+<li><p>活动树：or调用树（Call Tree）</p>
+<ul>
+<li>一棵树表示程序运行中所有过程的活动，每个节点对应一个活动；其子节点表示在p过程调用中，被p调用的各个过程的活动；根节点对应main过程的活动</li>
+<li>子节点一定在其<strong>右兄弟节点</strong>开始前结束</li>
+<li>性质：调用（返回）序列
+对应树的前序（后序）遍历；当前活动节点N，则所有未结束活动就是N及其祖先节点</li>
+</ul></li>
+<li><p>活动记录</p>
+<ul>
+<li><p>过程调用和返回
+均由<strong>控制栈</strong>（一个运行时刻栈）管理，其中存储每个活跃的活动的活动记录</p></li>
+<li><p>活跃（未结束）的活动 对应一条活动记录/帧</p></li>
+<li><p>栈底向栈顶生长</p></li>
+<li><p>一种可能的活动记录组成（下栈顶，上栈底）：<img src="F:\blog\source\_posts\figs\fig37.png" style="zoom:80%;" /></p></li>
+<li><p><strong>临时值</strong>：寄存器存不下的中间结果；机器状态：包括返回地址、被调用者/调用者保存的寄存器值；<strong>访问链</strong>：后面再说；控制链：指向调用者的活动记录；</p></li>
+</ul></li>
+<li><p>调用/返回代码序列：</p>
+<ul>
+<li><p>调用~：实现过程调用的代码段；需要在栈中为一个活动记录分配空间，并填入信息</p></li>
+<li><p>返回~：需要恢复机器状态；（并回收控制栈中的活动记录？）</p></li>
+<li><p>调用代码序列，会分到 调用者 和 被调用者 中分别执行；</p>
+<ul>
+<li>但是n次调用同一个函数，被调用者代码段只会生成一次，而调用者代码段
+会生成n次！</li>
+<li>故尽量都放在被调用者中！</li>
+</ul></li>
+<li><p>调用/返回~ 的要求：</p>
+<ul>
+<li>数据：参数传给被调用者，返回值传给调用者；</li>
+<li>控制：转到被调用者的开始代码，返回调用者的调用位置下条指令</li>
+</ul></li>
+<li><p>活动记录的布局原则：调用代码序列 与 活动记录的布局相关！</p>
+<ul>
+<li><p><img src="F:\blog\source_posts\figs\fig38.png" /></p></li>
+<li><p>原则1是为了：调用者可以只需要计算出实在参数并放在自己活动记录的顶部，不需要创建被调用者的整个活动记录！且参数数量可变了~</p></li>
+<li><p>支持不固定数量的参数
+进行函数调用：需要把描述参数的信息，放在状态字段（固定长度段）旁，例如printf的第一个参数？</p></li>
+</ul></li>
+</ul></li>
+<li><p>栈中变长数据：</p>
+<ul>
+<li>变长的局部数据，如变长数组，也可以分配在栈上：在当前活动p的活动记录后，加一段（不属于活动记录）数组部分，专门用来存放p的局部数组变量，p的局部数据部分有这些数组的首地址</li>
+<li><img src="F:\blog\source_posts\figs\fig39.png" /></li>
+<li>top指向数组部分结尾，表示下个函数调用的活动的活动记录开始位置；q结束时，top_sp恢复可直接根据控制链，top恢复则需要top_sp减去定长部分+返回值+实参部分长度，其中实参部分由调用者p确定！</li>
+</ul></li>
+</ul></li>
+<li><p>非局部数据的访问：有无嵌套（函数定义）</p>
+<ul>
+<li>无嵌套：如上所述；可以容易的将函数作为参数进行传递~</li>
+<li>有嵌套：需要用访问链；不能直接将嵌套的函数 进行传递！
+<ul>
+<li>嵌套深度：可根据源程序静态确定哦！</li>
+<li>访问链：若过程p在声明时（直接）嵌套在过程q中，则p活动记录的访问链指向上层<strong>最近</strong>的q的活动记录；嵌套深度沿
+访问链路 逐一递减！
+<ul>
+<li>维护：过程q调用过程p时：
+<ul>
+<li>p深度大于q，则q直接定义在p中，则p的访问链指向q</li>
+<li>q递归调用，则深度p=q，p访问链与q的<strong>指向相同</strong>！</li>
+<li>p深度 小于等于
+q深度，则必然存在过程r，p<strong>直接</strong>在r中定义，且q嵌套在r中（r也许就是全局！）；则p访问链指向r（p.outer）</li>
+</ul></li>
+<li><span class="math inline">\(\star\)</span>
+传递过程指针参数（函数指针？）时，除了要传递值（开始地址），还要传递<strong>正确的访问链</strong>！</li>
+<li>限制：1.若p嵌套在q中，则过程p活跃时，q一定也活跃（未结束）！；2.不能越过p直接调用q！（因此python的非局部数据访问
+不是靠访问链实现！）</li>
+</ul></li>
+<li>若深度为<span
+class="math inline">\(n_p\)</span>的过程p访问变量x，x的深度已知为<span
+class="math inline">\(n_q\)</span>（在过程q中声明），则沿访问链向前进<span
+class="math inline">\(n_p-n_q\)</span>次即可找到q的活动记录，x的偏移量也已知</li>
+</ul></li>
+<li>显示表：（对标访问链）访问链访问数据开销与深度差相关，显示表可以常数时间
+<ul>
+<li>数组d，为每个嵌套深度保留一个指针，d[i]指向<strong>最近的，嵌套深度为i的</strong>活动记录</li>
+<li>维护：调用p时，深度为<span
+class="math inline">\(n_p\)</span>，则p活动记录中需保存d<span
+class="math inline">\([n_p]\)</span>值；当p返回时，再恢复d</li>
+</ul></li>
+</ul></li>
+<li><p>堆管理：需处理的问题：分配/回收子空间；类别：需手动回收/会自动垃圾回收</p>
+<ul>
+<li>可达性：
+<ul>
+<li>根集：不需要指针解引用就可以直接访问到的对象的集合；根集全可达</li>
+<li>若一个指针可达，则所有通过该指针可访问到的对象都可达</li>
+<li>若A由可达变不可达，则不会再变可达</li>
+</ul></li>
+<li>基于引用计数（垃圾自动回收：追踪不可达瞬间）
+<ul>
+<li>垃圾互引用（无来自根集的指针），则无法识别！</li>
+</ul></li>
+<li>基于跟踪的 垃圾回收：只关注可达对象（最基本：标记-清扫式）
+<ul>
+<li>每过一段时间，全面扫描（从根基开始，遍历引用图，标记所有可达对象）</li>
+<li>清扫：遍历堆区，释放所有垃圾对象</li>
+<li>优化：（标记-复制/整理 式垃圾回收）
+<ul>
+<li>只处理可达对象：移动堆区中所有可达对象到某一区域（预留的另一半 /
+一端）
+<ul>
+<li>注意需要更新所有的引用！</li>
+<li>标记-整理式
+回收步骤还是需要遍历一遍整个堆区！当垃圾较少时效率较高</li>
+<li>标记-复制式 回收步骤则当可达对象较少时（垃圾多）效率高</li>
+</ul></li>
+<li>剩下的空闲区域为一大整块：避免碎片化</li>
+</ul></li>
+</ul></li>
+<li>分代式垃圾回收：
+<ul>
+<li>生存周期特征：一般刚创建的对象
+更可能不再使用；存在时间越长的对象，被回收的几率越小</li>
+<li>根据生存周期，对对象分代管理：
+<ul>
+<li>年轻代：刚创建的对象什么的；当年轻代空间不足时，采用标记-复制式垃圾回收（垃圾多）</li>
+<li>老年代：”熬过“垃圾回收的对象进入老年代，老年代空间不足时，采用标记-整理式垃圾回收（垃圾少）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch8.-代码生成">Ch8. 代码生成</h2>
+<ul>
+<li>代码生成器
+<ul>
+<li>根据中间表示（IR）生成代码</li>
+<li>生成器前可能有个优化组件</li>
+<li>任务：
+<ul>
+<li>选择适当的指令实现IR语句</li>
+<li>寄存器分配和指派</li>
+</ul></li>
+<li>输入IR的选择：
+<ul>
+<li>四元式、<strong>三元式</strong>，字节代码，抽象语法树，DAG图，。。。</li>
+</ul></li>
+<li>输出：（<strong>为我们的实验</strong>）
+<ul>
+<li><strong>RISC</strong>, CISC</li>
+<li>可重定向代码，<strong>汇编语言</strong></li>
+</ul></li>
+<li>目标机模型：简单的三地址机器模型，指令包括：
+<ul>
+<li>加载：LD
+dst，addr（addr<strong>必须</strong>是地址，会对addr解引用，其中内容加载到寄存器dst）</li>
+<li>保存：ST
+x，r（寄存器r保存到内存x，<strong>x必须是地址</strong>）</li>
+<li>计算：OP dst，src1，src2（全是寄存器）</li>
+<li>无条件跳转：BR L（跳到标号L，L是一个地址！）</li>
+<li>条件跳转：Bcond r，L（判断寄存器r中值
+是否符合条件cond，cond由命令本身决定）</li>
+</ul></li>
+<li>寻址模式：我们的约定
+<ul>
+<li>变量x：变量x的内存位置（是个地址）</li>
+<li>a（r）：a的左值+寄存器r的值（一般a为一个数组之类的在内存中的位置）（值为地址）
+<ul>
+<li>constant（r）：constant + 寄存器r</li>
+</ul></li>
+<li>*r：寄存器值指向的内存中的值，可值可地址</li>
+<li>*constant（r）</li>
+<li>常量#constant</li>
+</ul></li>
+<li>主要问题：
+<ul>
+<li>如何为过程调用和返回生成代码？
+<ul>
+<li>静态分配（活动记录）</li>
+<li>栈式分配（活动记录）</li>
+</ul></li>
+<li>IR中的名字（过程名和变量名）转换为目标代码中的地址？
+<ul>
+<li>不同区域名字采用不同寻址方式</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="活动记录的静态分配">活动记录的静态分配</h5>
+<p>每个过程静态地分配一个数据区域，开始位置为staticArea表示：<strong>则（staticArea）可以在编译时确定！</strong></p>
+<p>call callee实现：</p>
+<ul>
+<li>ST callee.staticArea, #here + 20
+（#here+20表示下一条指令位置，20为ST + BR指令的长度，即返回地址）</li>
+<li>BR callee.codeArea
+（这里又为啥不加*？因为codeArea可以认为就是一个变量？（值））</li>
+</ul>
+<p>callee中的return：</p>
+<ul>
+<li>BR *callee.staticArea （为什么要加*?
+因为staticArea是一个内存位置！）</li>
+</ul>
+<p><strong>致命问题</strong>：不可重录（嵌套调用（递归），因为每次递归调用，信息都存放在同一个数据区域（staticArea同）！）</p>
+<h5 id="活动记录的栈式分配">活动记录的栈式分配</h5>
+<p>有一个专门的寄存器SP指向活动记录的栈顶</p>
+<p>第一个过程（main）负责初始化栈区</p>
+<p>过程调用指令序列</p>
+<ul>
+<li>ADD SP, SP, #caller.recordSize （调用者增大栈指针）</li>
+<li>ST 0(SP), #here + 16 (实际还有保存很多东西)</li>
+<li>BR callee.codeArea</li>
+</ul>
+<p>返回指令序列</p>
+<ul>
+<li><p>BR *0(SP)</p></li>
+<li><p>SUB SP, SP, #caller.recordSize (调用者负责 再减小栈指针)</p></li>
+<li><p>基本块和流图：基本块内都是<strong>！中间代码！</strong></p>
+<ul>
+<li><p><strong>中间代码</strong>的流图表示：</p>
+<ul>
+<li>中间代码划分为基本块
+<ul>
+<li>基本块内部 顺序执行（只有最后一条语句会跳转）</li>
+<li>基本块之间 只有跳转</li>
+<li>控制流只能从基本块<strong>第一条</strong>语句进入</li>
+</ul></li>
+<li>流图：节点是基本块，边代表控制流的跳转</li>
+</ul></li>
+<li><p>流图作为优化的基础：</p>
+<ul>
+<li>比如可以知道：一段代码/一个值是否会被使用到</li>
+</ul></li>
+<li><p>划分基本块的算法：</p>
+<ul>
+<li>输入：三地址指令序列</li>
+<li>输出：基本块列表</li>
+<li>方法：
+<ul>
+<li>只需确定每个块的开始（首指令leader）
+<ul>
+<li>第一条三地址指令；</li>
+<li>任意一个（条件/无条件）跳转指令的目标指令</li>
+<li>紧跟在（条件/无条件）跳转指令后的指令</li>
+</ul></li>
+<li>确定基本块：从当前首指令，到下一条首指令之前，为一个基本块~</li>
+</ul></li>
+</ul></li>
+<li><p>后续使用信息的分析：（局部）</p>
+<ul>
+<li>变量值的使用：用来确定
+某变量的值是否需要保存（占用在寄存器内，如果不活跃，则可以直接覆盖！）
+<ul>
+<li>若三地址语句i：向变量x赋值；存在另一条语句j：有一个运算分量为x；且从i到j存在一条路径p，路径p中没有再对x赋值，则j使用了i处对x的赋值</li>
+<li>则说，<strong>变量x</strong>在语句i后的程序点上<strong>活跃</strong></li>
+<li>不活跃：则指变量的<strong>值</strong>不会再被使用（并非变量不被使用，如紧跟着一个赋值，覆盖掉）</li>
+</ul></li>
+<li>分析过程：
+<ul>
+<li>输入：基本块B，开始时B中所有<strong>非临时变量</strong>均是
+活跃的（用户自定义变量，缺省认为
+后面还会使用）；临时变量则缺省认为不活跃（后面的基本块不会再用）</li>
+<li>输出：各语句i上变量的活跃性、后续实用信息</li>
+<li>方法：
+<ul>
+<li>反向扫描：从B的最后语句开始，先看到变量值的使用，才能决定是否活跃</li>
+<li>对每条语句i：x = y + z
+<ul>
+<li>令语句i和x、y、z当前活跃信息/实用信息关联（即语句i记录下x、y、z信息）</li>
+<li>然后设置x（写的变量）为 不活跃 和
+无后续使用（对于a[i]=0语句，认为a和i都是被使用的，因此都活跃？默认a是指针变量？）</li>
+<li>接着设置y和z（读的变量）为 活跃，并指明下一次使用为语句i</li>
+<li>注意要先设 写，再设 读！（x = x + 1）</li>
+<li>最后，得到整个基本块的各变量的活跃和后续使用信息：由最靠前语句的活跃信息决定</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>流图的构造：</p>
+<ul>
+<li>节点是基本块，节点A到B存在一条有向边 iff
+基本块C的第一条指令<strong>可能</strong>紧跟在B最后一条后执行
+<ul>
+<li>则称A是B的先驱，B是A的后继</li>
+</ul></li>
+<li>入口和出口节点：
+<ul>
+<li>不和任何中间指令对应；入口到第一条指令有一条边；<strong>任何可能最后执行的基本块</strong>到出口有一条边</li>
+</ul></li>
+</ul></li>
+<li><p>循环：（大部分运行时间都在循环上，因此是优化的重要目标！）</p>
+<ul>
+<li>定义：循环L是节点的集合；有一个入口节点（唯一），到达循环任何节点的必经路径；循环内节点都有到达入口节点的路径（且都在L中）</li>
+</ul></li>
+<li><p>对基本块的优化：（局部优化）</p>
+<ul>
+<li><p>每条表达式指令都可以用DAG形式表示，将基本块中的所有指令的DAG合并为一整个DAG？（第二条指令的DAG画在第一条的上面）</p></li>
+<li><p>每个变量都有一个对应的DAG节点表示其<strong>初始值</strong></p></li>
+<li><p>每个语句s有一个相关节点N，代表其计算得到的值</p>
+<ul>
+<li>N的子节点，对应于（得到当前运算分量当前值的）其他语句</li>
+<li>N的标号为：s中的运算符，并且有一组变量被关联到N，表示s是<strong>最晚</strong>对这些变量进行定值的语句</li>
+</ul></li>
+<li><p>DAG图的构造：</p>
+<ul>
+<li><p>构造算法<img
+src="F:\blog\source_posts\figs\fig44.png" /></p></li>
+<li><p>例子：<img src="F:\blog\source\_posts\figs\fig45.png" style="zoom:80%;" /></p></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h5 id="dag作用">DAG作用</h5>
+<p>描述了基本块内：运行时各变量的值之间的关系；可对代码进行转化：</p>
+<ul>
+<li><p>局部公共子表达式：每次建立某节点M前，先检查是否存在节点N，与M具有同操作符和子节点（注意子节点相同，需要子节点对应变量的引用相同！如：a
+= b + c; b = 1; d = b + c; a和d不同！！）</p></li>
+<li><p>消除死代码：消除DAG图上<strong>没有附加活跃变量</strong>的<strong>根节点</strong>（需要根据全局的基本块活跃分析？）</p></li>
+<li><p>基于代数恒等式的优化：一些常量替换，表达式的简化，乘变加
+啥的</p></li>
+<li><p>数组引用：</p>
+<ul>
+<li>对数组赋值a[i] = y（[]=节点）有3个子节点</li>
+<li>当存在多个指针、多个下标的时候，如x=b[i]; b[j] = y;
+则节点x=b[i]不可再被复用！！！因为可能被覆盖：<strong>此时，该节点被杀死，指该节点不能被复用</strong></li>
+</ul></li>
+<li><p>指针赋值/过程调用：</p>
+<ul>
+<li>如x=*p，则x可能<strong>使用了任意变量</strong>，则无法消除死代码！</li>
+<li>*p=y，则可能<strong>给任意变量赋值</strong>，因此<strong>杀死</strong>了所有其他节点！</li>
+<li>咋办？：（局部/全局）指针分析</li>
+<li>过程调用也同理。。。：可能<strong>使用</strong>以及<strong>修改</strong>了可访问范围内的一切变量</li>
+</ul></li>
+<li><p>从DAG到基本块：重构</p>
+<ul>
+<li>重构方法：
+<ul>
+<li>每个节点：一个三地址语句；从下往上</li>
+<li>尽量使用活跃变量来赋值！（当等价时）</li>
+<li>若节点有多个关联的变量，则需要用复制语句进行赋值</li>
+</ul></li>
+<li>重组规则：
+<ul>
+<li>只有读读顺序可以更改，读写、写写顺序不能改（数据库的那个顺序？）</li>
+<li>过程调用、指针间接赋值，不能变顺序！</li>
+</ul></li>
+</ul></li>
+<li><p>代码生成器：</p>
+<ul>
+<li><p>根据三地址代码序列 生成机器指令：</p>
+<ul>
+<li>关键问题：1.选择哪条机器指令？2.选择哪个寄存器？</li>
+<li>目标：减少ST和LD指令</li>
+<li>原则：要装载内存中值，则尽量让它呆久些（多用会）</li>
+<li>基本思想：对于一条三地址指令
+<ul>
+<li>仅当运算分量不在寄存器时，才从内存载入；</li>
+<li>尽量覆盖不被使用的寄存器值</li>
+</ul></li>
+<li>数据结构：
+<ul>
+<li>寄存器描述符：跟踪各寄存器存放了<strong>哪些变量</strong></li>
+<li>地址描述符：各个变量的当前值存放在<strong>哪些位置</strong>上（寄存器和内存位置）</li>
+</ul></li>
+</ul></li>
+<li><p>代码生成算法：<strong>逐个处理</strong>每条三地址代码</p>
+<ul>
+<li><p>1.getReg（I）：选择最佳寄存器；</p>
+<ul>
+<li>对于三地址代码x = y op z：
+<ul>
+<li>首先为运算分量y和z分配寄存器：
+<ul>
+<li>若y已经在寄存器Ry中，则直接返回Ry</li>
+<li>若y不在寄存器中，且有空闲寄存器：则返回一个空闲寄存器Ry</li>
+</ul></li>
+<li>无空闲：
+<ul>
+<li>寄存器R：v；
+<ol type="1">
+<li>v地址表明，还有其他位置有v（包括内存？），ok</li>
+<li>若v是x（结果），且x不是z（运算分量），ok（<strong>则也为x分配寄存器R！</strong>）（情况3的特例）</li>
+<li>若v之后不活跃（不会再被使用），ok</li>
+<li>否则：对于R中每个保存的变量，都得生成st v,R （溢出操作）</li>
+</ol></li>
+</ul></li>
+<li>为结果x分配寄存器：
+<ul>
+<li>先只有x的R；然后若y/z之后不再使用，则仅保存了y/z的寄存器也可；</li>
+<li>然后空闲寄存器；</li>
+<li>然后无空闲的1，3</li>
+<li>无空闲的4</li>
+</ul></li>
+<li>特例：处理x = y时：
+<ul>
+<li>先选择Ry（同前y）</li>
+<li>然后Rx = Ry</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>2.生成代码：<img src="F:\blog\source\_posts\figs\fig46.png" style="zoom:80%;" /></p></li>
+<li><p>3.更新寄存器、地址描述符：</p>
+<ul>
+<li>LD R,x：（寄存器；地址；其他变脸的地址）
+<ul>
+<li>R寄存器只包含x；</li>
+<li>x地址：R作为新位置<strong>加入</strong>到x的位置集合中</li>
+<li>从非x变量的地址描述符中<strong>删除</strong>R</li>
+</ul></li>
+<li>ST x，R：
+<ul>
+<li>x地址：加入<strong>内存地址</strong>x</li>
+</ul></li>
+<li>ADD Rx,R2,R3：
+<ul>
+<li>Rx：只x</li>
+<li>x地址：只包含Rx（<strong>无内存</strong>！）
+<ul>
+<li>如果删去了一些R，则还要顺带更新R！</li>
+</ul></li>
+<li>非x的地址描述符：除去Rx</li>
+</ul></li>
+<li>特殊：对于x = y（三地址代码）：
+<ul>
+<li>若生成LD Ry，y，则先按前（1）的更新</li>
+<li>然后Ry：加入x</li>
+<li>x地址：<strong>只</strong>包含Ry（无内存）
+<ul>
+<li>若删去了一些R，还要顺带更新R！</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>一些优化：</p>
+<ul>
+<li>窥孔优化：使用一个滑动窗口，只检查窗口内的指令，看是否可以优化
+<ol type="1">
+<li>多余的LD/ST指令：LD R0，a；
+（紧跟后，且<strong>同属一个基本块</strong>）ST a，R0</li>
+<li>级联跳转代码：条件跳转语句，看可否条件翻转来消除一条goto语句
+<ul>
+<li>对于编译时可知的条件，可以将条件跳转语句 改为无条件跳转！</li>
+</ul></li>
+<li>控制流优化：
+<ul>
+<li>连续多次跳转，可以直接跳到最后~</li>
+</ul></li>
+<li>代数化简：代数恒等式；使用机器特有指令（INC, DEC）</li>
+</ol></li>
+</ul></li>
+<li><p>寄存器分配和指派 策略：</p>
+<ul>
+<li>简单的分组策略：数组组、算术计算组、。。。
+<ul>
+<li>利用率低！开销大！</li>
+</ul></li>
+<li>全局寄存器分配：
+<ul>
+<li><strong>循环中频繁使用</strong>的值
+存放在<strong>固定多个寄存器</strong>中</li>
+<li>可通过使用计数来估算</li>
+</ul></li>
+</ul></li>
+<li><p>树重写实现 <strong>指令选择（一般指多种寻址方式）</strong></p>
+<p>​
+因为同一三地址码可使用多种机器指令，or多个三地址码可使用同一机器指令</p>
+<ul>
+<li><p>指令选择：为实现中间表示形式，选择适当的机器指令</p>
+<ul>
+<li>用<strong>树</strong> 表示 中间表示，按照特定规则
+不断<strong>覆盖</strong>这棵树 并生成机器指令
+<ul>
+<li>这里提到的中间表示：需要考虑到变量地址层面了（如局部变量a，需要栈顶SP指针+偏移量Ca来取）</li>
+<li>（那会不会和前面提到的寄存器分配矛盾了啊？因为有些时候不需要LD或ST啊？如已经取了局部变量a在寄存器Ra，且a活跃；这里的中间表示
+不考虑优化的么？）</li>
+</ul></li>
+</ul></li>
+<li><p>重写规则：</p>
+<ul>
+<li><p>(替换节点)replacement <span class="math inline">\(\gets\)</span>
+templace(模板)
+[action]，模板为树，替换节点就是一个节点（代表一个寄存器Ri，或者内存中变量）；action为一个像SDT中那样的代码片段：动作就是，把树节点翻译为
+action对应的机器指令！</p></li>
+<li><p>一组树重写规则，就是一个<strong>树翻译方案</strong></p></li>
+<li><p>如：<img src="F:\blog\source\_posts\figs\fig47.png" style="zoom:60%;" /></p></li>
+<li><p>树重写规则，也可以用
+<strong>上下文无关文法</strong>的产生式形式来表示：头 就是替换节点；右部
+指令模板的<strong>前缀表示</strong></p></li>
+</ul></li>
+<li><p>树翻译方案的工作模式：</p>
+<ul>
+<li>给定一颗输入树，用树重写规则中的<strong>模板</strong>来不断 匹配 和
+替换
+输入树的子树；匹配成，则执行相应的动作action（一般是生成相应的机器指令序列）；直到输入树归约为单个节点！</li>
+<li>顺序。。。？（实际上肯定是有影响的，因为会有寄存器覆盖问题）
+<ul>
+<li><strong>大树</strong>优先匹配（长的？）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch9.-机器无关的优化">Ch9. 机器无关的优化</h2>
+<p>机器无关代码的优化：即<strong>中间代码</strong>的优化~
+因此不需考虑寄存器和指令选择层面！</p>
+<h4 id="引言">引言</h4>
+<p>消除<strong>不必要</strong>的指令：完全冗余；or替换指令序列 为
+同功能的更快指令序列</p>
+<p><strong>全局</strong>优化：基于 数据流分析技术（跨越基本块）</p>
+<ol type="1">
+<li><p>冗余运算</p></li>
+<li><p>语义不变的优化：公共子表达式消除、复制传播（a=b，并且尽量只用一个）、死代码消除（该变量后面不再活跃了）、常量折叠</p></li>
+</ol>
+<ul>
+<li><p>全局优化：</p>
+<ul>
+<li>首先还是给中间代码 分基本块，得到流图</li>
+</ul>
+<ol type="1">
+<li>全局公共子表达式：
+<ul>
+<li>如果E：在某次出现之前必然已被计算过；且E的运算分量在该次计算之后
+没有改变过；则：E的本次出现，就是一个<strong>公共子表达式</strong></li>
+</ul></li>
+<li>复制传播：
+<ul>
+<li>如果每个位置上 u一定等于v，则可以把u替换为v</li>
+<li>保持总是使用那个活跃变量，这样可能把某个变量彻底消除掉</li>
+</ul></li>
+<li>死代码消除：
+<ul>
+<li>若一个变量在某个程序点上
+是不活跃的（死的），则此时对该变量的赋值就是<strong>死代码</strong>
+<ul>
+<li>注意，此时所说的活跃与否，是在<strong>全局</strong>的概念下！那如何进行全局的活跃分析呢？</li>
+</ul></li>
+</ul></li>
+<li>代码移动：
+<ul>
+<li>把循环不变表达式 移到循环外</li>
+</ul></li>
+<li>归纳变量的强度消减：
+<ul>
+<li>归纳变量：一个变量t，每次变化总是加/减 常数c，则t为归纳变量</li>
+<li>强度消减：乘法 换成 加/减法</li>
+<li>可以只保留归纳变量系列 中的一个；</li>
+</ul></li>
+</ol></li>
+</ul>
+<h4 id="优化的来源">优化的来源</h4>
+<h4 id="数据流分析">数据流分析</h4>
+<p>公共子表达式：两个表达式是否一定计算得相同的值？</p>
+<p>死代码消除：一个语句的计算结果 是否可能被后续语句使用？</p>
+<p><strong>数据流抽象</strong>：</p>
+<ul>
+<li>程序点：三地址语句之前 和 之后的位置
+<ul>
+<li>基本块内部：指令1.后 = 指令2.前</li>
+</ul></li>
+<li>一个程序点
+可能对应<strong>多个</strong>（无限个）程序状态；对程序点的状态集合
+进行分析
+<ul>
+<li>程序点上的性质：数据流值（根据需要
+设置不同的性质集合），表示了该程序点的性质
+<ul>
+<li>性质1：如到达定值：x由d1定值</li>
+<li>性质2：x=常数c/or NAC</li>
+</ul></li>
+</ul></li>
+<li>域：某个数据流 所有可能值的集合</li>
+</ul>
+<p><strong>数据流分析</strong>：对一组约束求解，得到各个点上的数据流值；</p>
+<ul>
+<li><p>两类约束：语句语义；控制流</p></li>
+<li><p>基于语句语义的约束</p>
+<ul>
+<li>语句语义 用 <strong>传递函数</strong>表示，把数据流值
+映射为另一个数据流值</li>
+<li>OUT[s] = <span class="math inline">\(f_s(\)</span>IN[s])
+（正向约束；也可逆向约束）</li>
+</ul></li>
+<li><p>基于控制流的约束</p>
+<ul>
+<li>基本块内：一个语句的输出 = 下一语句的输入</li>
+<li>流图控制流边（基本块之间） =&gt; 对应新的约束</li>
+</ul></li>
+<li><p>基本块内的数据流模式：</p>
+<ul>
+<li>先处理基本块内数据流关系，然后给出<strong>基本块</strong>对应的转换函数<span
+class="math inline">\(f_B\)</span> (就是块内各语句转换函数的复合)</li>
+</ul></li>
+<li><p>基本块间的控制流约束：</p>
+<ul>
+<li><span class="math inline">\(f_B\)</span>根据IN[B]计算得到OUT[B]</li>
+<li>IN[B]与B的各前驱基本块OUT之间具有 控制流约束；</li>
+<li>反过来，则是逆向数据流问题</li>
+</ul></li>
+</ul>
+<p>精确性 vs 安全性：</p>
+<ul>
+<li><p>到达定值分析：</p>
+<ul>
+<li><p>只要<strong>存在</strong>一条路径，从d点（对x定值）到达p点，且中间没有对x的其他定值点</p></li>
+<li><p>数据流值：所有语句的集合{<span
+class="math inline">\(d_1,\cdots,d_n\)</span>}</p></li>
+<li><p>一定是安全的！可以不精确（分析得到的到达定值
+可能实际上不到达；但实际到达的一定都被分析出来）</p></li>
+<li><p>语句语义的转换方程：</p>
+<ul>
+<li>语句的转换方程：<span class="math inline">\(f_d(x) = gen_d\cup
+(x-kill_d)\)</span></li>
+<li>基本块：<img src="F:\blog\source\_posts\figs\fig87.png" style="zoom: 50%;" /></li>
+</ul></li>
+<li><p>控制流方程：<img src="F:\blog\source\_posts\figs\fig88.png" style="zoom:50%;" /></p></li>
+<li><p>迭代解法：先求出各基本块的gen和kill，然后令所有OUT[B]为空集，不停迭代，直到converge？</p>
+<ul>
+<li>像BellmanFord算法？最多迭代n次（n为流图节点个数）</li>
+</ul></li>
+</ul></li>
+<li><p>活跃变量分析：</p>
+<ul>
+<li><p>数据流值：活跃变量的集合</p></li>
+<li><p>转换函数：使用 use<span class="math inline">\(_s\)</span>，定义
+def<span class="math inline">\(_s\)</span></p></li>
+<li><p>基本块的转换函数：<img src="F:\blog\source\_posts\figs\fig89.png" style="zoom:50%;" /></p></li>
+<li><p>基本块间的数据流方程：逆向！OUT =&gt; IN （因为要判断
+在一条语句之后是否还被使用）</p>
+<ul>
+<li><img src="F:\blog\source\_posts\figs\fig90.png" style="zoom:50%;" /></li>
+</ul></li>
+</ul></li>
+<li><p>可用表达式分析：全局公共子表达式</p>
+<ul>
+<li><p>x+y在p点可用：从流图入口 到
+p点的<strong>每条路径</strong>，都对x+y求值了，且中间没有对x或y赋值</p></li>
+<li><p>基本块的转换函数：</p>
+<ul>
+<li><span class="math inline">\(gen_B\)</span>
+<ul>
+<li>初始S = 空集；</li>
+<li>依次扫描基本块内每条指令，如x = y +
+z：将y+z添加进S，然后删除S中所有涉及x的表达式</li>
+</ul></li>
+<li><span class="math inline">\(kill_B\)</span>
+<ul>
+<li>在基本块内被定值的分量 涉及的表达式（整体会并上gen<span
+class="math inline">\(_B\)</span>）</li>
+</ul></li>
+</ul></li>
+<li><p>基本块间的数据流方程：</p>
+<ul>
+<li><p><strong>注意是求交</strong><img src="F:\blog\source\_posts\figs\fig91.png" style="zoom:50%;" /></p></li>
+<li><p>迭代算法：最开始 ENTRY的OUT设为空集，除此之外每个基本块的OUT[B]
+设为U=全集！！</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="部分冗余消除">部分冗余消除</h4>
+<p>部分冗余：对于一些路径，这个块是冗余；而对另一些路径而言，不是冗余！因此不能简单的删除这个块</p>
+<p>​ 难以通过机器自动进行。。。</p>
+<ul>
+<li><p>添加基本块来消除的冗余：（如果前驱没有多个后继，则直接在那个基本块内添加一条语句就行了；or
+当前基本块没有多前驱，则放在当前基本块内）</p>
+<ul>
+<li><p>进行两种操作：1.在关键边上 增加基本块；2.进行代码复制</p>
+<ul>
+<li><p>如：<img src="F:\blog\source\_posts\figs\fig92.png" style="zoom:50%;" /></p></li>
+<li><p><strong>关键边</strong>：从具有多个后继 的结点 到达 具有多个前驱
+的结点 的边</p></li>
+</ul></li>
+</ul></li>
+<li><p>懒惰代码移动：（可以让机器自动进行的一部分）</p>
+<ul>
+<li>目标：优化后代码 不会额外执行任何原本不执行的代码；表达式计算
+尽量<strong>靠后</strong>（寄存器分配）</li>
+<li>冗余消除：完全冗余 + 一部分 部分冗余</li>
+<li>基本步骤：
+<ol type="1">
+<li>找出各程序点上 预期执行的所有表达式：
+<ul>
+<li>被预期执行，即从程序点p开始
+的每条路径，都要计算表达式b+c，且值与现在立即计算没区别</li>
+<li>数据流分析框架：
+<ul>
+<li>逆向分析；</li>
+<li>若表达式在B出口处
+被预期执行，且没被B杀死，则在B入口处也被预期执行</li>
+<li>若B的所有后继基本块 入口处都被预期执行，则B出口处 也被预期执行</li>
+</ul></li>
+<li>分析完后，表达式 被放置在首次被预期执行的程序点上 =&gt;
+一些表达式就变得完全冗余了</li>
+</ul></li>
+<li>可用表达式分析：
+<ul>
+<li>与前可用表达式分析类似 + 假设被预期执行代码已经复制</li>
+<li>找到入口处 表达式不可用，但预期执行
+的基本块，把表达式先放在那里（可能多个块）</li>
+</ul></li>
+<li>可后延表达式：
+<ul>
+<li>把预期执行的表达式 放置在边界上（对应一条边）：从可后延 变为
+不可后延的地方</li>
+</ul></li>
+<li>消除只使用一次的临时变量：
+<ul>
+<li>即进行活跃变量分析：对被引入的临时变量们分析，查看是否在
+<strong>其所在基本块之外</strong> 还被使用了；否则 移除</li>
+</ul></li>
+</ol></li>
+</ul></li>
+</ul>
+<h4 id="循环的识别分析和优化">循环的识别、分析和优化</h4>
+<p>相关概念：</p>
+<ul>
+<li>支配节点
+<ul>
+<li>寻找支配结点：一个结点的<strong>支配结点集合</strong>（指
+支配该结点的
+所有结点），是它的所有前驱的支配结点集合的<strong>交集</strong> +
+自己本身（直观：一个结点的前驱越多，则能支配它的结点就越少）</li>
+<li>是<strong>前向</strong>数据流分析问题：初始设置 OUT[ENTRY] =
+ENTRY；除此之外 OUT = N（全部结点）</li>
+<li>可以构造 支配结点树：边 表示 直接支配结点</li>
+</ul></li>
+<li>深度优先排序</li>
+<li>回边</li>
+<li>图的深度</li>
+<li>可归约性：</li>
+</ul>
+<h2 id="考试">考试</h2>
+<p>简答（/填空/选择/判断）</p>
+<p>问答：</p>
+<p>无冲突的LR(1)分析表合并同心集得LALR（1）可能有哪些冲突？只可能有
+归约-归约冲突</p>
+<p>DAG图+<strong>杀死的点！！！！</strong></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/22/data-mining/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -178,7 +1730,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 00:26:01" itemprop="dateModified" datetime="2022-02-25T00:26:01+08:00">2022-02-25</time>
+                <time title="修改时间：2022-06-08 12:03:23" itemprop="dateModified" datetime="2022-06-08T12:03:23+08:00">2022-06-08</time>
               </span>
 
           
@@ -193,6 +1745,7 @@
 
       
           <h2 id="ch1.-introduction">Ch1. Introduction</h2>
+<p>学习方法：对着ppt，看书；只考前9章</p>
 <h3 id="data-mining">data mining</h3>
 <p>从大数据库中挖掘有用的信息，然后用它来做重要决策</p>
 <p>初始数据可能无法直接使用，需要先：collect，clean，transform into a
@@ -212,7 +1765,10 @@ mining process</li>
 <li>classification methods：
 <ul>
 <li>支持向量机（support vector machines）</li>
-<li>K-nearest neighbor classification（KNN）K-近邻算法：还不会呢</li>
+<li>K-nearest neighbor classification（KNN）K-近邻算法：
+<ul>
+<li>就是先（随机？）取若干个点，将离他们最近的k个样本点分别划入对应的区域</li>
+</ul></li>
 <li>决策树（decision trees）</li>
 <li>rule-based classifier：不知道</li>
 </ul></li>
@@ -236,16 +1792,236 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
 </ul>
 <h2 id="ch2.-data-preparation">Ch2. Data Preparation</h2>
 <ul>
+<li>data preparation phase：
+<ol type="1">
+<li>featrue extraction and protability(数据类型转换)</li>
+<li>data
+cleaning(清除错误数据，inconsistent不一致的数据（即在不同地方不完全匹配），还有缺失的数据可能被重新估计出来？)</li>
+<li>data reduction, selection, transformation</li>
+</ol></li>
+<li>multidimensional data vs complex data
+<ul>
+<li>ID：one distribution， each point is independent on
+others？（mul）each point is generated from the same （unknown）
+distribution！</li>
+<li></li>
+</ul></li>
 <li>四种基本的数据模式
 <ul>
 <li>nominal（名义的） data：如城市、物种</li>
-<li>ordinal（顺序的） data：如速度快慢（快、中、慢）</li>
+<li>ordinal（顺序的）
+data：如速度快慢（快、中、慢）（非连续的，有限的？）</li>
 <li>interval data：有大小关系，且是数值，没有最小！</li>
 <li>ratio data：interval data，有最小！（绝对0）</li>
 </ul></li>
 <li>data portability
 <ul>
 <li>一种数据类型 可转换成其他数据类型 的能力（保持性质）</li>
+</ul></li>
+<li>Haar Wavelet Transform？？
+<ul>
+<li>将一个time series（非id的？）
+不断二分并获得coefficient，得到id的数据？</li>
+</ul></li>
+<li>MDS（graphs<span class="math inline">\(\to\)</span> numeric
+multidimensional）
+<ul>
+<li>不会</li>
+</ul></li>
+<li>Similarity graph（any type<span class="math inline">\(\to\)</span>
+graphs）
+<ul>
+<li>是啥。。。</li>
+</ul></li>
+</ul>
+<h2 id="ch3.-similarity">Ch3. Similarity</h2>
+<ul>
+<li>distance vs similarity
+<ul>
+<li>数据散点图上的距离，不能简单的代表两个数据的similarity！（因为distribution，我们只关心有数据的范围；还有varied
+local density）</li>
+<li><strong>Mahalanobis distance</strong>：stretch a
+dimension（/direction？）</li>
+<li>follow the data
+path！找到从A到B最近的一条path，来表示两者的similarity</li>
+</ul></li>
+<li>Text Similarity Measure
+<ul>
+<li>Dynamic Time Warping Distance（DTW）
+<ul>
+<li>两个series建立 一对一的 同length
+映射（将一些点延长？）分成若干个segment，每个segment匹配，时间作为contextual
+attribute，具体值不关键，主要关心order！</li>
+</ul></li>
+</ul></li>
+<li>kernel choice：
+<ul>
+<li>kernel function：
+<ul>
+<li>将数据点 从一个特征平面 mapping 到另一个特征平面！</li>
+<li>例如D是数据集，则一个kernel function k可能：<span
+class="math inline">\(D\times D\to R\)</span></li>
+</ul></li>
+<li>为了take data distribution into consideration！</li>
+<li>Multiple Kernel Learning – reduce the risk of choosing an unsuitable
+kernel by using multiple kernels (learn weights)</li>
+<li>Distance metric learning – adapt similarity measurements to the task
+automatically from data (space transformation)</li>
+<li>Produce data dependent kernel directly from data</li>
+<li><span class="math inline">\(\star\)</span> Isolation Kernel：
+<ul>
+<li>先从样本中随机取t个样本点，用它们将数据分布划分为t个区域（完全依赖于数据分布，与其他信息无关！）（用isolation
+forest的方法），重复多次，获得对原数据分布的多个划分？然后计算两个点的距离就是看它们在多少个划分里被划分进了同一区域</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch4.-data-mining-algorithm">Ch4. Data Mining Algorithm</h2>
+<p>就是模型的训练过程</p>
+<ul>
+<li>transaction：表示data？；itemsets：output？</li>
+</ul>
+<ol type="1">
+<li><p>classification problem</p>
+<ul>
+<li>决策树算法
+<ul>
+<li>节点 属性值的选取标准：
+<ul>
+<li>information gain：difference between the amount of information
+needed to determine the class？</li>
+</ul></li>
+</ul></li>
+<li>Set-covering算法：
+<ul>
+<li>基于rule-base classification（<strong>是什么！！？？</strong>）</li>
+<li>每次学习一个rule，并将该rule覆盖的样本剔除，对剩下的样本继续以上操作</li>
+</ul></li>
+<li>K-Nearest算法：直接基于原始训练数据建立模型！</li>
+<li>Support Vector Machines（SVM）</li>
+</ul></li>
+<li><p>clustering problem</p>
+<ul>
+<li>k-means clustering</li>
+<li>DBSCAN：首先获得数据样本分布，然后有一个threshold，高于它的连接的样本点为一个cluster</li>
+<li>Spectral clustering：
+<ul>
+<li>1.any data type <span class="math inline">\(\to\)</span> similarity
+graph;</li>
+<li>2.similarity graph <span class="math inline">\(\to\)</span> graph
+embedding in multidimensional data?</li>
+</ul></li>
+</ul></li>
+<li><p>outlier problem</p>
+<ul>
+<li><p>kth-nearest neighbor：</p>
+<ul>
+<li>每个点找k个最近的数据点，根据这k个点决定是否为outlier！</li>
+</ul></li>
+<li><p>isolation forest：</p>
+<ul>
+<li>构建一个二叉树（孤立森林）：最终将每个样本点都独立出来
+<ul>
+<li>如何做？随机选取一个超平面（将样本点二分！）</li>
+</ul></li>
+<li>outlier总是很容易区分，对应较短的path！</li>
+<li>重复多次以上步骤，统计每个样本点的average path
+length：短的更可能是outlier！</li>
+<li>需要subsampling：（即先对总样本随机取子集）缓解swamping
+effect和masking effect
+<ul>
+<li>masking
+effect：一个outlier未被检测出来（因为旁边的其他outlier点）</li>
+<li>swamping
+effect：一个正常的数据点被认为是outlier（因为旁边的其他正常数据子集）</li>
+</ul></li>
+</ul></li>
+<li><p>IDK：估算任意两点/点和整个数据集D 之间的similarity（来进行anomaly
+detection）</p>
+<ul>
+<li><p>kernel mean embedding：就是给定一个定义于<span
+class="math inline">\(\Omega\)</span>，数据分布P，kernel function
+k（<span class="math inline">\(\Omega\times
+\Omega\)</span>），一个随机变量X的kernel mean
+embedding就是它在该数据分布上，k的平均值！<img
+src="F:\blog\source_posts\figs\equation2.png" /></p></li>
+<li><p>关键是：转换成了distributional kernel！<span
+class="math inline">\(\hat{K}(P_S,P_T)\approx&lt;\hat{\phi}(P_S),\hat{\phi}(P_T)&gt;\)</span>，其中S,T为数据集，P表示该数据集的分布distribution！</p></li>
+</ul></li>
+</ul></li>
+<li><p>frequent pattern mining</p>
+<ul>
+<li>enumeration tree：<strong>看书！</strong></li>
+<li>apriori algorithm：<strong>看书！</strong></li>
+</ul></li>
+</ol>
+<h2 id="ch5.-spatial-data-mining">Ch5. Spatial data mining</h2>
+<ul>
+<li>spatial data：非id的！（但是可以通过一些方法（ch2）转换为id的）
+<ul>
+<li>spatialtemporal data：包含temporal component（时间的？）</li>
+</ul></li>
+<li>contextual / behavioral attribute：contextual
+提供背景/参考的属性，例如：测量海平面气温（这是behavioral
+attribute）时，地理位置、时间 都可以是contextual attribute！
+<ul>
+<li>spatial data基本上都是作为contextual
+attribute的！轨迹图trajectory例外（只有时间时contextual）</li>
+</ul></li>
+<li>shape <span class="math inline">\(\to\)</span> time
+series：通过顺时针/逆时针扫描一遍，大小为中心距离
+<ul>
+<li>避免shape rotation（同一图形不同旋转得到不同time series）：</li>
+</ul></li>
+</ul>
+<p><strong>好多不懂的。。。（那个rotation不变距离 和clustering
+method（DBSCAN）之类 的问题是啥？）</strong></p>
+<ul>
+<li><p><strong>DTW</strong>：similarity measure for
+序列数据/trajectore</p>
+<ul>
+<li><p><img src="F:\blog\source_posts\figs\fig11.png" /></p></li>
+<li><p>DTW与behavioral attribute的属性无关</p></li>
+</ul></li>
+</ul>
+<h2 id="ch6.-graph-mining">Ch6. Graph Mining</h2>
+<p>Graph Edit Distance: <span
+class="math inline">\(Edit(G1,G2)\)</span>=通过一系列操作（+点，-点，label替换，+边，-边），将G1转换为G2的最少步数</p>
+<p><strong>1. Frequent Substructure-Based Transformation and Distance
+Computation</strong></p>
+<p><strong>2. Topological Descriptors</strong></p>
+<p><strong>3. Kernel-Based Transformations and Computation</strong></p>
+<p>（m to the power of n：m的n次方）</p>
+<h4 id="kernel">kernel</h4>
+<ul>
+<li>Random Walk kernel：<img
+src="F:\blog\source_posts\figs\fig21.png" />
+<ul>
+<li>只需在product graph上walk即可，因为这就是所有可能的相似路径了！</li>
+</ul></li>
+<li><strong>k-medoids：是啥？？</strong></li>
+</ul>
+<p>WL-kernel， IGK-kernel：都是啥？？</p>
+<h2 id="ch7.-mining-discrete-sequences">Ch7. Mining Discrete
+Sequences</h2>
+<p>bag-of-words(BOG) model：首先分解为frequent
+pattern，统计各pattern的出现次数，顺序无关（视为一个大集合）</p>
+<ul>
+<li>HMM：
+<ul>
+<li>hidden markov model：
+<ul>
+<li>隐藏状态<span
+class="math inline">\(S\in\{1,...,I\}\)</span>；观测值<span
+class="math inline">\(O\in\{y_1,...,y_K\}\)</span>；</li>
+<li>隐藏状态<span
+class="math inline">\(S_t\)</span>仅依赖于前一个隐藏状态<span
+class="math inline">\(S_{t-1}\)</span>，观测值<span
+class="math inline">\(O_t\)</span>仅依赖于当前隐藏状态<span
+class="math inline">\(S_t\)</span></li>
+<li>hidden markov model可表示为一个三元组：（A,B,<span
+class="math inline">\(\Pi\)</span>）：隐藏状态转移矩阵（<span
+class="math inline">\(A_{ij}\)</span>表示从状态i转移到状态j的概率），观测矩阵（由状态i得到观测值j的概率），和初始状态概率矩阵</li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -298,7 +2074,7 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 00:25:51" itemprop="dateModified" datetime="2022-02-25T00:25:51+08:00">2022-02-25</time>
+                <time title="修改时间：2022-03-11 10:10:13" itemprop="dateModified" datetime="2022-03-11T10:10:13+08:00">2022-03-11</time>
               </span>
 
           
@@ -325,7 +2101,21 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
 </ol>
 <ul>
 <li><p>一些工业标准（ad hoc Standard）</p>
-<p>Open GL； DirectX； X-Window； Postscript</p></li>
+<p>Open GL； DirectX； X-Window；
+Postscript（标准图形支撑软件）</p></li>
+<li><p>计算机图形系统</p>
+<ul>
+<li>数据平台
+<ul>
+<li><strong>四种几何模型</strong>：线框模型（线）、曲面模型（面）、实体模型（体）、点云模型（点）
+<ul>
+<li>主要差异在于<strong>几何基元</strong></li>
+</ul></li>
+</ul></li>
+<li>支撑平台</li>
+<li></li>
+<li>重要图形标准：图形核心系统GKS，PHIGS，事业、工业标准</li>
+</ul></li>
 </ul>
 
       
@@ -377,7 +2167,7 @@ matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 00:25:11" itemprop="dateModified" datetime="2022-02-25T00:25:11+08:00">2022-02-25</time>
+                <time title="修改时间：2022-06-15 09:07:28" itemprop="dateModified" datetime="2022-06-15T09:07:28+08:00">2022-06-15</time>
               </span>
 
           
@@ -497,16 +2287,537 @@ Architecture</p></li>
 </ul>
 <h4 id="数据抽象">数据抽象</h4>
 <ul>
-<li>发展
+<li><p>要素：操作（函数），客体（对象）</p></li>
+<li><p>发展</p>
 <ul>
 <li>一：无类型的二进制数据 到 基本数据类型</li>
 <li>二：基本类型到用户自定义类型（Pascal）</li>
 <li>三：到抽象数据类型——面向对象</li>
 </ul></li>
 </ul>
-<p><span class="math display">\[
-a_d = c_d+\alpha+\epsilon+\textcolor{red}{heheda}
-\]</span></p>
+<h2 id="契约式设计">契约式设计</h2>
+<p>一个软件模块，有precondition（权力），和postcondition（义务）</p>
+<ul>
+<li>precondition：该软件模块正确执行需要满足的条件</li>
+<li>postcondition：执行完该软件模块后应该满足的条件</li>
+<li>invariant：对整个类，它规定了该类任何实例调用任何方法都<strong>必须满足的条件</strong></li>
+<li>无需条件判断了~
+<ul>
+<li>creator program：cp {post &amp; inv}</li>
+<li>routine：{pre &amp; inv} r {post &amp; inv}</li>
+</ul></li>
+<li>契约写入document（接口）</li>
+<li>与assert对比：
+<ul>
+<li>用户可显式看到</li>
+<li>pre，post，inv</li>
+<li>document</li>
+<li>继承</li>
+<li>。。。</li>
+</ul></li>
+<li>防御式编程：
+<ul>
+<li>需要自己进行验证输入是否符合条件，并给出报错</li>
+</ul></li>
+</ul>
+<h2 id="异常处理">异常处理</h2>
+<p>（当契约失效时）</p>
+<ul>
+<li>程序中throw但未处理的异常，需要显式声明出来！
+<ul>
+<li>但对于那些常见的
+uncheckedError？（如空指针引用，数组越界啥的）不需要显式声明出来</li>
+<li>对于可能的checkedError，Java程序必须：要么通过throw声明抛出，要么通过try-catch处理，否则不能通过编译！</li>
+</ul></li>
+<li>Throwable：
+<ul>
+<li>Error（system error）</li>
+<li>Exception
+<ul>
+<li>RuntimeException（unchecked error：如除零，数组越界，空指针解引用）
+<ul>
+<li>unchecked error应在测试环节都解决掉</li>
+</ul></li>
+<li>。。。（checked
+error：与外界交互时的错误，如类型错误，文件找不到。。。）</li>
+</ul></li>
+</ul></li>
+<li>异常处理 和 DbC（当情况不对时处理 vs 定义何时能正确运行；二者互补）
+<ul>
+<li>Unchecked：当契约失效时发生的异常</li>
+<li>Checked：不时会发生的，必须要考虑进的情况（不算违背契约）</li>
+<li>因此，使用DbC设计代码，代码会分为两部分：
+<ol type="1">
+<li>与外界交互的部分，没有precondition！需要考虑各种情况，有各种exception
+handling！</li>
+<li>与外界隔离的代码部分，有强precondition！依赖1部分检查得到正确的交互输入从而往下执行！<strong>不会抛出异常！</strong></li>
+</ol></li>
+</ul></li>
+<li>异常转换
+<ul>
+<li>在面向对象程序设计中，对象类可能会调用各种 对象无关的
+库函数，库函数可能抛出<strong>应用无关的异常</strong>，对此，对象类需要catch相应的<strong>应用无关异常</strong>，并<strong>抛出</strong>对应的<strong>应用相关异常</strong>（如果没有解决掉异常，需要再抛出异常！）</li>
+</ul></li>
+</ul>
+<h3 id="eiffel-exception">Eiffel Exception</h3>
+<ul>
+<li><p>基本概念</p>
+<ul>
+<li>success：程序终止在符合契约的状态；反之则失败</li>
+<li>exception：会导致程序失败的runtime-event（如果没有recover，就会导致调用失败）
+<ul>
+<li>一个过程（程序）的失败，会导致它的调用者exception</li>
+</ul></li>
+</ul></li>
+<li><p>合理的处理异常：仅2种方式</p>
+<ul>
+<li>Failure：结束调用，并汇报failure，返回给调用者Exception</li>
+<li>Retrying：再次尝试调用</li>
+</ul></li>
+<li><p>异常机制</p>
+<ul>
+<li>一个过程（routine）可以包含rescue clause；rescue
+clause中可能包含retry</li>
+<li>没有执行retry（或执行失败）的rescue clause，会导致routine
+failure；</li>
+<li>如果一个routine内发生异常但没有相应的rescue
+clause，就会导致该routine fail，并返回调用者exception</li>
+</ul></li>
+<li><p>DbC：</p>
+<ul>
+<li><p><img src="F:\blog\source_posts\figs\fig7.png" /></p></li>
+<li><p>注意，retry语句，指返回到正常开始执行前！</p></li>
+<li><p>缺少rescue clause的routine，相当于有一个默认的rescue
+clause：<span
+class="math inline">\(default\_clause\)</span>，负责恢复INV！</p></li>
+</ul></li>
+</ul>
+<h2 id="设计原则">设计原则</h2>
+<ul>
+<li><p>面向对象设计原则</p>
+<ul>
+<li>可维护性：软件能被理解、改正、适应、扩展的难易程度</li>
+<li>可复用性：重复利用</li>
+<li>包括一堆原则<img src="F:\blog\source_posts\figs\fig8.png" /></li>
+</ul>
+<ol type="1">
+<li><p>单一职责：一个类，应仅有一个引起它变化的原因（<strong>什么意思？</strong>）</p>
+<ul>
+<li>会把不同的职责，分离到多个不同的类，并通过对象组合的方式，来将它们封装在一起</li>
+</ul></li>
+<li><p>开放闭合原则：（<span
+class="math inline">\(\star\)</span>最重要）软件实体应该在尽量不修改原有代码的情况下进行扩展</p>
+<ul>
+<li>不改源码，改行为（抽象出父类，增加子类）</li>
+<li>策略模式：当一个类中要用到其他类对象时，可以通过一个<strong>接口</strong>（其他类来实现该接口）来引用/创建该类实例，这样，当功能发生扩展，要用到的类发生改变时，不需要修改源码（通过读取配置文件方法）</li>
+<li>模板方法模式：父类中定义模板类，并且确定好执行顺序，子类实现/重写模板类（just
+like my 高程project）</li>
+</ul></li>
+<li><p>里氏替换：1.所有子类对象
+必须是合法的父类对象；2.父类指针调用的任何成员函数，不需要知道它到底指向的是父类成员函数
+还是子类成员函数，就可以正常使用！</p></li>
+<li><p>DIP依赖倒置：要针对接口编程，不是针对具体实现！具体实现细节
+依赖于抽象</p>
+<ul>
+<li>尽量使用<strong>接口</strong>和<strong>抽象类</strong>进行变量类型声明、参数类型声明、方法返回类型声明、数据类型转换；使用抽象层
+编程，具体类写在配置文件中</li>
+<li>不该依赖于具体类（任何类都不应从具体类派生）；不过稳定具体类可以派生（如String）；不该覆盖父类中以实现的方法！</li>
+</ul></li>
+<li><p>接口隔离原则：客户端不依赖于它不需要的接口；接口太大时，拆分成多个小接口，客户端只需要知道它相关的接口（只提供定制服务，不提供大接口）</p>
+<ul>
+<li><p>如，一个抽象类中定义了一堆抽象接口，则具体子类必须实现全部的接口，即使客户端只需要其中一小部分。<strong>解决方法</strong>：拆分成多个抽象父类。。。？</p></li>
+<li><p>例子：<img src="F:\blog\source_posts\figs\fig9.png" /></p></li>
+<li><p>要实现一个计时的门：（引入了适配器）<img
+src="F:\blog\source_posts\figs\fig10.png" /></p></li>
+<li><p>或者使用多继承方法：TimedDoor同时继承Timer Client
+和Door类</p></li>
+</ul></li>
+<li><p>合成/聚合复用：优先对象组合，而非继承来复用</p>
+<ul>
+<li>聚合：拥有关系，整体与部分（指针或引用）；合成：直接包含了其他类对象</li>
+<li>合成/聚合复用是
+<strong>黑箱复用</strong>（运行时确定具体复用什么类），HAS-A；继承则是
+静态复用，破坏封装性，违背设计原则。。IS-A</li>
+<li>根据Coad原则判断是否要用继承复用</li>
+</ul></li>
+<li><p>LoD迪米特法则：（模块之间的信息隐藏）每个软件单位对其他关系紧密的单位仅有最小的知识</p>
+<ul>
+<li>类之间 弱耦合</li>
+<li>如，类的属性 都不应设为public，而应设为private并提供接口来改变</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="设计模式">设计模式</h2>
+<ul>
+<li><p>模式的定义：模式描述了 环境中不断出现的问题+解决问题的核心 =&gt;
+重用已有的解决方案</p>
+<ul>
+<li>软件模式：在一定条件下的软件开发问题及其解法；包括：问题描述、前提条件、解法、效果
+<ul>
+<li>软件模式大三律：必须经过3个以上不同类型的系统的检验，一个解决方案才能成为模式</li>
+</ul></li>
+<li>设计模式定义：在特定环境下，为解决某一通用软件设计问题
+提供的一套定制的解决方案
+<ul>
+<li>包括：<strong>模式名称、问题、解决方案、效果</strong></li>
+<li>分类：创建型、结构型、行为型模式</li>
+<li>目的：创建型（创建对象）、结构型（处理类或对象的组合）、行为型（描述类或对象如何交互和怎样分配职责）</li>
+</ul></li>
+</ul></li>
+<li><p>基础知识：</p>
+<ul>
+<li>Java的反射机制：在<strong>程序运行时</strong>获取<strong>已知名称的类或已有对象的相关信息</strong>的一种机制，包括类的方法、属性、父类等信息，还包括实例的创建和实例类型的判断等
+<ul>
+<li>具体来说就是：Class类实例可以通过newInstance方法+传入的类名字符串，创建一个该类的新实例（需要强制类型转换）</li>
+</ul></li>
+<li>配置文件：纯文本文件（如XML，properties文件）</li>
+</ul></li>
+<li><p>创建型模式：</p>
+<ul>
+<li><p>简单工厂模式（/静态工厂方法）：<img
+src="F:\blog\source_posts\figs\fig15.png" /></p>
+<ul>
+<li><p>creator中的factory方法是<strong>静态方法</strong>，接收参数，根据参数类型，返回不同具体子类（这些具体子类具有共同的抽象父类）；</p></li>
+<li><p>客户端方法（调用静态工厂方法）中，配合配置文件，即可不改代码实现创建对象</p></li>
+<li><p>将对象的创建和使用分离：类A和B之间关系，不能同时有A创建B和A使用B（单一职责原则）</p></li>
+<li><p>简单工厂模式的简化：可以把工厂类 和
+抽象父类合并（多提供一个静态工厂方法）</p></li>
+<li><p>模式缺点：1.不符合开闭原则（新增具体子类，需要修改静态工厂方法）；2.增加了类，增高复杂度</p></li>
+</ul></li>
+<li><p>工厂方法模式（虚拟构造器/工厂模式）：将实例化具体类对象过程
+延迟到了工厂类的子类（具体工厂）！（这样就符合了开闭）</p>
+<ul>
+<li><p><img src="F:\blog\source_posts\figs\fig16.png" /></p></li>
+<li><p>不再是静态方法！！是通过在客户端程序中 用配置文件+反射机制
+来实现的！</p></li>
+<li><p>工厂方法的重载：抽象父类中，可以定义多个重载的 创建具体子类对象
+方法</p></li>
+</ul></li>
+<li><p>抽象工厂模式（Kit）：目的是
+创建一系列相关的产品（一族产品）；工厂方法则是一次只产生一种产品</p>
+<ul>
+<li><p>例子：<img src="F:\blog\source_posts\figs\fig17.png" /></p></li>
+<li><p>和工厂模式差不多，就是有多个不同的（非重载的）生产方法</p></li>
+<li><p>增加新的产品族：很方便，符合开闭原则；但若增加新的产品等级结构（新生产方法），则需要改源码！</p></li>
+<li><p>每个具体的工厂，一般只有一个（单例）</p></li>
+</ul></li>
+<li><p>建造者模式：创建复杂的对象（由多个部件 按顺序
+组合而成），将一个复杂的对象的 构建过程 和它的表示
+相分离（可以复用）</p>
+<ul>
+<li><p>抽象Builder父类：有一个protected的product成员，以及若干构建组件的
+抽象方法；</p></li>
+<li><p>具体Builder子类：实现各个构建组件的方法，直接作用在product上</p></li>
+<li><p>Director类：有一个Builder指针，指向想要创建的对象类型对应的具体Builder；construct方法会<strong>按照一定顺序</strong>调用Builder的各组件构建方法（按什么顺序，通过修改Director类的construct代码）</p></li>
+<li><p>拓展：Director和抽象Builder合并：抽象Builder中提供一个静态接口Construct（接收一个具体Builder引用）；或者作为非静态接口，具体Builder实例直接调用Construct接口</p></li>
+<li><p>钩子方法：<img src="F:\blog\source_posts\figs\fig18.png" /></p>
+<p>然后在Construct中判断，在具体Builder中重写钩子方法。可是为什么不直接在具体Builder中，把不需要的接口实现为空呢？</p></li>
+</ul></li>
+<li><p>原型模式：通过复制一个原型对象，得到多个与原型模式相同的对象；创建新对象的工厂，就是原型类本身；当然，每个复制对象都是独立的</p>
+<ul>
+<li><p>浅克隆与深克隆：浅：值复制（引用/指针类型成员变量
+只是地址克隆）；深：引用/指针类型成员变量也复制了一份</p></li>
+<li><p><img src="F:\blog\source_posts\figs\fig19.png" /></p>
+<p>（client中已有了具体对象，想要克隆只需执行对应的clone方法）</p></li>
+<li><p>自己手动new一个新对象，并完成赋值，可实现浅、深克隆</p></li>
+<li><p>Java中实现浅克隆：可通过 具体原型类
+（<strong>同时？</strong>）继承Java的cloneable接口（和抽象原型？），在clone方法中调用super.clone（）即可实现浅克隆</p></li>
+<li><p>Java中实现深克隆：具体原型类、其中的成员对象类，都实现Serializable接口，然后具体调用方法比较复杂。。。</p></li>
+<li><p>拓展（原型管理器）：可以维护一个hash
+table，键值——原型对象；可以通过传入键值，获得对应原型对象的克隆</p></li>
+<li><p>缺点：违背开闭原则（一个类如果改造，需要同时改clone？（比如深克隆））</p></li>
+</ul></li>
+<li><p>单例模式：</p>
+<ul>
+<li>确保一个类只有一个实例，并提供了一个全局访问点（用户可访问）</li>
+<li>必须自行创建该实例</li>
+<li>类：static
+类引用/指针：instance，指向自身；+一些机制确保仅一个实例；+一个public的接口getInstance，返回instance
+<ul>
+<li>要点：1.私有构造函数？确保只有一个实例！</li>
+<li>2.静态私有实例定义？只能通过提供的接口访问到！？</li>
+<li>3.静态公有工厂方法，返回唯一实例</li>
+</ul></li>
+<li>应用场景1：处理并发问题，避免不一致性！</li>
+<li>实现方式：
+<ul>
+<li>懒汉式单例（在访问时创建单例，不访问就不创建）：多线程同时访问，可能会创建多个实例！
+<ul>
+<li>因此要加上锁；简单上锁，对效率影响太大，因此要双重判断（先看单例是否存在，不存在则上锁，再次判断是否存在！）</li>
+</ul></li>
+<li>饿汉式，直接创建</li>
+<li>Java中最好的方式：静态内部类：在单例类中定义一个静态私有类HolderClass，其有一个静态私有的单例类实例，（同时结合了懒汉和饿汉的有点）原理不知道！</li>
+<li>拓展：允许可变数目的实例（多例类）
+<ul>
+<li>Monostate：也保证获取对象单一性，且可创建多个实例，但表现同一个对象一样
+<ul>
+<li>即使全部销毁，也不会造成信息丢失！</li>
+<li>就是把对象的所有变量设成静态的</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>结构型模式（Structural Pattern）：将现有类/对象组织在一起</p>
+<ul>
+<li><p>适配器模式（Adapter
+Pattern）：将不兼容的类结构（接口）转换为用户需要的类结构（接口），不兼容类在一起工作</p>
+<ul>
+<li><p>需要转换的类Adaptee：（类适配器）定义Adapter，继承该类，同时实现
+给用户端的抽象接口，调用Adaptee的方法；这样一来，既是一个Adaptee类，又与原类结构/接口兼容！</p></li>
+<li><p>（对象适配器）：用户端接口
+是一个类（不是抽象接口），则Adapter继承用户类，并引用Adaptee（因为Java不支持多继承）</p></li>
+<li><p>拓展：缺省适配器模式：可能不需要实现抽象接口的所有方法</p>
+<ul>
+<li>在抽象接口 和 具体适配器之间，增加一个抽象类
+实现了所有方法（缺省实现，一般就是空方法）；具体适配器继承抽象缺省类，只需要重新实现需要的方法即可</li>
+</ul></li>
+<li><p>拓展：双向适配器：同时实现了两边的 客户端接口</p>
+<ul>
+<li><img src="F:\blog\source_posts\figs\fig27.png" /></li>
+</ul></li>
+</ul></li>
+<li><p>桥接模式：（毛笔和蜡笔，颜色和型号是否耦合，决定了拓展的难易）</p>
+<ul>
+<li>将抽象部分
+与它的实现部分解耦，使二者都可独立变化；将类之间静态继承关系，转为类之间的动态组合的关系</li>
+<li>四部分：1.Abstraction抽象类，2.扩充抽象类（实现1），3.Implementor实现类接口，4.具体实现类（实现3）
+<ol type="1">
+<li>抽象类：有实现类接口的引用，并对外提供接口方法</li>
+<li>扩充抽象类：具体实现接口方法（会调用Implementor的方法）</li>
+<li>实现类接口：抽象出具体实现中可能变化的维度</li>
+<li>具体实现类：</li>
+</ol></li>
+<li>拓展：可以和适配器联用（具体实现类作为Adapter来复用一些已有的实现，来适配
+实现类接口）</li>
+<li>拓展：两个以上变化维度，怎么用桥接模式？</li>
+</ul></li>
+<li><p>组合模式（Composite）：处理树形结构，如文件系统</p>
+<ul>
+<li><p>两类元素：容器（文件夹），叶子（文件）；如何一致的（对用户透明的）处理不同元素？</p></li>
+<li><p>定义抽象父类：抽象方法包括容器管理方法、叶子操作方法；容器、叶子均继承抽象父类；</p></li>
+<li><p>容器类：有一个ArrayList，包括所有包含的子类（容器/叶子）；操作方法，递归调用所有子类的操作方法</p></li>
+<li><p>叶子类：实现操作方法；调用容器管理方法，需要报错</p></li>
+</ul>
+<ol type="1">
+<li>以上 为透明组合模式（但不安全！）</li>
+<li>安全组合模式：抽象构建 并不声明
+管理成员方法，而在容器类中声明；但对客户端并不透明了！</li>
+</ol></li>
+<li><p>装饰模式：不改变对象本身功能基础上，增加额外的新行为；<strong>不通过</strong>继承技术，而是通过对象关联关系，来动态增加功能</p>
+<ul>
+<li>将要添加的额外行为，与原有功能 解耦，以实现不同原有功能
+和额外行为的组合</li>
+</ul>
+<ol type="1">
+<li>抽象Component</li>
+<li>具体Component：实现原有功能</li>
+<li>抽象Decorator：也继承抽象Component，且有一个抽象C的引用（也实现了抽象C，一般就直接调引用C的方法）！！！引用也可以引用一个其他的Decorator，这样就可以把额外行为叠加！</li>
+<li>具体Decorator：继承抽象D，添加一些额外方法，重写抽象D的实现，加上自己的拓展功能</li>
+</ol>
+<ul>
+<li>透明vs半透明装饰模式：
+<ul>
+<li>透明：所有构建、装饰类，都得通过抽象构建（Component）来声明；但这样用户无法单独调用具体装饰类
+的新增方法</li>
+<li>半透明：构建通过抽象C声明，装饰类必须指定<strong>具体装饰类</strong>；但
+不能对同一对象多次装饰！</li>
+</ul></li>
+</ul></li>
+<li><p>外观模式（门面模式）：一个客户类需要和多个业务类交互；则在客户类
+和
+业务类之间，引入一个外观类，客户类只需与外观类交互即可，为多个业务类的调用提供了统一的接口</p>
+<ul>
+<li>包括两个角色：
+<ul>
+<li>外观类：包含不同子系统引用各一个，提供一个对外（客户）接口
+来完成依次与各子系统的交互</li>
+<li>子系统类：已有的实现好的类和方法</li>
+</ul></li>
+<li>外观类可以增加一层抽象，以支持子系统类变化；</li>
+<li>也可以和单例模式联用</li>
+</ul></li>
+<li><p>享元模式（Flyweight pattern
+轻量级模式）：（运行时可能会创建多个类似/相同的对象，想想unity里的prefab）通过享元模式
+来避免重复工作；</p>
+<ul>
+<li>直观理解：显示英文单词，只需记录26个字母的显示，+每个单词的排列组合（/颜色/字体等等）即可~</li>
+<li>两部分：
+<ul>
+<li>内部状态：享元对象内部，不会改变的，只需记录一份</li>
+<li>外部状态：随环境改变而改变，与内部状态相独立</li>
+</ul></li>
+<li><img src="F:\blog\source\_posts\figs\fig75.png" style="zoom:80%;" />
+<ul>
+<li>ConcreteFlyweight就是各个具体享元子类，比如各字母的显示？</li>
+<li>UnsharedConcreteFlyweight：就是一些确定的特例？allState包括了内部和外部状态，全部固定；也可以接收外部状态
+<ul>
+<li>单纯享元模式：无Unshared</li>
+</ul></li>
+<li>operation方法，intri+extri状态 得到一个完整的对象</li>
+<li>Factory就是
+通过key，返回享元对象；一般使用：单例+简单工厂模式；</li>
+</ul></li>
+<li>复合享元模式：和组合模式结合？CompositeConcreteFlyweight：包含了若干个单纯享元对象，想为它们设置相同的外部状态？</li>
+</ul></li>
+<li><p>代理模式：1.只有在要使用的时候，才需要将对象本身加载到内存中（可能很大，如图像/视频），而其他时候，只需要提供一个<strong>代理</strong>（通过这个代理/占位符
+来访问目标对象）；2.访问/使用远程主机对象功能，屏蔽掉访问的细节</p>
+<ul>
+<li><p><img src="F:\blog\source\_posts\figs\fig76.png" style="zoom:80%;" /></p></li>
+<li><p>注意：realSubject是直接引用具体对象（而非通过抽象父类？）；与decorator对比，decorator则是有一个抽象父类引用</p></li>
+<li><p>几种代理模式：1.远程代理；2.虚拟代理（原对象大，用的时候才加载）；3.保护代理（主要通过pre/postRequest）；4.缓冲代理（用来多用户共享结果）；5.智能引用代理（pre/postRequest）</p></li>
+<li><p>Java的动态代理：运行时刻，根据实际需要
+动态创建代理类（不重要哦~）</p></li>
+</ul></li>
+</ul></li>
+<li><p>行为型模式：系统在运行时，对象与对象之间的通信与协作；不仅关注类和对象本身，还关注它们之间的相互作用和职责划分</p></li>
+</ul>
+<p><strong>类行为型模式</strong>：使用继承关系，主要通过多态方式分配父类子类职责；</p>
+<p><strong>对象行为型模式</strong>：使用对象的关联关系来分配行为</p>
+<ul>
+<li><ul>
+<li><p>职责链模式：避免将 请求发送者 与 接收者耦合在一起 =&gt;
+接收者连接成一条链，沿着链传递请求（可直线/树形/环形），直到一个对象能处理它为止：<strong>对象行为型模式</strong></p>
+<ul>
+<li>ConcreteHandler中的handleRequest方法：如果条件满足
+则处理请求，否则调用successor的handleRequest方法<img src="F:\blog\source\_posts\figs\fig86.png" style="zoom:67%;" /></li>
+<li>纯/不纯的职责链模式：
+<ul>
+<li>纯：处理者要么完全承担，要么完全不处理，交给下家；一个请求必须被某一处理者处理接收；</li>
+<li>不纯：与上相反；且可以最终不被任何处理者对象接受</li>
+</ul></li>
+</ul></li>
+<li><p>命令模式：三种不同对象：开关（请求发送者）；电器（请求处理者）；电线（连接不同发送者与处理者）。前两者不直接耦合
+<strong>对象行为型模式</strong></p>
+<ul>
+<li><p>具体的：在 发送者 和 处理者/接收者 之间引入新的
+<strong>命令对象</strong>（将请求 封装为一个对象）</p>
+<ul>
+<li>一个请求 对应一个命令，将发出命令 与 执行命令 完全解耦；</li>
+</ul></li>
+<li><p>四种角色：Command，ConcreteCommand，Invoker（调用者），Receiver（接收者）</p></li>
+<li><p>Invoker中的不同具体命令<strong>对象</strong>
+对应了不同的功能（以及接收者）</p></li>
+<li><p>扩展1：CommandQueue类，（一个请求
+有多个接收者相应=&gt;对应多个具体命令对象）</p>
+<ul>
+<li>批处理：依次调用 CommandQueue中具体命令对象的execute</li>
+</ul></li>
+<li><p>扩展2：记录请求日志</p>
+<ul>
+<li>将命令对象 序列化（就是哈希？）， 写入日志文件</li>
+</ul></li>
+<li><p>扩展3：支持可撤销操作</p>
+<ul>
+<li>根据 请求日志</li>
+</ul></li>
+<li><p>扩展4：+组合模式，实现宏命令</p>
+<ul>
+<li>就是之前的CommandQueue的拓展版本？</li>
+</ul></li>
+</ul></li>
+<li><p>迭代器模式：1.提供一种顺序访问聚合对象中各个元素的方法，且不暴露对象的内部表示；2.单一职责原则：聚合类只需要解决
+存储对象的职责，而无需关心遍历！ <strong>对象行为型模式</strong></p>
+<ul>
+<li><p>聚合类+迭代器类</p></li>
+<li><p><img src="F:\blog\source\_posts\figs\fig77.png" style="zoom:80%;" /></p></li>
+<li><p>聚集类的宽接口 vs
+窄接口：聚集类是否<strong>对外</strong>（客户）提供了可以修改聚集元素的方法</p>
+<ul>
+<li>宽接口=&gt;白箱聚集：具体迭代子可以仅仅只是维护一个游标，从外部访问（即使用客户端层面的接口），相当于只是做了一层封装，门面模式？；意义就是
+客户端代码 与访问/迭代 解耦=&gt;外禀/游标迭代子</li>
+<li>（对客户端）窄接口=&gt;黑箱聚集：这时一般采用 让 具体迭代类 是
+具体聚集类 的内部类，可以自由访问聚集元素=&gt;内禀迭代子</li>
+</ul></li>
+</ul></li>
+<li><p>中介者模式：避免/减少 对象与对象之间的 多对多关系，过度耦合 =&gt;
+引入中介者，所有对象都只和中介者
+来与其他对象作用（有点像门面模式？那它们的区别在哪呢？<strong>结构型 和
+行为型模式</strong> 的区别）</p>
+<ul>
+<li><p><img src="F:\blog\source\_posts\figs\fig78.png" style="zoom:80%;" /></p></li>
+<li><p>Mediator中介者的职责：1.中转作用（结构型）：具体同事
+引用其他同事时，通过中介者来<strong>间接引用</strong>（这就是结构型的含义？）；2.协调作用（行为型）：同事可以一致的与中介者交互？中介者根据自己内部逻辑来处理？</p></li>
+</ul></li>
+<li><p>备忘录模式：撤回操作（命令模式也可）<strong>对象行为模式</strong></p>
+<ul>
+<li><p>在不破坏对象封装的前提下，捕获一个对象的内部状态，并保存在对象外；</p></li>
+<li><p><img src="F:\blog\source\_posts\figs\fig79.png" style="zoom:80%;" /></p></li>
+<li><p>Originator源发器：需要保存状态的类，想要保存时，会创建一个memento；Memento：备忘录类？；Caretaker：可以维护一个Memento的list，实现多步撤回</p></li>
+<li><p>有可能memento作为originator的内部成员类（因为每个memento和originator一一对应）</p></li>
+</ul></li>
+<li><p><strong>观察者</strong>模式（很多别名之一：model/view模式
+MVC？）：<strong>对象行为型模式</strong></p>
+<ul>
+<li>观察目标Observer+观察者Subject（一对多的依赖关系），观察目标对象的变化
+可以连带改变 （通知）多个观察者对象</li>
+<li>（其中subject引用线并不典型/关键）<img src="F:\blog\source\_posts\figs\fig80.png" style="zoom:80%;" /></li>
+<li>Java事件处理机制：也是用观察者模式：事件源（如按钮/鼠标点击）充当观察目标角色；事件监听器为
+抽象观察者；事件处理对象 为具体观察者</li>
+<li>MVC（Model-View-Controller）架构：模型（观察目标），视图（观察者），控制器（两者之间的中介者）
+<ul>
+<li>模型发生变化：通过controller，通知视图 update</li>
+<li><img src="F:\blog\source\_posts\figs\fig81.png" style="zoom: 67%;" /></li>
+</ul></li>
+<li>（只要具体observer不直接引用具体subject，或者新的subject不需要被引用：则）符合开闭原则~</li>
+<li>不知道具体发生了什么变化，也不知道具体哪些对象因此发生了改变：才适用！</li>
+</ul></li>
+<li><p>状态模式：某个类的某些对象可能具有多种<strong>状态</strong>；状态间（在某情况下）可相互转换；对象的不同状态具有<strong>不同行为</strong>。<strong>对象行为型模式</strong></p>
+<ol type="1">
+<li>传统方法：如果只用if-else来实现（一个大函数，里面判断当前状态，然后执行对应操作）=&gt;
+可扩展性差，需要修改class的源代码，以及可能需要修改客户端代码</li>
+</ol>
+<ul>
+<li><p>OO方法：将一个对象的状态 从该对象中分离了出来，封装到专门的
+<strong>状态类</strong>；客户端
+无需关心对象的状态，可以一致的使用</p></li>
+<li><p><img src="F:\blog\source\_posts\figs\fig82.png" style="zoom:80%;" /></p></li>
+<li><p>状态之间的转换？：1.可以放在Context类中，由环境类负责状态的转换：但违背了开闭？2.状态转换
+直接封装在了具体状态类中，提供一个changeState接口，则需要在状态类中
+维护一个Context类的引用，获得value，以及setState：也违背了开闭？</p></li>
+</ul></li>
+<li><p>策略/政策模式：定义独立的类
+来封装不同具体算法（STL：algorithm？）-&gt;
+策略类。<strong>对象行为型模式</strong></p>
+<ul>
+<li><p>有点像状态模式？<img src="F:\blog\source\_posts\figs\fig83.png" style="zoom:80%;" /></p></li>
+<li><p>完美支持开闭原则；算法的复用！</p></li>
+</ul></li>
+<li><p>模板方法模式：基于继承，抽象父类中定义操作的算法框架（模板方法），一些步骤的具体实现
+延迟到具体子类中 =&gt; <strong>类行为型模式</strong></p>
+<ul>
+<li><p><img src="F:\blog\source\_posts\figs\fig84.png" style="zoom: 50%;" /></p></li>
+<li><p>具体子类 只覆盖基本方法，但不改变算法中步骤的执行次序！</p></li>
+<li><p>基本方法（抽象父类
+模板方法中用到的方法）：抽象方法、具体方法、钩子方法</p>
+<ul>
+<li>钩子方法：在模板方法中，通过钩子方法 来判断某一步骤是否执行！</li>
+</ul></li>
+<li><p><strong>反向控制结构</strong>：子类覆盖父类的钩子方法，来决定某一步骤是否需要执行！</p></li>
+<li><p>符合开闭原则（增加具体子类），单一职责原则</p></li>
+<li><p>如何结合桥接模式？（避免因：父类中可变方法多，子类个数增加）</p></li>
+</ul></li>
+<li><p>访问者模式visitor：对象结构中
+存储了多种不同类型的对象信息；同一对象结构中元素的操作方式不唯一，提供多种操作方式，并且可能要增加：<strong>对象行为型模式</strong></p>
+<ul>
+<li><p><img src="F:\blog\source\_posts\figs\fig85.png" style="zoom:80%;" /></p></li>
+<li><p>动态双重分派机制：objectStructure中
+会调用Element.accept(visitor)：其中又调用了visitor.visit(elem) =&gt;
+先根据element的类型，动态决定调用哪个accept方法；然后根据visitor类型（和element类型？=&gt;element类型
+静态决定了调用哪个接口（通过重载）），动态决定调用哪个visit</p></li>
+<li><p>增加新的访问者：则无需修改源码，符合开闭；新具体元素，则违背开闭。元素的不同行为
+分别集中在不同访问者中，职责清晰；但破坏了封装性</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>类图的含义！</strong></p>
+<p>设计原则</p>
+<p>什么是设计模式？</p>
+<p>三种设计模式的定义？</p>
+<p>行为型设计模式：怎么区分类行为/对象行为型模式？</p>
+<p>=&gt; 简单工厂类 好像也有对象/类模式？</p>
+<p>需要把所有设计模式都背下来么。。？？</p>
+<p>各个设计模式 都是符合开闭的么？</p>
 
       
     </div>
@@ -557,7 +2868,7 @@ a_d = c_d+\alpha+\epsilon+\textcolor{red}{heheda}
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 00:25:32" itemprop="dateModified" datetime="2022-02-25T00:25:32+08:00">2022-02-25</time>
+                <time title="修改时间：2022-06-14 04:38:01" itemprop="dateModified" datetime="2022-06-14T04:38:01+08:00">2022-06-14</time>
               </span>
 
           
@@ -611,7 +2922,1466 @@ a_d = c_d+\alpha+\epsilon+\textcolor{red}{heheda}
 video delivered by computers</li>
 <li>多媒体技术：可以大大提高人机交互效率（各种人机交互接口）</li>
 </ul></li>
+<li><p>多媒体技术的研究内容</p>
+<ul>
+<li>各种媒体输入 <span class="math inline">\(\to\)</span>
+媒体的表示（编码） <span class="math inline">\(\to\)</span>
+媒体的编辑（对媒体信息的一些修改？） <span
+class="math inline">\(\to\)</span>
+媒体的集成（多种媒体的同步、集成等等） <span
+class="math inline">\(\to\)</span> 媒体传输（一般是网络） <span
+class="math inline">\(\to\)</span> 媒体消费（*要把表示媒体 转换为
+感觉媒体！）</li>
 </ul>
+<ol type="1">
+<li>媒体的输入
+<ul>
+<li>自然媒体：通过捕获 &amp; 数字化（自然界中真实存在）
+<ul>
+<li>将物理量、化学量、生物量等转换成<strong>电信号</strong>（如麦克风把声波
+从 机械信号 转换成 电信号）</li>
+<li>然后通过采样、量化、编码等处理，将<strong>模拟电信号</strong> 转成
+特定格式的数据文件</li>
+</ul></li>
+<li>合成媒体：通过建模（通过专门的算法、语言、脚本来描述）
+<ul>
+<li>创建：先建模，得到
+采用特定符号（语言）或某种算法表示的媒体（如编码文本、MIDI音乐、计算机动画、Graphics。。。）</li>
+<li><strong>渲染</strong>：最后展示的时候，要转换为
+感觉媒体（离散的样本点）
+<ul>
+<li>渲染 就是将合成媒体，转换为离散样本</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li>媒体的表示
+<ul>
+<li>文本编码</li>
+<li>声音编码</li>
+<li>图像编码
+<ul>
+<li>多分辨：一个图像可以支持多分辨率，即根据当前场景的复杂程度，选择不同分辨率</li>
+</ul></li>
+<li>视频编码
+<ul>
+<li>（以上三个都：）压缩问题 和 传输问题</li>
+<li>可伸缩性：一套码流
+支持多种分辨率（标清：只解析标清码流；高清：同时也解析高清码流。。。）</li>
+</ul></li>
+<li>编码标准：
+<ul>
+<li>音频：MPEG</li>
+<li>图像：bmp，gif，<strong>JPEG</strong></li>
+<li>视频：H系列（要求编码解码实时性），MPEG系列（不要求编码，但要求解码实时性）</li>
+</ul></li>
+</ul></li>
+<li>媒体的编辑（editing）
+<ul>
+<li>内容增删改；变换、效果处理；布局安排；类型转换（自然形式（媒体）的取样表示
+<span class="math inline">\(\to\)</span> 符号化 <span
+class="math inline">\(\to\)</span> <strong>符号表示</strong>）</li>
+</ul></li>
+<li>媒体的传输
+<ul>
+<li>网络传输</li>
+<li>载体发布：CD、DVD、HD DVD、蓝光Disk</li>
+</ul></li>
+<li>媒体的消费
+<ul>
+<li>文本：浏览、阅读</li>
+<li>图像：渲染</li>
+<li>等等</li>
+</ul></li>
+</ol></li>
+<li><p>多媒体技术的发展</p>
+<ul>
+<li>网络化</li>
+</ul></li>
+</ul>
+<h2 id="文本编码">文本编码</h2>
+<ul>
+<li><p>ASCII码：7位二进制编码；96个可打印字符+32个控制字符</p>
+<ul>
+<li>一般ASCII码为：ISO-646-US标准；也有其他本地化版本（ISO-646-）</li>
+</ul></li>
+<li><p>扩充ASCII码（ISO-8859）：8位二进制编码（低位兼容ASCII（0+7位）；高位从0xA1开始定义，分为若干不同的字符集）</p></li>
+<li><p>汉字编码：GB2312-1980：（简体中文字符集，+ASCII码等西文字符）</p>
+<ul>
+<li>区位码（8bit）+基类码（8bit）（94个区+94个位）</li>
+<li>存储时，为了和ASCII码区分，<strong>将区位码 和
+基类码都加上A0</strong>（单字节的最高位置为1）</li>
+</ul></li>
+<li><p>GB12345-1990：</p>
+<ul>
+<li>繁体汉字编码（专门用来编码繁体的）</li>
+</ul></li>
+<li><p>CJK（中日韩）</p></li>
+<li><p>GBK（GB2312 + CJK + ...）</p>
+<ul>
+<li>双字节编码，第一字节最高位必为1，第2字节最高位不一定！（仍能和单字节的ASCII码兼容）</li>
+<li>与GB2312-80向下兼容</li>
+</ul></li>
+<li><p>UCS：将所有字符统一在一个字符集中（留了00 0000 0000 到10 ffff
+ffff的编码空间）</p>
+<ul>
+<li>UCS的变形显示形式之一UTF-8（可变长形式编码）
+<ul>
+<li><img src="F:\blog\source_posts\figs\fig3.png" title="fig:"
+alt="img" /></li>
+</ul></li>
+<li>UTF-16：两个字节一起来读入（允许插入一些4字节的UCS-4字符）：
+<ul>
+<li>读入两个字节：如果在D800到DFFF之间，则表示是四个字节的字符，否则两个字节</li>
+<li>UTF-16能表示UCS中的全部字符</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="数字图像基础">数字图像基础</h2>
+<ul>
+<li><p>颜色模型</p>
+<ul>
+<li>颜色三要素：
+<ul>
+<li>色调：颜色的外观，决定于光的波长</li>
+<li>饱和度：纯度/彩度（彩色中含白光的量）</li>
+<li>亮度：强度，能量</li>
+</ul></li>
+<li>颜色模型：
+<ul>
+<li>加色模型RGB；减色模型CMY(K黑)</li>
+</ul></li>
+<li>抖动：
+<ul>
+<li>用空间换效果</li>
+</ul></li>
+<li>八叉树颜色量化算法！！！（<strong>好好看看</strong>）</li>
+</ul></li>
+<li><p>图像与图形</p>
+<ul>
+<li>图像（Image）
+<ul>
+<li>取样图（点位图）：图像的空间离散化</li>
+</ul></li>
+<li>图形（graphics）
+<ul>
+<li>矢量图：通过计算机指令表示</li>
+</ul></li>
+</ul></li>
+<li><p>数字取样图像的表示</p>
+<ul>
+<li>分辨率（屏幕、图像 分辨率）</li>
+<li>像素深度（存储每个像素所用的位数）</li>
+<li>调色板（颜色查找表，只需存储索引）</li>
+</ul></li>
+<li><p>常用图像文件的格式</p>
+<ul>
+<li>bmp：windows通用的图像文件格式
+<ul>
+<li>包含：文件头，信息头，调色板，位图数据</li>
+<li>位图数据：扫描行是由底向上存储的，这就是说，阵列中的第一个字节表示位图左下角的像素，而最后一个字节表示位图右上角的像素。
+一行的字节数必须为4的倍数。</li>
+</ul></li>
+<li>gif：颜色少（不超过256），特别小；图像中可加入文本</li>
+<li>png</li>
+</ul></li>
+<li><p>合成图像（与数字取样图像相对）的创建与表示</p>
+<ul>
+<li><p>合成图像：使用算法或几何要素以及材料性质，来描述形体；显示时，会根据观察者位置以及光线来生成景物</p></li>
+<li><p>建模方法：</p>
+<ul>
+<li><p>几何造型技术：线框模型、表面模型、实体模型</p>
+<ul>
+<li><p>线框模型：点和棱边，没有面，不能表示含曲面物体</p></li>
+<li><p>表面模型：面的集合表示物体，环界定面的边界；但不能计算体积、表面积等</p></li>
+<li><p>Bezier样条曲线函数：有<span class="math inline">\(p_0,
+p_1,\cdots, p_n\)</span>n+1个点，以此模拟出一条曲线：（除<span
+class="math inline">\(p_0,p_n\)</span>外，其他点都仅提供方向信息，一般不经过）</p>
+<p><img src="F:\blog\source_posts\figs\equation1.png" /></p></li>
+<li><p>实体模型</p></li>
+</ul></li>
+<li><p>过程造型</p>
+<ul>
+<li>分形几何：初始图形的每一点，不断重复使用给定的变换函数（固定的或随机的）
+<ul>
+<li>如：三角形（初始元）+每边突出一个角（生成元generator）</li>
+<li>统计自相似分形几何构造：重在随机性（如模拟叶脉）</li>
+</ul></li>
+<li>L系统</li>
+<li>粒子系统</li>
+<li>基于物理的建模</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>数字图像的展现</p>
+<p>展现：将取样/合成图像从内部表示转换为在图像输出设备上可见的视图</p>
+<p>​ 包括：reconstruction：取样图像 展现到输出设备；rendering：合成图像
+展现到输出设备（比较复杂，计算量很大）</p>
+<ul>
+<li>CRT显示器：阴极射线（控制信号
+控制电压大小），同时只有一束电流！（不断一行一行发射）</li>
+<li>液晶显示器：通过改变光的振动方向，来控制显示强度（有一个配光板，只有某一方向震动的光能通过）</li>
+<li>显示控制卡（or图形卡、视频卡、图形加速卡、视频适配卡，显卡）
+<ul>
+<li>包括：显示存储器（VRAM），GPU，绘图与显示控制电路</li>
+<li>VRAM：存储正在显示的图像数据（双缓存：还存储下一帧要显示的内容）；以及作为GPU的内存！</li>
+<li>GPU：以及将RGB数字信号转换为模拟信号</li>
+<li>绘图与显示控制电路：对CRT或液晶显示器进行控制，与CPU一起完成图像生成与更新。</li>
+</ul></li>
+<li>GPU（graphic processing unit）：
+<ul>
+<li>主要为了大量的、并行的数据计算：<strong>渲染！</strong>（rgb<span
+class="math inline">\(\to\)</span>模拟信号）</li>
+<li>NVIDIA的GPU：CUDA核心（通用GPU核心！可以像在CPU上编程一样在GPU上编程，也可以图像渲染）；Tensor核心：专为张量和矩阵计算（深度学习）</li>
+</ul></li>
+<li>图像绘制过程：
+<ul>
+<li>光线跟踪方法（ray tracing）
+<ul>
+<li>正向效果：光源处发出无数光线，在到达表面上反射、折射，直到部分光到达投影平面（/反射、折射一定次数）</li>
+<li>逆向效果：以像素为起点</li>
+<li>添加阴影（通过光源+建模和算法计算得到）、表面细节、纹理、材质</li>
+</ul></li>
+<li>方式：点绘制、面绘制、体绘制</li>
+<li>rendering pipeline：（OpenGL）
+<ul>
+<li>需要定义：光源，观察点（视点），成像面，距离，大小。。。</li>
+<li>景物的模型<span
+class="math inline">\(\to\)</span>取景变换（坐标变换）<span
+class="math inline">\(\to\)</span>视域裁剪（快速判断哪些物体在视域内）<span
+class="math inline">\(\to\)</span>三角化（把所有景物转化为三角网格mesh）<span
+class="math inline">\(\to\)</span>光栅化<span
+class="math inline">\(\star\)</span>（关键步骤，所有可视对象转化为像素！一般通过光线追踪实现）<span
+class="math inline">\(\to\)</span>隐藏面消除（保留最靠前的对象像素，还要考虑透明效果、折射反射效果）<span
+class="math inline">\(\to\)</span>明暗处理<span
+class="math inline">\(\to\)</span>阴影生成<span
+class="math inline">\(\to\)</span>纹理映射<span
+class="math inline">\(\to\)</span>最终景物的像 （此即rendering
+pipeline全过程）</li>
+</ul></li>
+<li>纹理：用一些算法，将真是的照片蒙在mesh上，不影响几何形状；几何纹理：对几何形状也会产生一定扰动（如一个高尔夫球）</li>
+</ul></li>
+<li>合成图像的展现</li>
+</ul></li>
+</ul>
+<h2 id="数字视频">数字视频</h2>
+<ul>
+<li><p>模拟视频：随时间变化其内容的一组图像（n帧/秒），又叫运动图像</p>
+<ul>
+<li>彩色电视图像摄取、传输和重现的过程：拍摄和播放都采用
+<strong>光栅扫描</strong> 方法（依次扫描成像平面每一像素）</li>
+<li>彩电信号传输：用Y（亮度）、C1、C2（色差信号，与彩电制式相关，比如我国用PAL制式、美国用NTSC制式）</li>
+<li>显示：光栅扫描（<strong>逐行扫描</strong>；也有
+隔行扫描interlaced（奇数场+偶数场$$1帧图像），<strong>隔行扫描</strong>
+转化到逐行扫描 可能会造成模糊）</li>
+<li>视频信号：
+<ul>
+<li>空间特性：需要有时间回扫（行回扫、列回扫）；一般宽高比为4：3或16：9</li>
+<li>时间特性：动作连贯要求 帧频&gt;15f/s；无闪烁要求&gt;50f/s
+<ul>
+<li>PAL：每秒50场（隔行扫描）；NTSC：每秒60场。计算最（亮度信号）高频率时：全屏光点总数<span
+class="math inline">\(\times\)</span>每秒帧数（场数除以二）<strong>/2</strong>（因为两个像素构成一个周期）</li>
+<li>载波频率：PAL：8MHz；NTSC：6MHz</li>
+</ul></li>
+<li>电视信号的彩色空间：Y（亮度信号）,C1,C2（色差信号），根据RGB转换
+<ul>
+<li>为啥要用？：因为彩色电视信号 与 黑白电视兼容；利于压缩信号带宽</li>
+</ul></li>
+<li>视频信号种类：
+<ul>
+<li>复合电视信号：将 亮度、色度信号 以及同步信号
+复合成单一信号。适合远距离传输（只需要单信道）</li>
+</ul></li>
+<li>接口种类：梯形的 HDMI高清信号；宽体型（15根信道）VGA</li>
+</ul></li>
+</ul></li>
+<li><p>数字视频：易于编辑、修改、存储、传输，图像质量更好</p>
+<ul>
+<li><p>视频信号数字化：模拟视频信号输入：Y、U、V（模拟视频信号是连续的，时间和幅值上都是）</p>
+<ul>
+<li><p>1.滤波（过滤掉噪声）；2.取样（时间轴上（和x轴y轴？）离散），亮度信号采样频率13.5MHz；3.量化（值还是连续的，用8-10bit表示一个信号）；4.PCM编码（1.协议：如何解释这些比特流；2.压缩：数据量过大）=&gt;数字Y、U、V信号</p></li>
+<li><p>取样：Y分量：标清水平分辨率720（一行
+有720个像素可见）；垂直分辨率：PAL：576行可见；NTSC：480行可见（因为JPEG编码，需要按16×16的块）</p>
+<p>U、V/I、Q：人眼对其不如Y信号敏感，因此不用每个采样点都有</p>
+<p><img src="F:\blog\source_posts\figs\fig20.png" /></p></li>
+</ul></li>
+<li><p>数字视频的计时：00;02;51;20（小时；分钟；秒；帧）</p>
+<ul>
+<li>失落帧编码：00;02;51;20（分号），用于处理NTSC的实际频率为29.97fps：每一分钟的00秒，没有00和01帧；每十分钟的00秒，有00和01帧（类似闰年）</li>
+<li>非失落帧编码：00:02:51:20（冒号）</li>
+</ul></li>
+</ul></li>
+<li><p>计算机合成视频</p>
+<ul>
+<li>计算机动画：采用计算机合成，可供<strong>实时</strong>演播的一系列画面
+的技术（是合成数字视频）</li>
+<li>运动控制
+<ul>
+<li>类别：刚体运动：一些关键部件组成，不变形，仅相互位置关系变化；变形体运动：不仅相互位置变化，而且也变形</li>
+<li>运动控制的方法：
+<ul>
+<li>关键帧人工给出几个关键帧的位置、形状、方向等等；中间帧靠计算机自动合成</li>
+<li>计算法：（抽象成物理、数学模型）动力学（受力、加速度。。。）、随机方法（火焰、云彩、瀑布等，需要添加一些随机方法）、行为规则</li>
+<li>运动捕获：现实的运动图像捕获（记录许多样本点的运动）（如人脸的表情）</li>
+<li>重用以前的动作</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="声音">声音</h2>
+<h4 id="声音的数字化">声音的数字化</h4>
+<ul>
+<li>声音：
+<ul>
+<li>物理特性：频率（音调，音高）；强度/振幅（音量）；波形（音色）</li>
+<li>次声：0-20Hz；可听声：20-20kHz；超声：20kHz-
+<ul>
+<li>可听声中，分 语音（300-3400Hz） 和 全频带声音（20-20kHz）</li>
+</ul></li>
+<li>声谱图/频谱表示：在某一帧（时间点），各个频率的音波的振幅</li>
+</ul></li>
+<li>声音信号的数字化：
+<ul>
+<li>模拟声音信号（机械波） —&gt;
+取样：（模拟的电信号，时间上离散，值上连续）声音不失真，采样频率至少要为信号最高频率的2倍（语音信号，采样频率一般就8kHz；CD则是44.1kHz（可听声最高20kHz））</li>
+<li>—&gt; 量化：在取样值上也进行离散（量化精度）</li>
+</ul></li>
+<li>数字波形声音的基本参数
+<ul>
+<li>取样频率（每秒呈现多少个样本）；量化位数（决定了还原的质量）；声道数目（单/双）；压缩编码方法（压缩倍数）；比特率/码率（每秒钟的数据量，由前四个参数计算得到：1x2x3/4）</li>
+<li>信噪比（SNR）：（评估一段信号的质量）<img
+src="F:\blog\source_posts\figs\fig31.png" />
+<ul>
+<li>单位是分贝</li>
+</ul></li>
+<li>信号量化噪声比（QSNR）：量化之后 可表示的振幅数，和舍入误差比<img
+src="F:\blog\source_posts\figs\fig32.png" /></li>
+</ul></li>
+<li>非均匀量化：量化间隔
+不等；为了适合人耳听觉（低幅值区分明显，高幅值区分不明显）
+<ul>
+<li>对原样本先做一次μ/A律压扩算法，再对得到的样本进行线性量化取样（<strong>最后输出还要转回去吗？</strong>）</li>
+</ul></li>
+</ul>
+<h4 id="合成语音">合成语音</h4>
+<ul>
+<li>语音基础知识：
+<ul>
+<li>音素：元音（浊音）；辅音（浊音或清音）
+<ul>
+<li>浊音声带振动；清音声带不振动。对于语音合成，浊音和清音合成方式不同！</li>
+</ul></li>
+</ul></li>
+<li>文语转换：
+<ul>
+<li>文本—&gt; 分析：（发音规则库）通过编码查发音（辅音
+元音），发音标注；（韵律规则库）韵律分析：根据各种，得到韵律控制参数</li>
+<li>合成语音：从发音，得到波形；然后对波形进行一定修饰
+<ul>
+<li>两种方法：参数合成；波形拼接</li>
+</ul></li>
+</ul></li>
+<li>参数合成法：把人的发声抽象为 激励信号，经过滤波器，得到一段波形
+<ul>
+<li>每个字（的语音），都通过一系列参数合成得到，包括激励信号、滤波器信号等等？</li>
+<li>音素库小，需要的bit少（只需存那些参数）；但音质差</li>
+</ul></li>
+<li>波形拼接：记录一个人的字词发音，记录下波形在波形基元库中，最后进行一定修饰
+<ul>
+<li>语音基元波形库（预先存储大量语音基元（字或词）波形，合成时按字/词读取基元波形）</li>
+<li>波形拼接+韵律修饰</li>
+</ul></li>
+</ul>
+<h4 id="合成音乐">合成音乐</h4>
+<ul>
+<li><p>基本概念：</p>
+<ul>
+<li>用乐谱描述，由不同乐器演奏</li>
+<li>音符：音调，音色，音强，持续时间</li>
+</ul></li>
+<li><p>波表合成器：类似与语音合成的波形拼接？</p>
+<ul>
+<li>存储各乐器的各音符的数字化波形于波表</li>
+<li>播放的时候修饰成需要的音强和时长</li>
+</ul></li>
+<li><p>MIDI（Musical Digital Interface）：</p>
+<ul>
+<li><p>记录乐谱，而非波形信号</p></li>
+<li><p>输入设备：根据人们的演奏，通过MIDI接口传输给音序器</p></li>
+<li><p>音序器：组织好音色、节奏、音符等等音序信息，让音源发声（MIDI文件）</p></li>
+<li><p>音源：里有合成器，有且仅有16个channel，MIDI文件中的各个音轨（track）必须要映射到其中一个channel；每一时刻，一个channel只能演奏一种音色！但可以多个乐谱（4把小提琴同channel）；总共支持128种音色</p></li>
+<li><p>优点：数据量小，易于制作和编辑修改（只需要改乐谱）</p></li>
+<li><p>缺点：表现力不行，音质与硬件相关</p></li>
+</ul></li>
+</ul>
+<h2 id="压缩算法">压缩算法</h2>
+<h4 id="无损压缩算法">无损压缩算法</h4>
+<ul>
+<li><p>基本概念</p>
+<ul>
+<li>图像数据压缩的可能性：
+<ul>
+<li>时间、空间冗余；信息熵冗余（可变长编码，给出现多的短编码（问求提到过））；等等</li>
+<li>信息熵η➗平均码长L，越大（接近1）越好<img
+src="F:\blog\source_posts\figs\fig33.png" /></li>
+</ul></li>
+<li>数据压缩的性能指标：
+<ul>
+<li>压缩比：压缩倍数，压缩效率，bits per pixel（bpp）</li>
+<li>算法复杂度</li>
+<li>重建质量：
+<ul>
+<li>客观法：均方误差；信噪比等（见ppt7：p7）</li>
+<li>主观法：虽然受评价者本身影响，但在应用方面更加准确有效</li>
+</ul></li>
+</ul></li>
+<li>压缩编码技术大概思想：
+<ul>
+<li>统计（熵）编码：统计符号出现概率，给出现概率高的符号短码字</li>
+<li>预测编码：（图像/视频/音频数据
+时间/空间冗余）已知像素（块）预测相邻/下一帧 像素（块）；
+<ul>
+<li>对差值编码，减少编码位数</li>
+</ul></li>
+<li>变换编码：对图像进行空间上的正交变换
+<ul>
+<li>比如一个正弦波，与其记录其每一时刻的波形，也许可以变换到另一维度（数学公式？），只需记录其频率，振幅</li>
+<li>傅里叶变换；还可以通过机器学习</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>行程长度编码（run length code：RLC）</p>
+<ul>
+<li>对于连续出现同一数据序列如55555000111，表示为：553031</li>
+<li>二值序列：00001110000001101111：436214（甚至不需要记录数值）</li>
+</ul></li>
+<li><p>变长度编码</p>
+<ul>
+<li><p>Shannon-Fano编码：</p>
+<ol type="1">
+<li>统计每个符号出现概率</li>
+<li>从大到小排列</li>
+<li>每个集合切分，按最接近50%切</li>
+<li>对每个集合重复3，直到其中只包括一个符号</li>
+</ol></li>
+<li><p>Huffman编码：</p>
+<ol type="1">
+<li>统计+排序</li>
+<li>最小的两个合并，并加入队列，排序</li>
+<li>重复2，构建出Huffman树</li>
+<li>为树上<strong>每条边</strong>分配一个编码，统一概率大者分配0，概率小者分配1</li>
+</ol>
+<ul>
+<li><p>编码方式可能不唯一：（编码效率都相同）但可能最长码长不同，倾向于选最长码长较短的</p>
+<ul>
+<li>方法就是：每次插入的时候，如果出现相等的概率，则新插入的排前面（即优先合并已有的）</li>
+</ul></li>
+<li><p>传输中 误码影响较大！（一旦出错，
+可能后面解码全部错误）；需要先统计符号出现分布；每次需要重新计算码表</p></li>
+<li><p>自适应Huffman（例如针对ASCII码字符的）：传输过程中不断去调整Huffman树；但每一时刻，编码确定</p>
+<ul>
+<li>首次出现的字符，编码为前缀pre+其ASCII码编码</li>
+<li>然后将该字符插入树中，编码为pre+1</li>
+<li>pre变为pre+0</li>
+<li>当树不平衡时（任何一颗子树中，左子节点权重大于右子节点权重），需要进行子树的切换（此次输入之前，同权重的两个节点对应的子树进行交换（一定是和根节点更近/靠右的），且优先和<strong>拓扑距离最远</strong>的节点交换！）这是为了保证编码
+和
+解码处的Huffman树是唯一确定的（<strong>那如果出错了怎么办呢？？</strong>）</li>
+</ul></li>
+</ul></li>
+<li><p>字典编码：（LZW编码）</p>
+<ul>
+<li>思想：给信号源中的各符号序列
+编码（建立编码表）；当下次再出现时，直接用编码即可；一般编码的码长为12bit</li>
+<li>编码过程：读入符号，直到出现未见过的符号序列S+c，将S的编码输出，并为S+c编码，c作为下个S的开端；<strong>初始时，符号表中有确定的单个符号编码，编解码处应当相同！</strong></li>
+<li>解码过程：初始符号表中有同编码表中一样的每个单个符号的编码；读入编码，并将对应的符号串输出以及压入buffer，buffer中同时只有两个符号串；将buffer中上个符号串S1+当前符号串<strong>S2[1]</strong>
+作为新的一个符号串编码写入符号表！剔除S1，继续读入</li>
+<li>解码有一个问题：当刚刚新编码的符号串
+立马就使用的时候，就就会出现解码过程中不知道该读入什么符号串，此时新编码的符号串一定就是当前buffer中的唯一符号串S+S[1]！将其压入buffer并继续即可</li>
+<li>压缩效率不高</li>
+</ul></li>
+<li><p>算术编码：</p>
+<ul>
+<li>编码单位为一串符号；用[0,1)的一个半开子区间表示一个符号？符号之间不重合</li>
+<li>算法：<img src="F:\blog\source_posts\figs\fig34.png" /></li>
+<li>最后的编码为该区间内
+bit最短的小数！（怎么找？一个一个bit构造和试）</li>
+<li>缺点：区间表示的小数会越来越长，且区间再分时需要进行乘法运算，速度慢
+<ul>
+<li>解决方案：区间长度A用规格化形式表示，始终保持在0.75-1.5之间？（<strong>不懂</strong>）；可以用移位代替乘法？（<strong>不懂</strong>）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>预测编码</p>
+<ul>
+<li>差分编码：只需记录第一列像素信息+每个像素与左侧像素的差值，希望来降低编码所需bit
+<ul>
+<li>一般用在有损编码</li>
+</ul></li>
+<li>JPEG无损编码格式：
+<ul>
+<li>用相邻像素预测此像素信息，编码解码确定一个统一的公式：X=a1A+a2B+a3C；只需要记录预测
+与
+原像素的差值（需要的bit少）。其中A,B,C都是编码再解码后得到的像素信息</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="有损压缩算法">有损压缩算法</h4>
+<p>首先需要评估信息损失的程度，以及对信息丢失的可容忍度</p>
+<ul>
+<li><p>变换编码</p>
+<ul>
+<li>编码：将数据通过变换T映射到另一个空间，使得信息主要集中在某几个维度，则丢掉/粗略处理其它不重要的维度</li>
+<li>变换矩阵：变换方法是否固定？希望正交变换</li>
+<li>解码：通过逆变换T'解码</li>
+</ul></li>
+<li><p>离散余弦变换（DCT）：</p>
+<ul>
+<li><p>对于x轴上可积的信号f（x），可以分解成若干不同频率的正/余弦（连续
+傅里叶变换？），对于<strong>频率为u</strong>的正/余弦信号，其系数为F(u)（是系数！不是指振幅/强度哦！）</p>
+<ul>
+<li>本质就是，将原本是 时域上的函数<span
+class="math inline">\(f(x)\)</span>， 变换为了频域上的函数<span
+class="math inline">\(F(u)\)</span></li>
+</ul></li>
+<li><p>分解之后，高频部分的能量一般是较低的，可以忽略</p></li>
+<li><p>离散傅里叶变换：（频率上不再是连续的，且去掉了虚数部分）见ppt8：p9；一般N最大取8<img src="F:\blog\source\_posts\figs\fig35.png" style="zoom:80%;" /></p>
+<ul>
+<li><span
+class="math inline">\(\tilde{f}(i)\)</span>表示逆DCT，从变换后的值，再重现出原<span
+class="math inline">\(f(i)\)</span></li>
+</ul></li>
+<li><p>有点像变换编码？只不过现在把n维的向量信息看作了一个n个采样点的波形图，对它进行离散傅里叶变换，分出的每个余弦波（F(0)是直流信号的系数），实际也是一维坐标</p></li>
+<li><p>还有二维（2D）DCT变换：8x8，频率从左上到右下递减（频率：u[2,2] =
+u[1,3] = u[3,1] = 1）：基函数就是二维的余弦函数呗</p>
+<ul>
+<li><img src="F:\blog\source\_posts\figs\fig49.png" style="zoom:80%;" /></li>
+</ul></li>
+<li><p>缺点：对脉冲信号不太行！且会对原图像进行分块压缩，则解压出的图像产生“方块”效应</p></li>
+</ul></li>
+<li><p>小波变换</p>
+<ul>
+<li><p>小波：</p>
+<ul>
+<li>一种函数：具有<strong>有限的持续时间</strong>、<strong>突变的频率和振幅</strong>
+波形可以是<strong>不规则的/不对称的</strong>，在整个时间范围内的<strong>积分为0</strong>！
+有好多种小波</li>
+<li>首先 可以进行连续小波变换（CWT）：即将任意波形
+分解为<strong>一段母小波</strong>的各种平移、缩放变换得到的小波的叠加；
+<ul>
+<li>由此，就有了
+<strong>各种小波分解</strong>（Haar小波分解只是其中之一）</li>
+</ul></li>
+<li>接着有了 缩放 和 平移 均为2的j次幂的倍数 构造平方可积的实空间<span
+class="math inline">\(L^2(R)\)</span>的规范正交基<img
+src="F:\blog\source_posts\figs\fig40.png" /></li>
+<li>平移和缩放：在同一频率上，通过平移来拟合波形的不同分段；然后再缩放，在新频率上再重复上步</li>
+</ul></li>
+<li><p>DWT：discrete wavelet transform</p>
+<ul>
+<li><p>做法：想想data mining？（1D）</p>
+<ul>
+<li><p>低通滤波器输出（保留信号中的低频成分，消除高频成分，得到模糊的信号）：原波形的两个数值的平均；</p></li>
+<li><p>高通滤波器输出（消除低频成分，保留高频！）：前减后的差/2</p></li>
+<li><p>分成若干Haar小波的系数<img src="F:\blog\source\_posts\figs\fig41.png" style="zoom:80%;" /></p></li>
+<li><p>分析滤波器：高通+低通+下采样（否则会有冗余/重复）</p>
+<ul>
+<li>（5，3）整数滤波器：可以无损（无损和有损的统一！根据解码的程度来决定）
+<ul>
+<li>例如低通滤波器：<span class="math inline">\(h_0(n)=\)</span>(-1 2 6
+2 -1)/8 0 +-1 +-2：表示计算第n个值时，应该：（6*cn + 2*cn-1 + 2*cn+1 +
+-1*cn-2 + -1*cn+2) / 8</li>
+<li>高通滤波器：<span class="math inline">\(h_1(n)=\)</span>(-1 2 -1)/2
+0 -1
+-2：同理，-1，-2表示前1、2个，从左到右一一对应；别忘了最后除2！</li>
+</ul></li>
+<li>（9，7）浮点滤波器：一定有损</li>
+</ul></li>
+<li><p>合成滤波器：上采样（先补0）+高通+低通+合成：注意顺序</p></li>
+<li><p><strong>继续对低频信号，可以进行多级小波分解</strong>，也有同时还对高频信号分解的</p></li>
+</ul></li>
+<li><p>2D DWT：先对行进行低通+高通+下采样；然后对得到的 <strong>低频信号
+</strong>和 <strong>高频信号</strong>
+都分别对列进行低通+高通+下采样<img src="F:\blog\source\_posts\figs\fig42.png" style="zoom:80%;" /></p></li>
+<li><p>DWT的优点：多分辨率；不会产生块状效应（与DCT相对）；可对脉冲信号分解；单一码流中可既无损又有损！</p></li>
+</ul></li>
+</ul></li>
+<li><p>嵌入零树小波系数（EZW）</p>
+<ul>
+<li><p>比特平面编码：</p>
+<ul>
+<li>编码顺序为：按比特平面 从高到低，优先扔 <strong>最高频率的
+最低有效位</strong>的比特</li>
+</ul></li>
+<li><p>零树结构：基于位平面编码（2-D DWT）</p>
+<ul>
+<li><p>父子结构：一次平面DWT中，低频信号
+为外置位同位置的块的父亲。。。？</p></li>
+<li><p>系数的分类：（4类，每种系数用2bit表示）</p>
+<ul>
+<li>零树根t：绝对值比阈值小，子子孙孙（绝对值？）都比阈值小</li>
+<li>孤独零z：绝对值比阈值小，但子子孙孙中有（绝对值？）比阈值大的</li>
+<li>正大系数p：有一个阈值，若比阈值大</li>
+<li>负大系数n：绝对值比阈值大但为负？</li>
+<li>用来确定 哪些位置上的值，在某些位置上是1？？</li>
+</ul></li>
+<li><p>逐次逼近量化（SAQ）</p>
+<ul>
+<li><p>用到两个表：主表，辅表</p></li>
+<li><p>主扫描：</p>
+<ol type="1">
+<li>找到绝对值最大的系数n，阈值设为<span class="math inline">\(th=2^m
+\leq n &lt; 2^{m + 1}\)</span></li>
+<li>按块，从左到右，从上到下扫描，依次确定tzpn，写入主表</li>
+<li>对于t，其所有子孙都不再扫描</li>
+<li>将所有p和n对应的系数存入辅表（哪些系数在第m位为1）</li>
+<li>将正/负大系数们原位置设为0</li>
+</ol></li>
+<li><p>辅扫描：</p>
+<ol type="1">
+<li>继续<strong>细分</strong>那些正/负大系数们的区间（通过新的阈值来划分区间）（存入辅表）</li>
+</ol></li>
+<li><p>循环主辅循环（阈值直到1，则为无损），上为编码过程<img src="F:\blog\source\_posts\figs\fig43.png" style="zoom:67%;" /></p></li>
+<li><p>解码：</p>
+<ul>
+<li>（主）同样的顺序，对于t，就将它的所有子孙 都补出0来</li>
+<li>（辅）根据辅表的1/0来对所有非零项进行细化更新</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="jpeg图像压缩标准">JPEG（图像压缩标准）</h2>
+<p>4种编码模式：1.无损编码（不常用）；2.基于DCT 的顺序编码； 3.基于DCT
+的累进编码； 4.基于DCT 的层次编码</p>
+<h4 id="jpeg图像压缩的主要步骤">JPEG图像压缩的主要步骤</h4>
+<ul>
+<li><p>基本流程：</p>
+<ol type="1">
+<li>RGB 转为 YIQ / YUV（亮度+色度分量，可以丢掉部分色度IQ/UV）</li>
+<li>分块：分为8×8的块，对每一块进行2维DCT变换（离散余弦变换）</li>
+<li>量化：（量化阶）如仅4bit，但要表示0~60：则设置量化阶位4，通过乘以量化阶来表示</li>
+<li>分别对直流 和 交流信号 进行不同编码？？</li>
+</ol></li>
+<li><p><strong>预处理和 FDCT</strong>（傅里叶 离散余弦变换）：</p>
+<ul>
+<li>首先 将RGB颜色空间 转换为 YC<span
+class="math inline">\(_r\)</span>C<span
+class="math inline">\(_b\)</span>空间（YUV）；</li>
+<li>然后分块，分成8×8的子块：（4：2：2的色度格式）<img src="F:\blog\source\_posts\figs\fig50.jpg" style="zoom:50%;" /></li>
+<li>电平偏移：对每个像素的值进行电平偏移（方便表示）
+<ul>
+<li>原本像素值范围在[0, <span
+class="math inline">\(2^P-1\)</span>]（P=8一般）；调整为范围：[<span
+class="math inline">\(-2^{P-1}, 2^{P-1}-1\)</span>]</li>
+</ul></li>
+</ul></li>
+<li><p><strong>DCT系数的量化</strong>：（直观理解：就是压缩！用少bit来表示大范围数据，但是每个bit之间跨度较大（量化阶））</p>
+<ul>
+<li>量化处理：量化后的DCT系数<span class="math inline">\(\hat{F}(u,v) =
+round\Big(\frac{F(u,v)}{Q(u,v)}\Big)\)</span>
+<ul>
+<li>其中量化矩阵<span class="math inline">\(Q(u,v)=Q\times
+V(u,v)\)</span>，Q为<strong>质量因子</strong>，V（u，v）为<strong>亮度/色度量化表</strong></li>
+<li>如：<img src="F:\blog\source\_posts\figs\fig51.png" style="zoom:70%;" /></li>
+<li>Q越小，CR越低，图像质量好（损失的信息少，但非零系数少，压缩文件大小
+较大）</li>
+<li>对于图像中
+较为平缓的（变化不明显，DCT后高频信号基本为0的），量化处理前后
+损失的信息很少，不明显；</li>
+</ul></li>
+</ul></li>
+<li><p><strong>熵编码</strong>：（对<span
+class="math inline">\(\hat{F}(u,v)\)</span>进行表示，不会丢失信息）</p>
+<ul>
+<li><p>直流系数DC<span class="math inline">\(_i\)</span>的处理
+<strong>DPCM</strong>：作差分！（只需记录
+与左侧相邻块的直流系数的差）</p>
+<ul>
+<li>一般而言，相邻块之间的DC系数不会差太大，但是理论最大差值需要10bits表示，因此采用<strong>变长编码</strong>方式</li>
+<li>采用两个符号表示（SIZE, AMPLITUDE）：SIZE表示：该<span
+class="math inline">\(d_i\)</span>所用的bit位数，SIZE固定4bit；AMPLITUDE
+= $d_i <span class="math inline">\(= DC\)</span>_i$ - DC<span
+class="math inline">\(_{i-1}\)</span>（<span
+class="math inline">\(d_0\)</span>=DC<span
+class="math inline">\(_0\)</span>），若为负，则用反码表示，如-6表示为001（110的反码）</li>
+</ul></li>
+<li><p>交流系数AC<span class="math inline">\(_i\)</span>，zigzag
+拉成一个一维数组，<strong>RLC</strong>（run-length
+code）：然后对这个一维数组序列 进行
+<strong>行程长度编码</strong>（原本为：分别统计连续0和连续1的个数）</p>
+<ul>
+<li>如：<img src="F:\blog\source\_posts\figs\fig52.png" style="zoom:65%;" /></li>
+<li>行程编码：连续<span
+class="math inline">\(n_i\)</span>个0，下一个非零值为<span
+class="math inline">\(p_i\)</span>。。。最后全零，就记录0，0
+<ul>
+<li>因为应用量化后，会出现很多0，所以用这种方式~</li>
+</ul></li>
+<li>也采用两个符号表示：
+<ul>
+<li>symbol1：（RUNLENGTH, SIZE）：两者皆是 4bit定长；
+<ul>
+<li>RUNLENGTH：游程长度，0~15；</li>
+<li>SIZE：同DPCM中的SIZE，表示AMPLITUDE（下一个遇到的非零系数）的位数</li>
+<li>若有超过15个连续的0，则将该游程切分为多段，全0游程用特殊符号：‘F0’来表示，则不需要符号2；若符号1为‘00’，则表示当前子块已结束（后全是0），也不需要符号2</li>
+</ul></li>
+<li>symbol2：（AMPLITUDE）下一个遇到的非零系数</li>
+</ul></li>
+</ul></li>
+<li><p>霍夫曼编码：最后的输出，还要对DC和AC系数的<strong>符号1</strong>
+进行霍夫曼编码，符号2均不变</p>
+<ul>
+<li><p><img src="F:\blog\source\_posts\figs\fig53.png" style="zoom:80%;" /></p></li>
+<li><p>上为 固定的Huffman码表；或者指明了码表，用自定义的也行</p></li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="编码模式">编码模式</h4>
+<ul>
+<li>基于DCT的顺序模式：流程就如上所示；码流是从上到下，从左到右的一个个块；</li>
+<li>DCT-based累进模式：码流不再是一个个完整块，而是可能是一个个系数
+<ul>
+<li>频谱选择法：先输出/解码出 所有直流系数；然后依次增加交流系数</li>
+<li>连续逼近法：将所有DCT系数同时编码，最先编码MSB（most significant
+bit）</li>
+</ul></li>
+<li>DCT-based层次模式：
+<ul>
+<li>即根据不同的分辨率层次，（提供）进行不同的程度的 压缩编码</li>
+<li>算法流程：<img src="F:\blog\source\_posts\figs\fig54.png" style="zoom:80%;" /></li>
+<li>除最低分辨率外，每一级都是对<strong>差值图像</strong>进行JPEG编码！</li>
+<li>JPEG用的很少</li>
+</ul></li>
+</ul>
+<p>JPEG的压缩比与图像质量：</p>
+<ul>
+<li>压缩比（CR）：CR是一个大于1的整数
+<ul>
+<li>CR = 原始图像数据量 / 压缩后图像数据量
+<ul>
+<li>压缩后图像像素比特数 = 原始比特数 / CR（记住这个关系！）</li>
+</ul></li>
+<li>压缩比的控制（Q因子）：
+<ul>
+<li>量化矩阵 Q[u,v] = （Q (/50?)）*V[u,v]</li>
+<li>故：Q小，CR小，压缩图像大，质量好</li>
+<li>Q大，CR大，压缩图像小，质量差</li>
+</ul></li>
+</ul></li>
+</ul>
+<h4 id="jpeg2000">JPEG2000</h4>
+<p>需要自学。。。</p>
+<h2 id="ch10.-视频压缩基础">Ch10. 视频压缩基础</h2>
+<p>视频压缩编码的标准</p>
+<ul>
+<li>ITU-T标准：视频会议、可视电话（主要用于通讯，对实时性要求高）</li>
+<li>ISO/IEC国际标准：MPEG系列，主要用于娱乐（对质量要求高，编码实时性无要求，但解码需要实时性！）</li>
+<li>AVI，QuickTime，RealTime</li>
+</ul>
+<p>H.261：ITU-T制定的视频编码标准：最主要最重要的 ~</p>
+<ul>
+<li>只支持图像格式：CIF（352×288像素）和QCIF（176×144像素）</li>
+</ul>
+<p>H.263：</p>
+<ul>
+<li>支持的图像格式增多了</li>
+</ul>
+<p>视频数据压缩编码的依据：</p>
+<ul>
+<li>每一帧画面<strong>内部</strong> 信息有强相关性</li>
+<li>相邻帧之间有高度相似性</li>
+<li>运动可估测</li>
+<li>可利用人眼的视觉特性</li>
+</ul>
+<h4 id="视频压缩的基本方法">视频压缩的基本方法</h4>
+<p>空间域：通过JPEG压缩算法 去掉画面内的冗余信息</p>
+<p>时间域：采用<strong>运动补偿</strong>算法来去掉画面间的冗余信息</p>
+<p><strong>运动补偿</strong>：</p>
+<ul>
+<li>不要整张画面编码，而是对于每一块，从前一帧中
+找一块最相似的块，编码这两块的差值</li>
+</ul>
+<ol type="1">
+<li><p>首先
+将<strong>要编码的帧</strong>画面划分为宏块（16×16，由4块JPEG块组成），以宏块为单位，找出两帧画面中相应宏块的位移关系——<strong>运动矢量</strong></p>
+<ul>
+<li><strong><span
+class="math inline">\(\textcolor{red}{注意}\)</span></strong>：参考画面（即上一帧，以编码好的画面，以编码后再解码出来的画面为准！<strong>而不是原画面</strong>！）不需要划分为宏块；参考画面中的宏块可以在任意位置！</li>
+</ul></li>
+<li><p>运动矢量的估计：参考画面中搜索对应宏块</p>
+<ul>
+<li><p>范围：2p+1：即参考帧中，该宏块的水平 和
+垂直位移i，j都必须在范围[-p, p]内</p></li>
+<li><p>找到最佳匹配块，最佳匹配块 相对于
+该宏块的偏移量，称<strong>运动矢量</strong>，保存在输出码流中；</p></li>
+<li><p>只需编码 宏块与 最佳匹配块的差值</p></li>
+<li><p>最佳匹配准则：”方差和“SSE最小 or
+”绝对误差和“SAD最小（M：mean；S：sum）</p>
+<ul>
+<li>搜索精度：1 pel；（也有0.5 pel之类的）</li>
+<li><img src="F:\blog\source\_posts\figs\fig55.png" style="zoom:80%;" /></li>
+</ul></li>
+<li><p>搜索方法：</p>
+<ul>
+<li><p>顺序搜索：2p+1 × 2p+1个位置，依次计算每个运动矢量
+对应的MAD（or。。。）</p></li>
+<li><p>对数搜索法：（每次计算中 +
+周围8个点（初始步长为1/2p）；找最匹配的，然后缩小步长为一半）<img src="F:\blog\source\_posts\figs\fig56.png" style="zoom: 67%;" /></p></li>
+<li><p>层次搜索：</p>
+<ul>
+<li>分为k层，第k层 会对宏块 和 搜索范围 进行<span
+class="math inline">\(2^k\)</span>的下采样，然后找到最佳匹配；</li>
+<li>若第k层的运动矢量估计值为<span class="math inline">\((u^k,
+v^k)\)</span>，则k-1层将以<span
+class="math inline">\((2u^k,2v^k)\)</span>为中心，在<strong>3×3的区域</strong>内搜索</li>
+<li>直到找到第0层的最佳匹配块</li>
+<li>这种方法 计算效率最高（<strong>可是为什么要乘3？</strong>：哦
+3是指每个像素比较 需要三个操作完成）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ol>
+<h4 id="h.261">H.261</h4>
+<p>将视频的每一帧划分为了2种：</p>
+<ul>
+<li>I帧（帧内帧
+<strong>Intra</strong>-frame）：独立的，不需要作预测，直接按JPEG方法编码；必须要有I帧</li>
+<li>P帧（帧间帧
+<strong>Inter</strong>-frame）：作预测编码（运动补偿）</li>
+</ul>
+<p>H.261的量化：（与JPEG的区别）因为对实时性要求高，因此作了一定简化</p>
+<ul>
+<li>没有量化表：8×8个系数的量化阶 都相同（2*（1~31）之间的一个数）
+<ul>
+<li><strong>特例</strong>：I帧的量化阶 都是8</li>
+</ul></li>
+</ul>
+<p><strong>H.261
+Encoder：</strong>（4：2：0，因此一个宏块包含4个Y块，1个Cb块，1个Cr块共6个8×8块）</p>
+<ul>
+<li><p>1帧：I-frame帧内帧：直接JPEG压缩（DCT+量化）；同时对压缩后的数据
+作逆量化+逆DCT，存在帧缓存中（辅助 帧间帧P-frame 运动补偿）</p></li>
+<li><p>2帧：运动补偿模块：输入：P-frame数据+帧缓存中数据；输出：运动矢量mv（moving
+vector）</p></li>
+<li><p>对于P-frame的每个宏块，根据mv得到帧缓存中画面的一个宏块，与原宏块作差值D，对D再进行DCT+量化，得到输出码流</p></li>
+<li><p>更新帧缓存：对编码的差值D进行逆量化+逆DCT，与原本帧缓存中画面相加，得到新的帧缓存画面</p></li>
+<li><p>3帧：继续下一帧。。。</p></li>
+<li><p>量化阶回调：需要稳定的码流（每秒多少KB的数据）；则根据一定方法判断：</p>
+<ul>
+<li>剩余空间不足：则增大量化阶，之后的帧 减小 但质量差；</li>
+<li>剩余空间较多：则减小量化阶，之后的帧 图像质量提高</li>
+</ul></li>
+</ul>
+<p><strong>H.261 解码：</strong></p>
+<ul>
+<li>I-帧：直接解码输出，存入帧缓存；</li>
+<li>P-帧：解码+帧缓存 =&gt; 输出，并更新帧缓存</li>
+</ul>
+<p><strong>H.261视频位流语法</strong>：</p>
+<ul>
+<li><p>宏块组（GOB）：</p>
+<ul>
+<li><p>将 3行 * 11列
+个宏块，作为一个宏块组（176×48）；每个宏块组都有个编号</p></li>
+<li><p>以宏块组为单位，进行网络传输（网络层，一个图像帧中
+包含多个GOB）</p></li>
+</ul></li>
+<li><p>图像帧：</p>
+<ul>
+<li>图像层：
+<ul>
+<li>有同步头（17个1）</li>
+<li>时间戳（几分几秒第几帧）</li>
+<li>P/I-frame</li>
+<li>各个GOB</li>
+</ul></li>
+<li>宏块组层：
+<ul>
+<li>有同步头</li>
+<li>宏块组编号</li>
+<li>宏块组的量化阶k（该组中的所有宏块的量化阶都 × k）（选用）</li>
+<li>各个宏块（33个）</li>
+</ul></li>
+<li>宏块层：
+<ul>
+<li>没有同步头哦~因此出错，会限制在一个宏块组内</li>
+<li>类型：可预测（则有运动矢量）/不可预测宏块</li>
+<li>宏块公用量化阶（选用）</li>
+<li>MVD：运动矢量（可预测）</li>
+<li>CBP：（可预测）6个bit，每个bit对应后面的一个块；第ibit为1，代表第i块全0（表示与前一帧的块完全一样），则后面就不需要再编码第i块了</li>
+<li>6个块（4Y+1Cb+1Cr，4：2：0）</li>
+</ul></li>
+<li>块层：（同JPEG）
+<ul>
+<li>DC：符号1（符号2的宽度）的霍夫曼编码，符号2（此块与上一块的差值）</li>
+<li>交流系数：符号1（行程长度+符号2的宽度）的霍夫曼编码，符号2（遇到的第一个非零值）</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>总览：<img src="F:\blog\source\_posts\figs\fig57.png" style="zoom:80%;" /></p>
+<h4 id="h.263">H.263</h4>
+<ul>
+<li><p>增加了PB帧模式；</p></li>
+<li><p>视频分辨率 扩充为5种；</p></li>
+<li><p>宏块组划分：一行为一个宏块组</p></li>
+</ul>
+<p><strong>运动补偿：</strong></p>
+<ul>
+<li><p>当前宏块的运动矢量MV的编码：</p>
+<ul>
+<li>通过预测：<img src="F:\blog\source\_posts\figs\fig58.png" style="zoom:50%;" /></li>
+<li>水平分量u，垂直分量v：<span class="math inline">\(u_p =
+median(u_1,u_2,u_3)\)</span>，v同理
+<ul>
+<li>u，v初值：为<span class="math inline">\(u_p,v_p\)</span></li>
+</ul></li>
+<li>编码：对差值<span
+class="math inline">\(u-u_p\)</span>（v同理）编码</li>
+<li>特殊情况：MV左是边界，则MV1 =
+（0，0）；MV上是边界，则MV2=MV3=MV1；MV右是边界，则MV3=（0，0）</li>
+</ul></li>
+<li><p>半像素运动补偿：</p>
+<ul>
+<li><p>半像素的亮度色度值，是通过预测获得的：</p></li>
+<li><p>A b B：则b点亮度色度值为：(A+B<strong>+1</strong>) /
+2（即A的和B的亮度/色度值 + 1 除以2）</p></li>
+<li><p>落在A、B、C、D正中间，则为（A+B+C+D+2）/4</p></li>
+</ul></li>
+<li><p>不受限的运动矢量</p>
+<ul>
+<li>扩大运动矢量范围：允许运动矢量超出图像边界，<strong>超出部分用边界像素代替</strong></li>
+</ul></li>
+</ul>
+<p>PB帧模式：I，P，B帧</p>
+<ul>
+<li>P帧：参考上一个I或P帧（同前）</li>
+<li>B帧：同时参考前一个I/P 和 后一个I/P帧</li>
+<li>匹配概率增大</li>
+<li>问题：1.搜索更多，效率降低；2.编码顺序改变</li>
+</ul>
+<h4 id="mpeg系列">MPEG系列</h4>
+<p>Moving Picture Experts
+Group：主要用于娱乐方面的视频/音频（video/audio/data）编码标准</p>
+<p>MPEG-1：将每秒200Mbps的NTSC（音视频信息）
+压缩为大约1.5Mbps的（音视频复合）码流（其中视频大约占1.2Mbps）</p>
+<p>MPEG-2：针对数字电视 和 高清视频 的编码标准</p>
+<p>MPEG1,MPEG2：都是基于宏块的</p>
+<p>MPEG-4：基于<strong>对象</strong>的
+音视频编码标准（如视频中的人）；效果比1、2都要好很多</p>
+<ul>
+<li>H.264/265，也都算进了MPEG-4：主要不同是1.宏块再细分；2.还可以帧内差分（消除空间上的冗余）</li>
+</ul>
+<p>MPEG-7：多媒体内容描述接口；用来快速<strong>检索</strong>！</p>
+<p>​ 各种多媒体信息，为其添加相应的 标准描述元数据（meta data）</p>
+<p>MPEG-21：建立一个 多媒体应用框架；不重要。。。</p>
+<h5 id="mpeg-1">MPEG-1</h5>
+<ul>
+<li><p>I, P, B,
+D帧：（前仨同前所述）D帧，仅用每块的DC系数编码（快速预览时的小画面），单独进行编码和存储（仅MPEG-1用）</p></li>
+<li><p>GOP（group of pictures）：视频画面序列
+被分为一个个画面组；一般有10-15帧画面；必须有I帧，P</p>
+<ul>
+<li>画面的重新排序：<img src="F:\blog\source\_posts\figs\fig59.png" style="zoom: 67%;" /></li>
+</ul></li>
+<li><p>编码器结构：</p>
+<ul>
+<li><p>I帧、P帧：与前面的H261均相同</p></li>
+<li><p>B帧：对每个宏块，分别在前和后两帧画面上找最相近块；若都找到了，则求平均，然后对差值进行JPEG编码</p></li>
+<li><p>因此，可预测宏块
+有3种类型：前向预测（P、B），后向预测（B），双向预测（B）</p></li>
+<li><p>运动补偿 搜索策略：（额外的一种，老版本常用的）菱形搜索（DS）</p>
+<ul>
+<li>即从初始MV，计算菱形周围8个点（为mv）的sad 以及
+当前中心点的sad，找到最小；</li>
+<li>若是四周某点sad最小，则移动菱形中心到该点，重复上步；（关键在于，可以省去计算不少周围点（因为在之前已经计算过了））</li>
+<li>直到中心最小，再计算一下紧挨着的4个点，即可<img src="F:\blog\source\_posts\figs\fig60.png" style="zoom: 50%;" /></li>
+</ul></li>
+</ul></li>
+<li><p>缓冲器：（量化阶的调整）</p>
+<ul>
+<li><p>解码器端：以输入速率R
+向Buffer（容量为B）中输入数据，每个1/P秒，从Buffer中取1帧解码好的画面</p></li>
+<li><p>假设刚取完第n帧，Buffer中数据大小为Bn，第n+1帧数据大小为dn+1，则：</p></li>
+<li><p>取第n+1帧不下溢：Bn+R/P &gt;= dn+1；</p></li>
+<li><p>取第n+2帧前不上溢：(Bn+R/P) - dn+1 + R/P &lt;= B</p></li>
+<li><p>则有：必须时刻满足：Bn+2R/P - B &lt;= dn+1 &lt;= Bn +
+R/P；</p></li>
+<li><p>编码器 根据这个约束不断进行量化阶回调？</p></li>
+</ul></li>
+<li><p>视频比特流的层次结构：</p>
+<ul>
+<li>序列层：分为若干GOP（图片组）单元；</li>
+<li>GOP层：单元为一帧画面（Picture），且第一帧一定是I帧；GOP层支持<strong>随机存取</strong>！因为Picture是按时间排序，而B帧需要依赖后面的帧</li>
+<li>图片层：单元为宏块片（Slice），slice可以在任意位置开始和结束，自定义</li>
+<li>宏块片（slice）层：单元为宏块（该层对应H.261的宏块组层）</li>
+<li>宏块层：单元为块</li>
+<li>块层：DC系数，VLC run</li>
+</ul></li>
+<li><p>MPEG-1 vs. H.261:</p>
+<ul>
+<li><p>H.261只支持CIF（352x288）和QCIF（176x144）；MPEG支持SIF，以及一定限制下的自定义格式</p></li>
+<li><p>量化：</p>
+<ul>
+<li>H.261没有量化表，64个系数的量化阶都相同（为2-64中的一个偶数）；</li>
+<li>MPEG-1有量化表，区分Intra-code和Inter-code，前者各系数的量化阶都不同，后者则是64个系数统一一个较小的量化阶（较小因为运动补偿）；不区分亮度和色度分量的量化</li>
+</ul></li>
+<li><p>MPEG-1对解码端的缓冲要求更高（因为B帧）</p></li>
+</ul></li>
+<li><p>缺点：主要是分辨率 不够大；</p></li>
+</ul>
+<p><strong>MPEG-2</strong></p>
+<ul>
+<li>多规格：
+<ul>
+<li>支持各种分辨率最大可达16000×16000；</li>
+<li>每秒可达60帧</li>
+<li>支持 隔行、逐行 扫描</li>
+</ul></li>
+<li>分类分级：类（5），算法复杂度（高级 兼容
+低级）；级（4），支持的分辨率
+<ul>
+<li>类：simple，main（最常用），SNR scalable，spatial scalable（前四种
+色度格式：4：2：0），high（色度格式：4：2：2）
+<ul>
+<li>可伸缩性scalable思想：即
+码流中包括：基础层+若干增强层；仅解码基础层，则是低分辨率
+且低质的图像；同时还解码增强层，则叠加可获得 高分辨率/高清
+等等的画面</li>
+</ul></li>
+<li>级：<img src="F:\blog\source\_posts\figs\fig61.png" style="zoom:67%;" /></li>
+</ul></li>
+</ul>
+<p><strong>MPEG-4</strong></p>
+<p>概述</p>
+<ul>
+<li>综合性：自然音视频对象 与 合成音视频对象
+的集成（码流中可以同时包含自然/合成媒体对象，且合成也是用合成的方式编码）</li>
+<li>交互性：选择播放，超链等（与<strong>码流</strong>交互！比如可以与视频中对象
+进行交互（就像游戏））</li>
+<li>高效率的压缩编码：与MPEG-2同等质量情况下 压缩至1/10</li>
+</ul>
+<p>可视对象编码</p>
+<ul>
+<li><p>第1代视频编码：单位是块（pixel），编码块的纹理texture
+和运动motion（与MPEG-1/2同）</p>
+<ul>
+<li>不足：与人的视觉本质不同；同一对象的块运动应该差不多？不易控制场景中的不同对象</li>
+</ul></li>
+<li><p>第2代视频编码：基于object作编码（需要进行
+对象的挖掘，将对象从视频画面中检测出）</p>
+<ul>
+<li><p>一段帧序列中，检测出若干个object，并以object为单位编码：包括对象的形状、纹理、运动</p></li>
+<li><p>场景：由媒体对象 以层次方式
+组合而成（树），叶节点是初级媒体对象：</p>
+<ul>
+<li>初级媒体对象：静止图像（固定的背景）；视频对象；音频对象；其他（文字/图形）</li>
+<li>可自然媒体，也可合成媒体。体现出综合性！</li>
+<li>以对象为单位，对象树为结构，则方便与视频流进行交互</li>
+<li>BIFS：场景的二进制格式；用场景图表 表示：
+<ul>
+<li>节点：描述视听对象 及其属性；</li>
+<li>图结构：描述各对象 空间和时间上的关系</li>
+</ul></li>
+</ul></li>
+<li><p>VOP的编码：</p>
+<ul>
+<li><p>一个VOP 是一个VO在特定时刻的快照（形状、运动、纹理）</p>
+<ul>
+<li>若把整个矩形视频帧 当作一个VOP，则MPEG-4退化等同于MPEG-1/2</li>
+</ul></li>
+<li><p>每个VOP 定义在一个矩形边界框内（长宽 必须为
+整数个宏块×宏块），且左+上边界，由VOP的左上决定，然后分宏块，如：<img src="F:\blog\source\_posts\figs\fig70.png" style="zoom:67%;" /></p></li>
+<li><p>运动补偿：仍以16×16宏块为对象，但搜索范围
+只在参考帧中对应VOP的范围内（也先要找到参考VOP的矩形边界框bounding
+box）</p>
+<ul>
+<li><strong>填充</strong>步骤：对于边界宏块，VOP外的部分 需要进行填充
+预处理（对参考VOP）
+<ul>
+<li>对边界宏块：先 水平重复填充；再
+垂直重复填充（复制边界值，若在俩边界之间，则用平均值）（如图：该图是一个缩小的宏块）<img src="F:\blog\source\_posts\figs\fig71.png" style="zoom:67%;" /></li>
+<li>对外部宏块：（边界框内VOP外，与边界宏块相邻的宏块）进行扩展填充
+<ul>
+<li>按照左、上、右、下的顺序，依次用相邻的边界宏块（or已经填充了的外部宏块）的边界像素值
+进行扩展填充</li>
+</ul></li>
+</ul></li>
+<li>计算SAD:
+增加了一个MAP（p，q），仅当C(p,q)为目标VOP中的一个像素使，MAP(p，q)=1，否则为0（用来忽略掉VOP外部像素）<img src="F:\blog\source\_posts\figs\fig72.png" style="zoom:67%;" /></li>
+</ul></li>
+<li><p>纹理编码：即 灰度级/色度的变化 和 样式</p>
+<ol type="1">
+<li>基于DCT的纹理编码：边界外部分全填0</li>
+<li>边界宏块的 形状自适应DCT：
+<ul>
+<li>1D DCT-N：1D
+DCT的变体：DCT中固定了N=8，将时间域上的8个样本点，DCT为了8个频率域上的点（系数）；但这个N可以变为其他数</li>
+<li>SA-DCT是一个2D
+DCT：是两次DCT-N的叠加；应用于边界宏块的每一个8×8的块</li>
+<li>对于8×8块：将VOP像素点
+向上平移（俄罗斯方块）；按列作DCT-N，N为该列像素数；然后左平移，并按行作DCT-N；<strong>最后需要记录初始形状</strong>（二元掩码）
+<ul>
+<li>形状记录，和下面的同理</li>
+</ul></li>
+</ul></li>
+</ol></li>
+<li><p>形状编码：</p>
+<ul>
+<li>二元<span
+class="math inline">\(\alpha\)</span>图：每一位的值，1/0表示该位置像素是/否在VOP内</li>
+</ul>
+<ol type="1">
+<li>二元形状编码：将图分为16×16的块（二元<span
+class="math inline">\(\alpha\)</span>块，BAB），只需要特殊处理
+VOP边界的BAB（其他块 要么全0，要么全1）
+<ol type="1">
+<li>MMR 修订修改读算法：忽略</li>
+<li>CAE 基于上下文的算术编码：
+<ul>
+<li>思想：边界BAB：对于当前像素，BAB内 该像素靠上临界的10个像素（的<span
+class="math inline">\(\alpha\)</span>图）就构成了上下文，共1024种情况；可以用先验概率，构建一个概率表，表示这1024个上下文的出新频度。将当前这个像素
+用其上下文的概率 替换（相当于1024个字母中的一个）；16×16
+每个像素都这样，最后算术编码 =&gt; 32位浮点数</li>
+<li>（左：I-帧边界BAB；右：P/B-帧（需
+运动补偿的）边界BAB）<img src="F:\blog\source\_posts\figs\fig73.png" style="zoom:67%;" /></li>
+<li>是无损的！</li>
+</ul></li>
+</ol></li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li><p>MPEG-4视频流结构：5个层次，都<strong>支持随机访问</strong></p>
+<ul>
+<li>视觉对象序列（Video-object Sequence）：VS1, VS2, ...
+<ul>
+<li>VS 对应完整的MPEG-4视觉场景，可以包含 自然/合成对象</li>
+<li>每个VS 由若干个视觉对象Visual Object组成</li>
+</ul></li>
+<li>视觉对象VO：每个对象由若干个 视频对象层VOL组成
+<ul>
+<li>VO对应场景中的一个对象or背景，可拥有任意形状</li>
+</ul></li>
+<li>视频对象层VOL：Video Object Layer
+<ul>
+<li>支持多层可扩展编码：一个VO 在可扩展编码下拥有多重VOL；非扩展编码下
+拥有一个VOL（基础层）</li>
+<li>由若干视频对象平面组GOV or 直接由若干 视频对象平面VOP组成</li>
+</ul></li>
+<li>视频对象组GOV：（可选层）由若干 视频对象平面VOP组成</li>
+<li>视频对象平面VOP：描述：形状、运动、纹理</li>
+</ul></li>
+</ul>
+<p>合成对象编码</p>
+<ul>
+<li><p>网格Mesh：多边形组成的二维平面区域的一部分，顶点为网格的节点；一般都是三角形网格</p>
+<ul>
+<li><p>主要性质：几何（坐标）；拓扑（哪几个点之间构成网格）</p></li>
+<li><p>类型：（基本都是用Delaunay网格）</p>
+<ul>
+<li><p>均匀网格：<img src="F:\blog\source\_posts\figs\fig74.png" style="zoom:67%;" /></p></li>
+<li><p>Delaunay网格：组成网格的三个点的外接圆内 没有第四个点 =&gt;
+只要有了点阵，那么网格划分 就是确定唯一的！</p>
+<ul>
+<li>只需要记录 点的几何，而无需记录拓扑</li>
+<li>如何记录几何？先记录最外围一圈的点，按x+y递增（同则y递增）顺序；内部点就任意顺序了
+<ul>
+<li>除第一个点坐标外，其余点都是记录差分！？</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>2D网格运动编码：</p>
+<ul>
+<li>网格点的运动，可由与之相关的2点的运动矢量 做预测编码（e=MV -
+pred）；第一个MOP三角形运动确定后，所有与之公用1边的网格点也可以进行预测编码，不断重复该过程编码（BFS顺序）</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch.13-语音的压缩编码">Ch.13 语音的压缩编码</h2>
+<p><strong>引言</strong></p>
+<ul>
+<li><p>可听声中，分 语音（300-3400Hz） 和
+全频带声音（20-20kHz）</p></li>
+<li><p>因此数字化时的 采样频率（不失真）：语音8kHz，全频带40kHz</p></li>
+<li><p>基础知识：1.数字语音信号（如原始模拟信号对应的PCM信号），要输出还要再转会模拟信号（在<strong>时间上连续</strong>的信号，就是模拟信号！），但这样得到的是<strong>阶梯形信号</strong>！根据傅里叶分析理论，该信号包含无穷多的<strong>高频信号</strong>，因此为了消除额外引入的高频信号，将这个阶梯形信号
+通过一个
+<strong>低通滤波器</strong>，过滤掉所有超过<strong>原始模拟信号频率最大值</strong>的信号，如此就得到了平滑的模拟输出信号！</p></li>
+<li><p>2.如果不对数字语音信号做压缩扩展，则每个采样点需要13位（12位+1符号位）描述（均匀量化）；但人耳对于高音的变化
+和 低音的变化 响应程度是不同的，因此会对线性量化的PCM
+再做压缩扩展（<span
+class="math inline">\(\mu\)</span>率或A率扩展），得到对数量化信号，且每个采样点只需8位描述；</p></li>
+<li><p>3.<span
+class="math inline">\(\mu\)</span>率压扩公式：<img src="F:\blog\source\_posts\figs\fig62.png" style="zoom:50%;" /></p></li>
+<li><p>A率压扩公式：<img src="F:\blog\source\_posts\figs\fig63.png" style="zoom: 50%;" /></p></li>
+<li><p>但是直接使用这些公式不太现实（因为涉及浮点运算，很复杂），故实际应用时，采用的压扩算法：<img src="F:\blog\source\_posts\figs\fig64.png" style="zoom:50%;" /></p></li>
+<li><p>其中符号位保留，红色丢弃</p></li>
+</ul>
+<p><strong>数字语音的波形编码</strong></p>
+<ul>
+<li>只考虑语音的波形状况
+<ul>
+<li>通用（无论是不是语音，都可以这样编码）；质量好</li>
+<li>压缩效率不高</li>
+</ul></li>
+<li>三种波形编码方法
+<ul>
+<li>G.721，G.723。。。标准</li>
+<li><span class="math inline">\(\mu\)</span>率编码的PCM（Pulse Code
+Modulation脉冲编码调制）：即量化后的采样输出，不压缩，是<strong>无损声音</strong>
+<ul>
+<li>PCM主要解决：将线性量化的波形 转化为 <strong>对数量化</strong></li>
+<li>PCM流程：输入：采样到的数字声音（<strong>不是模拟声音吗？？</strong>）
+=&gt; 带限/带通滤波（只保留300-3400kHz的波形）=&gt;
+取样（每秒8k个样本）=&gt; 数模转换
+（按13位（1符号+12幅值）做<strong>量化</strong>），得到13位的线性PCM
+=&gt; 再进行压扩算法，得到每个样本8位的 PCM码流</li>
+<li>PCM码率为：（每秒）8k×（每个样本）8b = 64kbps</li>
+<li>PCM的应用：（是不压缩的，无损声音）通信：长途电话的传输；CD，DAT的全频带数字声音的存储</li>
+</ul></li>
+<li>ADPCM：（Adaptive Differential）自适应 差分 PCM
+<ul>
+<li>差分：通过已有样本，获得预测值；编码 预测值的差值</li>
+<li>自适应：1.预测时的系数自适应；2.自适应改变量化阶（影响到差分编码的精度
+和输出的码流）大小</li>
+<li>差分编码时的量化阶：如图所示<img src="F:\blog\source\_posts\figs\fig65.png" style="zoom:67%;" /></li>
+<li>其中的16
+就是量化阶（可以自适应去调整，使得E较小时，采用较小的量化阶；大时再用大的）</li>
+<li>ADPCM的码率 相较PCM 又降低了一半</li>
+</ul></li>
+<li>64kbps的声音子带编码：
+<ul>
+<li><strong>采样</strong>时 先按照频率 分若干的子带：
+<ul>
+<li>低频部分：采样率可以较低，而增加每个样本的比特数；</li>
+<li>高频部分：采样率高，每个样本的比特数少些</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<p><strong>数字语音的参数编码</strong></p>
+<ul>
+<li><p>基于模型的 编码：将语音 抽象为 一段激励信号
+经过<strong>滤波器</strong>过滤后得到的信号；</p>
+<ul>
+<li>因此只需要编码 激励信号+滤波器参数；</li>
+<li>只能处理语音、质量差；但安全</li>
+<li>编码时：从语音波形信号中
+提取生成该语音的<strong>参数</strong>；</li>
+<li>解码时：根据<strong>语音生成模型</strong>，使用这些<strong>参数</strong>来合成出
+原始语音</li>
+</ul></li>
+<li><p>语音生成过程：</p>
+<ul>
+<li>假设：1.语音生成模型，每20ms左右才改变一次（期间是稳定的）</li>
+<li>2类语音：浊音（激励信号为 周期的脉冲信号）；清音（激励信号为
+随机噪声）</li>
+<li>故一段语音，可分为：以20ms为一单位的，一段段激励信号（对应浊音、清音）；以20ms为一帧
+进行编码</li>
+</ul></li>
+<li><p>语音的参数编码（LPC分析：Linear Predictive Coding）</p>
+<ul>
+<li><p>LPC模型的参数A = (a1,a2~a10, G, V/UV,
+T)：a1~a10为声道参数？；G增益参数（即激励信号的大小）；V浊音/UV清音；若是V
+还有T 基音周期；参数A大约每10~30ms变化一次</p></li>
+<li><p>假设语音信号取样频率为8kHz，每秒分成50帧（20ms一帧），则一帧对应160个采样点；每帧信号近似满足同一模型（用同一组参数描述）：<img src="F:\blog\source\_posts\figs\fig66.png" style="zoom:67%;" /></p></li>
+<li><p>如何求出每一帧的 各参数呢？a1~a10
+需要求解一个线性约束方程？</p></li>
+<li><p>码率超小哦~</p></li>
+</ul></li>
+</ul>
+<p><strong>数字语音的混合编码</strong></p>
+<ul>
+<li>通过提高<strong>激励信号</strong>的质量 来改进参数编码；+编码时
+根据当前激励信号+参数 合成的语音信号 与
+原语音信号对比，不断调整激励信号</li>
+<li>最佳激励信号u（n）的生成方法：
+<ul>
+<li>多脉冲线性预测编码MPLPC：
+<ul>
+<li>每帧仍20ms；清音 和 浊音 的激励信号都由k个脉冲组成，每个脉冲的幅度
+和 位置 待定；即对每一帧，都要去确定这k个脉冲的位置和大小</li>
+<li>数据量太大</li>
+</ul></li>
+<li><strong>等间隔</strong>脉冲激励RPE：
+<ul>
+<li>每5ms一组激励信号，有13个脉冲，且<strong>间隔相等</strong>，只需确定脉冲的大小</li>
+</ul></li>
+<li>码激励CELP：
+<ul>
+<li>将有限数量的激励信号
+存储在存储器中（称为码本）；通过在码本中选择最优的激励信号</li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch.14-mpeg声音">Ch.14 MPEG声音</h2>
+<p>（全频带声音）与语音的主要区别：</p>
+<ol type="1">
+<li>采样率高（一般44.1kHz）</li>
+<li>每个样本要16bit；2声道；故数据量远高于语音编码</li>
+<li>对编码质量要求更高</li>
+</ol>
+<p><strong>听觉系统的感知特性</strong></p>
+<ul>
+<li><p>响度：描述声音强弱，通常用<strong>声强级</strong>来描述；</p>
+<ul>
+<li>声强 单位：<span class="math inline">\(I_0 =
+10^{-12}\)</span>W/<span class="math inline">\(m^2\)</span>
+<ul>
+<li>意义：频率为1000Hz的声波 能被人听见的最弱声强</li>
+</ul></li>
+<li>声强级L：<span class="math inline">\(L_1 =
+\lg\frac{I}{I_0}\)</span>贝尔（Bel）
+<ul>
+<li><span class="math inline">\(L_1 =
+10(\lg\frac{I}{I_0})\)</span>分贝（dB）</li>
+</ul></li>
+<li>听觉阈电平：该频率的声音，被人听到的 最低电平（声强？）
+<ul>
+<li>一个人的听阈 随 频率变化而变化；一般对2k~5kHz声音最明显；</li>
+<li>等响度级 曲线：尽管两个频率的声音的<strong>客观声强级</strong>
+可能不同，但对于人来说 感觉上是一样的</li>
+</ul></li>
+</ul></li>
+<li><p>听觉掩蔽特性：</p>
+<ul>
+<li><p>一种频率的声音 可能会阻碍听到
+另一种频率的声音；前者：掩蔽声音；后者：被掩蔽声音</p></li>
+<li><p>频率掩蔽：（根据频率和声强 的掩蔽效应）</p>
+<ul>
+<li><p>同频率声音：强纯音（仅一个频率存在） 掩蔽弱纯音</p></li>
+<li><p>不同频率：弱纯音的频率 离 强纯音越近，就越容易被掩蔽</p></li>
+<li><p>纯音的掩蔽效应曲线：（曲线下的对应声强和频率的纯音会被掩蔽
+听不到）<img src="F:\blog\source\_posts\figs\fig67.png" style="zoom:67%;" /></p></li>
+<li><p>1.低频纯音，对高频纯音的掩蔽效应更明显；2.掩蔽效应的作用范围和大小，与声强
+及 频率有关：频率高，声强强 则掩蔽效应越大</p></li>
+</ul></li>
+<li><p>时域掩蔽：在时间上相邻的声音
+相互掩蔽；主要因为人脑处理信息需要时间</p>
+<ul>
+<li>基于频率掩蔽，被掩蔽 和 掩蔽声音同时存在 =&gt;
+掩蔽声音突然停止，仍需要一段时间 才能听到被掩蔽声音（滞后掩蔽）；</li>
+<li>某一高分贝声音在某一时刻突然出现，则会提前掩蔽一些其他频率的
+低分贝声音（超前掩蔽）</li>
+<li>如图：<img src="F:\blog\source\_posts\figs\fig68.png" style="zoom:67%;" /></li>
+</ul></li>
+<li><p>用处：判断噪音 对 声音信号的影响有多大（如果引入的噪音
+可以被正常声音信号所掩蔽，则ok）</p></li>
+</ul></li>
+<li><p>临界频带：（压扩算法的想法？根据人耳的感知特性，将声音频率
+非均匀的划分频带）</p>
+<ul>
+<li><p>非线性的25个频带；同一频带中的声音（对人耳而言）相同</p></li>
+<li><p>在临界频带基础上，画掩蔽效应曲线</p></li>
+</ul></li>
+</ul>
+<p><strong>MPEG-1 audio</strong></p>
+<p>目标：将传输速率为1.4Mbps（咋算的？44.1k x 16b x 2声道）的CD音质声音
+压缩为0.3Mbps</p>
+<p>MPEG-1音频的基本性能：</p>
+<ul>
+<li><p>输入：采样频率32k,44.1k,or
+48kHz；量化精度16bit；全频带声音（20-20kHz）</p></li>
+<li><p>输出：码率：32k~384kHz（离散的）</p></li>
+<li><p>提供三个独立的压缩层次：1、2、3（MP3 就是用layer3）；一个层次
+代表一个 音频编码标准？高层 都可以兼容低层</p>
+<ul>
+<li>layer1：只用了频率掩蔽</li>
+</ul></li>
+<li><p>支持4种模式：1.单声道；2.双声道；（左右声道信号
+编码在同一比特流中）3.立体声；（左右声道信号
+分别编码在不同比特流？）4.联合立体声（降低了输出比特流的码率）</p></li>
+<li><p>支持在数据流中 添加额外的信息</p></li>
+</ul>
+<p>MPEG-1音频编码：（<strong>layer1</strong>）</p>
+<ul>
+<li><p>原理：</p>
+<ul>
+<li><p>音频信号会分割为32个子频带，每个子频带
+是<strong>等宽</strong>的，从最低频率，到最高映射频率</p></li>
+<li><p>利用掩蔽特性：</p></li>
+</ul></li>
+<li><p>编码器：</p>
+<ul>
+<li>输入：数字声音（以帧
+为单位进行编码，<strong>一帧包含连续的384个样本</strong>）；</li>
+<li>时间-频率变换组件：将原本的384个样本，转化为12组样本集合，每组包含32个样本（12x32=384）
+<ul>
+<li>划分成了32个子频带，在这32个子频带
+分别有12个样本（<strong>通过一个子带滤波器</strong>；总时间都是原384个样本的时间）；即相当于是32个PCM样本</li>
+</ul></li>
+<li>心理声学模型：使用频率掩蔽特性，计算这32个子频带的每个，对其余频带的掩蔽值
+<ul>
+<li><strong>信掩比：</strong>SMR ，每一个频段中 短期信号的能量（即该频带
+对应的12个样本信号 对应的能量？） 与 （该频带的）最小子带遮掩阈值
+的比值（与 SNR 单位均是dB，因为都是声音强度的比值，且分子都相同）</li>
+</ul></li>
+<li>量化，编码：根据信掩比，为每组样本进行<strong>比特分配</strong>（0~15bit），指出每组样本分别使用几位表示</li>
+<li>将量化编码后的样本数据 封装成一帧数据，输出到码流</li>
+</ul></li>
+<li><p>量化器的比特分配算法：</p>
+<ul>
+<li>确定了输出的码率（会指定好，最高384kbps，离散的几个值），则每一帧可分配的比特数目就确定了；</li>
+<li>假设 输出码率为p，则每一帧可分配比特数A = <span
+class="math inline">\(\frac{384}{44100}\times p/2\)</span>(声道) -
+文件头/额外信息等消耗的bit数</li>
+<li>bit分配方法：在不超过总数A的前提下，使这一帧的 总掩蔽与噪声
+之比<span class="math inline">\((\Sigma\)</span>
+MNR)最小（<strong>？？</strong>）
+<ul>
+<li>掩蔽与噪声比 小 ：则噪声越明显，越容易被听见</li>
+<li>每个自带的MNR = SNR - SMR（量化器信噪比（由量化位数决定） -
+子带的信掩比（心理声学模型中确定，不会变了））
+<ul>
+<li>噪声：（信号中的随机扰动）
+量化噪声，由量化误差引入的：如原信号140，量化后为150，则引入了量化误差
+和 量化噪声</li>
+<li>1.为每个频带的每个样本 分配2bit；（已经用掉了768个bit（对于））</li>
+<li>2.找到MNR最小的子带，给12个样本分配一个比特（降低量化误差，提高SNR）</li>
+<li>3.计算所有量化器输出样本
+比特总数，并与A比较，若不超过，则增加量化器位数</li>
+<li>4.重复步骤2，3；直到总数接近A</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>MPEG-1音频（层1）的帧结构：（没有文件头，就是一帧一帧数据组成）</p>
+<ul>
+<li>同步头32bit：+一些属性信息
+<ul>
+<li><img src="F:\blog\source\_posts\figs\fig69.png" style="zoom: 50%;" /></li>
+<li>位速率索引：共16种不同的输出码率32k，64k，96k，128k，448kbps
+。。。</li>
+<li>采样频率：决定每秒播放多少个样本！</li>
+</ul></li>
+<li>CRC：循环冗余码</li>
+<li>32个子带：（每个子带的结构为）
+<ul>
+<li>比特分配4bit：描述分配给该子带的量化比特数目（因此最多分配15个bit）</li>
+<li>比例因子6bit：量化比例因子</li>
+<li>子带样本：12个样本 × nbit（分配的比特长度）</li>
+</ul></li>
+<li>附加数据：（因为每一帧的总长度固定，指定了输出码率）固末尾补零/or一些其他信息（专辑/歌手信息）</li>
+</ul></li>
+<li><p><strong>layer2</strong>的改进：</p>
+<ul>
+<li>1帧包含1152个样本（3 ×
+384）；仍是32个子频带，每个子频带36个样本</li>
+<li>心理声学模型：不仅使用频率掩蔽，还用了时域掩蔽</li>
+</ul></li>
+<li><p><strong>layer3</strong>的改进：</p>
+<ul>
+<li>最主要的改进：时域-频率转换部件：转换为
+32个<strong>临界频带</strong></li>
+</ul></li>
+</ul>
+<p><strong>MPEG-2 audio</strong></p>
+<p>MPEG-2 Audio：延用扩充MPEG-1</p>
+<p>MPEG-2 AAC：与Audio标准 完全不相关！</p>
+<ul>
+<li>取样频率：从8k~96kHz（人耳最高就听到20kHz。。）</li>
+<li>编码器的分类分级：根据自身设备，选择解码适合的码流</li>
+</ul>
+<p><strong>MPEG-4 audio</strong></p>
+<p>自然音频信号 和 合成音频信号 的编码：<strong>统一</strong></p>
+<p><strong>Dolby AC-3</strong>（全频带声音的其他编码）</p>
+<p><strong>？？去问老师 CAE算法是咋编的（12章）</strong></p>
 
       
     </div>
@@ -662,7 +4432,7 @@ video delivered by computers</li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-02-25 00:22:31" itemprop="dateModified" datetime="2022-02-25T00:22:31+08:00">2022-02-25</time>
+                <time title="修改时间：2022-06-22 09:36:54" itemprop="dateModified" datetime="2022-06-22T09:36:54+08:00">2022-06-22</time>
               </span>
 
           
@@ -912,7 +4682,7 @@ class="math inline">\(\epsilon\)</span>可做标号（可能跳到多个状态�
 <li><p>两种自动机都识别正则语言</p>
 <ul>
 <li>NFA,DFA都可以识别正则表达式可描述的语言，反之亦然</li>
-<li>识别：判定一个串是否数于对应正则语言</li>
+<li>识别：判定一个串是否属于对应正则语言</li>
 <li>NFA,DFA的表达能力是等价的~</li>
 </ul></li>
 <li><p>NFA（不确定）：</p>
@@ -975,16 +4745,18 @@ class="math inline">\(\epsilon-\)</span>closure(T)）如下：<img
 src="F:\blog\source_posts\figs\algorithm1.png" alt="img" /></li>
 <li>主算法：
 <ul>
-<li>输出：Dstates：DFA状态，每个元素对应一个NFA状态集合</li>
-<li>Dtran：DFA状态转换表<img
-src="F:\blog\source_posts\figs\algorithm2.png" alt="img" /></li>
+<li><p>输出：Dstates：DFA状态，每个元素对应一个NFA状态集合</p></li>
+<li><p>Dtran：DFA状态转换表<img
+src="F:\blog\source_posts\figs\algorithm2.png" alt="img" /></p></li>
+<li><p>example
+Dtran：<img src="F:\blog\source\_posts\figs\fig93.png" style="zoom:67%;" /></p></li>
 </ul></li>
 </ul></li>
 </ul></li>
 </ul>
 <h4 id="dfa状态数量的最小化">DFA状态数量的最小化</h4>
 <p>一个正则语言可对应于多个识别它的DFA（等价的）</p>
-<p>通过<strong>DFA的最小化</strong>可得到状态数量最少的DFA（不及同构，是唯一的）</p>
+<p>通过<strong>DFA的最小化</strong>可得到状态数量最少的DFA（不计同构，是唯一的）</p>
 <ul>
 <li>状态的区分
 <ul>
@@ -1030,7 +4802,7 @@ src="F:\blog\source_posts\figs\fig1.png" alt="img" /></li>
 </ul></li>
 <li><p>确定化NFA可能引发冲突</p>
 <ul>
-<li><p>对得到的NFA（上面）进行确定话，得到DFA</p></li>
+<li><p>对得到的NFA（上面）进行确定化，得到DFA</p></li>
 <li><p>一个DFA的接受状态对应于NFA的状态子集，其中至少包括一个NFA的接受状态，<span
 class="math inline">\(\textcolor{red}{但是可能包括多个对应于不同模式的NFA接受状态！表示当前输入前缀对应于多个模式，存在冲突！！}\)</span></p></li>
 <li><p>解决方案：优先级</p>
@@ -1151,8 +4923,9 @@ class="math inline">\(\textcolor{red}{只有唯一的最左推导和最有推导
 <ul>
 <li><p>一个文法可以为某个句子生成<strong>多棵</strong>语法分析树（<span
 class="math inline">\(\textcolor{red}{都是最左推导}\)</span>），则这个<strong>文法</strong>就是二义的！</p></li>
-<li><p>程序设计语言的文法通常是无二义的！否则可能出现？，对同一（id +
-id）* id; id + (id * id)都符合文法</p></li>
+<li><p>程序设计语言的文法通常是无二义的！否则可能出现：对同一（id +
+id）* id; id + (id *
+id)都符合文法，但实际上我们有一个期望的优先级</p></li>
 </ul></li>
 <li><p>上下文无关文法 和 正则表达式</p>
 <ul>
@@ -1178,7 +4951,7 @@ class="math inline">\(a^jb^i\)</span>!（DFA无法无限计数！）</li>
 </ul>
 <h3 id="四文法及其生成的语言">四、文法及其生成的语言</h3>
 <ul>
-<li>设计文法
+<li><p>设计文法</p>
 <ul>
 <li>符合文法的句型集合，是合法程序代码的超集</li>
 <li>要消除二义性</li>
@@ -1191,6 +4964,933 @@ class="math inline">\(A=^+&gt;Aa\)</span>，则称这个文法是左递归的</l
 <ul>
 <li>如S<span class="math inline">\(\to\)</span>abX...，T<span
 class="math inline">\(\to\)</span>abY... 则把ab提取出来？</li>
+</ul></li>
+<li>分层：（用来消除二义性）
+<ul>
+<li>最左推导中，每次展开都最先展开最深层的非终结符</li>
+<li>如：加法、乘法分成两个不同的产生式</li>
+</ul></li>
+</ul></li>
+<li><p>自顶向下的语法分析：</p>
+<ul>
+<li><p>左递归，从根节点开始，关键是如何应用产生式？（选哪个）</p></li>
+<li><p>1.递归下降：</p>
+<ul>
+<li>每个非终结符 对应一个过程/函数，负责扫描该非终结符结构</li>
+<li>从起始符号过程开始扫描，深度优先创建节点</li>
+<li>应用产生式：如<span class="math inline">\(A\to
+X_1|X_2|\cdots\)</span>，一个一个猜，直到猜对</li>
+<li>应用展开式来consume掉输入符号，全部consume且展开完毕，则匹配成功</li>
+<li>特点：易于实现，但是需要回溯（影响效率！）</li>
+</ul></li>
+<li><p>直接左递归的消除</p>
+<ul>
+<li><p>假设非终结符A存在：<span class="math inline">\(A\to
+A\alpha_1|\cdots|A\alpha_m|\beta_1|\cdots|\beta_n\)</span></p></li>
+<li><p>可替换为：（<strong><span
+class="math inline">\(\beta\)</span>中可以包含<span
+class="math inline">\(A\)</span>！</strong>）</p>
+<p><span class="math inline">\(A\to\beta_1 A&#39;|\cdots|\beta_n
+A&#39;\)</span></p>
+<p><span class="math inline">\(A&#39;\to\alpha_1 A&#39;|\cdots|\alpha_m
+A&#39;|\epsilon\)</span></p></li>
+<li><p>变为了右递归！（就会停止了）</p></li>
+</ul></li>
+<li><p>间接左递归的消除</p>
+<ul>
+<li>间接左递归：即<span class="math inline">\(S=^+&gt;SA\)</span></li>
+<li>也有算法可以消除</li>
+</ul></li>
+<li><p>2.基于预测的语法分析：</p>
+<ul>
+<li><p>每次为最左边的非终结符号选择合适的产生式</p>
+<ul>
+<li><p>通过<strong>查看下一个输入符号</strong>来选择</p>
+<ul>
+<li>提取左公因子：如<span class="math inline">\(A\to
+aX|aY\)</span>，下一个输入符号为<span
+class="math inline">\(a\)</span>，则提取左公因子a，然后对<span
+class="math inline">\(X,Y\)</span>进行预测分析</li>
+</ul></li>
+<li><p>有多个可能的产生式时也无能为力</p></li>
+<li><p>LL(k)：Left-to-right，Leftmost，根据后k个输入符号选择</p>
+<ul>
+<li>一般k取1</li>
+</ul></li>
+<li><p>FIRST和FOLLOW：</p>
+<ul>
+<li><p>向前看几个符号来确定产生式</p></li>
+<li><p>当前句型<span class="math inline">\(xA\beta\)</span>，输入为<span
+class="math inline">\(xa...\)</span>，则选择产生式<span
+class="math inline">\(A\to\alpha\)</span>的必要条件为（以下之一）</p>
+<ul>
+<li><span class="math inline">\(\alpha=^*&gt; a...\)</span></li>
+<li><span class="math inline">\(\alpha=^*&gt;\epsilon\)</span>，且<span
+class="math inline">\(\beta\)</span>以a开头</li>
+</ul>
+<p>如果这样可以确保<strong>唯一性</strong>，则可以避免回溯</p></li>
+<li><p>FIRST(<span class="math inline">\(\alpha\)</span>)：可从<span
+class="math inline">\(\alpha\)</span>推导得到的<strong>首符号</strong>集合，若<span
+class="math inline">\(\alpha=^*&gt;\epsilon\)</span>，则也包括<span
+class="math inline">\(\epsilon\)</span></p></li>
+<li><p>计算FIRST(X1X2...Xn)：</p>
+<ul>
+<li>加入FIRST(X1)中所有非<span
+class="math inline">\(\epsilon\)</span>的符号</li>
+<li>若<span
+class="math inline">\(\epsilon\)</span>在FIRST(X1)中，则加入FIRST(X2)中所有非<span
+class="math inline">\(\epsilon\)</span>的符号</li>
+<li>...</li>
+<li>若<span
+class="math inline">\(\epsilon\)</span>在所有FIRST(Xi)中，则加入<span
+class="math inline">\(\epsilon\)</span></li>
+</ul></li>
+<li><p>FOLLOW(A)：可能在某些句型中紧跟在A右边（后面）的终结符号集合</p>
+<ul>
+<li>如：若<span class="math inline">\(S\to\alpha
+Aa\beta\)</span>，则终结符号<span
+class="math inline">\(a\in\)</span>FOLLOW(A)</li>
+<li>意义：当<span
+class="math inline">\(A\to\epsilon\)</span>时，FOLLOW(A)就有用了！</li>
+<li>计算FOLLOW：
+<ul>
+<li>首先加入右端结束标记$到FOLLOW(S)中（<strong>S是开始符号</strong>）</li>
+<li>然后按以下规则不断迭代，直到FOLLOW集不变：
+<ol type="1">
+<li>若<span class="math inline">\(A\to \alpha
+B\beta\)</span>，则将FIRST(<span
+class="math inline">\(\beta\)</span>)中所有非<span
+class="math inline">\(\epsilon\)</span>字符加入FOLLOW(B)</li>
+<li>若<span class="math inline">\(A\to\alpha B\)</span>或<span
+class="math inline">\(A\to\alpha B\beta\)</span>且FIRST(<span
+class="math inline">\(\beta\)</span>)中有<span
+class="math inline">\(\epsilon\)</span>，则将FOLLOW(A)加入FOLLOW(B)</li>
+</ol></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>LL(1)文法（left-to-right left-most）</p>
+<ul>
+<li>定义：对文法的任意两个产生式<span
+class="math inline">\(A\to\alpha|\beta\)</span>：
+<ul>
+<li>1.不存在终结符<span
+class="math inline">\(a\)</span>使得俩都能推出以<span
+class="math inline">\(a\)</span>开头的串</li>
+<li>2.俩 最多只有一个可推导出空串</li>
+<li>3.如果<span
+class="math inline">\(\beta\)</span>可推导出空串，那么<span
+class="math inline">\(\alpha\)</span>不能推导出以FOLLOW(A)中任何终结符号开头的串！</li>
+</ul></li>
+<li>等价于：
+<ul>
+<li>FIRST(<span class="math inline">\(\alpha\)</span>)和FIRST(<span
+class="math inline">\(\beta\)</span>)不相交（条件1，2）</li>
+<li>如果$<span class="math inline">\(FIRST(\)</span><span
+class="math inline">\()，那么FOLLOW(A)与FIRST(\)</span>$)不相交；反之亦然（条件3）（<strong>为啥反之亦然？</strong>）</li>
+</ul></li>
+<li>做到以上三点，就可以只看一个符号就可以确定下一步要匹配的文法了（<strong>LL(1)文法必然不是二义性的</strong>）</li>
+<li>预测分析表：
+<ul>
+<li>二维表，非终结符（行）<span class="math inline">\(\times\)</span>
+终结符（列）<span class="math inline">\(\to\)</span> 产生式</li>
+<li>展开非终结符时，根据输入终结符选择相应产生式</li>
+<li>所有空白条目 填入<strong>error</strong></li>
+</ul></li>
+<li>LL(1)文法的递归下降分析，是无回溯递归下降，线性时间的</li>
+<li>通过<strong>栈</strong>（将当前待匹配的非终结/终结符压入栈中，依次与输入匹配，并继续压栈新的待匹配符），可以实现非递归的版本</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>3.自顶向下语法分析的局限</p>
+<ul>
+<li>能识别的文法有局限性：
+<ul>
+<li>需要改造文法消除左递归</li>
+<li>改造后的文法不直观</li>
+<li>生成的语法树不易处理和理解</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>自底向上的语法分析</p>
+<ul>
+<li><p>LR（left-to-right
+R：反向最右）：一种自底向上方式的语法分析</p></li>
+<li><p>自底向上的语法分析过程 可以看成是 从串<span
+class="math inline">\(\omega\)</span>归约为文法开始符号<span
+class="math inline">\(S\)</span>的过程（<span
+class="math inline">\(S=^*&gt;\omega\)</span>逆序）</p></li>
+<li><p><strong>归约</strong>步骤：</p>
+<ul>
+<li><p>一个与某<strong>产生式体</strong>相匹配的特定<strong>字串</strong>被替换为<strong>产生式头部</strong>的<strong>非终结符号</strong></p></li>
+<li><p>如过程： <span class="math display">\[
+id*id,F*id,T*id,T*F,T,E\\
+E\Rightarrow T\Rightarrow T*F\Rightarrow T*id\Rightarrow F*id\Rightarrow
+id*id
+\]</span> 归约过程等于一个反向最右推导</p></li>
+<li><p>归约步骤不是任何展开式都可以选的！（<strong>怎么确定呢？</strong>）</p></li>
+</ul></li>
+<li><p>句柄（<strong>是什么！？？？</strong>）</p>
+<ul>
+<li>最右句型（即通过最右推导得到的句型）中和某个<strong>产生式体</strong>相匹配的子串，对它的归约代表了该最右句型的最右推导的最后一步</li>
+<li>正式定义：对于最右句型<span class="math inline">\(\alpha\beta
+\omega\)</span>，如果<span class="math inline">\(S=*_{rm}&gt;\alpha
+A\omega=_{rm}&gt;\alpha\beta\omega\)</span>，则<span
+class="math inline">\(\beta\)</span>以及产生式<span
+class="math inline">\(A\to\beta\)</span>是最右句型<span
+class="math inline">\(\alpha\beta\omega\)</span>的一个句柄（or称<span
+class="math inline">\(\beta\)</span>为句柄）
+<ul>
+<li>在一个最右句型，句柄右边只有终结符号</li>
+<li>如果文法无二义性，则每个句型有且只有一个句柄</li>
+<li>因为对该句柄的归约就是该最右句型的最右推导的最后一步，因此当前一定可以对该句柄进行归约！</li>
+</ul></li>
+<li>因此：自底向上分析的过程
+就是<strong>识别和归约句柄</strong>的过程</li>
+</ul></li>
+<li><p>主要分析动作：</p>
+<ul>
+<li>移入：将下一个输入符号移入到栈顶</li>
+<li>归约：将句柄归约为相应的非终结符号
+<ul>
+<li>句柄<strong>总是在栈顶</strong>（为什么呢？）
+<ul>
+<li>直觉：如果一个句柄出现在栈中/底，则它之前就应该被规约了！</li>
+</ul></li>
+<li>具体操作时弹出的句柄，压入被归约到的<strong>非终结符号</strong></li>
+</ul></li>
+<li>接受：宣布分析过程成功完成</li>
+<li>报错：发现语法错误，错误恢复</li>
+</ul></li>
+<li><p>移入-归约分析中的冲突：</p>
+<ul>
+<li>无论如何，都可能有如此格局：
+<ul>
+<li>即使知道栈中所有内容、后续k个符号，仍然无法知道是否该归约；以及该用哪个产生式归约</li>
+<li>如：stmt <span class="math inline">\(\to\)</span> if expr stmt | if
+expr stmt else stmt | ... 无法确定该归约前者，还是继续移入后者</li>
+<li>or（归约-归约冲突粒子）：输入为id（id，id），当前栈：...id（id
+输入：，id）...，文法为：过程调用 和 数组引用的文法相同</li>
+</ul></li>
+</ul></li>
+<li><p>LR语法分析技术</p>
+<ul>
+<li>LR（k）（L：从左到右扫描；R：反向构造最右推导；k：向前看k个符号（只考虑k=0和1））</li>
+<li>SLR：简单LR技术</li>
+<li>可以使用LR方法的文法类 是可以使用预测LL方法的文法类的真超集！</li>
+</ul></li>
+<li><p>LR(0)自动机：</p>
+<ul>
+<li>项：一个文法G的LR（0）项就是G的一个产生式+一个位于其体
+中某处的点，如对于产生式<span class="math inline">\(A\to
+xyz\)</span>，有：<span class="math inline">\(A\to .xyz,A\to
+x.yz\)</span>等等。。（<span
+class="math inline">\(A\to\epsilon\)</span>仅<span
+class="math inline">\(A\to .\)</span>）
+<ul>
+<li>一个项可以表示为一对整数：ab，a表示生产式编号，b表示.所在位置</li>
+</ul></li>
+<li>LR(0)项集族：LR(0)自动机的每个状态 代表了LR(0)项集族的一个项集</li>
+<li>增广文法
+<ul>
+<li>若文法G的开始符号为S，则增广文法G'以S'为开始符号，且包含产生式<span
+class="math inline">\(S&#39;\to S\)</span>
+<ul>
+<li>目的是：当且仅当使用规则<span class="math inline">\(S&#39;\to
+S\)</span>归约时，输入符号串被接受</li>
+</ul></li>
+<li>项集I的闭包CLOSURE(I)：
+<ul>
+<li>将I中所有项加入</li>
+<li>若<span class="math inline">\(A\to \alpha
+.B\beta\)</span>在闭包中，存在产生式<span
+class="math inline">\(B\to\gamma\)</span>，而项<span
+class="math inline">\(B\to
+.\gamma\)</span>不在闭包内，则将其加入。重复此规则直到不变为止</li>
+<li>将项分类：
+<ul>
+<li>内核项：<span class="math inline">\(S&#39;\to
+.S\)</span>和所有点不在最左端的项</li>
+<li>非内核项：除<span class="math inline">\(S&#39;\to
+.S\)</span>外点在最左端的项</li>
+</ul></li>
+<li>所有非内核项都可以通过对该项集的内核项求闭包得到！（是由内核项决定）</li>
+</ul></li>
+<li>函数GOTO(I,X)：
+<ul>
+<li>I为项集，X为一个文法符号（非终结或终结符）</li>
+<li>GOTO(I,X)表示：I的闭包中所有形如<span
+class="math inline">\(A\to\alpha .X\beta\)</span>的项所对应的项<span
+class="math inline">\(A\to\alpha X.\beta\)</span>的集合的闭包</li>
+<li>含义就是：LR(0)自动机从状态（I的闭包），输入X后跳转到的状态</li>
+</ul></li>
+<li>如何做移入-归约决策？
+<ul>
+<li>LR(0)自动机的开始状态为：CLOSURE(<span
+class="math inline">\(\{S&#39;\to S\}\)</span>)</li>
+<li>当前状态为j（对应项集<span
+class="math inline">\(I_j\)</span>），则若下一个输入符号为<span
+class="math inline">\(a\)</span>且存在状态j在a上的转换，则移入；</li>
+<li>否则进行归约：用哪个产生式？根据项集中的项决定！（会有一个点在最右侧的项？）</li>
+<li>移入操作：根据状态上的转换，和移入的符号，将对应的状态压入栈中（原状态仍保留）</li>
+<li>归约操作：运用该产生式，将输入符号栈中的产生式体弹出，替换为产生式头，再压入栈中；状态栈中，则将n个状态弹出（n为进行归约的产生式体长度），然后根据压入符号栈的符号a，压入状态GOTO(I,a)，其中I为当前状态栈顶的状态</li>
+</ul></li>
+<li>每个状态（对应一个项集），除开始状态外，都对应唯一的一个文法符号X（根据构造状态集族时的算法，每个状态转换都有一个文法符号）</li>
+</ul></li>
+</ul></li>
+<li><p>LR语法分析表的结构</p>
+<ul>
+<li><p>ACTION：两个参数：状态i，<strong>终结符号a（或$）！！！</strong></p>
+<ul>
+<li>ACTION[i，a]有四种形式：</li>
+</ul>
+<ol type="1">
+<li>移入状态j：输入符号a移入栈中，但用状态j来代表a</li>
+<li>归约<span class="math inline">\(A\to \beta\)</span>：栈顶的<span
+class="math inline">\(\beta\)</span>规约为A</li>
+<li>接受：接受输入并完成语法分析</li>
+<li>报错</li>
+</ol></li>
+<li><p>GOTO：</p>
+<ul>
+<li>若（函数）GOTO[<span
+class="math inline">\(I_i,A]=I_j\)</span>，则GOTO[i，A]=j（i，j为状态）<strong>A只能为非终结符！</strong></li>
+</ul></li>
+</ul></li>
+<li><p>LR语法分析器</p>
+<ul>
+<li>格局：(<span class="math inline">\(s_0\cdots s_m,a_i\cdots
+a_n\)</span>)。表示最右句型：<span class="math inline">\(X_1\cdots X_m
+a_i\cdots a_n\)</span></li>
+<li>栈中存放状态，而非文法符号（从状态<span
+class="math inline">\(s_k\)</span>中可以恢复出文法符号<span
+class="math inline">\(X_k\)</span>，不过<span
+class="math inline">\(s_0\)</span>没有文法符号，只代表了栈底 和
+开始状态）</li>
+<li>LR语法分析器行为：
+<ul>
+<li>根据当前读入的输入符号<span
+class="math inline">\(a_i\)</span>和栈顶状态<span
+class="math inline">\(s_m\)</span>，查询分析表条目ACTION[<span
+class="math inline">\(s_m\)</span>，<span
+class="math inline">\(a_i\)</span>]，ACTION[<span
+class="math inline">\(s_m\)</span>，<span
+class="math inline">\(a_i\)</span>]=：
+<ol type="1">
+<li>移入s，则执行移入，状态s压栈，<span
+class="math inline">\(a_i\)</span>不需要存放（因为一定可从s中恢复出<span
+class="math inline">\(a_i\)</span>！），则当前输入符号为<span
+class="math inline">\(a_{i+1}\)</span></li>
+<li>归约<span class="math inline">\(A\to\beta\)</span>：进入格局(<span
+class="math inline">\(s_0\cdots s_{m-\gamma}s,a_i\cdots
+a_n\)</span>)：<span class="math inline">\(\gamma\)</span>为<span
+class="math inline">\(\beta\)</span>长度且<span
+class="math inline">\(s=\)</span>GOTO<span
+class="math inline">\([s_{m-\gamma},A]\)</span>，输入符号不会变</li>
+<li>接受：语法分析过程完成</li>
+<li>报错：发现语法错误，调用错误恢复例程</li>
+</ol></li>
+</ul></li>
+</ul></li>
+<li><p>SLR语法分析表构造算法：<img
+src="F:\blog\source_posts\figs\algorithm4.png" alt="algorithm" /></p>
+<ul>
+<li><span
+class="math inline">\(\textcolor{red}{归约步骤，下一个输入符号为FOLLOW(A)！！}\)</span></li>
+<li>由此算法得到的由ACTION函数和GOTO函数组成的语法分析表
+被称为文法G的<strong>SLR(1)</strong>分析表！SLR(1)=SLR</li>
+</ul></li>
+<li><p>可行前缀</p>
+<ul>
+<li>一个可行前缀是一个最右句型的前缀，且没有越过该最右句型的最右句柄的右端！</li>
+<li>如果存在最右推导过程：<span class="math inline">\(S=^*&gt;\alpha
+A\omega=&gt;\alpha\beta_1\beta_2\omega\)</span>，则说项<span
+class="math inline">\(A\to\beta_1\beta_2\)</span>对于可行前缀<span
+class="math inline">\(\alpha\beta_1\)</span>有效。（<span
+class="math inline">\(\alpha\beta_1\)</span>根据定义，显然是可行前缀）有效，可以理解为：对与当前正在考虑的符号前缀，可以应用什么展开式？归约得到的也是最右句型？</li>
+</ul></li>
+</ul></li>
+<li><p>更强大的LR语法分析器</p>
+<ul>
+<li><p>规范LR方法</p>
+<ul>
+<li>LR(1)项：
+<ul>
+<li>形式：[<span class="math inline">\(A\to\alpha \beta\)</span>，<span
+class="math inline">\(a\)</span>]：a为向前看符号，只能是终结符号或$</li>
+<li>表示如果将来要按照<span
+class="math inline">\(A\to\alpha\beta\)</span>进行规约，归约时的下一个输入符号必须是a（<span
+class="math inline">\(a\in\)</span>FOLLOW(A)）</li>
+<li>当<span
+class="math inline">\(\beta\)</span>非空时，移入动作不考虑a，将a传入下一状态中</li>
+</ul></li>
+<li>LR(1)项有效条件
+<ul>
+<li>若[<span
+class="math inline">\(A\to\alpha.B\beta,a\)</span>]对可行前缀<span
+class="math inline">\(\gamma\)</span>有效，则：[<span
+class="math inline">\(B\to.\theta,b\)</span>]对<span
+class="math inline">\(\gamma\)</span>有效的条件是：<span
+class="math inline">\(b\in\)</span>FIRST(<span
+class="math inline">\(\beta a\)</span>)</li>
+</ul></li>
+<li>构造LR(1)项集
+<ul>
+<li>同增广文法</li>
+<li>CLOSURE(I)：由项[<span
+class="math inline">\(A\to\alpha.B\beta,a\)</span>]生成项[<span
+class="math inline">\(B\to.\theta,b\)</span>]时，必须满足<span
+class="math inline">\(b\in\)</span>FIRST(<span
+class="math inline">\(\beta a\)</span>)
+<ul>
+<li>LR(1)项集中任意项[<span
+class="math inline">\(A\to\alpha.B\beta,a\)</span>]必有：a在FOLLOW(A)中</li>
+<li>对于项[<span
+class="math inline">\(A\to\alpha.B\beta,a\)</span>]，以及每个FIRST(<span
+class="math inline">\(\beta a\)</span>)中的b，都加入项[<span
+class="math inline">\(B\to.\theta,b\)</span>]</li>
+<li>初始状态（项集）：CLOSURE({<span class="math inline">\([S&#39;\to
+.S,\$]\)</span>})</li>
+</ul></li>
+<li>GOTO(I,X)：显然，对I中每个项[<span
+class="math inline">\(A\to\alpha.X\beta,a\)</span>]，将[<span
+class="math inline">\(A\to\alpha X.\beta,a\)</span>]加入J中，return
+CLOSURE(J)</li>
+</ul></li>
+<li>LR(1)语法分析表的构造<img
+src="F:\blog\source_posts\figs\algorithm5.png" />
+<ul>
+<li>注意和SLR（1）的区别！</li>
+</ul></li>
+<li>但是LR(1)语法分析表的状态数量很大！</li>
+</ul></li>
+<li><p>LALR语法分析表：</p>
+<p>（状态数量和SLR(1)相同）</p>
+<ul>
+<li>基本思想：寻找具有<strong>相同核心</strong>的LR(1)项集，并合并为一个项集
+<ul>
+<li>一个LR(1)项集的核心就是一个LR(0)项集</li>
+<li>GOTO(I,X)的<strong>核心</strong>只由I的<strong>核心</strong>决定，因此项集合并后，GOTO目标也可以合并</li>
+</ul></li>
+<li>合并会引起冲突：
+<ul>
+<li>不会导致<strong>移入/归约冲突</strong>（证明思路：假设存在移入/归约冲突，则原本的LR(1)分析表中就已经存在冲突）</li>
+<li>但可能导致归约/归约冲突</li>
+</ul></li>
+<li>构造LALR语法分析表：<img
+src="F:\blog\source_posts\figs\algorithm6.png" />
+<ul>
+<li><span
+class="math inline">\(\textcolor{red}{如果有冲突，则得到的文法不是LALR的！}\)</span></li>
+</ul></li>
+<li>显然，对于语法正确的输入，LALR和LR分析器的动作序列是相同的！
+<ul>
+<li>对于错误输入，LALR只<strong>可能多执行一些归约操作</strong>，但是并<strong>不会多移入字符</strong>！</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>二义性文法：</p>
+<ul>
+<li>二义性文法都不是LR的！但有些二义性文法是有用的，因此可以<strong>消除二义性</strong>规则
+<ul>
+<li>LR分析器中可以实现消除二义性！</li>
+</ul></li>
+<li>优先级/结合性：（消除二义性）
+<ul>
+<li>多用于表达式运算符，以及if-else</li>
+<li>规定了优先级/结核性后，可以产生无二义性的文法分析表</li>
+</ul></li>
+</ul></li>
+</ul>
+<h3 id="五.错误恢复">五.错误恢复</h3>
+<ul>
+<li><p>语法错误的处理</p>
+<ul>
+<li>需要识别并指出位置；</li>
+<li>能从错误中恢复，继续检测后面的错误</li>
+</ul></li>
+<li><p>预测分析（自顶向下：LL）中的错误恢复</p>
+<ul>
+<li>进行错误恢复时可用的信息：栈里面的符号、待分析的符号</li>
+<li>两类错误恢复方法：
+<ul>
+<li>恐慌模式：
+<ul>
+<li>遇到错误：试图忽略掉一些符号（输入、栈上），跳过该程序结构，继续进行后面的语法分析</li>
+<li><strong>同步词法单元</strong>是这个程序结构结束的标志
+<ul>
+<li>同步词法单元是什么？直觉上来讲：FOLLOW(A)！</li>
+<li>文法符号A（非终结符）的同步集合<strong>启发式规则</strong>：（将以下符号加入A的同步集合中）
+<ul>
+<li>FOLLOW(A)中所有符号</li>
+<li><strong>高层次</strong>非终结符号对应串的<strong>开始符号</strong></li>
+<li>FIRST(A)中符号（如<span class="math inline">\(A\to
+xyz\)</span>，输入为！xyz（多输一个字符））</li>
+</ul></li>
+<li>若A为终结符：匹配错误时，可直接弹出该符号，并假装已经插入了该终结符（对应少敲一个字符）</li>
+</ul></li>
+<li>恐慌模式的预测分析表：
+<ul>
+<li>synch：表示：发生错误，但可能是后面正确高层次非终结符号的开始符号，则一直弹出栈中非终结符直到匹配</li>
+<li>空白项：忽略掉该输入（可能是多输入了）</li>
+<li>当终结符号不匹配时，直接弹出栈中终结符（可能漏了）</li>
+</ul></li>
+</ul></li>
+<li>短语层次的恢复
+<ul>
+<li>在预测语法分析表的空白条目中，插入错误处理例程的函数指针
+<ul>
+<li>例程可以改变、插入或删除输入中的符号，并发出适当的错误消息</li>
+</ul></li>
+<li>错误恢复能力很强，但是工作量大</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>LR语法分析中的错误恢复</p>
+<ul>
+<li>查询ACTION表时可能发现报错条目：
+<ul>
+<li>栈中符号串为<span
+class="math inline">\(\alpha\)</span>，当前输入符号a，报错表示：不存在中介符号串x使得<span
+class="math inline">\(\alpha ax\)</span>为一个最右句型</li>
+</ul></li>
+</ul>
+<ol type="1">
+<li>恐慌模式的错误恢复策略：（此即实验一用的方法）
+<ul>
+<li>栈顶向下扫描，找到状态s，s有一个对应于<strong>某个终结符A</strong>的GOTO目标（s上的状态全丢弃）</li>
+<li>输入中丢弃符号，直到一个可跟在A后面的符号b，并将GOTO(s，A)压栈</li>
+<li>继续分析</li>
+</ul></li>
+<li>短语层次的恢复
+<ul>
+<li>检查LR分析表中的每个报错条目，根据语言的特性来确定程序员最可能犯了什么错误，然后构造适当的恢
+复程序</li>
+</ul></li>
+</ol></li>
+</ul>
+<h2 id="语义分析语法制导的翻译">语义分析（语法制导的翻译）</h2>
+<ul>
+<li><p>通过了词法分析-（合法符号流）-&gt;语法分析-（符合语法，语法分析树，<strong>有时在构造分析树的同时同步SDD求值</strong>）-&gt;语义分析</p></li>
+<li><p>文法与语义</p>
+<ul>
+<li>使用上下文无关文法引导语义的分析：
+<ul>
+<li>CFG非终结符 表示语言的某个构造</li>
+<li>构造 由 更小的构造组成</li>
+<li>构造的语义：可由小构造的语义综合而来；（x = a +
+b;）或从附近继承而来。（int a;）</li>
+</ul></li>
+</ul></li>
+<li><p>语法制导的定义（SDD）</p>
+<ul>
+<li><p>Syntax-Directed-Definition：CFG + 属性/规则 的结合</p>
+<ul>
+<li>属性和文法符号关联；规则和产生式关联（规则用来计算文法符号的属性）</li>
+<li>基于SDD，可以在一个程序的语法分析树上计算语义信息</li>
+</ul></li>
+<li><p>属性</p>
+<ul>
+<li>综合属性（Synthesized Attribute）
+<ul>
+<li>节点N的属性值由N的产生式关联的语义规则定义</li>
+<li>由N自身和其子节点的属性值定义</li>
+<li>自底向上，产生式从右往左 <span class="math inline">\(N\to
+AB\)</span></li>
+</ul></li>
+<li>继承属性（Inherited Attribute）
+<ul>
+<li>N的属性值由父节点所关联的语义规则来定义</li>
+<li>依赖于N的<strong>父节点</strong>、<strong>N本身</strong>、N的<strong>兄弟节点</strong>上的属性值</li>
+<li>如对于产生式：<span class="math inline">\(X\to
+ANB\)</span>，。。。</li>
+</ul></li>
+<li>几条约束：
+<ul>
+<li><strong>不允许</strong>N的继承属性
+通过N的子节点上的属性来定义！</li>
+<li><strong>允许</strong>N的综合属性依赖于N本身的继承属性</li>
+<li>终结符号有综合属性（来自词法分析），但无继承属性</li>
+</ul></li>
+<li>S属性的SDD：只包含综合属性的SDD称为 S属性的SDD
+<ul>
+<li>S属性的SDD可以和LR语法分析器同时进行！
+<ul>
+<li>栈中的状态/文法符号 可以附加相应的属性值</li>
+<li>归约时，按照语义规则 计算 规约得到的符号 的属性值</li>
+</ul></li>
+<li>S属性的SDD可以和LL语法分析器（自顶向下的语法分析过程）同时进行！
+<ul>
+<li>递归子程序法：<span class="math inline">\(A\to
+XYZ\)</span>，子程序A()中，如果X()&amp;&amp;Y()&amp;&amp;Z()
+返回true了，则已经计算完了XYZ的属性，因此这时计算A的属性即可，然后再返回true。</li>
+<li>基于预测的LL(1)也差不多</li>
+</ul></li>
+<li>语义规则一般不该有复杂的<strong>副作用</strong>
+<ul>
+<li>要求：副作用不影响其他属性</li>
+<li>没有副作用的SDD称为<strong>属性文法</strong></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>语法分析树上的SDD求值</p>
+<ul>
+<li>注释语法分析树：包含了各节点的属性值的语法分析树</li>
+<li>按照分析树中分支对应的文法产生式，应用相应的语义规则</li>
+<li>若结点N的属性<span
+class="math inline">\(a=f(N_1.b_1,N_2.b_2,...,N_m.b_m)\)</span>，则需要先算出后面m个属性，再算a；<strong>能确定计算顺序，则一定能算出注释语法分析树！</strong></li>
+<li>有依赖环的SDD<strong>不能计算！</strong></li>
+</ul></li>
+<li><p>SDD的求值顺序</p>
+<ul>
+<li>依赖图：（以某节点的某个属性 为单位）
+<ul>
+<li>给定SDD，很难判定是否存在一棵分析树，其对应的依赖图包含环；</li>
+<li>但给定SDD和分析树，容易判断是否存在环（强连通分量）</li>
+<li>S属性的SDD，L属性的SDD<strong>一定不存在环</strong></li>
+<li>A.a指向B.a表示计算属性B.a需要依赖属性A.a</li>
+</ul></li>
+<li>在分析树上计算SDD：<strong>后序遍历</strong><img
+src="F:\blog\source_posts\figs\algorithm7.png" /></li>
+</ul></li>
+<li><p>L属性SDD</p>
+<ul>
+<li>S属性SDD存在局限：全都是综合属性，无法计算同时综合+继承的属性，如：int
+a[2][3]</li>
+<li>L属性SDD的每个属性：
+<ol type="1">
+<li>是综合属性</li>
+<li>是继承属性，且<span class="math inline">\(A\to X_1X_2\cdots
+X_n\)</span>中计算<span
+class="math inline">\(X_i.a\)</span>的规则只是用：
+<ul>
+<li>A的<strong>继承属性</strong>，和</li>
+<li><span class="math inline">\(X_i\)</span>左边的文法符号<span
+class="math inline">\(X_j\)</span>的任何属性（j&lt;i）</li>
+</ul></li>
+</ol></li>
+<li>则，依赖图中无环：综合属性下到上；继承属性上到下，或左到右</li>
+<li>自顶向下语法分析过程中计算L属性SDD：
+<ul>
+<li>非终结符A：调用其过程前计算<strong>继承属性</strong>，过程返回后计算综合属性</li>
+<li>对于<span class="math inline">\(A\to X_1\cdots
+X_n\)</span>：调用<span
+class="math inline">\(X_i\)</span>前计算其继承属性，调用之后计算其综合属性</li>
+</ul></li>
+</ul></li>
+<li><p>具有受控副作用的语义规则</p>
+<ul>
+<li>有副作用的一个例子：变量声明int x x = 1</li>
+<li>语法分析时，如果无副作用，标识符表就必须作为属性传递！
+<ul>
+<li>有副作用：把标识符表当作全局变量，调用函数添加新id</li>
+</ul></li>
+<li>受控副作用：
+<ul>
+<li>允许：可以按照依赖图拓扑顺序求值而不会对最终翻译结果产生影响的副作用（这种不会对属性求值产生影响）</li>
+<li>对求值过程添加简单的约束</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>语法制导定义（SDD）的应用（<strong>两个应用：构造AST，和类型结构</strong>）</p>
+<ul>
+<li><p>计算类型：如 int [2][3] a</p></li>
+<li><p>语法分析树</p>
+<ul>
+<li>具体语法树（CST）：保留所有词法元素，符合上下文无关文法</li>
+<li>抽象语法树（AST）：可忽略一些<strong>非本质</strong>东西；某些树结构转为列表；<strong>不符合</strong>上下文无关文法；易于遍历
+处理。特点：只保留必要词法元素；某些词法元素信息存入父节点的属性；移除没有是指信息的中间推导过程</li>
+</ul></li>
+<li><p>构造抽象语法分析树</p>
+<ul>
+<li>如何直接构造AST呢？通过SDD！</li>
+<li>每个节点代表一个语法结构（对应运算符）</li>
+<li>节点的子节点对应运算分量</li>
+<li>表示方法：每个节点用一个对象表示；叶子节点只有词法值、其他（内部）节点存op和参数（子节点）</li>
+<li>一个例子：<img src="F:\blog\source_posts\figs\fig6.png" /></li>
+<li>注意：所以按照这个过程，所有的node属性
+都是综合属性！（S属性SDD）</li>
+</ul></li>
+<li><p>语法制导的翻译方案（SDT）：在产生式体中嵌入语义动作（程序片段）的<strong>上下文无关文法</strong></p>
+<ul>
+<li><p>用SDT实现语法翻译（<strong>how？</strong>）：SDT是SDD的一种补充！</p></li>
+<li><p>SDT的实现方法：</p>
+<ul>
+<li><p>遍历法：建立语法分析树（<strong>CST!</strong>）——&gt;将语义动作看作虚拟节点（绑定语义动作）——&gt;深度优先、从左到右遍历分析树，访问虚拟节点时执行语义动作</p></li>
+<li><p>如何插入虚拟节点？：对于综合属性的语义动作，将该虚拟节点作为子节点插到产生式头节点的右边！（原因显然：深度优先，从左到右）<img
+src="F:\blog\source_posts\figs\fig5.png" /></p></li>
+<li><p>更难的方法：在语法分析过程中实现SDT</p>
+<ul>
+<li>通用判断是否可以在语法分析过程中实现SDT：
+<ol type="1">
+<li><strong>语义动作能否在想要的时机执行？</strong>每个语义动作
+替换为一个非终结符M（<span
+class="math inline">\(M\to\epsilon\)</span>），添加到原产生式右边？如此，得到新文法G'（G+SDT<span
+class="math inline">\(\to\)</span>G'）；如果新文法，可以被某种语法分析技术进行分析（即没有引入冲突，是LL/LR的。。。），则该SDT可以在分析过程中实现（可通过计算机自动判断）</li>
+<li><strong>语义动作能否执行？</strong>得结合属性依赖关系，判断每个虚拟节点能否执行（需人来判断）</li>
+</ol></li>
+<li>两类重要SDD一定可以：
+<ul>
+<li>若SDT基于LR文法，且SDD是S属性的，则必然可以在自底向上的语法分析过程中实现；统里，若SDT基于LL文法，SDD是L属性的，也可以自顶向下。。</li>
+</ul></li>
+<li>后缀翻译方案：基于LR，SDD是S属性=&gt;必可以构造后缀翻译方案
+<ul>
+<li>后缀SDT：所有语义动作（对应虚拟节点）都在产生式最右端的SDT</li>
+</ul></li>
+<li>L属性的SDT
+<ul>
+<li>产生式内部带有语义动作：如<span class="math inline">\(B\to
+X\{a\}\gamma\)</span>
+<ul>
+<li>动作左边的所有符号及动作处理完后，立即执行此动作</li>
+<li>自底向上：X出现在栈顶时执行a</li>
+<li>自顶向下：试图展开（非终结符）<span
+class="math inline">\(\gamma\)</span>或输入中检测到（终结符）<span
+class="math inline">\(\gamma\)</span>时执行a</li>
+</ul></li>
+<li><span class="math inline">\(A\to X_1 X_2\cdots
+X_n\)</span>，A的综合属性SA，插到<span
+class="math inline">\(X_n\)</span>后，X2的继承属性IX2，插到X2前（X1后）</li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><p>while语句的SDD和SDT：</p>
+<ul>
+<li>为while语句生成中间代码（把高层次的控制流/跳转等等结构，转换为低层次的代码；关键在于说明控制流中的<strong>标号</strong>（L1,L2。。。））<img
+src="F:\blog\source_posts\figs\fig12.png" /></li>
+<li>next（执行完该块代码，应该跳转到的label）；false，true：条件为false/true时应跳转到label（上全是继承属性）；code：综合属性<img
+src="F:\blog\source_posts\figs\fig13.jpg" /></li>
+<li>下一步关键在于，将label与具体位置对应</li>
+</ul></li>
+<li><p>L属性SDD的实现</p>
+<ul>
+<li>递归下降语法分析器：每个非终结符S对应一个函数S（），继承属性作为参数传入，返回综合属性！（S.code）</li>
+<li>用局部变量存其他属性（防副作用，<strong>但是！不是要构造AST么？？</strong>）</li>
+<li>但是这样反反复复传递code属性，非常大且低效</li>
+<li>解决方案（上面一点的）：边扫描边生成属性：增量式添加到最终属性值中
+<ul>
+<li>条件：1.存在一个主属性，且是综合属性；2.产生式中，主属性是各主属性+一些其他
+连接而成；3.非终结符号属性连接顺序 = 产生式中顺序</li>
+<li><img src="F:\blog\source_posts\figs\fig14.png" /></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+<h2 id="ch6.-中间代码生成">Ch6. 中间代码生成</h2>
+<p>前端：源语言相关；后端：目标机器相关 ===&gt;
+中间代码：连接前端后端，与二者均无关！可进行优化</p>
+<p>程序语句分为两大类：表达式语句（类型系统），控制流语句</p>
+<ul>
+<li><p>前端：（词法分析）语法分析、静态检查程序（类型检查、语法检查（如break语句在循环块内））、中间代码生成</p>
+<ul>
+<li>中间表示形式：高层、低层
+<ul>
+<li>抽象语法树（高层表示形式）</li>
+<li>三地址代码（高层或底层）：一条指令右侧最多一个运算符：a = b *
+c形式</li>
+</ul></li>
+</ul></li>
+<li><p>语法树变体</p>
+<ul>
+<li><p>表达式的有向无环图DAG：公共子表达式N（可以是叶子节点）可以有多个父节点<img
+src="F:\blog\source_posts\figs\fig22.png" /></p></li>
+<li><p>构造表达式的DAG 的方法：</p>
+<ul>
+<li><p>同样用SDD构造AST的方法，然后每次要创建一个新Leaf/Node时，先判断是否已存在同样的Leaf/Node，如果存在，Leaf/Node方法直接返回对应的节点</p></li>
+<li><p>维护一个记录数组：<img
+src="F:\blog\source_posts\figs\fig23.png" /></p></li>
+<li><p>某一节点在记录数组中的下标（/或该节点的引用），称为该节点所表示的表达式的值编码</p></li>
+<li><p>则每个内部节点的范型为：三元组 &lt;op, l, r&gt;
+标号，左子节点值编码，右值编码（单目运算符，r=0）</p></li>
+</ul></li>
+</ul></li>
+<li><p>三地址代码：主要两个概念：地址，指令</p>
+<ul>
+<li><p>是DAG/AST的线性表示形式，每条指令右侧最多一个运算符，抽象层次接近机器码，有明晰的控制流结构</p></li>
+<li><p>允许的运算分量（地址）：变量（源程序中的名字，实际替换为
+指向符号表条目的指针）；常量（源程序中出现或生成的常量）；编译器生成的临时变量（可加入符号表；或者为Temp类对象）</p></li>
+<li><p>指令集合：<img src="F:\blog\source_posts\figs\fig24.png" /><img
+src="F:\blog\source_posts\figs\fig25.png" /></p></li>
+<li><p>指令在数据结构中的表示方式</p>
+<ul>
+<li>四元式：op，arg1，arg2，result（单目无arg2；param指令无arg2和result；跳转指令
+目标标号为result）</li>
+<li>还有 三元式 和 间接三元式</li>
+</ul></li>
+</ul></li>
+<li><p>静态单赋值（Static Single Assignment
+SSA）：特殊的三地址码，所有变量在<strong>代码中</strong>只被赋值一次</p>
+<ul>
+<li>构造思路：每个变量维护一个计数器；遍历函数体；每次变量赋值，赋新名字（下标+1），并在之后的右值使用处，用新名替换
+<ul>
+<li>tips：通常只对函数内局部变量计算SSA，全局变量很难算！</li>
+</ul></li>
+<li>引入<span
+class="math inline">\(\phi\)</span>函数（应对分支结构）：用<span
+class="math inline">\(x_j =
+\phi(x_1,x_2,...)\)</span>来合并不同控制流下的不同赋值
+<ul>
+<li>如if（flag） x1 = 1； else x2 = 2； x3 = <span
+class="math inline">\(\phi\)</span>（x1，x2）</li>
+<li><span
+class="math inline">\(\phi\)</span>中可以出现后面代码中才出现的变量名，如<span
+class="math inline">\(x_2 = \phi(x_1, x_3)\)</span>，对应循环结构！</li>
+</ul></li>
+<li>SSA的作用：
+<ul>
+<li>全是const变量（<strong>但如果存在循环结构，似乎不是const了！</strong>），简化数据流分析和某些优化</li>
+<li>定义-使用链 清晰易计算</li>
+</ul></li>
+</ul></li>
+<li><p>类型和声明：</p>
+<ul>
+<li><p>作用：类型检查，检查运算分量类型 和
+运算符预期类型是否匹配；确定内存空间、计算数组元素地址；类型转换；选择正确运算符（如a+b：可能对应不同的类型运算）</p></li>
+<li><p>类型</p>
+<ul>
+<li>基本类型：原子类型（机器可以支持的类型，通常有对应的机器指令）</li>
+<li>复合类型：由基本类型组合而成的类型，递归定义的，如：数组、结构体、函数？</li>
+<li>类型表达式：来表示类型的 表达式
+<ul>
+<li>基本类型：就是该类型的名字</li>
+<li>复合类型：通过类型构造算子 作用于类型表达式得到</li>
+</ul></li>
+</ul></li>
+<li><p>类型表达式：</p>
+<ul>
+<li>类型构造算子array（表示同类型的聚合）：如array（2，array（3，int））</li>
+<li>记录类型 构造算子record（不同类型数据的聚合），多组字段：字段名 x
+类型
+<ul>
+<li>若s，t是类型表达式，笛卡尔积s×t也是</li>
+<li>结构体类型中，用来组合：字段名和类型；多组字段</li>
+<li>如struct { int a[10]; float f; } st：record((a x array(10, int)) x
+(f x real))</li>
+</ul></li>
+<li>函数类型：类型构造算子<span class="math inline">\(\to\)</span>：
+<ul>
+<li>如int foo(float x, long[5] y) {...}：类型表达式(float x array(5,
+long)) <span class="math inline">\(\to\)</span> int</li>
+<li>于结构体类型不同，函数类型不需要记录（形参）名字！</li>
+</ul></li>
+</ul></li>
+<li><p>类型等价性</p>
+<p>例子：class X{int x;} x; class Y{int y;} y;</p>
+<ul>
+<li>名等价：直接比较类型名字，则x和y类型不等价（命令式语言一般都是名等价）</li>
+<li>结构等价：（基本类型还是名等价），而复合类型，会递归比较<strong>构造算子及参数分量</strong>（包括字段名），则x和y类型等价</li>
+</ul></li>
+</ul></li>
+<li><p>用SDT进行符号表构造、计算类型及宽度、局部变量的存储布局等</p>
+<ul>
+<li>采用SDT，在产生式（包括类型表达式文法的？）中插入语义动作</li>
+<li>计算类型及宽度，基础类型直接知道，构造类型则要计算（数组 乘法；结构
+加法；对于变量 符号表中直接有一个width属性）</li>
+<li>局部变量的存储布局：维护一个offset变量，每进入一个新作用域，前offset压栈，新offset置零；
+<ul>
+<li>offset指示该变量存储的地址（偏移量）</li>
+</ul></li>
+<li>符号表栈：env；top始终指向当前作用域对应的符号栈（不在env中）</li>
+</ul></li>
+<li><p>表达式代码的SDD（生成三地址码）：</p>
+<ul>
+<li><p><img src="F:\blog\source_posts\figs\fig26.png" /></p></li>
+<li><p>|| 表示代码拼接；addr属性
+就是三地址码中的地址！存放了表达式结果</p></li>
+</ul></li>
+<li><p>类型系统：</p>
+<ul>
+<li><p>给每一个组成部分赋予一个<strong>类型表达式</strong>，有一组类型表达式规则（想想lab2），用来发现错误、提高代码效率（动态检查类型错误减少）、确定变量大小</p></li>
+<li><p>类型特征：</p>
+<ul>
+<li>强类型：不允许无关类型间操作；（允许的操作少）</li>
+<li>弱：通过隐式类型转换（或其他可能的“口子”，如C/C++的指针操作），允许无关类型间操作</li>
+<li>静态类型：（绝大部分）类型错误编译期检查</li>
+<li>动态：（绝大部分）运行时检查</li>
+<li>Gradual Typing：混合</li>
+</ul></li>
+<li><p>类型规则（Type Inference Rule）：</p>
+<ul>
+<li><p>分式记法表大推到规则：前置条件/后置条件</p></li>
+<li><p>类型判决式：e:T 表达式e的类型为T，如e1:integer
+e2:integer/e1+e2:integer</p></li>
+<li><p>无条件成立规则：/0:integer， /true：boolean。。。</p></li>
+<li><p>引入上下文（确定不同作用域标识符的类型）<img
+src="F:\blog\source_posts\figs\fig28.png" /></p></li>
+<li><p>函数重载：函数符号表是一个（类型映射的）集合，然后根据传入参数类型，枚举匹配</p></li>
+</ul></li>
+<li><p>类型转换：</p>
+<ul>
+<li><p>（二元运算对应的）SDT:<img
+src="F:\blog\source_posts\figs\fig29.png" /></p></li>
+<li><p>max函数求两个参数在
+拓宽层次结构（short-&gt;int-&gt;float...）中的<strong>最小公共祖先</strong>；widen函数返回类型为E2.type的临时变量，值为E1</p></li>
+</ul></li>
+</ul></li>
+<li><p>控制流语句的翻译</p>
+<ul>
+<li><p>主要属性有：next，true，false，都是代表一个标签，以及code属性；true，false是只有条件表达式才有的，next是控制流语句S才有的属性；next，true，false都是<strong>继承属性</strong>；code是综合属性</p></li>
+<li><p>关键在于，控制流语句，要为子语句块生成好label（继承属性），并且在code处完成好label的关联插入</p></li>
+<li><p>控制流语句中不进行条件判断，只是进行label和语句的关联（以及while语句中的goto
+begin）；布尔表达式中需要处理条件判断和跳转</p></li>
+<li><p>布尔表达式：比较、取非、true、false等等，直接判断/作用即可</p>
+<ul>
+<li><p>或，非：短路求值，如B1 &amp;&amp;
+B2，B1不成立时，不需要执行B2代码；要通过跳转指令实现！</p></li>
+<li><p>产生式右边没有B的，则需要负责生成if ... goto
+label的代码；有B的，需要处理的是label和关联</p></li>
+<li><p><strong>特例！</strong>：也许会出现id =
+B这样的语句（布尔表达式出现在赋值语句中），此时需要根据B的语法树节点所在位置，生成不同代码：在<strong>控制流语句</strong>中，生成<strong>跳转代码</strong>（同上）；<strong>赋值语句</strong>中，生成<strong>计算右值的代码</strong>（可以还是跳转语句，具体代码部分改为赋值语句，这样还保留了短路求值特性！）<img
+src="F:\blog\source_posts\figs\fig30.png" /></p></li>
+</ul></li>
+</ul></li>
+<li><p>指令的标号与索引</p>
+<ul>
+<li>标号（label）：翻译过程中用标号，方便，可提前生成，但不能直接定位，需要索引；</li>
+<li>索引：指令的存储位置（作为数组元素的索引），可直接定位，不可提前生成</li>
+<li>标号转索引：两遍遍历一定可以（第一遍获得标号，第二遍转为索引）；可否一遍获得索引？</li>
+<li>回填！
+<ul>
+<li>关键问题：某些跳转指令该跳转到哪里？</li>
+<li>指令坯：<strong>是综合属性</strong>，形如 if ... goto __ (else goto
+__)，传给父节点
+<ul>
+<li>对应综合属性xxxlist（truelist，false，next），就是所有在B为true/false时需要跳转的指令列表；以及跳转到S的下一条指令的指令</li>
+<li><strong>同一列表中，跳转指令目标都相同</strong></li>
+</ul></li>
+<li>对于是跳转目标的代码块，记下它的索引，也传给父节点
+<ul>
+<li>产生式中引入M非终结符（展开为<span
+class="math inline">\(\epsilon\)</span>），M.instr记录<strong>紧接着的跳转目标</strong>指令的索引
+<ul>
+<li><span
+class="math inline">\(\textcolor{red}{每个M就对应非回填式SDD里的label}\)</span></li>
+<li>如<span
+class="math inline">\(S\to\textbf{if}\;(B)\;M_1\;S_1\;N\;\textbf{else}\;M_2\;S_2\)</span></li>
+<li>其中的N因为在处理if语句的时候，会生成一条goto语句，也需要回填！</li>
+</ul></li>
+<li>以及N（展开为<span
+class="math inline">\(\epsilon\)</span>），在适当的位置生成跳转指令坯</li>
+<li>还引入了L非终结符，表示语句列表：<span class="math inline">\(L\to LS
+| S\)</span> （S为一个语句）
+<ul>
+<li>用来对（语句列表）L的nextlist进行回填</li>
+</ul></li>
+</ul></li>
+<li>父节点集齐了所有指令坯和索引，则可以完成回填</li>
+<li>辅助函数：
+<ul>
+<li>backpatch（p，i）：将i作为跳转目标插入指令坯p的所有指令中</li>
+<li>merge（p1，p2）：将p1和p2指向的索引列表合并并返回</li>
+<li>makelist（i）：创建一个包含跳转指令（其索引为i）的列表；要通过索引i来找到这条指令并回填哦</li>
+</ul></li>
+<li><strong>全局变量nextinstr就表示当前已生成完的代码下一条的索引，应该是由gen函数来维护的</strong></li>
+</ul></li>
+<li>break 和 continue：和正常的xxxlist不能并论哦！
+<ul>
+<li>continue可以在循环产生式中，给S传入循环头部index；当S中出现continue时，直接填入即可</li>
+<li>break则需要给S引入额外的属性！直到有循环体产生式的时候再将其与nextlist融合</li>
 </ul></li>
 </ul></li>
 </ul>
@@ -1209,88 +5909,11 @@ class="math inline">\(\to\)</span>abY... 则把ab提取出来？</li>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/15/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="hzyzh">
-      <meta itemprop="description" content="这个人很懒，什么都没留下">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Eden">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/02/15/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-02-15 17:31:13" itemprop="dateCreated datePublished" datetime="2022-02-15T17:31:13+08:00">2022-02-15</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1355,7 +5978,7 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1387,7 +6010,7 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2022</span>
+  <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
