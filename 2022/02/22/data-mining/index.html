@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Ch1. Introduction 学习方法：对着ppt，看书；只考前9章 data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策 初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format data mining的四个super-problems： association pattern">
+  <meta name="description" content="Ch1. Introduction data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策 初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format data mining的四个super-problems： association pattern mining，clustering，cla">
 <meta property="og:type" content="article">
 <meta property="og:title" content="data_mining">
 <meta property="og:url" content="http://example.com/2022/02/22/data-mining/index.html">
 <meta property="og:site_name" content="Eden">
-<meta property="og:description" content="Ch1. Introduction 学习方法：对着ppt，看书；只考前9章 data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策 初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format data mining的四个super-problems： association pattern">
+<meta property="og:description" content="Ch1. Introduction data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策 初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format data mining的四个super-problems： association pattern mining，clustering，cla">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="f:/blog/source_posts/figs/fig11.png">
 <meta property="article:published_time" content="2022-02-22T08:33:17.000Z">
-<meta property="article:modified_time" content="2022-06-08T04:03:23.385Z">
+<meta property="article:modified_time" content="2023-01-22T06:10:09.505Z">
 <meta property="article:author" content="hzyzh">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="f:/blog/source_posts/figs/fig11.png">
@@ -182,7 +182,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-08 12:03:23" itemprop="dateModified" datetime="2022-06-08T12:03:23+08:00">2022-06-08</time>
+                <time title="修改时间：2023-01-22 14:10:09" itemprop="dateModified" datetime="2023-01-22T14:10:09+08:00">2023-01-22</time>
               </span>
 
           
@@ -197,7 +197,6 @@
 
       
         <h2 id="ch1.-introduction">Ch1. Introduction</h2>
-<p>学习方法：对着ppt，看书；只考前9章</p>
 <h3 id="data-mining">data mining</h3>
 <p>从大数据库中挖掘有用的信息，然后用它来做重要决策</p>
 <p>初始数据可能无法直接使用，需要先：collect，clean，transform into a
@@ -281,10 +280,7 @@ multidimensional）
 <li>不会</li>
 </ul></li>
 <li>Similarity graph（any type<span class="math inline">\(\to\)</span>
-graphs）
-<ul>
-<li>是啥。。。</li>
-</ul></li>
+graphs）</li>
 </ul>
 <h2 id="ch3.-similarity">Ch3. Similarity</h2>
 <ul>
@@ -345,7 +341,7 @@ needed to determine the class？</li>
 </ul></li>
 <li>Set-covering算法：
 <ul>
-<li>基于rule-base classification（<strong>是什么！！？？</strong>）</li>
+<li>基于rule-base classification</li>
 <li>每次学习一个rule，并将该rule覆盖的样本剔除，对剩下的样本继续以上操作</li>
 </ul></li>
 <li>K-Nearest算法：直接基于原始训练数据建立模型！</li>
@@ -402,32 +398,29 @@ class="math inline">\(\hat{K}(P_S,P_T)\approx&lt;\hat{\phi}(P_S),\hat{\phi}(P_T)
 </ul></li>
 <li><p>frequent pattern mining</p>
 <ul>
-<li>enumeration tree：<strong>看书！</strong></li>
-<li>apriori algorithm：<strong>看书！</strong></li>
+<li>enumeration tree</li>
+<li>apriori algorithm</li>
 </ul></li>
 </ol>
 <h2 id="ch5.-spatial-data-mining">Ch5. Spatial data mining</h2>
 <ul>
-<li>spatial data：非id的！（但是可以通过一些方法（ch2）转换为id的）
+<li><p>spatial
+data：非id的！（但是可以通过一些方法（ch2）转换为id的）</p>
 <ul>
 <li>spatialtemporal data：包含temporal component（时间的？）</li>
 </ul></li>
-<li>contextual / behavioral attribute：contextual
+<li><p>contextual / behavioral attribute：contextual
 提供背景/参考的属性，例如：测量海平面气温（这是behavioral
-attribute）时，地理位置、时间 都可以是contextual attribute！
+attribute）时，地理位置、时间 都可以是contextual attribute！</p>
 <ul>
 <li>spatial data基本上都是作为contextual
 attribute的！轨迹图trajectory例外（只有时间时contextual）</li>
 </ul></li>
-<li>shape <span class="math inline">\(\to\)</span> time
-series：通过顺时针/逆时针扫描一遍，大小为中心距离
+<li><p>shape <span class="math inline">\(\to\)</span> time
+series：通过顺时针/逆时针扫描一遍，大小为中心距离</p>
 <ul>
 <li>避免shape rotation（同一图形不同旋转得到不同time series）：</li>
 </ul></li>
-</ul>
-<p><strong>好多不懂的。。。（那个rotation不变距离 和clustering
-method（DBSCAN）之类 的问题是啥？）</strong></p>
-<ul>
 <li><p><strong>DTW</strong>：similarity measure for
 序列数据/trajectore</p>
 <ul>
@@ -450,9 +443,9 @@ src="F:\blog\source_posts\figs\fig21.png" />
 <ul>
 <li>只需在product graph上walk即可，因为这就是所有可能的相似路径了！</li>
 </ul></li>
-<li><strong>k-medoids：是啥？？</strong></li>
+<li><strong>k-medoids：</strong></li>
 </ul>
-<p>WL-kernel， IGK-kernel：都是啥？？</p>
+<p>WL-kernel， IGK-kernel</p>
 <h2 id="ch7.-mining-discrete-sequences">Ch7. Mining Discrete
 Sequences</h2>
 <p>bag-of-words(BOG) model：首先分解为frequent

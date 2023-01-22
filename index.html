@@ -772,7 +772,7 @@ class="math inline">\(h(n)\)</span>始终&lt;=节点n到终点的代价，则A*�
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">编译原理p2</a>
+            <a href="/2022/04/27/CompilingAnalysis/%E7%BC%96%E8%AF%91%E5%99%A8%E6%B5%8B%E8%AF%95/" class="post-title-link" itemprop="url">编译器测试</a>
         </h2>
 
         <div class="post-meta">
@@ -789,7 +789,7 @@ class="math inline">\(h(n)\)</span>始终&lt;=节点n到终点的代价，则A*�
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-20 21:56:36" itemprop="dateModified" datetime="2022-06-20T21:56:36+08:00">2022-06-20</time>
+                <time title="修改时间：2023-01-22 13:59:59" itemprop="dateModified" datetime="2023-01-22T13:59:59+08:00">2023-01-22</time>
               </span>
 
           
@@ -915,7 +915,7 @@ better：RCGen</p></li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-22 01:08:21" itemprop="dateModified" datetime="2022-06-22T01:08:21+08:00">2022-06-22</time>
+                <time title="修改时间：2023-01-22 14:04:35" itemprop="dateModified" datetime="2023-01-22T14:04:35+08:00">2023-01-22</time>
               </span>
 
           
@@ -1131,8 +1131,7 @@ x，r（寄存器r保存到内存x，<strong>x必须是地址</strong>）</li>
 <ul>
 <li>ST callee.staticArea, #here + 20
 （#here+20表示下一条指令位置，20为ST + BR指令的长度，即返回地址）</li>
-<li>BR callee.codeArea
-（这里又为啥不加*？因为codeArea可以认为就是一个变量？（值））</li>
+<li>BR callee.codeArea</li>
 </ul>
 <p>callee中的return：</p>
 <ul>
@@ -1666,12 +1665,6 @@ ENTRY；除此之外 OUT = N（全部结点）</li>
 <li>图的深度</li>
 <li>可归约性：</li>
 </ul>
-<h2 id="考试">考试</h2>
-<p>简答（/填空/选择/判断）</p>
-<p>问答：</p>
-<p>无冲突的LR(1)分析表合并同心集得LALR（1）可能有哪些冲突？只可能有
-归约-归约冲突</p>
-<p>DAG图+<strong>杀死的点！！！！</strong></p>
 
       
     </div>
@@ -1722,7 +1715,7 @@ ENTRY；除此之外 OUT = N（全部结点）</li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-08 12:03:23" itemprop="dateModified" datetime="2022-06-08T12:03:23+08:00">2022-06-08</time>
+                <time title="修改时间：2023-01-22 14:10:09" itemprop="dateModified" datetime="2023-01-22T14:10:09+08:00">2023-01-22</time>
               </span>
 
           
@@ -1737,7 +1730,6 @@ ENTRY；除此之外 OUT = N（全部结点）</li>
 
       
           <h2 id="ch1.-introduction">Ch1. Introduction</h2>
-<p>学习方法：对着ppt，看书；只考前9章</p>
 <h3 id="data-mining">data mining</h3>
 <p>从大数据库中挖掘有用的信息，然后用它来做重要决策</p>
 <p>初始数据可能无法直接使用，需要先：collect，clean，transform into a
@@ -1821,10 +1813,7 @@ multidimensional）
 <li>不会</li>
 </ul></li>
 <li>Similarity graph（any type<span class="math inline">\(\to\)</span>
-graphs）
-<ul>
-<li>是啥。。。</li>
-</ul></li>
+graphs）</li>
 </ul>
 <h2 id="ch3.-similarity">Ch3. Similarity</h2>
 <ul>
@@ -1885,7 +1874,7 @@ needed to determine the class？</li>
 </ul></li>
 <li>Set-covering算法：
 <ul>
-<li>基于rule-base classification（<strong>是什么！！？？</strong>）</li>
+<li>基于rule-base classification</li>
 <li>每次学习一个rule，并将该rule覆盖的样本剔除，对剩下的样本继续以上操作</li>
 </ul></li>
 <li>K-Nearest算法：直接基于原始训练数据建立模型！</li>
@@ -1942,32 +1931,29 @@ class="math inline">\(\hat{K}(P_S,P_T)\approx&lt;\hat{\phi}(P_S),\hat{\phi}(P_T)
 </ul></li>
 <li><p>frequent pattern mining</p>
 <ul>
-<li>enumeration tree：<strong>看书！</strong></li>
-<li>apriori algorithm：<strong>看书！</strong></li>
+<li>enumeration tree</li>
+<li>apriori algorithm</li>
 </ul></li>
 </ol>
 <h2 id="ch5.-spatial-data-mining">Ch5. Spatial data mining</h2>
 <ul>
-<li>spatial data：非id的！（但是可以通过一些方法（ch2）转换为id的）
+<li><p>spatial
+data：非id的！（但是可以通过一些方法（ch2）转换为id的）</p>
 <ul>
 <li>spatialtemporal data：包含temporal component（时间的？）</li>
 </ul></li>
-<li>contextual / behavioral attribute：contextual
+<li><p>contextual / behavioral attribute：contextual
 提供背景/参考的属性，例如：测量海平面气温（这是behavioral
-attribute）时，地理位置、时间 都可以是contextual attribute！
+attribute）时，地理位置、时间 都可以是contextual attribute！</p>
 <ul>
 <li>spatial data基本上都是作为contextual
 attribute的！轨迹图trajectory例外（只有时间时contextual）</li>
 </ul></li>
-<li>shape <span class="math inline">\(\to\)</span> time
-series：通过顺时针/逆时针扫描一遍，大小为中心距离
+<li><p>shape <span class="math inline">\(\to\)</span> time
+series：通过顺时针/逆时针扫描一遍，大小为中心距离</p>
 <ul>
 <li>避免shape rotation（同一图形不同旋转得到不同time series）：</li>
 </ul></li>
-</ul>
-<p><strong>好多不懂的。。。（那个rotation不变距离 和clustering
-method（DBSCAN）之类 的问题是啥？）</strong></p>
-<ul>
 <li><p><strong>DTW</strong>：similarity measure for
 序列数据/trajectore</p>
 <ul>
@@ -1990,9 +1976,9 @@ src="F:\blog\source_posts\figs\fig21.png" />
 <ul>
 <li>只需在product graph上walk即可，因为这就是所有可能的相似路径了！</li>
 </ul></li>
-<li><strong>k-medoids：是啥？？</strong></li>
+<li><strong>k-medoids：</strong></li>
 </ul>
-<p>WL-kernel， IGK-kernel：都是啥？？</p>
+<p>WL-kernel， IGK-kernel</p>
 <h2 id="ch7.-mining-discrete-sequences">Ch7. Mining Discrete
 Sequences</h2>
 <p>bag-of-words(BOG) model：首先分解为frequent
@@ -2159,7 +2145,7 @@ Postscript（标准图形支撑软件）</p></li>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-15 09:07:28" itemprop="dateModified" datetime="2022-06-15T09:07:28+08:00">2022-06-15</time>
+                <time title="修改时间：2023-01-22 14:28:25" itemprop="dateModified" datetime="2023-01-22T14:28:25+08:00">2023-01-22</time>
               </span>
 
           
@@ -2271,7 +2257,7 @@ Architecture</p></li>
 <p>都是啥？</p></li>
 </ul></li>
 <li><p>面向对象开发方法</p>
-<p>vs 结构化方法（就是传统方法？）</p></li>
+<p>vs 结构化方法</p></li>
 <li><p>结构化思想（基于功能的分解）：</p>
 <ul>
 <li>有局限性（如对于不同数据类型）</li>
@@ -2393,7 +2379,7 @@ class="math inline">\(default\_clause\)</span>，负责恢复INV！</p></li>
 <li>包括一堆原则<img src="F:\blog\source_posts\figs\fig8.png" /></li>
 </ul>
 <ol type="1">
-<li><p>单一职责：一个类，应仅有一个引起它变化的原因（<strong>什么意思？</strong>）</p>
+<li><p>单一职责：一个类，应仅有一个引起它变化的原因</p>
 <ul>
 <li>会把不同的职责，分离到多个不同的类，并通过对象组合的方式，来将它们封装在一起</li>
 </ul></li>
@@ -2417,7 +2403,7 @@ like my 高程project）</li>
 </ul></li>
 <li><p>接口隔离原则：客户端不依赖于它不需要的接口；接口太大时，拆分成多个小接口，客户端只需要知道它相关的接口（只提供定制服务，不提供大接口）</p>
 <ul>
-<li><p>如，一个抽象类中定义了一堆抽象接口，则具体子类必须实现全部的接口，即使客户端只需要其中一小部分。<strong>解决方法</strong>：拆分成多个抽象父类。。。？</p></li>
+<li><p>如，一个抽象类中定义了一堆抽象接口，则具体子类必须实现全部的接口，即使客户端只需要其中一小部分。<strong>解决方法</strong>：拆分成多个抽象父类。。。</p></li>
 <li><p>例子：<img src="F:\blog\source_posts\figs\fig9.png" /></p></li>
 <li><p>要实现一个计时的门：（引入了适配器）<img
 src="F:\blog\source_posts\figs\fig10.png" /></p></li>
@@ -2517,7 +2503,7 @@ src="F:\blog\source_posts\figs\fig15.png" /></p>
 <li><p>Java中实现深克隆：具体原型类、其中的成员对象类，都实现Serializable接口，然后具体调用方法比较复杂。。。</p></li>
 <li><p>拓展（原型管理器）：可以维护一个hash
 table，键值——原型对象；可以通过传入键值，获得对应原型对象的克隆</p></li>
-<li><p>缺点：违背开闭原则（一个类如果改造，需要同时改clone？（比如深克隆））</p></li>
+<li><p>缺点：违背开闭原则（一个类如果改造，需要同时改clone（比如深克隆））</p></li>
 </ul></li>
 <li><p>单例模式：</p>
 <ul>
@@ -2527,7 +2513,7 @@ table，键值——原型对象；可以通过传入键值，获得对应原型
 类引用/指针：instance，指向自身；+一些机制确保仅一个实例；+一个public的接口getInstance，返回instance
 <ul>
 <li>要点：1.私有构造函数？确保只有一个实例！</li>
-<li>2.静态私有实例定义？只能通过提供的接口访问到！？</li>
+<li>2.静态私有实例定义？只能通过提供的接口访问到</li>
 <li>3.静态公有工厂方法，返回唯一实例</li>
 </ul></li>
 <li>应用场景1：处理并发问题，避免不一致性！</li>
@@ -2604,7 +2590,7 @@ Pattern）：将不兼容的类结构（接口）转换为用户需要的类结�
 <ol type="1">
 <li>抽象Component</li>
 <li>具体Component：实现原有功能</li>
-<li>抽象Decorator：也继承抽象Component，且有一个抽象C的引用（也实现了抽象C，一般就直接调引用C的方法）！！！引用也可以引用一个其他的Decorator，这样就可以把额外行为叠加！</li>
+<li>抽象Decorator：也继承抽象Component，且有一个抽象C的引用（也实现了抽象C，一般就直接调引用C的方法）！引用也可以引用一个其他的Decorator，这样就可以把额外行为叠加！</li>
 <li>具体Decorator：继承抽象D，添加一些额外方法，重写抽象D的实现，加上自己的拓展功能</li>
 </ol>
 <ul>
@@ -2739,7 +2725,7 @@ Pattern）：将不兼容的类结构（接口）转换为用户需要的类结�
 <li><p>有可能memento作为originator的内部成员类（因为每个memento和originator一一对应）</p></li>
 </ul></li>
 <li><p><strong>观察者</strong>模式（很多别名之一：model/view模式
-MVC？）：<strong>对象行为型模式</strong></p>
+MVC）：<strong>对象行为型模式</strong></p>
 <ul>
 <li>观察目标Observer+观察者Subject（一对多的依赖关系），观察目标对象的变化
 可以连带改变 （通知）多个观察者对象</li>
@@ -2802,14 +2788,6 @@ MVC？）：<strong>对象行为型模式</strong></p>
 </ul></li>
 </ul></li>
 </ul>
-<p><strong>类图的含义！</strong></p>
-<p>设计原则</p>
-<p>什么是设计模式？</p>
-<p>三种设计模式的定义？</p>
-<p>行为型设计模式：怎么区分类行为/对象行为型模式？</p>
-<p>=&gt; 简单工厂类 好像也有对象/类模式？</p>
-<p>需要把所有设计模式都背下来么。。？？</p>
-<p>各个设计模式 都是符合开闭的么？</p>
 
       
     </div>
@@ -2860,7 +2838,7 @@ MVC？）：<strong>对象行为型模式</strong></p>
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-14 04:38:01" itemprop="dateModified" datetime="2022-06-14T04:38:01+08:00">2022-06-14</time>
+                <time title="修改时间：2023-01-22 14:26:21" itemprop="dateModified" datetime="2023-01-22T14:26:21+08:00">2023-01-22</time>
               </span>
 
           
@@ -3046,7 +3024,7 @@ alt="img" /></li>
 <ul>
 <li>用空间换效果</li>
 </ul></li>
-<li>八叉树颜色量化算法！！！（<strong>好好看看</strong>）</li>
+<li>八叉树颜色量化算法！</li>
 </ul></li>
 <li><p>图像与图形</p>
 <ul>
@@ -3375,8 +3353,7 @@ src="F:\blog\source_posts\figs\fig33.png" /></li>
 <li>然后将该字符插入树中，编码为pre+1</li>
 <li>pre变为pre+0</li>
 <li>当树不平衡时（任何一颗子树中，左子节点权重大于右子节点权重），需要进行子树的切换（此次输入之前，同权重的两个节点对应的子树进行交换（一定是和根节点更近/靠右的），且优先和<strong>拓扑距离最远</strong>的节点交换！）这是为了保证编码
-和
-解码处的Huffman树是唯一确定的（<strong>那如果出错了怎么办呢？？</strong>）</li>
+和 解码处的Huffman树是唯一确定的</li>
 </ul></li>
 </ul></li>
 <li><p>字典编码：（LZW编码）</p>
@@ -3398,7 +3375,7 @@ src="F:\blog\source_posts\figs\fig33.png" /></li>
 bit最短的小数！（怎么找？一个一个bit构造和试）</li>
 <li>缺点：区间表示的小数会越来越长，且区间再分时需要进行乘法运算，速度慢
 <ul>
-<li>解决方案：区间长度A用规格化形式表示，始终保持在0.75-1.5之间？（<strong>不懂</strong>）；可以用移位代替乘法？（<strong>不懂</strong>）</li>
+<li>解决方案：区间长度A用规格化形式表示，始终保持在0.75-1.5之间？；可以用移位代替乘法</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -3506,14 +3483,14 @@ src="F:\blog\source_posts\figs\fig40.png" /></li>
 <li><p>零树结构：基于位平面编码（2-D DWT）</p>
 <ul>
 <li><p>父子结构：一次平面DWT中，低频信号
-为外置位同位置的块的父亲。。。？</p></li>
+为外置位同位置的块的父亲</p></li>
 <li><p>系数的分类：（4类，每种系数用2bit表示）</p>
 <ul>
 <li>零树根t：绝对值比阈值小，子子孙孙（绝对值？）都比阈值小</li>
 <li>孤独零z：绝对值比阈值小，但子子孙孙中有（绝对值？）比阈值大的</li>
 <li>正大系数p：有一个阈值，若比阈值大</li>
 <li>负大系数n：绝对值比阈值大但为负？</li>
-<li>用来确定 哪些位置上的值，在某些位置上是1？？</li>
+<li>用来确定 哪些位置上的值，在某些位置上是1</li>
 </ul></li>
 <li><p>逐次逼近量化（SAQ）</p>
 <ul>
@@ -3551,7 +3528,7 @@ src="F:\blog\source_posts\figs\fig40.png" /></li>
 <li>RGB 转为 YIQ / YUV（亮度+色度分量，可以丢掉部分色度IQ/UV）</li>
 <li>分块：分为8×8的块，对每一块进行2维DCT变换（离散余弦变换）</li>
 <li>量化：（量化阶）如仅4bit，但要表示0~60：则设置量化阶位4，通过乘以量化阶来表示</li>
-<li>分别对直流 和 交流信号 进行不同编码？？</li>
+<li>分别对直流 和 交流信号 进行不同编码</li>
 </ol></li>
 <li><p><strong>预处理和 FDCT</strong>（傅里叶 离散余弦变换）：</p>
 <ul>
@@ -3606,7 +3583,7 @@ code）：然后对这个一维数组序列 进行
 class="math inline">\(n_i\)</span>个0，下一个非零值为<span
 class="math inline">\(p_i\)</span>。。。最后全零，就记录0，0
 <ul>
-<li>因为应用量化后，会出现很多0，所以用这种方式~</li>
+<li>因为应用量化后，会出现很多0，所以用这种方式</li>
 </ul></li>
 <li>也采用两个符号表示：
 <ul>
@@ -3726,8 +3703,9 @@ class="math inline">\(2^k\)</span>的下采样，然后找到最佳匹配；</li
 v^k)\)</span>，则k-1层将以<span
 class="math inline">\((2u^k,2v^k)\)</span>为中心，在<strong>3×3的区域</strong>内搜索</li>
 <li>直到找到第0层的最佳匹配块</li>
-<li>这种方法 计算效率最高（<strong>可是为什么要乘3？</strong>：哦
-3是指每个像素比较 需要三个操作完成）</li>
+<li>这种方法
+计算效率最高（<strong>可是为什么要乘3？</strong>：3是指每个像素比较
+需要三个操作完成）</li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -3864,7 +3842,7 @@ Group：主要用于娱乐方面的视频/音频（video/audio/data）编码标�
 </ul>
 <p>MPEG-7：多媒体内容描述接口；用来快速<strong>检索</strong>！</p>
 <p>​ 各种多媒体信息，为其添加相应的 标准描述元数据（meta data）</p>
-<p>MPEG-21：建立一个 多媒体应用框架；不重要。。。</p>
+<p>MPEG-21：建立一个 多媒体应用框架；</p>
 <h5 id="mpeg-1">MPEG-1</h5>
 <ul>
 <li><p>I, P, B,
@@ -4120,9 +4098,9 @@ class="math inline">\(\mu\)</span>率压扩公式：<img src="F:\blog\source\_po
 Modulation脉冲编码调制）：即量化后的采样输出，不压缩，是<strong>无损声音</strong>
 <ul>
 <li>PCM主要解决：将线性量化的波形 转化为 <strong>对数量化</strong></li>
-<li>PCM流程：输入：采样到的数字声音（<strong>不是模拟声音吗？？</strong>）
-=&gt; 带限/带通滤波（只保留300-3400kHz的波形）=&gt;
-取样（每秒8k个样本）=&gt; 数模转换
+<li>PCM流程：输入：采样到的数字声音 =&gt;
+带限/带通滤波（只保留300-3400kHz的波形）=&gt; 取样（每秒8k个样本）=&gt;
+数模转换
 （按13位（1符号+12幅值）做<strong>量化</strong>），得到13位的线性PCM
 =&gt; 再进行压扩算法，得到每个样本8位的 PCM码流</li>
 <li>PCM码率为：（每秒）8k×（每个样本）8b = 64kbps</li>
@@ -4373,7 +4351,6 @@ MNR)最小（<strong>？？</strong>）
 <p><strong>MPEG-4 audio</strong></p>
 <p>自然音频信号 和 合成音频信号 的编码：<strong>统一</strong></p>
 <p><strong>Dolby AC-3</strong>（全频带声音的其他编码）</p>
-<p><strong>？？去问老师 CAE算法是咋编的（12章）</strong></p>
 
       
     </div>
@@ -4424,7 +4401,7 @@ MNR)最小（<strong>？？</strong>）
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-22 09:36:54" itemprop="dateModified" datetime="2022-06-22T09:36:54+08:00">2022-06-22</time>
+                <time title="修改时间：2023-01-22 14:08:19" itemprop="dateModified" datetime="2023-01-22T14:08:19+08:00">2023-01-22</time>
               </span>
 
           
@@ -4626,7 +4603,6 @@ id="三词法单元的识别状态转换图">三、词法单元的识别（状�
 <li>变量State记录当前状态</li>
 <li>一个switch根据State和输入字符转到相应的代码</li>
 <li>每个状态一段代码，如果未找到对应的转换边（识别失败），则此法错误，需要处理错误！</li>
-<li></li>
 </ul></li>
 </ul>
 <h3 id="四词法分析器生成工具及设计">四、词法分析器生成工具及设计</h3>
@@ -5120,9 +5096,9 @@ id*id,F*id,T*id,T*F,T,E\\
 E\Rightarrow T\Rightarrow T*F\Rightarrow T*id\Rightarrow F*id\Rightarrow
 id*id
 \]</span> 归约过程等于一个反向最右推导</p></li>
-<li><p>归约步骤不是任何展开式都可以选的！（<strong>怎么确定呢？</strong>）</p></li>
+<li><p>归约步骤不是任何展开式都可以选的！</p></li>
 </ul></li>
-<li><p>句柄（<strong>是什么！？？？</strong>）</p>
+<li><p>句柄</p>
 <ul>
 <li>最右句型（即通过最右推导得到的句型）中和某个<strong>产生式体</strong>相匹配的子串，对它的归约代表了该最右句型的最右推导的最后一步</li>
 <li>正式定义：对于最右句型<span class="math inline">\(\alpha\beta
@@ -5145,7 +5121,7 @@ class="math inline">\(\beta\)</span>为句柄）
 <li>移入：将下一个输入符号移入到栈顶</li>
 <li>归约：将句柄归约为相应的非终结符号
 <ul>
-<li>句柄<strong>总是在栈顶</strong>（为什么呢？）
+<li>句柄<strong>总是在栈顶</strong>
 <ul>
 <li>直觉：如果一个句柄出现在栈中/底，则它之前就应该被规约了！</li>
 </ul></li>
@@ -5456,8 +5432,7 @@ class="math inline">\(\alpha ax\)</span>为一个最右句型</li>
 </ul></li>
 <li>短语层次的恢复
 <ul>
-<li>检查LR分析表中的每个报错条目，根据语言的特性来确定程序员最可能犯了什么错误，然后构造适当的恢
-复程序</li>
+<li>检查LR分析表中的每个报错条目，根据语言的特性来确定程序员最可能犯了什么错误，然后构造适当的恢复程序</li>
 </ul></li>
 </ol></li>
 </ul>
@@ -5657,7 +5632,7 @@ src="F:\blog\source_posts\figs\fig13.jpg" /></li>
 <li><p>L属性SDD的实现</p>
 <ul>
 <li>递归下降语法分析器：每个非终结符S对应一个函数S（），继承属性作为参数传入，返回综合属性！（S.code）</li>
-<li>用局部变量存其他属性（防副作用，<strong>但是！不是要构造AST么？？</strong>）</li>
+<li>用局部变量存其他属性（防副作用）</li>
 <li>但是这样反反复复传递code属性，非常大且低效</li>
 <li>解决方案（上面一点的）：边扫描边生成属性：增量式添加到最终属性值中
 <ul>
