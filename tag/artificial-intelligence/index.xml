@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Artificial Intelligence | Academic</title>
+    <link>https://hzyzh.github.io/tag/artificial-intelligence/</link>
+      <atom:link href="https://hzyzh.github.io/tag/artificial-intelligence/index.xml" rel="self" type="application/rss+xml" />
+    <description>Artificial Intelligence</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 19 Sep 2022 09:33:17 +0000</lastBuildDate>
+    <image>
+      <url>https://hzyzh.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Artificial Intelligence</title>
+      <link>https://hzyzh.github.io/tag/artificial-intelligence/</link>
+    </image>
+    
+    <item>
+      <title>artificial_intelligence</title>
+      <link>https://hzyzh.github.io/post/notes-ai/</link>
+      <pubDate>Mon, 19 Sep 2022 09:33:17 +0000</pubDate>
+      <guid>https://hzyzh.github.io/post/notes-ai/</guid>
+      <description>&lt;h2 id=&#34;ch2-搜索&#34;&gt;Ch2. 搜索&lt;/h2&gt;
+&lt;p&gt;OPEN, CLOSED列表：OPEN记录待搜索结点；CLOSED记录已搜索结点&lt;/p&gt;
+&lt;h4 id=&#34;最佳优先搜索&#34;&gt;最佳优先搜索&lt;/h4&gt;
+&lt;p&gt;定义一个启发式算法：按照一定启发式函数 对每个OPEN结点排序；按顺序在OPEN中搜索&lt;/p&gt;
+&lt;h4 id=&#34;a-算法&#34;&gt;A* 算法&lt;/h4&gt;
+&lt;p&gt;每个节点的优先级：$f(n)=g(n)+h(n)$&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;$f(n)$，n的综合优先级；$g(n)$，n距离起点的代价（bfs）；$h(n)$，n距离终点的预计代价，&lt;strong&gt;启发函数&lt;/strong&gt;！&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;若$h(n)$始终=0，则退化为了Dijkstra算法；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;若$h(n)$始终&amp;lt;=节点n到终点的代价，则A*算法保证能找到最优路径！&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

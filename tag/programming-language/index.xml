@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Programming Language | Academic</title>
+    <link>https://hzyzh.github.io/tag/programming-language/</link>
+      <atom:link href="https://hzyzh.github.io/tag/programming-language/index.xml" rel="self" type="application/rss+xml" />
+    <description>Programming Language</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 23 Dec 2022 16:32:04 +0000</lastBuildDate>
+    <image>
+      <url>https://hzyzh.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Programming Language</title>
+      <link>https://hzyzh.github.io/tag/programming-language/</link>
+    </image>
+    
+    <item>
+      <title>formal semantics</title>
+      <link>https://hzyzh.github.io/post/notes-formalsemantics/</link>
+      <pubDate>Fri, 23 Dec 2022 16:32:04 +0000</pubDate>
+      <guid>https://hzyzh.github.io/post/notes-formalsemantics/</guid>
+      <description>&lt;h2 id=&#34;lambda-calculus&#34;&gt;$\lambda$-Calculus&lt;/h2&gt;
+&lt;h5 id=&#34;alpha-evquivalence&#34;&gt;$\alpha$-evquivalence&lt;/h5&gt;
+&lt;p&gt;​$\lambda x.M =_{\alpha}\lambda y.M[y/x]$, y fresh&lt;/p&gt;
+&lt;h5 id=&#34;fixpoint&#34;&gt;fixpoint&lt;/h5&gt;
+ &lt;img src=&#34;..\figs\fig121.png&#34; style=&#34;zoom:10%;&#34; /&gt;
+&lt;ul&gt;
+&lt;li&gt;fixpoint combinator&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;​	&lt;img src=&#34;..\figs\fig122.png&#34; style=&#34;zoom:50%;&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;​	$\therefore$ fact = $\Theta$ F&lt;/p&gt;
+&lt;h3 id=&#34;typed-lambda-calculus&#34;&gt;typed $\lambda$ calculus&lt;/h3&gt;
+&lt;img src=&#34;..\figs\fig123.png&#34; style=&#34;zoom:50%;&#34; /&gt; 
+</description>
+    </item>
+    
+  </channel>
+</rss>

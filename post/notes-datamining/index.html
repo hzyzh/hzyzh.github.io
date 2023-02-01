@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<!-- This site was created with Wowchemy. https://www.wowchemy.com -->
+<!-- Last Published: February 1, 2023 --><html lang="en-us" >
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  
+  
+  
+    <meta name="generator" content="Wowchemy 5.7.0 for Hugo" />
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+
+  
+  
+  
+    
+      
+      <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    
+  
+
+  
+  
+
+  
+  
+    
+    <script src="/js/mathjax-config.js"></script>
+  
+
+  
+
+  <link rel="stylesheet" href="/css/vendor-bundle.min.16f785cdb553c8c4431db6775122af35.css" media="print" onload="this.media='all'">
+
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/academicons@1.9.2/css/academicons.min.css" integrity="sha512-KlJCpRsLf+KKu2VQa5vmRuClRFjxc5lXO03ixZt82HZUk41+1I0bD8KBSA0fY290ayMfWYI9udIqeOWSu1/uZg==" crossorigin="anonymous" media="print" onload="this.media='all'">
+    
+
+    
+    
+    
+    
+      
+      
+    
+    
+    
+
+    
+    
+    
+
+    
+
+    
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+      
+      
+
+      
+      
+
+      
+    
+  
+
+  
+  
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.0f229d4b7ebad1917a9a357cba2effab.css" />
+
+  
+  
+  
+
+  
+  
+  
+  
+  
+  
+  
+    
+    
+    <link rel="stylesheet" href="/css/libs/chroma/github-light.min.css" title="hl-light" media="print" onload="this.media='all'" >
+    <link rel="stylesheet" href="/css/libs/chroma/dracula.min.css" title="hl-dark" media="print" onload="this.media='all'" disabled>
+  
+
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+
+
+
+
+
+  <meta name="author" content="Zeyu Huang" />
+
+
+
+
+
+  
+
+<meta name="description" content="Ch1. Introduction data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策
+初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format
+data mining的四个super-problems： association pattern mining，clustering，classification，outlier detection
+classification：分类任务 有标签（class label） classification 和 regression（回归：标签是一个值） 都是supervised learning task supervision：指特殊列（data matrix中，即标签）被用来direct the data mining process classification methods： 支持向量机（support vector machines） K-nearest neighbor classification（KNN）K-近邻算法： 就是先（随机？）取若干个点，将离他们最近的k个样本点分别划入对应的区域 决策树（decision trees） rule-based classifier：不知道 可以视为有监督版本的clustering！ clustering 将数据集分为多个子集，每个子集在属性值相关，各个子集比较相似 $\textcolor{red}{当一行的某一属性与其他行的该属性显著不同时}$，$\textcolor{red}{它被视为一个anomaly，问题也变为了outlier; analysis}$。 anomaly detection（outlier detection / novelty detection） association pattern mining 最初版本：data matrix的值只取0或1（可以推广至数值/枚举型属性值） frequent pattern mining problem： Ch2." />
+
+
+
+<link rel="alternate" hreflang="en-us" href="https://hzyzh.github.io/post/notes-datamining/" />
+<link rel="canonical" href="https://hzyzh.github.io/post/notes-datamining/" />
+
+
+
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+
+
+<link rel="icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_32x32_fill_lanczos_center_3.png" />
+<link rel="apple-touch-icon" type="image/png" href="/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_180x180_fill_lanczos_center_3.png" />
+
+<meta name="theme-color" content="#1565c0" />
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+<meta property="twitter:card" content="summary" />
+
+  <meta property="twitter:site" content="@wowchemy" />
+  <meta property="twitter:creator" content="@wowchemy" />
+<meta property="twitter:image" content="https://hzyzh.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" />
+<meta property="og:site_name" content="Academic" />
+<meta property="og:url" content="https://hzyzh.github.io/post/notes-datamining/" />
+<meta property="og:title" content="data_mining | Academic" />
+<meta property="og:description" content="Ch1. Introduction data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策
+初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format
+data mining的四个super-problems： association pattern mining，clustering，classification，outlier detection
+classification：分类任务 有标签（class label） classification 和 regression（回归：标签是一个值） 都是supervised learning task supervision：指特殊列（data matrix中，即标签）被用来direct the data mining process classification methods： 支持向量机（support vector machines） K-nearest neighbor classification（KNN）K-近邻算法： 就是先（随机？）取若干个点，将离他们最近的k个样本点分别划入对应的区域 决策树（decision trees） rule-based classifier：不知道 可以视为有监督版本的clustering！ clustering 将数据集分为多个子集，每个子集在属性值相关，各个子集比较相似 $\textcolor{red}{当一行的某一属性与其他行的该属性显著不同时}$，$\textcolor{red}{它被视为一个anomaly，问题也变为了outlier; analysis}$。 anomaly detection（outlier detection / novelty detection） association pattern mining 最初版本：data matrix的值只取0或1（可以推广至数值/枚举型属性值） frequent pattern mining problem： Ch2." /><meta property="og:image" content="https://hzyzh.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png" /><meta property="og:locale" content="en-us" />
+
+  
+    <meta
+      property="article:published_time"
+      content="2022-02-22T16:33:17&#43;00:00"
+    />
+  
+  
+    <meta property="article:modified_time" content="2022-02-22T16:33:17&#43;00:00">
+  
+
+
+
+
+
+
+    
+
+
+
+
+
+
+  
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hzyzh.github.io/post/notes-datamining/"
+  },
+  "headline": "data_mining",
+  
+  "datePublished": "2022-02-22T16:33:17Z",
+  "dateModified": "2022-02-22T16:33:17Z",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Zeyu Huang"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Academic",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hzyzh.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_192x192_fill_lanczos_center_3.png"
+    }
+  },
+  "description": "Ch1. Introduction data mining 从大数据库中挖掘有用的信息，然后用它来做重要决策\n初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format\ndata mining的四个super-problems： association pattern mining，clustering，classification，outlier detection\nclassification：分类任务 有标签（class label） classification 和 regression（回归：标签是一个值） 都是supervised learning task supervision：指特殊列（data matrix中，即标签）被用来direct the data mining process classification methods： 支持向量机（support vector machines） K-nearest neighbor classification（KNN）K-近邻算法： 就是先（随机？）取若干个点，将离他们最近的k个样本点分别划入对应的区域 决策树（decision trees） rule-based classifier：不知道 可以视为有监督版本的clustering！ clustering 将数据集分为多个子集，每个子集在属性值相关，各个子集比较相似 $\\textcolor{red}{当一行的某一属性与其他行的该属性显著不同时}$，$\\textcolor{red}{它被视为一个anomaly，问题也变为了outlier; analysis}$。 anomaly detection（outlier detection / novelty detection） association pattern mining 最初版本：data matrix的值只取0或1（可以推广至数值/枚举型属性值） frequent pattern mining problem： Ch2."
+}
+</script>
+
+  
+
+  
+
+
+
+
+  
+  
+  
+
+  
+  
+
+  
+
+
+  
+  <title>data_mining | Academic</title>
+
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper   " data-wc-page-id="55e1755ba59e34bf224dafe94b952ac8" >
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <script src="/js/wowchemy-init.min.ec9d49ca50e4b80bdb08f0417a28ed84.js"></script>
+
+  
+
+
+<aside class="search-modal" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#" aria-label="Close"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control"
+        aria-label="Search...">
+        
+      </div>
+
+      
+      
+
+      
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+
+  <div class="page-header header--fixed">
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+    <div class="container-xl">
+
+      
+      <div class="d-none d-lg-inline-flex">
+        <a class="navbar-brand" href="/">Academic</a>
+      </div>
+      
+
+      
+      <button type="button" class="navbar-toggler" data-toggle="collapse"
+              data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+      <span><i class="fas fa-bars"></i></span>
+      </button>
+      
+
+      
+      <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+        <a class="navbar-brand" href="/">Academic</a>
+      </div>
+      
+
+      
+      
+      <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+        
+        <ul class="navbar-nav d-md-inline-flex">
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#about"><span>Home</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#notes"><span>Course Notes</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#featured"><span>Publications</span></a>
+          </li>
+
+          
+          
+
+          
+
+          
+          
+          
+            
+          
+
+          
+
+          
+          
+          
+          
+
+          
+            
+              
+              
+            
+            
+              
+              
+              
+                
+              
+              
+            
+          
+
+          <li class="nav-item">
+            <a class="nav-link " href="/#contact"><span>Contact</span></a>
+          </li>
+
+          
+          
+
+        
+
+          
+        </ul>
+      </div>
+
+      <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+
+        
+        
+          
+        
+
+        
+        
+        
+        <li class="nav-item">
+          <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+        </li>
+        
+
+        
+        
+        
+        <li class="nav-item dropdown theme-dropdown">
+          <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true" aria-label="Display preferences">
+            <i class="fas fa-moon" aria-hidden="true"></i>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item js-set-theme-light">
+              <span>Light</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-dark">
+              <span>Dark</span>
+            </a>
+            <a href="#" class="dropdown-item js-set-theme-auto">
+              <span>Automatic</span>
+            </a>
+          </div>
+        </li>
+        
+
+        
+        
+
+      </ul>
+
+    </div>
+  </nav>
+</header>
+
+
+  </div>
+
+  <div class="page-body">
+    
+    
+    
+
+    <article class="article">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+  
+  
+<div class="article-container pt-3">
+  <h1>data_mining</h1>
+
+  
+
+  
+    
+
+
+<div class="article-metadata">
+
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Feb 22, 2022
+  </span>
+  
+
+  
+
+  
+  <span class="middot-divider"></span>
+  <span class="article-reading-time">
+    2 min read
+  </span>
+  
+
+  
+  
+  
+  
+
+  
+  
+  <span class="middot-divider"></span>
+  <span class="article-categories">
+    <i class="fas fa-folder mr-1"></i><a href="/category/lecture-notes/">Lecture notes</a></span>
+  
+
+</div>
+
+    
+
+
+
+
+
+  
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h2 id="ch1-introduction">Ch1. Introduction</h2>
+<h3 id="data-mining">data mining</h3>
+<p>从大数据库中挖掘有用的信息，然后用它来做重要决策</p>
+<p>初始数据可能无法直接使用，需要先：collect，clean，transform into a standardized format</p>
+<p>data mining的四个super-problems： association pattern mining，clustering，classification，outlier detection</p>
+<ul>
+<li>classification：分类任务
+<ul>
+<li>有标签（class label）</li>
+<li>classification 和 regression（回归：标签是一个值） 都是supervised learning task
+<ul>
+<li>supervision：指特殊列（data matrix中，即标签）被用来direct the data mining process</li>
+</ul>
+</li>
+<li>classification methods：
+<ul>
+<li>支持向量机（support vector machines）</li>
+<li>K-nearest neighbor classification（KNN）K-近邻算法：
+<ul>
+<li>就是先（随机？）取若干个点，将离他们最近的k个样本点分别划入对应的区域</li>
+</ul>
+</li>
+<li>决策树（decision trees）</li>
+<li>rule-based classifier：不知道</li>
+</ul>
+</li>
+<li>可以视为有监督版本的clustering！</li>
+</ul>
+</li>
+<li>clustering
+<ul>
+<li>将数据集分为多个子集，每个子集在属性值相关，各个子集比较相似</li>
+<li>$\textcolor{red}{当一行的某一属性与其他行的该属性显著不同时}$，$\textcolor{red}{它被视为一个anomaly，问题也变为了outlier; analysis}$。</li>
+</ul>
+</li>
+<li>anomaly detection（outlier detection / novelty detection）</li>
+<li>association pattern mining
+<ul>
+<li>最初版本：data matrix的值只取0或1（可以推广至数值/枚举型属性值）</li>
+<li>frequent pattern mining problem：</li>
+</ul>
+</li>
+</ul>
+<h2 id="ch2-data-preparation">Ch2. Data Preparation</h2>
+<ul>
+<li>
+<p>data preparation phase：</p>
+<ol>
+<li>featrue extraction and protability(数据类型转换)</li>
+<li>data cleaning(清除错误数据，inconsistent不一致的数据（即在不同地方不完全匹配），还有缺失的数据可能被重新估计出来？)</li>
+<li>data reduction, selection, transformation</li>
+</ol>
+</li>
+<li>
+<p>multidimensional data vs complex data</p>
+<ul>
+<li>ID：one distribution， each point is independent on others？（mul）each point is generated from the same （unknown） distribution！</li>
+<li></li>
+</ul>
+</li>
+<li>
+<p>四种基本的数据模式</p>
+<ul>
+<li>nominal（名义的） data：如城市、物种</li>
+<li>ordinal（顺序的） data：如速度快慢（快、中、慢）（非连续的，有限的？）</li>
+<li>interval data：有大小关系，且是数值，没有最小！</li>
+<li>ratio data：interval data，有最小！（绝对0）</li>
+</ul>
+</li>
+<li>
+<p>data portability</p>
+<ul>
+<li>一种数据类型 可转换成其他数据类型 的能力（保持性质）</li>
+</ul>
+</li>
+<li>
+<p>Haar Wavelet Transform？？</p>
+<ul>
+<li>将一个time series（非id的？） 不断二分并获得coefficient，得到id的数据？</li>
+</ul>
+</li>
+<li>
+<p>MDS（graphs$\to$ numeric multidimensional）</p>
+<ul>
+<li>不会</li>
+</ul>
+</li>
+<li>
+<p>Similarity graph（any type$\to$ graphs）</p>
+</li>
+</ul>
+<h2 id="ch3-similarity">Ch3. Similarity</h2>
+<ul>
+<li>distance vs similarity
+<ul>
+<li>数据散点图上的距离，不能简单的代表两个数据的similarity！（因为distribution，我们只关心有数据的范围；还有varied local density）</li>
+<li><strong>Mahalanobis distance</strong>：stretch a dimension（/direction？）</li>
+<li>follow the data path！找到从A到B最近的一条path，来表示两者的similarity</li>
+</ul>
+</li>
+<li>Text Similarity Measure
+<ul>
+<li>Dynamic Time Warping Distance（DTW）
+<ul>
+<li>两个series建立 一对一的 同length 映射（将一些点延长？）分成若干个segment，每个segment匹配，时间作为contextual attribute，具体值不关键，主要关心order！</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>kernel choice：
+<ul>
+<li>
+<p>kernel function：</p>
+<ul>
+<li>将数据点 从一个特征平面 mapping 到另一个特征平面！</li>
+<li>例如D是数据集，则一个kernel function k可能：$D\times D\to R$</li>
+</ul>
+</li>
+<li>
+<p>为了take data distribution into consideration！</p>
+</li>
+<li>
+<p>Multiple Kernel Learning – reduce the risk of choosing an unsuitable kernel by using multiple kernels (learn weights)</p>
+</li>
+<li>
+<p>Distance metric learning – adapt similarity measurements to the task automatically from data (space transformation)</p>
+</li>
+<li>
+<p>Produce data dependent kernel directly from data</p>
+</li>
+<li>
+<p>$\star$ Isolation Kernel：</p>
+<ul>
+<li>先从样本中随机取t个样本点，用它们将数据分布划分为t个区域（完全依赖于数据分布，与其他信息无关！）（用isolation forest的方法），重复多次，获得对原数据分布的多个划分？然后计算两个点的距离就是看它们在多少个划分里被划分进了同一区域</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="ch4-data-mining-algorithm">Ch4. Data Mining Algorithm</h2>
+<p>就是模型的训练过程</p>
+<ul>
+<li>transaction：表示data？；itemsets：output？</li>
+</ul>
+<ol>
+<li>
+<p>classification problem</p>
+<ul>
+<li>决策树算法
+<ul>
+<li>节点 属性值的选取标准：
+<ul>
+<li>information gain：difference between the amount of information needed to determine the class？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Set-covering算法：
+<ul>
+<li>基于rule-base classification</li>
+<li>每次学习一个rule，并将该rule覆盖的样本剔除，对剩下的样本继续以上操作</li>
+</ul>
+</li>
+<li>K-Nearest算法：直接基于原始训练数据建立模型！</li>
+<li>Support Vector Machines（SVM）</li>
+</ul>
+</li>
+<li>
+<p>clustering problem</p>
+<ul>
+<li>k-means clustering</li>
+<li>DBSCAN：首先获得数据样本分布，然后有一个threshold，高于它的连接的样本点为一个cluster</li>
+<li>Spectral clustering：
+<ul>
+<li>1.any data type $\to$ similarity graph;</li>
+<li>2.similarity graph $\to$ graph embedding in multidimensional data?</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>outlier problem</p>
+<ul>
+<li>
+<p>kth-nearest neighbor：</p>
+<ul>
+<li>每个点找k个最近的数据点，根据这k个点决定是否为outlier！</li>
+</ul>
+</li>
+<li>
+<p>isolation forest：</p>
+<ul>
+<li>构建一个二叉树（孤立森林）：最终将每个样本点都独立出来
+<ul>
+<li>如何做？随机选取一个超平面（将样本点二分！）</li>
+</ul>
+</li>
+<li>outlier总是很容易区分，对应较短的path！</li>
+<li>重复多次以上步骤，统计每个样本点的average path length：短的更可能是outlier！</li>
+<li>需要subsampling：（即先对总样本随机取子集）缓解swamping effect和masking effect
+<ul>
+<li>masking effect：一个outlier未被检测出来（因为旁边的其他outlier点）</li>
+<li>swamping effect：一个正常的数据点被认为是outlier（因为旁边的其他正常数据子集）</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>IDK：估算任意两点/点和整个数据集D 之间的similarity（来进行anomaly detection）</p>
+<ul>
+<li>
+<p>kernel mean embedding：就是给定一个定义于$\Omega$，数据分布P，kernel function k（$\Omega\times \Omega$），一个随机变量X的kernel mean embedding就是它在该数据分布上，k的平均值！
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="./equation.png" alt="png" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>关键是：转换成了distributional kernel！$\hat{K}(P_S,P_T)\approx&lt;\hat{\phi}(P_S),\hat{\phi}(P_T)&gt;$，其中S,T为数据集，P表示该数据集的分布distribution！</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>frequent pattern mining</p>
+<ul>
+<li>enumeration tree</li>
+<li>apriori algorithm</li>
+</ul>
+</li>
+</ol>
+<h2 id="ch5-spatial-data-mining">Ch5. Spatial data mining</h2>
+<ul>
+<li>
+<p>spatial data：非id的！（但是可以通过一些方法（ch2）转换为id的）</p>
+<ul>
+<li>spatialtemporal data：包含temporal component（时间的？）</li>
+</ul>
+</li>
+<li>
+<p>contextual / behavioral attribute：contextual 提供背景/参考的属性，例如：测量海平面气温（这是behavioral attribute）时，地理位置、时间 都可以是contextual attribute！</p>
+<ul>
+<li>spatial data基本上都是作为contextual attribute的！轨迹图trajectory例外（只有时间时contextual）</li>
+</ul>
+</li>
+<li>
+<p>shape $\to$ time series：通过顺时针/逆时针扫描一遍，大小为中心距离</p>
+<ul>
+<li>避免shape rotation（同一图形不同旋转得到不同time series）：</li>
+</ul>
+</li>
+<li>
+<p><strong>DTW</strong>：similarity measure for 序列数据/trajectore</p>
+<ul>
+<li>
+<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="./fig1.png" alt="png" loading="lazy" data-zoomable /></div>
+  </div></figure>
+</p>
+</li>
+<li>
+<p>DTW与behavioral attribute的属性无关</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="ch6-graph-mining">Ch6. Graph Mining</h2>
+<p>Graph Edit Distance: $Edit(G1,G2)$=通过一系列操作（+点，-点，label替换，+边，-边），将G1转换为G2的最少步数</p>
+<p><strong>1. Frequent Substructure-Based Transformation and Distance Computation</strong></p>
+<p><strong>2. Topological Descriptors</strong></p>
+<p><strong>3. Kernel-Based Transformations and Computation</strong></p>
+<p>（m to the power of n：m的n次方）</p>
+<h4 id="kernel">kernel</h4>
+<ul>
+<li>Random Walk kernel：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  >
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="./fig2.png" alt="png" loading="lazy" data-zoomable /></div>
+  </div></figure>
+
+<ul>
+<li>只需在product graph上walk即可，因为这就是所有可能的相似路径了！</li>
+</ul>
+</li>
+<li><strong>k-medoids：</strong></li>
+</ul>
+<p>WL-kernel， IGK-kernel</p>
+<h2 id="ch7-mining-discrete-sequences">Ch7. Mining Discrete Sequences</h2>
+<p>bag-of-words(BOG) model：首先分解为frequent pattern，统计各pattern的出现次数，顺序无关（视为一个大集合）</p>
+<ul>
+<li>HMM：
+<ul>
+<li>hidden markov model：
+<ul>
+<li>隐藏状态$S\in{1,&hellip;,I}$；观测值$O\in{y_1,&hellip;,y_K}$；</li>
+<li>隐藏状态$S_t$仅依赖于前一个隐藏状态$S_{t-1}$，观测值$O_t$仅依赖于当前隐藏状态$S_t$</li>
+<li>hidden markov model可表示为一个三元组：（A,B,$\Pi$）：隐藏状态转移矩阵（$A_{ij}$表示从状态i转移到状态j的概率），观测矩阵（由状态i得到观测值j的概率），和初始状态概率矩阵</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    </div>
+
+    
+
+
+
+
+
+<div class="article-tags">
+  
+  <a class="badge badge-light" href="/tag/lecture-notes/">Lecture notes</a>
+  
+  <a class="badge badge-light" href="/tag/cs/">CS</a>
+  
+  <a class="badge badge-light" href="/tag/data-mining/">Data Mining</a>
+  
+  <a class="badge badge-light" href="/tag/machine-learning/">Machine Learning</a>
+  
+</div>
+
+
+
+<div class="share-box">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Fhzyzh.github.io%2Fpost%2Fnotes-datamining%2F&amp;text=data_mining" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fhzyzh.github.io%2Fpost%2Fnotes-datamining%2F&amp;t=data_mining" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+        
+      
+      <li>
+        <a href="mailto:?subject=data_mining&amp;body=https%3A%2F%2Fhzyzh.github.io%2Fpost%2Fnotes-datamining%2F" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https%3A%2F%2Fhzyzh.github.io%2Fpost%2Fnotes-datamining%2F&amp;title=data_mining" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=data_mining%20https%3A%2F%2Fhzyzh.github.io%2Fpost%2Fnotes-datamining%2F" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https%3A%2F%2Fhzyzh.github.io%2Fpost%2Fnotes-datamining%2F&amp;title=data_mining" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://hzyzh.github.io"><img class="avatar mr-3 avatar-circle" src="/authors/admin/avatar_hue037cf7650e0c7361e8c69c7e53d74d8_775137_270x270_fill_q75_lanczos_center.jpg" alt="Zeyu Huang"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://hzyzh.github.io">Zeyu Huang</a></h5>
+      <h6 class="card-subtitle">Undergraduate student of Computer Science</h6>
+      <p class="card-text">I&rsquo;m an Undergraduate student of Computer Science at NJU, expected to graduate in 2023 Summer. My research interests include AI and Machine Learning, Programming Language, Software Engineering, and applying AI/ML techniques to solve problems.</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/hzyzh" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/uploads/CV.pdf" >
+        <i class="ai ai-cv"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+
+  
+  
+    
+  
+  
+    
+  
+
+  
+
+  
+  <p class="powered-by copyright-license-text">
+    © 2023 Me. This work is licensed under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank">CC BY NC ND 4.0</a>
+  </p>
+  
+
+  <p class="powered-by footer-license-icons">
+    <a href="https://creativecommons.org/licenses/by-nc-nd/4.0" rel="noopener noreferrer" target="_blank" aria-label="Creative Commons">
+      <i class="fab fa-creative-commons fa-2x" aria-hidden="true"></i>
+      <i class="fab fa-creative-commons-by fa-2x" aria-hidden="true"></i>
+      
+        <i class="fab fa-creative-commons-nc fa-2x" aria-hidden="true"></i>
+      
+      
+        <i class="fab fa-creative-commons-nd fa-2x" aria-hidden="true"></i>
+      
+    </a>
+  </p>
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+      
+      
+      
+      
+      
+      
+      Published with <a href="https://wowchemy.com/?utm_campaign=poweredby" target="_blank" rel="noopener">Wowchemy</a> — the free, <a href="https://github.com/wowchemy/wowchemy-hugo-themes" target="_blank" rel="noopener">open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+
+
+<script src="/js/vendor-bundle.min.d26509351aa0ff874abbee824e982e9b.js"></script>
+
+
+
+
+  
+
+  
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script id="search-hit-fuse-template" type="text/x-template">
+    <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+    </div>
+  </script>
+  
+    <script src="https://cdn.jsdelivr.net/gh/krisk/Fuse@v3.2.1/dist/fuse.min.js" integrity="sha512-o38bmzBGX+hD3JHWUFCDA09btWaqrNmoJ3RXLlrysA7PP01Kgs4UlE4MhelE1v5dJR3+cxlR4qQlotsW7jKsnw==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/julmot/mark.js@8.11.1/dist/jquery.mark.min.js" integrity="sha512-mhbv5DqBMgrWL+32MmsDOt/OAvqr/cHimk6B8y/bx/xS88MVkYGPiVv2ixKVrkywF2qHplNRUvFsAHUdxZ3Krg==" crossorigin="anonymous"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  
+  
+  
+
+
+
+
+
+
+
+<script id="page-data" type="application/json">{"use_headroom":true}</script>
+
+
+
+  <script src="/js/wowchemy-headroom.db4755770454eb63685f8de785c0a172.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+<script src="/en/js/wowchemy.min.e8ee06ba8371980ffde659871dd593b0.js"></script>
+
+
+
+
+
+
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <pre><code></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <script src="/js/wowchemy-publication.68f8d7090562ca65fc6d3cb3f8f2d2cb.js" type="module"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

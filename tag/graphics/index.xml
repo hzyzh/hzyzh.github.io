@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Graphics | Academic</title>
+    <link>https://hzyzh.github.io/tag/graphics/</link>
+      <atom:link href="https://hzyzh.github.io/tag/graphics/index.xml" rel="self" type="application/rss+xml" />
+    <description>Graphics</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 18 Feb 2022 10:51:55 +0000</lastBuildDate>
+    <image>
+      <url>https://hzyzh.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url>
+      <title>Graphics</title>
+      <link>https://hzyzh.github.io/tag/graphics/</link>
+    </image>
+    
+    <item>
+      <title>graphics</title>
+      <link>https://hzyzh.github.io/post/notes-graphics/</link>
+      <pubDate>Fri, 18 Feb 2022 10:51:55 +0000</pubDate>
+      <guid>https://hzyzh.github.io/post/notes-graphics/</guid>
+      <description>&lt;h4 id=&#34;计算机图形技术范式的演化&#34;&gt;计算机图形技术范式的演化&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;字符显示&lt;/p&gt;
+&lt;p&gt;文字加数字的伪图形；命令行；文本格式编码；单任务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;矢量显示&lt;/p&gt;
+&lt;p&gt;笔画文字和线画图形；命令行；存储和操纵复杂（笔画）；单/多人物&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;二位光栅扫描显示（Bitmap Raster）&lt;/p&gt;
+&lt;p&gt;窗口、图标、清洗文字即图案；直接选取对象；桌面；多任务&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;图形工作站及多视角投影（3DTV）&lt;/p&gt;
+&lt;p&gt;实时 三维 实物虚化 虚物实化；多维输入设备&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;一些工业标准（ad hoc Standard）&lt;/p&gt;
+&lt;p&gt;Open GL； DirectX； X-Window； Postscript（标准图形支撑软件）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;计算机图形系统&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;数据平台
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;四种几何模型&lt;/strong&gt;：线框模型（线）、曲面模型（面）、实体模型（体）、点云模型（点）
+&lt;ul&gt;
+&lt;li&gt;主要差异在于&lt;strong&gt;几何基元&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;支撑平台&lt;/li&gt;
+&lt;li&gt;&lt;/li&gt;
+&lt;li&gt;重要图形标准：图形核心系统GKS，PHIGS，事业、工业标准&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
