@@ -436,15 +436,739 @@ allocations, unordered collections, &amp;hellip;)&lt;/li&gt;
 &lt;h4 id=&#34;a-算法&#34;&gt;A* 算法&lt;/h4&gt;
 &lt;p&gt;每个节点的优先级：$f(n)=g(n)+h(n)$&lt;/p&gt;
 &lt;ul&gt;
+&lt;li&gt;$f(n)$，n的综合优先级；$g(n)$，n距离起点的代价（bfs）；$h(n)$，n距离终点的预计代价，&lt;strong&gt;启发函数&lt;/strong&gt;！&lt;/li&gt;
+&lt;li&gt;若$h(n)$始终=0，则退化为了Dijkstra算法；&lt;/li&gt;
+&lt;li&gt;若$h(n)$始终&amp;lt;=节点n到终点的代价，则A*算法保证能找到最优路径！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ch4-知识表示&#34;&gt;Ch4. 知识表示&lt;/h2&gt;
+&lt;p&gt;常见知识表示方法：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一阶谓词表示&lt;/li&gt;
+&lt;li&gt;产生式表示&lt;/li&gt;
+&lt;li&gt;语义网络表示&lt;/li&gt;
+&lt;li&gt;框架表示&lt;/li&gt;
+&lt;li&gt;脚本表示&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;一阶谓词表示&#34;&gt;一阶谓词表示&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig1.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig2.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;产生式表示&#34;&gt;产生式表示&lt;/h4&gt;
+&lt;p&gt;例子：若ppp 则qqq&lt;/p&gt;
+&lt;p&gt;​	 P$\to$Q 或 IF P THEN Q     （产生式）&lt;/p&gt;
+&lt;p&gt;​	 产生式可以是不精确的，有可信度；&lt;strong&gt;而一阶谓词的蕴含式是非真即假的&lt;/strong&gt;&lt;/p&gt;
+&lt;h5 id=&#34;基本流程结构&#34;&gt;基本流程&amp;amp;结构&lt;/h5&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig3.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;专家系统&lt;/strong&gt;：不断从规则库中选择可应用的规则，并将得到的新事实加入到数据库（有事实驱动 和 目标驱动 两种）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;本质是 &lt;strong&gt;深度优先搜索&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;语义网络表示&#34;&gt;语义网络表示&lt;/h4&gt;
+&lt;p&gt;结构/形式：有向图，定点表示概念，边 表示概念间语义关系。如图：&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig4.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;边 有多种类别，可表示不同种类的关系，如：类属关系（ISA，member-of，kind-of），包含/聚类关系（part-of），属性关系（have，can），时间、位置、相似、推理关系等等，以及多元关系（一般是一元，如A$\to$B）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;推理：首先将待求解问题构造为&lt;strong&gt;网络片段&lt;/strong&gt;（+查询点），然后根据原语义网络信息进行匹配得到解。如：&lt;/p&gt;
+&lt;p&gt;问：陈家骏教授工作地点？
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;.%5cfig5.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;知识图谱（语义关系简化了的语义网络？）被用于了搜索引擎、智能问答软件、社交网络（Facebook）中 存储和表示知识&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;本质与谓词演算等价&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;框架表示&#34;&gt;框架表示&lt;/h4&gt;
+&lt;p&gt;表示形式 和 层级结构：框架名 、 槽名（描述某一方面属性） 、 侧面（描述属性的某一方面） 、 值&lt;/p&gt;
+&lt;p&gt;向数据库的查询？
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;.%5cfig6.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;ch5-不确定性推理&#34;&gt;Ch5. 不确定性推理&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;例子&lt;/strong&gt;：已知：“若电池或电缆有问题，则发动机不旋转且不亮”  是一条可靠知识&lt;/p&gt;
+&lt;p&gt;则：“若发动机不转且不量，则电池或电缆有问题”  是一条不可靠知识！&lt;/p&gt;
+&lt;h5 id=&#34;反绎推理溯因推理&#34;&gt;反绎推理（溯因推理）&lt;/h5&gt;
+&lt;p&gt;P$\to$Q 和 Q：   有可能推出P（不确定）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;从不确定性初始事实，运用不确定性知识，获得不确定但合理的结论&lt;/strong&gt;&lt;/p&gt;
+&lt;h4 id=&#34;非单调推理&#34;&gt;非单调推理&lt;/h4&gt;
+&lt;p&gt;基于假设的推理，存在多条假设，并可以根据新证据排除/修正部分假设&lt;/p&gt;
+&lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;$f(n)$，n的综合优先级；$g(n)$，n距离起点的代价（bfs）；$h(n)$，n距离终点的预计代价，&lt;strong&gt;启发函数&lt;/strong&gt;！&lt;/p&gt;
+&lt;p&gt;unless：p(x) unless q(x) $\to$ r(x)：p(x)$\to$q(x)为真，除非q(x)成立&lt;/p&gt;
+&lt;p&gt;​	若q(x)不知道是否为真，则可以先使用p(x)$\to$q(x)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;若$h(n)$始终=0，则退化为了Dijkstra算法；&lt;/p&gt;
+&lt;p&gt;is constent with：（&lt;strong&gt;M&lt;/strong&gt; B(x) 意思为：没有证据表明 B(x)不成立/与现有证据矛盾）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;.%5cfig7.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id=&#34;真值维护系统tms&#34;&gt;真值维护系统TMS&lt;/h4&gt;
+&lt;p&gt;TMS实现机制：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关联机制：将每条结论和理由 联系在一起；&lt;/li&gt;
+&lt;li&gt;定位机制：给定矛盾和理由，定位错误的假设&lt;/li&gt;
+&lt;li&gt;回收机制：收回错误假设&lt;/li&gt;
+&lt;li&gt;追溯机制：收回错误的假设的结论&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;理由网络pngfig8png&#34;&gt;理由网络：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;.%5cfig8.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/h5&gt;
+&lt;h4 id=&#34;封闭世界假设&#34;&gt;封闭世界假设&lt;/h4&gt;
+&lt;p&gt;只有求解问题需要的谓词，并且谓词的（定义域？）都是确定且封闭的：则若不含有p(X)为真，则not(p(X))为真&lt;/p&gt;
+&lt;h4 id=&#34;确信度理论&#34;&gt;确信度理论&lt;/h4&gt;
+&lt;p&gt;MB(H|E)：给定证据E时，假设H的可信度量，取值范围[0,1]     （&amp;gt;0说明E的出现提高了H出现的概率；否则=0）&lt;/p&gt;
+&lt;p&gt;MD(H|E)：给定证据E时，假设H的不可信度量，取值范围[0,1]&lt;/p&gt;
+&lt;p&gt;产生式规则一般形式：IF E THEN H $\text{\textcolor{red}{(CF(H|E)}}$)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CF(H|E)为该条&lt;strong&gt;知识&lt;/strong&gt;的确信度，CF(H|E) = MB(H|E) - MD(H|E)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;.%5cfig9.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;同一证据不可能同时增加和降低H的可信度；MB和MD一定是互斥的（至多一个非0）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;证据的不确定性&lt;/strong&gt;：（也由确信度表示）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;CF(E) $\in [-1,1]$ ：-1，证据E肯定为假； 1，E肯定为真； 0，对E一无所知
+&lt;ul&gt;
+&lt;li&gt;故 CF($\neg$E) = -CF(E)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;合取与析取
+&lt;ul&gt;
+&lt;li&gt;E=E1 and E2 and E3 and &amp;hellip;，则 CF(E) = min{CF(E1), CF(E2), CF(E3), &amp;hellip;}&lt;/li&gt;
+&lt;li&gt;E=E1 or E2 or E3 or &amp;hellip;，则 CF(E) = max{CF(E1), CF(E2), CF(E3), &amp;hellip;}&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;注意与CF(H|E)的区别！(知识的不确定性)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;不确定性的更新公式&lt;/strong&gt;： CF(H) = CF(H|E) $\times$ max{0, CF(E)}&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;结论不确定性的合成&lt;/strong&gt;：（多条知识算出的同一结论的确信度CF1(H)和CF2(H)，且&lt;em&gt;&lt;strong&gt;知识的前提互相独立&lt;/strong&gt;&lt;/em&gt;，则可以合成结论的综合确信度）&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig10.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;信任函数&#34;&gt;信任函数&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;下限函数Bel&lt;/strong&gt;：Bel(A) 表示对A的总信任度（即A为真的确信度）&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;上限函数Pl&lt;/strong&gt;：Pl(A)=1-Bel($\neg$A) 表示A为非假的信任度&lt;/p&gt;
+&lt;p&gt;对A信任程度的上下限：A[Bel(A), Pl(A)]；  Pl(A)-Bel(A)对应“不知道” 的情况&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig11.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;证据合并规则&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig12.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig13.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;ch6-贝叶斯网络&#34;&gt;Ch6. 贝叶斯网络&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;概念&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;先验概率 vs 后验概率：&lt;strong&gt;先验&lt;/strong&gt;，非条件概率，P(A)；  &lt;strong&gt;后验&lt;/strong&gt;，条件概率，P(A|E)&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;若$h(n)$始终&amp;lt;=节点n到终点的代价，则A*算法保证能找到最优路径！&lt;/p&gt;
+&lt;p&gt;演绎推理 vs 归纳推理：演绎，不要求前件为真；   归纳，前件必须为真，但结论未必（从特殊到一般）&lt;/p&gt;
 &lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;贝叶斯定理：（全概率公式）$P(Hi|E)=\frac{P(E|Hi)P(Hi)}{\sum_{k}P(E|Hk)P(Hk)}$&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;链式规则：$P(H|E1\cap E2\cap E3\cap &amp;hellip;\cap En)=&amp;hellip;$&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;贝叶斯信念网络&#34;&gt;贝叶斯信念网络&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig14.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;顺序连接&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig15.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分支连接&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig16.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;汇合连接&lt;/strong&gt;：&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig17.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;d-可分&#34;&gt;d-可分&lt;/h4&gt;
+&lt;p&gt;节点A到B的路径中，若存在：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;顺序 / 分支连接 结构的中间节点已知&lt;/li&gt;
+&lt;li&gt;汇合连接 结构的中间节点及其所有子节点未知&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;则路径被阻断，A和B相互独立；否则A和B不相互独立&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig18.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;变量的顺序是会影响建图结构的！&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ch7-马尔可夫网络&#34;&gt;Ch7. 马尔可夫网络&lt;/h2&gt;
+&lt;p&gt;有限状态系统{$s_1,s_2,&amp;hellip;,s_n$}，离散时间点$t_i$下 对象所处状态记为$X_i$，满足：对象在t处所处状态的概率取决于时间1，2，&amp;hellip;，t-1时的状态&lt;/p&gt;
+&lt;p&gt;则&lt;strong&gt;一阶马尔科夫链&lt;/strong&gt;满足：$P(X_t=s_k|X_{t-1},&amp;hellip;,X_2,X_1)=P(X_t=s_k|X_{t-1})$&lt;/p&gt;
+&lt;h4 id=&#34;马尔可夫逻辑网-mln&#34;&gt;马尔可夫逻辑网 （MLN）&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig19.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig20.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h5 id=&#34;变量消除&#34;&gt;变量消除&lt;/h5&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig21.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;ch8-符号学习&#34;&gt;Ch8. 符号学习&lt;/h2&gt;
+&lt;h4 id=&#34;概念学习&#34;&gt;概念学习&lt;/h4&gt;
+&lt;p&gt;就是机器学习里的 二分类问题~&lt;/p&gt;
+&lt;h4 id=&#34;决策树&#34;&gt;决策树&lt;/h4&gt;
+&lt;p&gt;&lt;strong&gt;ID3算法&lt;/strong&gt;：ID3(Examples，Attributes)&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;创建Root结点&lt;/li&gt;
+&lt;li&gt;基本情况：Examples中目标属性全为“+”/“-”，直接返回对应label的单结点树Root；若Attributes为空，则label设为Examples中最普遍的目标属性值&lt;/li&gt;
+&lt;li&gt;否则，找到Attributes中分类能力最好的属性A 作为Root的决策属性，并为A的每种可能取值 建立一个子树/叶子结点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;选择最佳属性&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;熵：对于样本集合S，Entropy(S) = $\sum_{i}-p_i\log_2p_i$   ，熵越小越好（i为&lt;strong&gt;目标属性&lt;/strong&gt;的所有可能取值，反映了集合S的混乱（不纯）程度！）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;信息增益：
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig22.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;c45算法&#34;&gt;C4.5算法&lt;/h5&gt;
+&lt;p&gt;先从候选划分属性中找出 信息增益 高于平均水平的属性，再从中选择 信息增益率 最高的&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;信息增益率：信息增益 / 该属性的熵 = Gain(S, A) / IV(A)
+&lt;ul&gt;
+&lt;li&gt;IV(A)= $-\sum_{v\in \text{Values}(A)}\frac{|S_v|}{|S|}\log\frac{|S_v|}{|S|}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;ch9-神经网络&#34;&gt;Ch9. 神经网络&lt;/h2&gt;
+&lt;h4 id=&#34;感知机&#34;&gt;感知机&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig23.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h4 id=&#34;反向传播bp算法&#34;&gt;反向传播（BP）算法&lt;/h4&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig24.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;h2 id=&#34;ch10-遗传算法&#34;&gt;Ch.10 遗传算法&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;根据所有属性即可能的取值，确定“染色体”的表示（即一个0/1/#串，每位分别代表某个属性值的某个取值，#表示 no care）&lt;/li&gt;
+&lt;li&gt;确定适应度函数！即描述某一“染色体”（即 某一特定解）的好坏程度，适应度大小会影响一条“染色体”被选中交换+保留的概率&lt;/li&gt;
+&lt;li&gt;一开始随机选择？若干条“染色体”，然后通过适应度函数 以及选择方法，选出其中的若干条 （选择方法 影响到exploration &amp;amp; exploitation trade）&lt;/li&gt;
+&lt;li&gt;两两进行交换，交换策略有多种；以及较低概率突变&lt;/li&gt;
+&lt;li&gt;加入这些新的“染色体”，并替换掉一些较差“染色体”&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;ch11-强化学习&#34;&gt;Ch.11 强化学习&lt;/h2&gt;
+&lt;h5 id=&#34;bellman等式-策略评估&#34;&gt;Bellman等式 （策略评估）&lt;/h5&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig25.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;其中 $\delta(s,\pi(s),s&amp;rsquo;)$表示从状态s 且采用了action $\pi(s)$，会转移到状态s‘ 的概率&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h5 id=&#34;时间差分td算法&#34;&gt;时间差分（TD）算法&lt;/h5&gt;
+&lt;p&gt;（用来学习/更新值函数 以及 策略）&lt;/p&gt;
+&lt;p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  &gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;./fig26.png&#34; alt=&#34;png&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;/figure&gt;
+&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;其中$r_t$为一次经验，$R^{(0)}=r_t+\gamma V(s_{t+1})$&lt;/li&gt;
+&lt;li&gt;N步TD：即$R^{N}=r_t+\gamma r_{t+1}+\gamma^2r_{t+2}+&amp;hellip;+\gamma^nV(s_{t+n})$替换$R^{(0)}$&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;划重点&#34;&gt;划重点&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;搜索（对于给定的搜索问题了解深度、广度以及启发式搜索的求解方案，启发式搜索中了解启发式函数的定义以及会展开搜索树）；&lt;/li&gt;
+&lt;li&gt;推理和知识表示（掌握命题演算、谓词演算以及如何进行推理，可参考课后习题）&lt;/li&gt;
+&lt;li&gt;不确定性推理（重点掌握贝叶斯网络以及马尔科夫网络，知道网络的构建以及联合概率分布如何约简以及怎么进行因果推理和诊断推理）&lt;/li&gt;
+&lt;li&gt;符号学习（掌握决策树构建，给出数据案例可构建ID3或C4.5的树）&lt;/li&gt;
+&lt;li&gt;神经网络（掌握感知机学习算法、BP算法，给出数据案例可通过算法得到相应的网络结构）&lt;/li&gt;
+&lt;li&gt;遗传算法（掌握对给定问题可通过遗传算法解决，怎么编码，怎么进行交叉、变异等操作，最终得到解）&lt;/li&gt;
+&lt;li&gt;强化学习（掌握Bellman等式以及状态值函数的计算，TD算法）&lt;/li&gt;
+&lt;li&gt;博弈（掌握博弈矩阵定义方法，掌握帕利托优解和纳什均衡解定义，可找出不同问题的解，可参考课上例子）&lt;/li&gt;
 &lt;/ul&gt;
 </description>
     </item>
@@ -7191,7 +7915,7 @@ data.head()
 
 
 
-&lt;div id=&#34;chart-456298713&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
+&lt;div id=&#34;chart-856193742&#34; class=&#34;chart&#34;&gt;&lt;/div&gt;
 &lt;script&gt;
   (function() {
     let a = setInterval( function() {
@@ -7201,7 +7925,7 @@ data.head()
       clearInterval( a );
 
       Plotly.d3.json(&#34;./line-chart.json&#34;, function(chart) {
-        Plotly.plot(&#39;chart-456298713&#39;, chart.data, chart.layout, {responsive: true});
+        Plotly.plot(&#39;chart-856193742&#39;, chart.data, chart.layout, {responsive: true});
       });
     }, 500 );
   })();
